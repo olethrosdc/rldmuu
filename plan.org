@@ -1,0 +1,76 @@
+* Schedule
+|------+--------------------------------------------------|
+| 1.12 | Beliefs and Decisions                            |
+| 1.13 | Bayes Decision and Game Theory                   |
+|      | Exercises 9, 11                                  |
+| 1.19 | Bayesian Analysis                                |
+| 1.20 | Estimation Theory and Concentration Inequalities |
+|      | Exercises 17,18                                  |
+|------+--------------------------------------------------|
+| 1.26 | Bandit problems                                  |
+| 1.27 | MDPs and belief states                           |
+|      | Exercise 22                                     |
+|  2.2 | MDP Theory: Value Iteration                      |
+|  2.3 | Policy Iteration / Temporal Differences          |
+|      |                                                  |
+|------+--------------------------------------------------|
+|  2.9 | Sarsa / Q-Learning                               |
+| 2.10 | Stochastic Approximation / Actor-Critic          |
+| 2.16 | Function Approximation, Gradient Methods         |
+| 2.17 | Large-Scale RL                                   |
+|------+--------------------------------------------------|
+| 2.23 | Bayesian RL                                      |
+| 2.24 | Bayesian Games                                   |
+|  3.2 | UCB, Regret bounds                               |
+|  3.3 | UCRL, Regret bounds                              |
+|------+--------------------------------------------------|
+| 3.10 | Group                                            |
+| 3.17 | Group                                            |
+| 3.24 | Group                                            |
+|  4.7 | Group                                            |
+| 4.14 | Group                                            |
+| 4.28 | Group                                            |
+|  5.5 | Group                                            |
+| 5.12 | Group                                            |
+|------+--------------------------------------------------|
+** Beliefs and decisions
+
+*** Probability primer (45')
+1. Objective vs Subjective Probability: Example
+2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset
+3. Measure theory 
+4. Axioms of Probability
+5. Exercise: Prove that P satisfies the given properties
+5. Random variables
+6. Expectations
+7. Probability exercise (src)
+
+*** Utility theory (45')
+1. Rewards and preferences
+2. Transitivity of preferences
+3. Random rewards
+4. Utility functions and the expected utility hypothesis
+5. Utility exercise: Gambling (10' pen and paper)
+6. The St. Petersburg Paradox
+
+** Bayesian Decisions and Game theory
+
+*** Problems with Observations (45')
+1. Conditional probability (5')
+2. Bayes theorem (10')
+3. Bayes theorem exercise (30')
+
+*** Basic decisions
+1. Linearity of Expectations
+2. Convexity of Bayes Decisions
+3. Game theory
+4. Linear programming for games
+
+** Bayesian Analysis
+
+
+** Estimation Theory
+
+Chernoff Bounds
+
+
