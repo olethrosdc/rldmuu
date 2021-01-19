@@ -25,7 +25,6 @@ class BetaConjugatePrior:
 T = 100 # number of time steps
 
 # an array of tails (0) and heads (1)
-outcomes = np.array('0 1 0 1 0 1 0 0 1 0 1')
 true_bias = 0.6
 belief = BetaConjugatePrior(1,1)
 
