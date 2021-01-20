@@ -26,6 +26,7 @@ def get_max_action(U, P):
 def get_min_outcome(U, policy):
 
 
-
+## Find the worst-case distribution P, i.e. the one minimising
+## max_\pi \sum_{\omega, a} P(\omega) U(\omega, a) \pi(a)
 def get_worst_case_P(U):
     
