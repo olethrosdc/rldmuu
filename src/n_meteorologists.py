@@ -13,11 +13,9 @@ import random
 def get_posterior(prior, P, outcome):
     n_models = len(prior)
     posterior = prior
-    for k in range(n_models):
-
+    for omega in range(n_models):
+        posterior[omega] *= P[omega][outcome]
     posterior /= sum(posterior)
-    ## So probability of outcome for model i is just...
-    ## FILL IN
     return posterior
 
 
@@ -28,8 +26,8 @@ def get_posterior(prior, P, outcome):
 def get_marginal_prediction(belief, P, outcome):
     n_models = len(belief)
     outcome_probability = 0
-    for k in range(n_models):
-
+    for omega in range(n_models):
+        outcome_probability += belief[omega] * P[omega][outcome]
     return outcome_probability
 
 ## In this function, U[action,outcome] should be the utility of the action/outcome pair
@@ -38,7 +36,7 @@ def get_expected_utility(belief, P, action, U):
     n_outcomes = np.shape(P)[1]
     utility = 0 ## FILL IN
     for x in range(n_outcomes):
-
+        utility += get_marginal_prediction(belief, P, x) * U[action, x]
     return utility
 
 ## In this function, U[action,outcome] should be the utility of the action/outcome pair, using MAP inference
@@ -48,6 +46,7 @@ def get_MAP_utility(belief, P, action, U):
     utility = 0 ## FILL IN
     MAP_model = belief.argmax() # get the maximising model
     for x in range(n_outcomes):
+        utility += P[MAP_model][x] * U[action, x]
 
     return utility
 
@@ -57,16 +56,20 @@ def get_MAP_utility(belief, P, action, U):
 def get_best_action(belief, P, U):
     n_models = len(belief)
     n_actions = np.shape(U)[0]
-
-    return best_action
+    V = np.zeros(n_actions)
+    for a in range(n_actions):
+        V[a] = get_expected_utility(belief, P, a, U)
+    return V.argmax()
 
 ## Here you should return the action maximising expected utility
 ## Here we are using the MAP model
 def get_best_action_MAP(belief, P, U):
     n_models = len(belief)
     n_actions = np.shape(U)[0]
-
-    return best_action
+    V = np.zeros(n_actions)
+    for a in range(n_actions):
+        V[a] = get_expected_utility(belief, P, a, U)
+    return V.argmax()
 
 
 
@@ -82,7 +85,7 @@ n_outcomes = 2 # 0 = no rain, 1 = rain
 ## we use this matrix to fill in the predictions of stations
 P = np.zeros([n_models, n_outcomes])
 belief = np.ones(n_models) / n_models;
-rain = [1, 0, 1, 1];
+rain = [0, 0, 1, 0];
 
 print("a x U")
 print("-----")
@@ -94,9 +97,10 @@ for t in range(T):
     probability_of_rain = get_marginal_prediction(belief, P, 1)
     #print(probability_of_rain)
     U  = np.matrix('1 -10; 0 0')
-    action = get_best_action_MAP(belief, P, U)
+    action = get_best_action(belief, P, U)
+    MAP_action = get_best_action_MAP(belief, P, U)
     
-    print(action, rain[t], U[action, rain[t]])
+    print(action, MAP_action, rain[t], U[action, rain[t]], U[MAP_action, rain[t]])
     belief = get_posterior(belief, P, rain[t])
     print(belief)
 

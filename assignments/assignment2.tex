@@ -1,0 +1,79 @@
+\documentclass[twoside,a4paper]{article}
+% \usepackage{enumerate}
+% \setbeamertemplate{enumerate item}{(\alph{enumi})}
+% \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
+\input{preamble}
+
+
+\pagestyle{myheadings}
+
+
+
+\begin{document}
+\title{Exercise set 2, IN-STK 5100}
+\author{Christos Dimitrakakis: \texttt{chridim@ifi.uio.no}}
+
+\maketitle
+\large{Deadline: 29 Jan 2021}
+
+\vspace{1em}
+
+\begin{exercise}
+  James Randi claims that he is \emph{psychic} and can \emph{always predict a coin toss}. Let $A$ denote the event that JR is psychic and let $P(A) = 2^{-16}$ be your prior belief that JR is a psychic. Let us now make a set of bets about Randi.
+  In the following, make the following assumptions
+  \begin{assumption}
+    All experiments are conducted with a fair coin, whose probability of coming heads at the $k$-th toss is $P(H_k) = 1/2$ and where $H_k$ is independent of $H_{k-1}, \ldots, H_1$.
+  \end{assumption}
+  \begin{assumption}
+    If JR is a psychic, then he can perfectly predict the coin tosses. Thus, if $B_k$ is the event that he predicts correctly, then $P(B_k \mid A, H_k) = P(B_k \mid A) = 1$.
+  \end{assumption}
+
+
+  
+  \begin{enumerate}
+  \item Let $B_k$ denote the event that JR predicts the $k$-th coin toss correctly. What are the dependencies between $A, H_k, B_k$? (You can draw a graphical model to represent them). For simplicity, take $k=1, 2$ only.
+  \item What is the marginal probability $P(B_1)$? What is the marginal probability $P(B_2)$?  
+  \item Say that JR predicts the first coin toss correctly, i.e. $B_1$ holds. What is then the marginal probability $P(B_2 \mid B_1)$? 
+  \end{enumerate}
+  \emph{Hint: The only important events for the calculations are whether JR predicts correctly or not.}
+\end{exercise}
+
+
+\begin{exercise}
+  We continue the previous exercise, but with the following extra assumption.
+  \begin{assumption}
+    Your utility for money is linear, i.e. $U(x) = x$ for
+    any amount of money $x$.
+  \end{assumption}     
+  \begin{enumerate}  
+  \item At the beginning of the experiment, JR bets you 100 CU that he can predict the \emph{next four} coin tosses, i.e. he is willing to give you 100 CU if he doesn't predict all four tosses. How much are you willing to bet against that, i.e. how much are you willing to pay if he does predict them correctly?
+  \item You throw the coin 4 times, and JR guesses correctly all four
+    times. Randi now bets you another 100 CU that he can predict the
+    \emph{next} four coin tosses. Up to how much would you bet now?
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  Instead of assuming that Randi is either a perfect psychic or a fraud, we can relax our assumption. Let $A$ denote the event that Randi is psychic, but that he can only predict some proportion $\theta \in [0,1]$ of tosses (he could also be a \emph{bad} psychic).
+We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior marginal distribution looks like this:
+\begin{align}
+  P(B) &= P(B \mid A) P(A) + P(B \mid \neg A) P(\neg A)\\
+  P(B \mid A) &= \int_0^1 P(B \mid \theta) \bel(\theta) d\theta = \int_0^1 \theta \bel(\theta) d\theta = \E_\bel \theta\\
+  P(B \mid \neg A) &= \frac{1}{2}.
+\end{align}
+\begin{enumerate}
+\item What is the resulting posterior distribution $P(B_2 \mid B_1)$ of JR predicting the next toss correctly after he has predicted one correctly? Write this in terms of the resulting $P(A \mid B_1)$ and the resulting Beta posterior parameters, given that $P(A) = 2^{-16}$.
+\item Write an expression for the marginal probability $P(B_{n+1} \mid B^n)$.
+\item \emph{Advanced:} Randi now offers you the opportunity to bet 100CU at every time step $t$ that he would guess the next coin toss, with equal odds (i.e. you get 100CU if he doesn't guess correctly and lose 100CU if he does). If you accept the bet at time $t$, you throw the coin and Randi guesses, and you get/pay money depending on the outcome. Then he offers another bet at time $t+1$. If at any time you decline the bet, the game stops. Define a strategy for playing this game.
+\end{enumerate}
+
+\end{exercise}
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
