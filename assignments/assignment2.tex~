@@ -1,0 +1,78 @@
+\documentclass[twoside,a4paper]{article}
+% \usepackage{enumerate}
+% \setbeamertemplate{enumerate item}{(\alph{enumi})}
+% \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
+
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amsthm}
+\usepackage{isomath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{epic}
+\usepackage{pstool}
+
+\theoremstyle{example}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+
+% \input{preamble}
+
+
+\pagestyle{myheadings}
+
+
+
+\begin{document}
+\title{Exercise set 1, IN-STK 5100}
+\author{Christos Dimitrakakis: \texttt{chridim@ifi.uio.no}}
+
+\maketitle
+\large{Deadline: 29 Jan 2021}
+
+\vspace{1em}
+
+\begin{exercise}
+  Case 1:
+  \begin{enumerate}
+  \item The reward is 500,000 with certainty.
+  \item The reward is 2,500,000 with probability $0.10$. It is 500,000 with probability $0.89$, and 0 with probability $0.01$.
+  \end{enumerate}
+
+  Case 2:
+  \begin{enumerate}
+  \item The reward is 500,000 with probability $0.11$, or 0 with probability $0.89$.
+  \item The reward is 2,500,000 with probability $0.1$, or 0 with probability $0.9$.
+  \end{enumerate}
+
+  Show that under the expected utility hypothesis, if gamble 1 is preferred in Case 1, gamble 1 must also be preferred in the Case 2, for any increasing utility function.
+\end{exercise}
+
+\begin{exercise}[15]
+  Consider the St. Petersburg paradox, where a coin is tossed until it comes heads. 
+  We have estabilshed that if your utility for money is $U(x) = x$, and the coin was fair, i.e. the probability of heads was $1/2$
+  then you should be willing to pay any amount to play the game. In this exercise, let us consider two alternative hypotheses:
+  \begin{itemize}
+  \item  Assume that the coin is fair, but your utility for money is $U(x) = ln x$. How much
+    would you now be willing to pay to play the game? Hint: Calculate the expected
+    utility of playing.
+  \item Assume that the coin is not fair, but only comes head with probability 0.4, and your
+    utility is linear: U(x) = x. How much would you be willing to play now?
+  \end{itemize}
+\end{exercise}
+
+\begin{exercise}
+  Complete the code in \verb!src/decision_problems.py!
+\end{exercise}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
