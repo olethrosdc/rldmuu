@@ -10,11 +10,11 @@ def backwards_induction(mdp, T):
         for s in range(mdp.n_states):
             for a in range(mdp.n_actions):
                 if (t==T-1):
-                    Q[s,a,t] = mdp.get_reward(state, action)
+                    Q[s,a,t] = mdp.get_reward(s, a)
                 else:
-                    P_sa = mdp.get_transition_probabilities(state, action)
+                    P_sa = mdp.get_transition_probabilities(s, a)
                     U_next = sum(P_sa * V[:,t+1])
-                    Q[s,a,t] = mdp.get_reward(state, action) + U_next
+                    Q[s,a,t] = mdp.get_reward(s, a) + U_next
                 V[s,t] = max(Q[s,:,t])
                 policy[t] = np.argmax(Q[s,:,t])
     return policy, V, Q
