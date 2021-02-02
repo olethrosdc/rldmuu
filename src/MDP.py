@@ -5,8 +5,8 @@ class DiscreteMDP:
     def __init__(self, n_states, n_actions):
         self.n_states = n_states
         self.n_actions = n_actions
-        P = np.zeros(n_states, n_actions, n_states)
-        R = np.zeros(n_states, n_actions)
+        P = np.zeros([n_states, n_actions, n_states])
+        R = np.zeros([n_states, n_actions])
         # generate uniformly random transitions and 0.1 bernoulli rewards
         for s in range(self.n_states):
             for a in range(self.n_actions):
@@ -23,9 +23,10 @@ class DiscreteMDP:
     # get the vector P( . | s,a)
     def get_transition_probabilities(self, state, action):
         return P[state,action]
+    # get the reward for the current state action
     def get_reward(self, state, action):
         return R[state, action]
-    
+
     
 
         
