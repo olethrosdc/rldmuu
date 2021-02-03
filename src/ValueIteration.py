@@ -2,14 +2,14 @@ import MDP
 import numpy as np
 
 ## Define algorithm
-def backwards_induction(mdp, T):
-    policy = np.zeros([mdp.n_states, T])
-    V = np.zeros([mdp.n_states, T])
-    Q = np.zeros([mdp.n_states, mdp.n_actions, T])
-    for t in range(T-1, -1, -1):
+def value_iteration(mdp, n_iterations, gamma):
+    policy = np.zeros([mdp.n_states])
+    V = np.zeros([mdp.n_states])
+    Q = np.zeros([mdp.n_states, mdp.n_actions])
+    for t in range(n_iterations-1, -1, -1):
         for s in range(mdp.n_states):
             for a in range(mdp.n_actions):
-                if (t==T-1):
+                if (t==n_iterations-1):
                     Q[s,a,t] = mdp.get_reward(s, a)
                 else:
                     P_sa = mdp.get_transition_probabilities(s, a)
@@ -21,19 +21,19 @@ def backwards_induction(mdp, T):
 
 n_actions = 2
 n_states = 2
-T = 1000
+n_iterations = 1000
 mdp = MDP.DiscreteMDP(n_states, n_actions)
-policy, V, Q = backwards_induction(mdp, T)
+policy, V, Q = backwards_induction(mdp, n_iterations)
 
 for s in range(mdp.n_states):
     for a in range(mdp.n_actions):
         print("S:", s, "A:", a, mdp.get_transition_probabilities(s,a))
 
 
-for t in range(T):
+for t in range(n_iterations):
     print(policy[:,t])
         
-for t in range(T):
+for t in range(n_iterations):
     print(V[:,t])
 
     
