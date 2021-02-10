@@ -1,13 +1,28 @@
 import AverageBanditAlgorithm
+import chain
+import numpy as np
+import matplotlib.pyplot as plt
+def moving_average(x, K):
+  T = x.shape[0]
+  n = x.shape[1]
+  m = int(np.ceil(T / K))
+  y = np.zeros([m, n])
+  for alg in range(n):
+      for t in range(m):
+        y[t,alg] = np.mean(x[t*K:(t+1)*K, alg])
+  return y
+
+
 n_actions = 2
-n_experiments = 10
+n_experiments = 1
 T = 1000
 environments = []
-environments.append(Chain(5))
+
+environments.append(chain.Chain(5))
 
 
 algs = []
-algs.append(AverageBanditAlgorithm)
+algs.append(AverageBanditAlgorithm.AverageBanditAlgorithm)
 #algs.append(StochasticBanditAlgorithm)
 n_algs = len(algs)
 reward_t = np.zeros([T, n_algs])
@@ -23,9 +38,9 @@ for experiment in range(n_experiments):
       observation = env.reset()
       for t in range(100):
         env.render()
-        alg.act()
+        action = alg.act()
         observation, reward, done, info = env.step(action)
-        alg.update(action, reward, observation)
+        alg.update(action, reward) # observation)
         run_reward += reward
         reward_t[i_episode, alg_index] += reward
         if done:

@@ -2,7 +2,9 @@
 import gym
 import gym_bandits
 from gym import spaces
+from gym.utils import seeding
 
+import numpy as np
 ## Here bandit problems are sampled from a Beta distribution
 class Chain(gym.Env):
   def __init__(self, states=5, delta=0.4, epsilon=0.1):
@@ -10,12 +12,13 @@ class Chain(gym.Env):
     self.n_actions = 2
     self.r_dist = np.zeros(states)
     self.r_dist[0] = epsilon
-    self.r_dist[n_states - 1] = 1
+    self.r_dist[self.n_states - 1] = 1
     self.action_space = spaces.Discrete(self.n_actions)
     self.observation_space = spaces.Discrete(self.n_states)
     self.delta = delta
     self.epsilon = epsilon
     self._seed()
+    self.reset()
 
   def _seed(self, seed=None):
     self.np_random, seed = seeding.np_random(seed)
@@ -23,12 +26,12 @@ class Chain(gym.Env):
 
   def step(self, action):
     assert self.action_space.contains(action)
-    done = false
-    reward = np.random.binomial(1, self.r_dist[state])
+    done = False
+    reward = np.random.binomial(1, self.r_dist[self.state])
 
     move = action
     ## swap the move with a delta probability
-    if (np.random.uniform()<self.delta)
+    if (np.random.uniform()<self.delta):
         move = 1 - action
     if (move==0):
       self.state = 0
