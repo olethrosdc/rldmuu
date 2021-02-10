@@ -1,4 +1,4 @@
-import AverageBanditAlgorithm
+import QLearning
 import chain
 import numpy as np
 import matplotlib.pyplot as plt
@@ -22,7 +22,7 @@ environments.append(chain.Chain(5))
 
 
 algs = []
-algs.append(AverageBanditAlgorithm.AverageBanditAlgorithm)
+algs.append(QLearning.QLearning)
 #algs.append(StochasticBanditAlgorithm)
 n_algs = len(algs)
 reward_t = np.zeros([T, n_algs])
@@ -53,9 +53,9 @@ for experiment in range(n_experiments):
 total_reward /= n_experiments
 reward_t /= n_experiments
 plt.clf()
-plt.plot(moving_average(reward_t, 100))
-plt.legend(["Greedy", "Stochastic"])
-plt.savefig("stochastic.pdf")
+plt.plot(moving_average(reward_t, 10))
+plt.legend(["QLearning"])
+plt.savefig("qlearning.pdf")
 #  plt.show()
   
  
