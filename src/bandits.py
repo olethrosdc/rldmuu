@@ -65,14 +65,14 @@ class StochasticBanditAlgorithm:
     def __init__(self, n_actions):
         self.n_actions = n_actions
         self.mean = np.ones(n_actions)
-        self.alpha = 0.01 * np.ones(n_actions)
+        self.alpha = 0.5 * np.ones(n_actions)
     def act(self):
         return np.argmax(self.mean)
     ## Stochastic update: mu = mu + alpha * z
     ## z = r - mu
     def update(self, action, reward):
         self.mean[action] += self.alpha[action] * (reward - self.mean[action])
-
+        #self.alpha[action] *= 0.9
 
 
 
@@ -115,7 +115,7 @@ for experiment in range(n_experiments):
 total_reward /= n_experiments
 reward_t /= n_experiments
 plt.clf()
-plt.plot(moving_average(reward_t, 10))
+plt.plot(moving_average(reward_t, 100))
 plt.legend(["Greedy", "Stochastic"])
 plt.savefig("stochastic.pdf")
 #  plt.show()
