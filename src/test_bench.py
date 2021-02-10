@@ -40,7 +40,7 @@ for experiment in range(n_experiments):
         env.render()
         action = alg.act()
         observation, reward, done, info = env.step(action)
-        alg.update(action, reward) # observation)
+        alg.update(action, reward, observation)
         run_reward += reward
         reward_t[i_episode, alg_index] += reward
         if done:
