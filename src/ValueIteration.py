@@ -14,7 +14,7 @@ def value_iteration(mdp, n_iterations, gamma):
                 Q[s,a] = mdp.get_reward(s, a) + gamma * U_next
             V[s] = max(Q[s,:])
             policy[s] = np.argmax(Q[s,:])
-        print(V)
+            #print(V)
     return policy, V, Q
 
 n_actions = 2

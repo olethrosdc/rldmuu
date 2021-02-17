@@ -13,7 +13,6 @@ def moving_average(x, K):
   return y
 
 
-n_actions = 2
 n_experiments = 1
 T = 1000
 environments = []
@@ -32,11 +31,12 @@ for experiment in range(n_experiments):
   env.reset()
   alg_index = 0
   for Alg in algs:
-    alg = Alg(n_actions)
+    alg = Alg(env.observation_space.n, env.action_space.n)
     run_reward = 0
-    for i_episode in range(T):
+    for i_episode in range(1):
       observation = env.reset()
-      for t in range(100):
+      alg.reset(observation)
+      for t in range(T):
         env.render()
         action = alg.act()
         observation, reward, done, info = env.step(action)
