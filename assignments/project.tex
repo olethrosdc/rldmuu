@@ -1,0 +1,91 @@
+\documentclass[twoside,a4paper]{article}
+\usepackage[notheorems]{beamerarticle}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{psfrag}
+\usepackage{url}
+\usepackage{listings}
+ \usepackage{enumerate}
+\usepackage{xr}
+
+
+% \setbeamertemplate{enumerate item}{(\alph{enumi})}
+% \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
+\definecolor{dkgreen}{rgb}{0,0.5,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  language=Octave,                % the language of the code
+  basicstyle=\small,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*},            % if you want to add LaTeX within your code
+  morekeywords={*,...},              % if you want to add more keywords to the set
+  deletekeywords={...}              % if you want to delete keywords from the given language
+}
+
+\input{preamble}
+
+
+\pagestyle{myheadings}
+\markboth{Exercise set 5}{Reinforcement Learning and Decision Making under Uncertainty}
+
+%\newcommand\sinc{\mathop{\rm sinc}}
+
+\def\solution {1}
+
+\begin{document}
+\title{Project Proposal and , IN-STK 5100}
+\author{Christos Dimitrakakis  \texttt{chridim@ifi.uio.no}}
+\date{Deadline: 5 March 2021}
+\maketitle
+
+\section{Introduction.}
+Submit a project description. This project description, subject to approval, will be revised one week later. Projects can be done in teams of up to 2 students (exceptionally 3 if a student cannot find a partner). Students are advised to propose a project related to their thesis work when applicable.
+
+There are two general types of projects envisaged. An application project and an algorithmic project. For both types of project you need to specify:
+\begin{itemize}
+\item The goals of the project.
+\item Methodology.
+\item Experiment design.
+\item Expected results.
+\end{itemize}
+
+\section{Application project.}
+Application projects proposals need to contain the following:
+\begin{itemize}
+\item Domain description and goals: What is the problem, in general terms, and which aspect would you try and solve in an MDP/RL framework? Make sure to cite relevant literaure.
+\item Methodology: How would you formalise the problem mathematically? Which algorithms and/or models do you intend to apply at different stages of the project? Feel free to read widely about both the problem and algorithms and do cite relevant literature.
+\item Experiment design: How would you know that the method is working? How would you compare with existing solutions? In what context would you expect an improvement? How would you measure it? How will you test the robustness of your solution over variations in the problem instance?
+\item Expected results: What results do you expect to obtain, and what do you think might go wrong? In what way do you expect an improvement?
+\end{itemize}
+
+\section{Algorithmic project.}
+Algorithmic projects need to contain the following:
+\begin{itemize}
+\item Algorithmic/theory problem and goals: What is the deficiency, in general terms, of current theory and algorithms that your method would try to improve? As an example, the goal could be reducing computational complexity, increasing data efficiency, improving robustness or applicability of a specific family of algorithms; or introducing a slightly different setting to existing ones. In other words, which is the open problem you will be addressing? Make sure to cite relevant literature to better identify the problem.
+\item Methodology: What kind of existing algorithms, theory or technical result would you rely on? Would you be combining various existing results? What would be the most significant novelty of your methodology? Do cite relevant literature.
+\item Experiment design (if applicable): How would you know that the method is working? How would you compare with existing solutions? In what context would you expect an improvement? How would you measure it? 
+\item Expected results: What results do you expect to obtain, and what do you think might go wrong? In what way do you expect an improvement?
+\end{itemize}
+\end{document}
