@@ -15,7 +15,7 @@ def moving_average(x, K):
 
 
 n_experiments = 1
-T = 100000
+T = 1000
 environments = []
 
 environments.append(chain.Chain(5))
