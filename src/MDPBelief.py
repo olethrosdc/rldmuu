@@ -49,6 +49,33 @@ class DiscreteMDPBelief:
         
 
     
+class SimpleModelBasedRL:
+    def __init__(self, n_actions, n_states, discount=0.9, alpha = 0.01, epsilon=0.1):
+        self.n_actions = n_actions
+        self.n_states = n_states
+        self.belief = DiscreteMDPBelief(n_actions, n_states)
+        self.calculate_policy()
+        self.discount = discount
+        self.alpha = 0.01
+        self.epsilon = 0.1
+        self.n_iterations = 10
+        self.V = 0
+    def calculate_policy():
+        mdp = self.belief.get_mean_MDP()
+        self.policy, self.V = value_iteration(mdp, self.n_iterations, self.gamma, self.V)
+    def act(self):
+        self.epsilon = 1 / (1 / self.epsilon + 0.5)
+        if (np.random.uniform() < self.epsilon):
+            return np.random.choice(self.n_actions)
+        return policy[self.state]
+    
+    def update(self, action, reward, state):
+        self.belief.update(state=self.state, action=action, next_state=state, reward=reward)
+        self.state = state
+
+    def reset(self, state):
+        self.calculate_policy()
+        self.state = state
 
         
         
