@@ -2,9 +2,9 @@ import MDP
 import numpy as np
 
 ## Define algorithm
-def value_iteration(mdp, n_iterations, gamma, V = 0):
+def value_iteration(mdp, n_iterations, gamma, V = None):
     policy = np.zeros([mdp.n_states])
-    if (V==0):
+    if (V is None):
         V = np.zeros([mdp.n_states])
         
     Q = np.zeros([mdp.n_states, mdp.n_actions])
