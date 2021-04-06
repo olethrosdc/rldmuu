@@ -28,7 +28,7 @@
 | 3.17 | GPRL                                             |
 | 3.24 | IRL                                              |
 |  4.7 | Thomas                                           |
-| 4.14 | Meirav + Mojtabak                                |
+| 4.13 | Meirav + Mojtabak                                |
 | 4.28 | Paniz + Arturs                                   |
 |  5.5 | Sara                                             |
 | 5.12 | Group                                            |
