@@ -2,44 +2,35 @@
 |------+--------------------------------------------------|
 | 1.12 | Beliefs and Decisions                            |
 | 1.13 | Bayes Decision and Game Theory                   |
-|------+--------------------------------------------------|
+|      | Exercises 9, 11                                  |
 | 1.19 | Bayesian Analysis                                |
 | 1.20 | Estimation Theory and Concentration Inequalities |
+|      | Exercises 17,18                                  |
 |------+--------------------------------------------------|
 | 1.26 | Bandit problems                                  |
 | 1.27 | MDPs and belief states                           |
-|------+--------------------------------------------------|
+|      | Exercise 22                                      |
 |  2.2 | MDP Theory: Value Iteration                      |
 |  2.3 | Policy Iteration / Temporal Differences          |
+|      |                                                  |
 |------+--------------------------------------------------|
 |  2.9 | Sarsa / Q-Learning                               |
 | 2.10 | Stochastic Approximation / Actor-Critic          |
-|------+--------------------------------------------------|
 | 2.16 | Function Approximation, Gradient Methods         |
 | 2.17 | Large-Scale RL                                   |
 |------+--------------------------------------------------|
 | 2.23 | Bayesian RL                                      |
 | 2.24 | Bayesian Games                                   |
-|------+--------------------------------------------------|
 |  3.2 | UCB, Regret bounds                               |
 |  3.3 | UCRL, Regret bounds                              |
 |------+--------------------------------------------------|
-| 3.10 | Group                                            |
-|------+--------------------------------------------------|
-| 3.17 | Group                                            |
-|------+--------------------------------------------------|
-| 3.24 | Group                                            |
-|------+--------------------------------------------------|
-|  4.7 | Group                                            |
-|------+--------------------------------------------------|
-| 4.14 | Group                                            |
-|------+--------------------------------------------------|
-| 4.28 | Pro                                              |
-|------+--------------------------------------------------|
-|  5.1 | Exam                                             |
-|------+--------------------------------------------------|
-|  5.5 | Group                                            |
-|------+--------------------------------------------------|
+| 3.10 | UCT/MCTS                                         |
+| 3.17 | GPRL                                             |
+| 3.24 | IRL                                              |
+|  4.7 | Thomas                                           |
+| 4.14 | Meirav + Mojtabak                                |
+| 4.28 | Paniz + Arturs                                   |
+|  5.5 | Sara                                             |
 | 5.12 | Group                                            |
 |------+--------------------------------------------------|
 ** Beliefs and decisions
@@ -82,4 +73,11 @@
 
 Chernoff Bounds
 
+
+** Bandit problems
+
+1. n-meteorologists vs partial information
+2. Stochastic bandit problems
+3. The algorithmic belief
+4. A simple algorithm (AI-gym)
 
