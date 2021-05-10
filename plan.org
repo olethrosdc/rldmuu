@@ -28,10 +28,10 @@
 | 3.17 | GPRL                                             |
 | 3.24 | IRL                                              |
 |  4.7 | Thomas                                           |
-| 4.13 | Meirav + Mojtabak                                |
+| 4.13 | Meirav + Sara                                    |
 | 4.28 | Paniz + Arturs                                   |
 | 4.30 | *Interim reports*                                |
-|  5.5 | Sara                                             |
+|  5.5 | Mojtabak                                         |
 | 5.12 | Group                                            |
 | 5.30 | *Final reports*                                  |
 |------+--------------------------------------------------|
