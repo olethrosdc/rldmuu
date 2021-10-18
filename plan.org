@@ -1,4 +1,23 @@
 * Schedule
+** 2022
+|----+------------------------------------------|
+|  1 | Beliefs and Decisions                    |
+|  2 | Bayesian Analysis                        |
+|  3 | Bandits, MDPs                            |
+|  4 | Value Iteration / Policy Iteration       |
+|  5 | Sarsa / Q-Learning                       |
+|  6 | Stochastic Approximation / Actor-Critic  |
+|  7 | Function Approximation, Gradient Methods |
+|  8 | Large-Scale RL                           |
+|  9 | Bayesian RL                              |
+| 10 | UCB, Regret bounds                       |
+| 11 | IRL                                      |
+| 12 | GPRL, Regret bounds                      |
+| 13 | UCB, Regret bounds                       |
+| 14 | Project work                             |
+|----+------------------------------------------|
+
+** 2021
 |------+--------------------------------------------------|
 | 1.12 | Beliefs and Decisions                            |
 | 1.13 | Bayes Decision and Game Theory                   |
