@@ -607,7 +607,12 @@ Note that if we mapped these to a utility function, i.e. $U(a) = a_1 + a_2$, we 
   \item Assuming the same method is always used for action selection, in what way would the two methods differ in their behaviour after convergence?
   \item Give an example MDP where the policy chosen by the two algorithms will be different.
   \end{enumerate}
-  
+
+  \begin{solution}
+    Firstly, SARSA would satisfy $\lim_{t \to \infty} Q_t = Q^{\pi_{SARSA}}$, while $\lim_{t \to \infty} Q_t = Q^{*}$, unless action selection becomes less and less random. So SARSA would converge to the value of the softmax policy, while Q-learning to the value of the optimal policy. However, both would play softmax wrt the respective Q-values. For that reason one might expect that SARSA performed better sometimes.
+
+    Any MDP will do, actually, but a good example is the windy gridworld from Sutton and Barto's book.
+  \end{solution}
 \end{question}
 
 \begin{question}{The gambler}{2}
@@ -617,6 +622,11 @@ Note that if we mapped these to a utility function, i.e. $U(a) = a_1 + a_2$, we 
   \item Is this a good type of reward function to consider? In particular, what would you expect the optimal policy to try do in this setting?
   \item Suggest an alternative reward function and termination condition (if necessary by adding more actions to the gambler) that would make more sense if the gambler wanted to maximise gains. What is the optimal policy in this setting?
   \end{enumerate}
+  \begin{solution}
+    Because the game ends only when you either reach 100 or 0, and the reward is 1 only when you reach 100, that means the gambler's goal is to simply get 100 coins. This is not, strictly speaking, the same as trying to maximise profits.
+
+    A simpler solution would be to have the gambler decide when to quit, with an additional 'quit' action. Then the reward after quitting could simply be an increasing function of the amount of money the gambler has at the time. (as a side-note, it should then be obvious that if this function is concave (or linear), then the gambler should just immediately quit, at least in this particular game.)
+  \end{solution}
 \end{question}
 
 \end{document}
