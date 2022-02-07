@@ -15,15 +15,15 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 |----+--------------------------------------------------|
 |  3 | Estimation Theory and Concentration Inequalities |
 |----+--------------------------------------------------|
-|  4 | Bandit problems                                  |
-|    | MDPs, belief states, Backwards Induction         |
+|  4 | Bandit problems.                                 |
+|    | MDPs, belief states, Backwards Induction.        |
 |----+--------------------------------------------------|
 |  5 | MDP Theory: Value Iteration                      |
 |    | Policy Iteration                                 |
 |----+--------------------------------------------------|
 |  6 | Sarsa / Q-Learning                               |
 |----+--------------------------------------------------|
-|  7 | Stochastic Approximation / Actor-Critic          |
+|  7 | Actor-Critic / Model-Based RL                    |
 |----+--------------------------------------------------|
 |  8 | Function Approximation, Gradient Methods         |
 |----+--------------------------------------------------|
@@ -33,7 +33,7 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 |    | UCRL, Regret bounds                              |
 |----+--------------------------------------------------|
 | 11 | Large-scale RL.                                  |
-|    | UCT                                              |
+|    | UCT/AlphaZero etc.                               |
 |----+--------------------------------------------------|
 | 11 | Advanced Bayesian models                         |
 |----+--------------------------------------------------|
@@ -47,12 +47,11 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 *** Probability primer (45')
 1. Objective vs Subjective Probability: Example (5')
 2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset (5')
-
-3. Measure theory 
-4. Axioms of Probability
-5. Exercise: Prove that P satisfies the given properties
-5. Random variables
-6. Expectations
+3. Measure theory (5')
+4. Axioms of Probability (5')
+5. Random variables (5')
+6. Expectations (5')
+7. Expectations Exercise (10')
 
 1. 
 - Quantum Physics
@@ -90,7 +89,6 @@ $f: \Omega \to \Reals$
 
 
 
-
 *** Utility theory (45')
 1. Rewards and preferences
 2. Transitivity of preferences
@@ -105,7 +103,11 @@ $f: \Omega \to \Reals$
 2. Exercise Set 2. Sec 2.4, Exercises 4, 5, 11, 12.
 
 
+The utility analysis of choices involving risk:
 https://www.journals.uchicago.edu/doi/abs/10.1086/256692
+
+
+The expected-utility hypothesis and the measurability of utility
 https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 
@@ -117,10 +119,10 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 *** Basic decisions (45')
 
-1. Linearity of Expectations
-2. Convexity of Bayes Decisions
-3. Game theory
-4. Linear programming for games
+1. Linearity of Expectations (5')
+2. Convexity of Bayes Decisions (5')
+3. Game theory (10')
+4. Linear programming for games (10')
 
 *** Lab: Decision problems and estimation
 
@@ -132,11 +134,6 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 Exercise Set 4.
 
 
-** Bayesian Analysis and Estimation
-- Conjugate priors (15')
-- Beta and Normal example (30')
-- Chernoff Bounds and Concentration Inequalities (45')
-
 ** Bayesian Analysis and Estimation Theory
 - Conjugate priors (15')
 - Beta Example  (15')
@@ -146,9 +143,9 @@ Exercise Set 4.
 - Hypothesis testing
 
 *** Concentration lab
-- Construction of credible intervals (30')
-- Concentration inequalities (30')
-- Hypothesis testing (30')
+- Construction of credible intervals (15')
+- Concentration inequalities (15')
+- Hypothesis testing (15')
 
 Focus on the beta-bernoulli model and hypothesis testing.
 
