@@ -44,6 +44,9 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 | 14 | Group work                                       |
 |----+--------------------------------------------------|
 ** Beliefs and decisions
+
+
+
 *** Probability primer (45')
 1. Objective vs Subjective Probability: Example (5')
 2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset (5')
@@ -51,7 +54,7 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 4. Axioms of Probability (5')
 5. Random variables (5')
 6. Expectations (5')
-7. Expectations Exercise (10')
+7. [[file:src/beliefs_and_decisions/probability.py][Expectations exercise]] (10')
 
 1. 
 - Quantum Physics
@@ -100,7 +103,7 @@ $f: \Omega \to \Reals$
 *** Lab: Probability, Expectation, Utility
 
 1. Exercise Set 1. Probability introduction.
-2. Exercise Set 2. Sec 2.4, Exercises 4, 5, 11, 12.
+2. Exercise Set 2. Sec 2.4, Exercises 4, 5.
 
 
 The utility analysis of choices involving risk:
@@ -109,6 +112,10 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/256692
 
 The expected-utility hypothesis and the measurability of utility
 https://www.journals.uchicago.edu/doi/abs/10.1086/257308
+
+*** Assignment.
+
+Exercise 7, 8, 9.
 
 
 ** Decisions with observations
@@ -131,7 +138,7 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 *** Assignment. An insurance problem
 
-Exercise Set 4.
+Exercise 20, 21, 22, 23.
 
 
 ** Bayesian Analysis and Estimation Theory
