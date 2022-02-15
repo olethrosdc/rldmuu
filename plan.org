@@ -106,6 +106,36 @@ $f: \Omega \to \Reals$
 2. Exercise Set 2. Sec 2.4, Exercises 4, 5.
 
 
+
+*** Assignment.
+
+Exercise 7, 8, 9.
+
+*** Seminar:
+
+Utility. What is the concept of utility? Why do we want to always maximise utility?
+
+Example:
+
+|----+----+----|
+| U  | w1 | w2 |
+|----+----+----|
+| a1 |  4 |  1 |
+| a2 |  3 |  3 |
+|----+----+----|
+  
+Regret. Alternative notion.
+
+|----+----+----|
+| L  | w1 | w2 |
+|----+----+----|
+| a1 |  0 |  2 |
+| a2 |  1 |  0 |
+|----+----+----|
+
+Minimising regret is the same as maximising utility when w does not depend on a.
+Hint: So that if $E[L|a^*] \leq E[L|a]$ for all $a'$, $E[U|a^*] \geq E[L|a]$ for all $a'$,
+
 The utility analysis of choices involving risk:
 https://www.journals.uchicago.edu/doi/abs/10.1086/256692
 
@@ -113,9 +143,8 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/256692
 The expected-utility hypothesis and the measurability of utility
 https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
-*** Assignment.
 
-Exercise 7, 8, 9.
+
 
 
 ** Decisions with observations
