@@ -12,13 +12,10 @@ class BetaConjugatePrior:
     ## Update the belief when you see a new observation
     def update(self, observation):
         ## FILL
-        self.alpha += observation
-        self.beta += (1 - observation)
         return
     ## get the probability of a new observation $P_\xi(x)$
     def get_marginal_probability(self, observation):
        ## FILL
-        probability = self.alpha / (self.alpha + self.beta)
         return probability
     ## Sample a Bernoulli parameter $\omega \sim Beta(\alpha, \beta)$
     def sample_parameter(self):
