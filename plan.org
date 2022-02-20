@@ -1,70 +1,96 @@
-* Schedule
-** 2022
-|----+------------------------------------------|
-|  1 | Beliefs and Decisions                    |
-|  2 | Bayesian Analysis                        |
-|  3 | Bandits, MDPs                            |
-|  4 | Value Iteration / Policy Iteration       |
-|  5 | Sarsa / Q-Learning                       |
-|  6 | Stochastic Approximation / Actor-Critic  |
-|  7 | Function Approximation, Gradient Methods |
-|  8 | Large-Scale RL                           |
-|  9 | Bayesian RL                              |
-| 10 | UCB, Regret bounds                       |
-| 11 | IRL                                      |
-| 12 | GPRL, Regret bounds                      |
-| 13 | UCB, Regret bounds                       |
-| 14 | Project work                             |
-|----+------------------------------------------|
+Course name: Reinforcement Learning and Decision Making Under Uncertainty
 
-** 2021
-|------+--------------------------------------------------|
-| 1.12 | Beliefs and Decisions                            |
-| 1.13 | Bayes Decision and Game Theory                   |
-|      | Exercises 9, 11                                  |
-| 1.19 | Bayesian Analysis                                |
-| 1.20 | Estimation Theory and Concentration Inequalities |
-|      | Exercises 17,18                                  |
-|------+--------------------------------------------------|
-| 1.26 | Bandit problems                                  |
-| 1.27 | MDPs and belief states                           |
-|      | Exercise 22                                      |
-|  2.2 | MDP Theory: Value Iteration                      |
-|  2.3 | Policy Iteration / Temporal Differences          |
-|      |                                                  |
-|------+--------------------------------------------------|
-|  2.9 | Sarsa / Q-Learning                               |
-| 2.10 | Stochastic Approximation / Actor-Critic          |
-| 2.16 | Function Approximation, Gradient Methods         |
-| 2.17 | Large-Scale RL                                   |
-|------+--------------------------------------------------|
-| 2.23 | Bayesian RL                                      |
-| 2.24 | Bayesian Games                                   |
-|  3.2 | UCB, Regret bounds                               |
-|  3.3 | UCRL, Regret bounds                              |
-|------+--------------------------------------------------|
-| 3.10 | UCT/MCTS                                         |
-| 3.17 | GPRL                                             |
-| 3.24 | IRL                                              |
-|  4.7 | Thomas                                           |
-| 4.13 | Meirav + Sara                                    |
-| 4.28 | Paniz + Arturs                                   |
-| 4.30 | *Interim reports*                                |
-|  5.5 | Mojtabak                                         |
-| 5.12 | Group                                            |
-| 5.30 | *Final reports*                                  |
-|------+--------------------------------------------------|
+The course will give a thorough introduction to reinforcement learning. The first 8 weeks will be devoted to the core theory and algorithms of reinforcement learning. The final 6 weeks will be focused on project work, during which more advanced topics will be inroduced. 
+
+The first 6 weeks will require the students to complete 3 assignments. The remainder of the term, the students will have to prepare a project, for which they will need to submit a report.
+
+
+
+* Schedule
+
+|----+--------------------------------------------------|
+|  1 | Beliefs and Decisions                            |
+|----+--------------------------------------------------|
+|  2 | Bayesian Decision Rules                          |
+|----+--------------------------------------------------|
+|  3 | Estimation Theory and Concentration Inequalities |
+|----+--------------------------------------------------|
+|  4 | Bandit problems.                                 |
+|    | MDPs, belief states, Backwards Induction.        |
+|----+--------------------------------------------------|
+|  5 | MDP Theory: Value Iteration                      |
+|    | Policy Iteration                                 |
+|----+--------------------------------------------------|
+|  6 | Sarsa / Q-Learning                               |
+|----+--------------------------------------------------|
+|  7 | Actor-Critic / Model-Based RL                    |
+|----+--------------------------------------------------|
+|  8 | Function Approximation, Gradient Methods         |
+|----+--------------------------------------------------|
+|  9 | Bayesian RL                                      |
+|----+--------------------------------------------------|
+| 10 | UCB, Regret bounds                               |
+|    | UCRL, Regret bounds                              |
+|----+--------------------------------------------------|
+| 11 | Large-scale RL.                                  |
+|    | UCT/AlphaZero etc.                               |
+|----+--------------------------------------------------|
+| 11 | Advanced Bayesian models                         |
+|----+--------------------------------------------------|
+| 12 | Inverse Reinforcement Learning                   |
+|----+--------------------------------------------------|
+| 13 | Multiagent extensions: Bayesian Games            |
+|----+--------------------------------------------------|
+| 14 | Group work                                       |
+|----+--------------------------------------------------|
 ** Beliefs and decisions
 
+
+
 *** Probability primer (45')
-1. Objective vs Subjective Probability: Example
-2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset
+1. Objective vs Subjective Probability: Example (5')
+2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset (5')
+3. Measure theory (5')
+4. Axioms of Probability (5')
+5. Random variables (5')
+6. Expectations (5')
+7. [[file:src/beliefs_and_decisions/probability.py][Expectations exercise]] (10')
+
+1. 
+- Quantum Physics
+- Coin toss
+
+2. Relative Likelihood
+
+Completeness A>B, B>A or A=B for any A,B
+Transitivity A>B, B>C, A>C
+Complement: A>B => ~A<~B
+Subset: $A \subset B \Rightarrow A < B$
+
 3. Measure theory 
+
+We can use probability to quantify this, so that
+$A > B$ iff $P(A) > P(B)$.
+But what do we mean by this?
+
+Measure as a concept: area, length, probability
+$M(A) + M(B) = M(A \cup B)$
+
 4. Axioms of Probability
+$P : \Sigma \to [0,1]$
+$P(\emptyset) = 0$
+$P(\Omega) = 1$
+If $A \cap B = \emptyset$, $P(A \cup B) = P(A) + P(B)$.
+
 5. Exercise: Prove that P satisfies the given properties
-5. Random variables
-6. Expectations
-7. Probability exercise (src)
+
+6. Random variables
+
+$f: \Omega \to \Reals$
+
+7. Expectations
+
+
 
 *** Utility theory (45')
 1. Rewards and preferences
@@ -74,31 +100,171 @@
 5. Utility exercise: Gambling (10' pen and paper)
 6. The St. Petersburg Paradox
 
-** Bayesian Decisions and Game theory
+*** Lab: Probability, Expectation, Utility
 
+1. Exercise Set 1. Probability introduction.
+2. Exercise Set 2. Sec 2.4, Exercises 4, 5.
+
+*** Assignment.
+
+Exercise 7, 8, 9.
+
+*** Seminar:
+
+Utility. What is the concept of utility? Why do we want to always maximise utility?
+
+Example:
+
+|----+----+----|
+| U  | w1 | w2 |
+|----+----+----|
+| a1 |  4 |  1 |
+| a2 |  3 |  3 |
+|----+----+----|
+  
+Regret. Alternative notion.
+
+|----+----+----|
+| L  | w1 | w2 |
+|----+----+----|
+| a1 |  0 |  2 |
+| a2 |  1 |  0 |
+|----+----+----|
+
+Minimising regret is the same as maximising utility when w does not depend on a.
+Hint: So that if $E[L|a^*] \leq E[L|a]$ for all $a'$, $E[U|a^*] \geq E[L|a]$ for all $a'$,
+
+The utility analysis of choices involving risk:
+https://www.journals.uchicago.edu/doi/abs/10.1086/256692
+
+
+The expected-utility hypothesis and the measurability of utility
+https://www.journals.uchicago.edu/doi/abs/10.1086/257308
+
+
+
+
+
+** Decisions with observations
 *** Problems with Observations (45')
 1. Conditional probability (5')
 2. Bayes theorem (10')
-3. Bayes theorem exercise (30')
+3. Discrete set of models example: the meteorologists problem (30')
 
-*** Basic decisions
-1. Linearity of Expectations
-2. Convexity of Bayes Decisions
-3. Game theory
-4. Linear programming for games
+*** Basic decisions (45')
 
-** Bayesian Analysis
+1. Linearity of Expectations (5')
+2. Convexity of Bayes Decisions (5')
+3. Game theory (10')
+4. Linear programming for games (10')
+
+*** Lab: Decision problems and estimation
+
+1. Problems with no observations. Exercise: 1, 2, 3a.
+2. Problems with observations. Exercises 4,5
+
+*** Assignment. An insurance problem
+
+Exercise 20, 21, 22, 23.
 
 
-** Estimation Theory
+** Bayesian Analysis and Estimation Theory
 
-Chernoff Bounds
+Chapter 4, up to 4.3.1. Section 4.4
+
+- Conjugate priors (15')
+- Beta Example  (15')
+- Bayesian estimation (15')
+- Bayes decisions (15')
+- Simple Hypothesis testing (15')
+- Nested Hypothesis Testing (15')
+
+*** Concentration lab
+- Construction of credible intervals (15')
+- Simple Hypothesis testing with Bernoulli (15')
+- Nested Hypothesis testing with Beta-Bernoulli (15')
 
 
 ** Bandit problems
 
-1. n-meteorologists vs partial information
-2. Stochastic bandit problems
-3. The algorithmic belief
-4. A simple algorithm (AI-gym)
+1. n-meteorologists vs partial information (15')
+2. Stochastic bandit problems (15')
+3. A simple algorithm: the belief (15')
+4. The optimisation problem (15')
+5. Backwards induction (15')
+6. Backwards induction example (15')
 
+*** Bandit lab
+
+Implement backwards induction (45')
+
+*** Assignment
+
+Results on backwards induction for bandits.
+
+** Markov Decision Processes: Finite horizon
+
+1. MDP definitions (15')
+2. MDP examples (15')
+3. The bandit MDP (15')
+4. Monte Carlo Policy Evaluation (15')
+5. DP: Finite Horizon Policy Evaluation (15')
+6. DP: Finite Horizon Backward Induction (15')
+
+** Markov Decision Processes: Infinite horizon I
+
+1. DP: Value Iteration (45')
+2. DP: Policy Iteration (45')
+
+** Markov Decision Processes: Infinite horizon II
+
+1. DP: Temporal Differences (45')
+2. DP: Modified Policy Iteration (45')
+
+** Markov Decision Processes: Stochastic Approximation
+
+1. Sarsa (45')
+2. Q-learning (45')
+ 
+** Model-based RL
+1. Actor-Critic Algorithms (45')
+2. Model-based RL (45')
+
+
+** Large and continuous state spaces
+1. Function approximationm (45')
+2. Gradient methods (45')
+
+** Bayesian methods
+
+1. Thompson sampling (25')
+2. Bayesian Policy Gradient (20')
+3. BAMDPs (25')
+4. POMDPs (20')
+
+** Regret bounds
+
+1. UCB (45')
+2. UCRL (45')
+
+** MCTS
+
+1. UCT (45')
+2. Alphazero (45')
+
+** Advanced Bayesian Models
+
+1. Linear Models (20')
+2. Gaussian Processes (25')
+3. GPTD (45')
+
+** Inverse Reinforcment Learning
+
+1. Apprenticeship learning (45')
+2. Probabilistic IRL (45')
+
+** Multiplayer games
+
+Bayesian games (90')
+
+   
