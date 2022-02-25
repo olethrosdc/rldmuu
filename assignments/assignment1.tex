@@ -61,7 +61,7 @@
     utility of playing.
   \item Assume that the coin is not fair, but only comes head with probability 0.4, and your
     utility is linear: U(x) = x. How much would you be willing to play now?
-  \item Perform an experiment to validate your claims using the code in \verb!src/paradox.py!
+  \item Perform an experiment to validate your claims using the code in \verb!src/paradox.ipynb!
   \end{itemize}
 \end{exercise}
 
@@ -77,102 +77,6 @@
   Show that we should choose $a$ such that $U(a) = \E[U(X)]$.
 \end{exercise}
 
-\begin{exercise}[usefulness of probability and utility]
-  \begin{enumerate}
-    \item Would it be useful to separate randomness from uncertainty? What would be desirable properties of an alternative concept to probability?
-  \item Give an example of how the expected utility assumption might be violated.
-  \end{enumerate}
-\end{exercise}
-\begin{exercise}
-  Assuming that $U$ is increasing and absolutely continuous, consider the following experiment:
-  \begin{enumerate}
-  \item You specify an amount $a$, then observe random value $Y$.
-  \item If $Y \geq a$, you receive $Y$ currency units.
-  \item If $Y < a$, you receive a random amount $X$ with known distribution (independent of~$Y$).
-  \end{enumerate}
-  Show that we should choose $a$ such that $U(a) = \E[U(X)]$.
-\end{exercise}
-\if\solution 1
-\begin{proof}[Exercise 2 solution]
-  Let $\mu = \E[U(X)]$.  From the problem definition, the expected
-  utility of choosing $a$ such that $U(a) = \mu$ is:
-  \begin{align*}
-    \E(U \mid a)
-    & = 
-    \int_a^\infty U(y) \dd{P_Y}(y) 
-    + 
-    \mu \int_{-\infty}^a \dd{P_Y}(y).
-  \end{align*}
-  Let some $\epsilon >
-  0$. Now select $a - \epsilon$:
-  \begin{align*}
-    \E(U \mid a - \epsilon)
-    & = 
-    \int_{a - \epsilon}^\infty U(y) \dd{P_Y}(y) 
-    +
-    \mu \int_{-\infty}^{a-\epsilon} \dd{P_Y}(y)
-    \\
-    & = 
-    \int_a^\infty U(y) \dd{P_Y}(y) 
-    + 
-    \int_{a-\epsilon}^a U(y) \dd{P_Y}(y) 
-    +
-    \mu \int_{-\infty}^{a-\epsilon} \dd{P_Y}(y)
-  \end{align*}
-  Since $U(a) = \mu$ and $U$ is increasing, $U(y) \leq
-  \mu$ for all $y < a$. Consequently:
-  \begin{align*}
-    \E(U \mid a - \epsilon)
-    & \leq
-    \int_a^\infty U(y) \dd{P_Y}(y) 
-    + 
-    \int_{a-\epsilon}^a U(a) \dd{P_Y}(y) 
-    +
-    \mu \int_{-\infty}^{a - \epsilon} \dd{P_Y}(y)
-    \\
-    & =
-    \int_a^\infty U(y) \dd{P_Y}(y) 
-    +
-    \mu \int_{-\infty}^a \dd{P_Y}(y)
-    =
-    \E(U \mid a).
-  \end{align*}
-  Similarly, if we select $a + \epsilon$, we have:
-  \begin{align*}
-    \E(U \mid a + \epsilon)
-    & = 
-    \int_{a+\epsilon} ^\infty U(y) \dd{P_Y}(y) 
-    +
-    \mu \int_{-\infty}^{a + \epsilon} \dd{P_Y}(y)
-    \\
-    & = 
-    \int_{a+\epsilon} ^\infty U(y) \dd{P_Y}(y) 
-    +
-    \int_{a}^{a + \epsilon} U(a) \dd{P_Y}(y) 
-    +
-    \mu \int_{-\infty}^{a} \dd{P_Y}(y)
-    \\
-    &\leq
-    \int_{a+\epsilon} ^\infty U(y) \dd{P_Y}(y) 
-    +
-    \int_{a}^{a + \epsilon} U(y) \dd{P_Y}(y) 
-    +
-    \mu \int_{-\infty}^{a} \dd{P_Y}(y)
-    \\
-    &=
-    \int_{a} ^\infty U(y) \dd{P_Y}(y) 
-    +
-    \mu \int_{-\infty}^{a} \dd{P_Y}(y)
-    = 
-    \E(U \mid a).
-  \end{align*}
-  An alternative proof may be obtained by applying the fundamental theorem of calculus:
-  \[
-  \dd/\dd x \left(\int_a^x f(t)\right) \dd{t} = f(x)
-  \]
-  to show that the derivative of $\E(U \mid a)$ with respect to $a$ is zero at $a = \mu$.
-\end{proof}
-\fi
 \begin{exercise}[usefulness of probability and utility]
   \begin{enumerate}
     \item Would it be useful to separate randomness from uncertainty? What would be desirable properties of an alternative concept to probability?
