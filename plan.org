@@ -155,7 +155,7 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 1. Linearity of Expectations (5')
 2. Convexity of Bayes Decisions (5')
-3. Game theory (10')
+3. Bandit Problems
 4. Linear programming for games (10')
 
 *** Lab: Decision problems and estimation
