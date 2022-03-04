@@ -12,7 +12,11 @@ import random
 ## - outcome: actual outcome
 def get_posterior(prior, P, outcome):
     n_models = len(prior)
-#    return posterior
+    posterior = np.zeros(n_models)
+    for m in range(n_models):
+        posterior[m] = prior[m] * P[m][outcome]
+    posterior /= sum(posterior)
+    return posterior
 
 
 ## Get the probability of the specific outcome given your current
@@ -21,12 +25,17 @@ def get_posterior(prior, P, outcome):
 ## - outcome: actual outcome
 def get_marginal_prediction(belief, P, outcome):
     n_models = len(belief)
-    outcome_probability = 0
+    outcome_probability = sum([belief[i] * P[i][outcome] for i in range(n_models)])
+    return outcome_probability
 
 ## In this function, U[action,outcome] should be the utility of the action/outcome pair
 def get_expected_utility(belief, P, action, U):
     n_models = len(belief)
     n_outcomes = np.shape(P)[1]
+    EU = 0
+    for k in range(n_outcomes):
+        P_k = get_marginal_prediction(belief, P, k)
+        EU += P_k * U[action, k]
 
 ## In this function, U[action,outcome] should be the utility of the action/outcome pair, using MAP inference
 def get_MAP_utility(belief, P, action, U):
@@ -39,7 +48,11 @@ def get_MAP_utility(belief, P, action, U):
 def get_best_action(belief, P, U):
     n_models = len(belief)
     n_actions = np.shape(U)[0]
-
+    V = np.zeros(n_actions)
+    for a in range(n_actions):
+        V[a] = get_expected_utility(belief, P, a, U)
+    return np.argmax(V)
+    
 ## Here you should return the action maximising expected utility
 ## Here we are using the MAP model
 def get_best_action_MAP(belief, P, U):
