@@ -85,6 +85,131 @@
 \end{exercise}
 
 
+\if\solution 1
+\begin{proof}[Exercise 3 solution]
+  Let $\mu = \E[U(X)]$.  From the problem definition, the expected
+  utility of choosing $a$ such that $U(a) = \mu$ is:
+  \begin{align*}
+    \E(U \mid a)
+    & = 
+    \int_a^\infty U(y) \dd{P_Y}(y) 
+    + 
+    \mu \int_{-\infty}^a \dd{P_Y}(y).
+  \end{align*}
+  Let some $\epsilon >
+  0$. Now select $a - \epsilon$:
+  \begin{align*}
+    \E(U \mid a - \epsilon)
+    & = 
+    \int_{a - \epsilon}^\infty U(y) \dd{P_Y}(y) 
+    +
+    \mu \int_{-\infty}^{a-\epsilon} \dd{P_Y}(y)
+    \\
+    & = 
+    \int_a^\infty U(y) \dd{P_Y}(y) 
+    + 
+    \int_{a-\epsilon}^a U(y) \dd{P_Y}(y) 
+    +
+    \mu \int_{-\infty}^{a-\epsilon} \dd{P_Y}(y)
+  \end{align*}
+  Since $U(a) = \mu$ and $U$ is increasing, $U(y) \leq
+  \mu$ for all $y < a$. Consequently:
+  \begin{align*}
+    \E(U \mid a - \epsilon)
+    & \leq
+    \int_a^\infty U(y) \dd{P_Y}(y) 
+    + 
+    \int_{a-\epsilon}^a U(a) \dd{P_Y}(y) 
+    +
+    \mu \int_{-\infty}^{a - \epsilon} \dd{P_Y}(y)
+    \\
+    & =
+    \int_a^\infty U(y) \dd{P_Y}(y) 
+    +
+    \mu \int_{-\infty}^a \dd{P_Y}(y)
+    =
+    \E(U \mid a).
+  \end{align*}
+  Similarly, if we select $a + \epsilon$, we have:
+  \begin{align*}
+    \E(U \mid a + \epsilon)
+    & = 
+    \int_{a+\epsilon} ^\infty U(y) \dd{P_Y}(y) 
+    +
+    \mu \int_{-\infty}^{a + \epsilon} \dd{P_Y}(y)
+    \\
+    & = 
+    \int_{a+\epsilon} ^\infty U(y) \dd{P_Y}(y) 
+    +
+    \int_{a}^{a + \epsilon} U(a) \dd{P_Y}(y) 
+    +
+    \mu \int_{-\infty}^{a} \dd{P_Y}(y)
+    \\
+    &\leq
+    \int_{a+\epsilon} ^\infty U(y) \dd{P_Y}(y) 
+    +
+    \int_{a}^{a + \epsilon} U(y) \dd{P_Y}(y) 
+    +
+    \mu \int_{-\infty}^{a} \dd{P_Y}(y)
+    \\
+    &=
+    \int_{a} ^\infty U(y) \dd{P_Y}(y) 
+    +
+    \mu \int_{-\infty}^{a} \dd{P_Y}(y)
+    = 
+    \E(U \mid a).
+  \end{align*}
+  An alternative proof may be obtained by applying the fundamental theorem of calculus:
+  \[
+  \dd/\dd x \left(\int_a^x f(t)\dd{t} \right)  = f(x)
+  \]
+  to show that the derivative of $\E(U \mid a)$ with respect to $a$ is zero at $U(a) = \mu$:
+  \begin{align*}
+    \E[U \mid a]
+    &=
+      \E[U \mid Y \geq a] \Pr(Y \geq a)
+      +
+      \E[U \mid Y < a] \Pr(Y < a)
+    \\
+    &=
+      \int_{a}^\infty U(y) p_Y(y) \dd y
+      +
+      \mu \int_{-\infty}^a p_Y(y) \dd y
+  \end{align*}
+  Taking derivatives wrt $a$:
+  \begin{align*} 
+    \dd \E[U \mid a]/\dd a
+    &=
+      \frac{\dd}{\dd a} \int_{a}^\infty U(y) p_Y(y) \dd y
+      +
+      \frac{\dd}{\dd a} \mu \int_{-\infty}^a p_Y(y) \dd y
+    \\
+    &=
+      - U(a) p_Y(a) 
+      +
+      \mu p_Y(a).
+  \end{align*}
+  Solving for $\dd \E[U \mid a]/\dd a=0$ gives $U(a) = \mu$.
+\end{proof}
+\fi
+\begin{exercise}[usefulness of probability and utility]
+  \begin{enumerate}
+    \item Would it be useful to separate randomness from uncertainty? What would be desirable properties of an alternative concept to probability?
+  \item Give an example of how the expected utility assumption might be violated.
+  \end{enumerate}
+\end{exercise}
+\if\solution 1
+\begin{proof}[Exercise 2 solution]
+  I am not sure if it is useful, but it is certainly possible. We would like some function $\xi(\omega)$ telling us how sure we are that some $\omega$ is true. What values could this take? It could be in a bounded range, like probability. It could have multiple values. For example, it might return two values, an upper and lower bound on the likelihood of an event.
+
+
+  What about properties? I think one fundamental property is conditioning on information. If we start with some initial belief $\xi(\cdot)$, we would like to be able to calculate $\xi(\cdot | D)$ given some data $D$ in a consistent manner.
+
+  A real-world example is not possible: it is easy to simply have an arbitrary utility function, that can explain arbitrary individual behaviours. However, in practice we can assume that people have ``similar'' utility functions, and so statistically infer that their aggregate behaviour may not correspond to maximising expected utility.
+
+  Mathematically, consider the first exercise. If somebody says they prefer A to B in the first case but B to A in the second case, then the expected utility hypothesis is indeed violated.
+\end{proof}
+\fi
 
 \end{document}
 

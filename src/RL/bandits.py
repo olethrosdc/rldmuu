@@ -57,17 +57,19 @@ class StochasticBanditAlgorithm:
         self.n_actions = n_actions
         self.mean = np.ones(n_actions)
         self.alpha = 0.5 * np.ones(n_actions)
+        self.n_times = np.ones(n_actions)
     def act(self):
-        return np.argmax(self.mean)
+        return np.argmax(self.mean + 1/self.n_times)
     ## Stochastic update: mu = mu + alpha * z
     ## z = r - mu
     def update(self, action, reward):
-        self.mean[action] += self.alpha[action] * (reward - self.mean[action])
+      self.alpha[action] = 1/self.n_times[action]
+      self.mean[action] = self.alpha[action] * reward + (1 - self.alpha[action]) self.mean[action]
         #self.alpha[action] *= 0.9
 
 
 n_actions = 2
-n_experiments = 100
+n_experiments = 10
 T = 10000
 environments = []
 for experiment in range(n_experiments):
