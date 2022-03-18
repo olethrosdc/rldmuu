@@ -1,6 +1,5 @@
 
-|-----------------------------------------------+----------------|
-
+|-----------------------------------------------+-----------------|
 | Prospect Theory                               | Meisam Asgari   |
 | Finite MAB                                    | Antoine Demont  |
 | Curiosity-driven exploration                  | Jiahui Yu       |
@@ -10,10 +9,10 @@
 | Gran Turismo                                  | Jakub Tiuczek   |
 | Point-baesd POMDP                             | Meisam Asgari   |
 | Robust Predictable Control                    | Antoine Demont  |
-| Alpha-Go Zero                                 | Jiahui Yu       |
+| Alpha-Go Zero                                 | Jonas Fontana   |
 | Tree-Based RL                                 | Boris Mottet    |
 | Natural Policy Gradient                       | Vincent Carrel  |
-| Algorithms for IRL                            | Jonas Fontana   |
+| Algorithms for IRL                            | Jiahui Yu       |
 | Explainability in DRL                         | Jakub Tiuczek   |
 |-----------------------------------------------+-----------------|
 
