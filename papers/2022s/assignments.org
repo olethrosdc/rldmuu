@@ -1,0 +1,19 @@
+
+|-----------------------------------------------+-----------------|
+| Prospect Theory                               | Meisam Asgari   |
+| Finite MAB                                    | Antoine Demont  |
+| Curiosity-driven exploration                  | Jiahui Yu       |
+| Convergence of Stochastic Dynamic Programming | Boris Mottet    |
+| Soft Actor-Critic                             | Vincent Carrell |
+| Information-Directed Reward Learning          | Jonas Fontana   |
+| Gran Turismo                                  | Jakub Tiuczek   |
+| Point-baesd POMDP                             | Meisam Asgari   |
+| Robust Predictable Control                    | Antoine Demont  |
+| Alpha-Go Zero                                 | Jonas Fontana   |
+| Tree-Based RL                                 | Boris Mottet    |
+| Natural Policy Gradient                       | Vincent Carrel  |
+| Algorithms for IRL                            | Jiahui Yu       |
+| Explainability in DRL                         | Jakub Tiuczek   |
+|-----------------------------------------------+-----------------|
+
+

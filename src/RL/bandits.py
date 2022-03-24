@@ -1,5 +1,6 @@
 ## Import the GYM API
 import gym
+
 ## This is a bandit environment
 import gym_bandits
 from gym import spaces
@@ -56,25 +57,25 @@ class StochasticBanditAlgorithm:
         self.n_actions = n_actions
         self.mean = np.ones(n_actions)
         self.alpha = 0.5 * np.ones(n_actions)
+        self.n_times = np.ones(n_actions)
     def act(self):
-        return np.argmax(self.mean)
+        return np.argmax(self.mean + 1/self.n_times)
     ## Stochastic update: mu = mu + alpha * z
     ## z = r - mu
     def update(self, action, reward):
-        self.mean[action] += self.alpha[action] * (reward - self.mean[action])
+      self.alpha[action] = 1/self.n_times[action]
+      self.mean[action] = self.alpha[action] * reward + (1 - self.alpha[action]) self.mean[action]
         #self.alpha[action] *= 0.9
 
 
-
 n_actions = 2
-n_experiments = 100
+n_experiments = 10
 T = 10000
 environments = []
 for experiment in range(n_experiments):
   environments.append(BetaBandits(n_actions, 1, 1))
 
 algs = []
-algs.append(AverageBanditAlgorithm)
 algs.append(StochasticBanditAlgorithm)
 n_algs = len(algs)
 reward_t = np.zeros([T, n_algs])
@@ -90,8 +91,8 @@ for experiment in range(n_experiments):
       observation = env.reset()
       for t in range(100):
         env.render()
-        action = alg.act()
-        observation, reward, done, info = env.step(action)
+        action = alg.act() # function for taking an action
+        observation, reward, done, info = env.step(action) # action take in the environment
         alg.update(action, reward)
         run_reward += reward
         reward_t[i_episode, alg_index] += reward

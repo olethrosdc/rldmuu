@@ -1,0 +1,194 @@
+\documentclass[twoside,a4paper]{article}
+\usepackage[notheorems]{beamerarticle}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{psfrag}
+\usepackage{url}
+\usepackage{listings}
+ \usepackage{enumerate}
+\usepackage{xr}
+
+
+% \setbeamertemplate{enumerate item}{(\alph{enumi})}
+% \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
+\definecolor{dkgreen}{rgb}{0,0.5,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  language=Octave,                % the language of the code
+  basicstyle=\small,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*},            % if you want to add LaTeX within your code
+  morekeywords={*,...},              % if you want to add more keywords to the set
+  deletekeywords={...}              % if you want to delete keywords from the given language
+}
+
+\input{preamble}
+
+
+\pagestyle{myheadings}
+\markboth{Exercise set 5}{Reinforcement Learning and Decision Making under Uncertainty}
+
+%\newcommand\sinc{\mathop{\rm sinc}}
+
+\def\solution {1}
+
+\begin{document}
+\title{Exercise set 3}
+\author{Christos Dimitrakakis  \texttt{christos.dimitrakakis@uinine.ch}}
+\date{Deadline: 18 March 2022}
+\maketitle
+
+\section{Programming exercise}
+\begin{exercise}[In class] Implement the Backwards Induction algorithm in \verb!src/BackwardsInduction.py! that takes an input an MDP (defined in \verb|src/MDP.py|) and outputs the optimal policy, and its state and state-action value
+\end{exercise}
+
+\begin{exercise}[Start in class, continue at home]
+  \begin{enumerate}  
+  \item Describe a problem that can be modelled as a Markov decision process with a finite horizon, including the state space, action space, rewards and transition distribution.
+  \item Implement the MDP as an instance of the \verb|MDP| class.
+  \item Calculate the optimal policy and value function for your problem, and interpret the results. What does the value of the different states mean? Is the optimal policy what you expected it to be? 
+  \end{enumerate}
+\end{exercise}
+
+\section{Pen-and-paper exercise}
+
+Many patients arriving at an emergency room, suffer from chest pain. This may indicate acute coronary syndrome (ACS). Patients suffering from ACS that go untreated may die with probability 2\% in the next few days. Successful diagnosis results lowers the short-term mortality rate to 0.2\%. Consequently, a prompt diagnosis is essential.\footnote{The figures given are not really accurate, as they are liberally adapted from different studies.}
+
+\paragraph{Statistics of patients.}
+Approximately 50\% of patients presenting with chest pain turn out to suffer from ACS (either acute myocardial infraction or unstable angina pectoris). Approximately 10\% suffer from lung cancer. Of ACS sufferers in general, \sfrac{2}{3} are smokers and \sfrac{1}{3} non-smokers. Only \sfrac{1}{4} of non-ACS sufferers are smokers. In addition, 90\% of lung cancer patients are smokers.
+Only \sfrac{1}{4} of non-cancer patients are smokers.
+
+\begin{assumption}
+  A patient may suffer from none, either or both conditions!
+\end{assumption}
+
+\begin{assumption}
+  When the smoking history of the patient is known, the development of cancer or ACS are independent.
+\end{assumption}
+
+
+\subsubsection{Tests}
+One can perform an ECG to test for ACS. An ECG test has \emph{sensitivity} of 66.6\% (i.e. it correctly detects \sfrac{2}{3} of all patients that suffer from ACS), and a \emph{specificity} of 75\% (i.e. \sfrac{1}{4} of patients that do not have ACS, still test positive). 
+
+An X-ray can diagnose lung cancer with a sensitivity of 90\% and a specificity of 90\%. 
+
+\begin{assumption}
+  Repeated applications of a test produce the same result for the same
+  patient, i.e. that randomness is only due to patient variability.
+\end{assumption}
+
+\begin{assumption}
+  The existence of lung cancer \emph{does not} affect the probability that the ECG will be positive. Conversely, the existence of ACS \emph{does not} affect the probability that the X-ray will be positive.
+\end{assumption}
+
+
+The main problem we want to solve, is how to perform experiments or
+tests, so as to
+\begin{itemize}
+\item diagnose the patient
+\item use as few resources as possible.
+\item make sure the patient lives
+\end{itemize}
+This is a problem in \emph{experiment design}. We start from the simplest case, and look at a couple of example where we only observe the results of some tests.
+We then examine the case where we can select which tests to perform.
+
+\begin{exercise}
+  In this exercise, we only worry about making inferences from different tests results.
+  \begin{enumerate}
+  \item What does the above description imply about the dependencies between the patient condition, smoking and test results? Draw a belief network for the above problem, with the following events (i.e. variables that can be either true or false)
+    \begin{itemize}
+    \item $A$: ACS
+    \item $C$: Lung cancer.
+    \item $S$: Smoking
+    \item $E$: Positive ECG result.
+    \item $X$: Positive X-ray result.
+    \end{itemize}
+  \item What is the probability that the patient suffers from ACS if $S = \texttt{true}$?
+  \item What is the probability that the patient suffers from ACS if the ECG result is negative?
+  \item What is the probability that the patient suffers from ACS if the X-ray result is negative and the patient is a smoker?
+  \end{enumerate}
+  \label{ex:diagnosis}
+\end{exercise}
+
+
+
+\begin{exercise}[Continuation of exercise~\ref{ex:diagnosis}]
+  A patient comes into the emergency department (ED) with chest pains.  First, you observe $x_S$, whether or not the patient is a smoker. The patient may have an underlying Acute Coronary Syndrome [ACS] condition $(x_A = 1)$ or lung cancer $(x_P = 1)$. We know that there is an incidence of $25\%$ smoking in the population, while $50\%$ of lung cancer sufferers smoke and $30\%$ of ACS patients smoke. We also know that $25\%$ of patients entering ED with chest pains have ACS. 
+
+  As a doctor, you need to select a test to make:
+  $a_1 \in \{\texttt{X-ray}, \texttt{ECG}\}$.\footnote{For simplicity,
+    you only make one test in this exercise, but you can extend it so
+    that you can perform more tests, with the understanding that the patient may die if untreated if they are suffering from ACS.}  Finally, you decide whether or
+not to treat for ACS:
+$a_2 \in \{\texttt{heart treatment}, \texttt{no treatment}\}$. An
+untreated ACS patient may die with probability $2\%$, while a treated
+one with probability $0.2\%$. Treating a non-ACS patient results in
+death with probability $0.1\%$ (while no treatment results in no deaths) so we would like to avoid indiscriminate treatment.
+  \begin{enumerate}
+  \item Draw a decision diagram, where:
+    \begin{itemize}
+    \item $x_S$ is an observed random variable taking values in $\{0, 1\}$.
+    \item $x_A$ is an hidden variable taking values in $\{0, 1\}$.
+    \item $x_P$ is an hidden variable taking values in $\{0, 1\}$.
+    \item $a_1$ is a choice variable, taking values in $\{\texttt{X-ray}, \texttt{ECG}\}$. 
+    \item $y_1$ is a result variable, taking values in
+      $\{0, 1\}$, corresponding to negative and positive tests results.
+    \item $a_2$ is a choice variable, which depends on the test results, $d_1$ and on $S$.
+    \item $y_2$ is a result variable, taking values in $\{0,1\}$ corresponding to the patient dying (0), or living (1).
+    \item Assume that our utility function is $U = y_2$, i.e. we wish to maximise the probability of the patient living.
+    \end{itemize}
+  \item For all choices of $a_1$, and all possible results $y_1$, calculate the posterior probability of an underlying condition.
+    \[
+      \Pr(x_A, x_P \mid a_1, y_1)
+    \]
+  \item What is the optimal decision rule for this problem? \emph{Hint: Use the principle of backwards induction}
+  \end{enumerate}
+  \label{ex:diagnostic-test}
+\end{exercise}
+
+
+
+\section{Feedback}
+
+
+\begin{exercise}[5]
+  Finally, some questions about today's unit
+  \begin{enumerate}
+  \item Did you find the material interesting?
+  \item Did you find it potentially useful?
+  \item How much did you already know?
+  \item How much had you already seen but did not remember in detail?
+  \item How much have you seen for the first time?
+  \item Which aspect did you like the most?
+  \item Which aspect did you like the least?
+  \item Did the exercises help you in understanding the material?
+  \item Were the exercises necessary to understand the material?
+  \item Feel free to add any further comments.
+  \end{enumerate}
+\end{exercise}
+
+
+
+\end{document}

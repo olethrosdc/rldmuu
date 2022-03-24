@@ -3,10 +3,10 @@ import numpy as np
 ## This a discrete MDP with a finite number of states and actions
 class DiscreteMDP:
     def __init__(self, n_states, n_actions):
-        self.n_states = n_states
-        self.n_actions = n_actions
-        self.P = np.zeros([n_states, n_actions, n_states])
-        self.R = np.zeros([n_states, n_actions])
+        self.n_states = n_states # the number of states of the MDP
+        self.n_actions = n_actions # the number of actions of the MDP
+        self.P = np.zeros([n_states, n_actions, n_states]) # the transition probability matrix of the MDP so that P[s,a,s'] is the probabiltiy of going to s' from (s,a)
+        self.R = np.zeros([n_states, n_actions]) # the expected reward for each action and state
         # generate uniformly random transitions and 0.1 bernoulli rewards
         for s in range(self.n_states):
             for a in range(self.n_actions):
