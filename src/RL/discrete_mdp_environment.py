@@ -1,3 +1,7 @@
+import numpy as np
+
+from MDP import DiscreteMDP
+
 ## Import the GYM API
 import gym
 
@@ -12,7 +16,7 @@ class OAI_DiscreteMDP(gym.Env):
     self.n_actions = actions
     self.action_space = spaces.Discrete(self.n_actions)
     self.observation_space = spaces.Discrete(self.n_states)
-    self.mdp = Discrete(MDP, states, actions)
+    self.mdp = DiscreteMDP(states, actions)
     self.state = 0
     self._seed()
 
@@ -23,7 +27,9 @@ class OAI_DiscreteMDP(gym.Env):
   def step(self, action):
     assert self.action_space.contains(action)
     p_sa = self.mdp.get_transition_probabilities(self.state, action)
-    np.random.choice(range(self.n_states, p=p_sa)
+    reward = self.mdp.get_reward(self.state, action)
+    self.state = np.random.choice(range(self.n_states), p=p_sa)
+
     done = False
     
     return self.state, reward, done, {}
@@ -33,26 +39,27 @@ class OAI_DiscreteMDP(gym.Env):
 
   def render(self, mode='human', close=False):
     pass
+  
 class RandomAlgorithm:
     def __init__(self, n_actions):
         self.n_actions = n_actions
     def act(self):
-        return np.random.un(self.mean + 1/self.n_times)
+        return np.random.randint(self.n_actions)
     ## Stochastic update: mu = mu + alpha * z
     ## z = r - mu
     def update(self, action, reward):
+      pass
 
-
-
+n_states = 4
 n_actions = 2
 n_experiments = 10
-T = 10000
+T = 100
 environments = []
 for experiment in range(n_experiments):
-  environments.append((n_actions, 1, 1))
+  environments.append(OAI_DiscreteMDP(n_states, n_actions))
 
 algs = []
-algs.append(StochasticBanditAlgorithm)
+algs.append(RandomAlgorithm)
 n_algs = len(algs)
 reward_t = np.zeros([T, n_algs])
 total_reward = np.zeros([n_algs])
