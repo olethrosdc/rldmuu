@@ -11,11 +11,7 @@ class DiscreteMDP:
         for s in range(self.n_states):
             for a in range(self.n_actions):
                 self.P[s,a] = np.random.dirichlet(np.ones(n_states)) # generalisation of Beta to multiple outcome
-                self.R[s,a] = np.random.uniform()
-                if (self.R[s,a] > 0.9):
-                    self.R[s,a] = 1
-                else:
-                    self.R[s,a] = 0
+                self.R[s,a] = np.round(np.random.uniform(), decimals=1)
                     
     # get a single P(j|s,a)
     def get_transition_probability(self, state, action, next_state):

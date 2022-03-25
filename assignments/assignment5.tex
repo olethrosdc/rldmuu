@@ -55,14 +55,14 @@
 \def\solution {1}
 
 \begin{document}
-\title{Exercise set 5, IN-STK 5100}
-\author{Christos Dimitrakakis  \texttt{chridim@ifi.uio.no}}
-\date{Deadline: 26 Feb 2021}
+\title{Assignment 5}
+\author{Christos Dimitrakakis  \texttt{christos.dimitrakakis@unine.ch}}
+\date{Deadline: 7 April 2022}
 \maketitle
 
 The purpose of this exercise is to see how different algorithms converge with different amounts of data, and different hyperparameters.
 
-For this exercise, implement either QLearning or Sarsa. Using any OpenAI Gym environment,\footnote{Preferrably Chain, with a discount factor of $\gamma = 0.95$.} perform the following experiments:
+For this exercise, implement either QLearning or Sarsa. Using any OpenAI Gym environment,\footnote{As an example, use Chain, with a discount factor of $\gamma = 0.95$.} perform the following experiments:
 \begin{itemize}
 \item An important parameter is the step size  $\alpha_n$, which affects the convergence of the value function estimate. How easy is it to set this parameter? In particular, plot the average reward and/or utility of the policy as you obtain more data.
 \item Another important parameter is how to choose the policy of the agent. Simply choosing the action maximising the $Q$ function risks the agent getting stuck with a sub-optimal policy. The simplest idea is to use epsilon-greedy action selection  with parameter $\epsilon_t$ slowly tending to zero. Investigate the effect of this parameter on how quickly the optimal policy can be found.
