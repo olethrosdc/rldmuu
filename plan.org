@@ -143,8 +143,6 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 
 
-
-
 ** Decisions with observations
 *** Problems with Observations (45')
 1. Conditional probability (5')
