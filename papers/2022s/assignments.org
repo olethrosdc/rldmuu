@@ -17,3 +17,49 @@
 |-----------------------------------------------+-----------------|
 
 
+* Q-Learning convergence
+
+If we define
+\[
+\Delta_t(s,u) = Q_t(s,u) - Q^*(s,u),
+\]
+with
+\[
+F_t(s_t,u_t) = r + \gamma \max_a Q_t(s_{t+1}, a) - Q^*(s_t,u_t)
+\]
+Then the Q-Learning update can be written as
+\[
+Q_{t+1}(s_t,a_t) = (1 - \alpha) Q_t(s_t, a_t) + \alpha(r_t + \gamma \max_a Q_t(s_{t+1}, a))
+\]
+and 
+\begin{align*}
+Q_{t+1}(s_t,a_t) - Q^*(s_t,a_t)
+& = (1 - \alpha) [Q_t(s_t, a_t) - Q^*(s_t, a_t)
++ \alpha(r_t + \gamma \max_a Q_t(s_{t+1}, a) - Q^*(s_t, a_t))
+\\
+\Delta_{t+1}(s_t, a_t) 
+& =
+(1 - \alpha) \Delta_t(s_t, a_t)+ \alpha(r_t + \gamma \max_a Q_t(s_{t+1}, a) - Q^*(s_t, a_t))
+\end{align*}
+
+I now write $E_t[x]$ in place of $E[x | P_t]$ for simplicity, and:
+\begin{align*}
+|E_t[F_t(s_t,a_t)] 
+& = |r + \gamma \sum_j \Pr(j | s_t, a_t) \max_a Q_t(j, a) - E_t[Q^*(s_t,a_t)]|
+\\
+& = \gamma |\sum_j \Pr(j | s_t, a_t) [\max_a Q_t(j, a) - V^*(j)]|
+\\
+& = \gamma |\sum_j \Pr(j | s_t, a_t) [\max_a Q_t(j, a) - \max_b Q^*(j, b)]|
+\\
+& = \gamma |\sum_j \Pr(j | s_t, a_t) \max_a \min_b [Q_t(j, a) - Q^*(j, b)]|
+\\
+& \leq \gamma \sum_j \Pr(j | s_t, a_t) \max_a \min_b |Q_t(j, a) - Q^*(j, b)]|
+\\
+& \leq \gamma \sum_j \Pr(j | s_t, a_t) \max_a |Q_t(j, a) - Q^*(j, a)]|
+\end{align*}
+
+The contraction argument is not given explicitly afterwards, but it not hard.
+
+The proof of the variance is given here for example:
+http://users.isr.ist.utl.pt/~mtjspaan/readingGroup/ProofQlearning.pdf
+
