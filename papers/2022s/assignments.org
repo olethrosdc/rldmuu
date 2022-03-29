@@ -52,11 +52,8 @@ I now write $E_t[x]$ in place of $E[x | P_t]$ for simplicity, and:
 & = \gamma |\sum_j \Pr(j | s_t, a_t) [\max_a Q_t(j, a) - \max_b Q^*(j, b)]|
 \\
 & = \gamma |\sum_j \Pr(j | s_t, a_t) \max_a \min_b [Q_t(j, a) - Q^*(j, b)]|
-\\
-& \leq \gamma \sum_j \Pr(j | s_t, a_t) \max_a \min_b |Q_t(j, a) - Q^*(j, b)]|
-\\
-& \leq \gamma \sum_j \Pr(j | s_t, a_t) \max_a |Q_t(j, a) - Q^*(j, a)]|
 \end{align*}
+???
 
 The contraction argument is not given explicitly afterwards, but it not hard.
 
