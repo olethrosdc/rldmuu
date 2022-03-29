@@ -11,10 +11,17 @@ class QLearning:
         self.decay = decay
     def act(self):
         ## by default, act greedily
+        if (np.random.uniform() < self.epsilon):
+            return np.random.randint(self.n_actions)
         return np.argmax(self.Q[self.state, :])
     
     def update(self, action, reward, state):
         ## fill in
+        Q_max = max(Q[state, :])
+        self.Q(self.state, action)
+        =
+        self.alpha * (reward + self.discount * Q_max)
+        + (1.0 - self.alpha) * self.Q(self.state, action)
         self.state = state
 
     def reset(self, state):
