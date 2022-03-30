@@ -54,7 +54,7 @@ I now write $E_t[x]$ in place of $E[x | P_t]$ for simplicity, and:
 & \leq \gamma |\sum_j \Pr(j | s_t, a_t) \max_a |Q_t(j, a) - Q^*(j, a)|
 \end{align*}
 The last inequality follows from this fact, for two functions $f,g$ defined on the same domain.
-$|\max_x f(x) - \max_y g(y)| \leq \max_x |f(x) - g(y)|$.
+$|\max_x f(x) - \max_y g(y)| \leq \max_x |f(x) - g(x)|$.
 
 Proof: consider $\max_x f(x) \geq \max_y g(y)$. Then
 $|\max_x f(x) - \max_y g(y) | = \max_x f(x) - \max_y g(y) \leq \max_x f(x) - g(x) \leq \max_x |f(x) - g(x)|$,
