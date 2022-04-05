@@ -1,20 +1,20 @@
 
-|-----------------------------------------------+-----------------|
-| Prospect Theory                               | Meisam Asgari   |
-| Finite MAB                                    | Antoine Demont  |
-| Curiosity-driven exploration                  | Jiahui Yu       |
-| Convergence of Stochastic Dynamic Programming | Boris Mottet    |
-| Soft Actor-Critic                             | Vincent Carrell |
-| Information-Directed Reward Learning          | Jonas Fontana   |
-| Gran Turismo                                  | Jakub Tiuczek   |
-| Point-baesd POMDP                             | Meisam Asgari   |
-| Robust Predictable Control                    | Antoine Demont  |
-| Alpha-Go Zero                                 | Jonas Fontana   |
-| Tree-Based RL                                 | Boris Mottet    |
-| Natural Policy Gradient                       | Vincent Carrel  |
-| Algorithms for IRL                            | Jiahui Yu       |
-| Explainability in DRL                         | Jakub Tiuczek   |
-|-----------------------------------------------+-----------------|
+|------+-----------------------------------------------+-----------------|
+|      | Prospect Theory                               | Meisam Asgari   |
+|      | Finite MAB                                    | Antoine Demont  |
+|      | Curiosity-driven exploration                  | Jiahui Yu       |
+|      | Convergence of Stochastic Dynamic Programming | Boris Mottet    |
+|      | Soft Actor-Critic                             | Vincent Carrell |
+| 4.12 | Information-Directed Reward Learning          | Jonas Fontana   |
+| 4.26 | Gran Turismo                                  | Jakub Tiuczek   |
+| 4.26 | Point-baesd POMDP                             | Meisam Asgari   |
+| 5.10 | Robust Predictable Control                    | Antoine Demont  |
+| 5.10 | Alpha-Go Zero                                 | Jonas Fontana   |
+| 5.17 | Tree-Based RL                                 | Boris Mottet    |
+| 5.17 | Natural Policy Gradient                       | Vincent Carrel  |
+| 5.24 | Algorithms for IRL                            | Jiahui Yu       |
+| 5.24 | Explainability in DRL                         | Jakub Tiuczek   |
+|------+-----------------------------------------------+-----------------|
 
 
 * Q-Learning convergence
