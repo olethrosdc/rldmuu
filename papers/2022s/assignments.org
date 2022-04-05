@@ -51,12 +51,17 @@ I now write $E_t[x]$ in place of $E[x | P_t]$ for simplicity, and:
 \\
 & = \gamma |\sum_j \Pr(j | s_t, a_t) [\max_a Q_t(j, a) - \max_b Q^*(j, b)]|
 \\
-& = \gamma |\sum_j \Pr(j | s_t, a_t) \max_a \min_b [Q_t(j, a) - Q^*(j, b)]|
+& \leq \gamma |\sum_j \Pr(j | s_t, a_t) \max_a |Q_t(j, a) - Q^*(j, a)|
 \end{align*}
-???
+The last inequality follows from this fact, for two functions $f,g$ defined on the same domain.
+$|\max_x f(x) - \max_y g(y)| \leq \max_x |f(x) - g(x)|$.
 
-The contraction argument is not given explicitly afterwards, but it not hard.
+Proof: consider $\max_x f(x) \geq \max_y g(y)$. Then
+$|\max_x f(x) - \max_y g(y) | = \max_x f(x) - \max_y g(y) \leq \max_x f(x) - g(x) \leq \max_x |f(x) - g(x)|$,
+Now consider $\max_x f(x) < \max_y g(y)$. Then
+$|\max_x f(x) - \max_y g(y) | = \max_y g(y)  - \max_x f(x) \leq \max_y g(y) - f(y) \leq \max_y |g(y) - f(y)| = \max_x |f(x) - g(x)|$
 
-The proof of the variance is given here for example:
+The contraction argument is not given explicitly afterwards, but it not hard either:
+It is given here, together with the variance proof:
 http://users.isr.ist.utl.pt/~mtjspaan/readingGroup/ProofQlearning.pdf
 
