@@ -1,20 +1,20 @@
 
-|------+-----------------------------------------------+-----------------|
-|      | Prospect Theory                               | Meisam Asgari   |
-|      | Finite MAB                                    | Antoine Demont  |
-|      | Curiosity-driven exploration                  | Jiahui Yu       |
-|      | Convergence of Stochastic Dynamic Programming | Boris Mottet    |
-|      | Soft Actor-Critic                             | Vincent Carrell |
-| 4.12 | Information-Directed Reward Learning          | Jonas Fontana   |
-| 4.26 | Gran Turismo                                  | Jakub Tiuczek   |
-| 4.26 | Point-baesd POMDP                             | Meisam Asgari   |
-| 5.10 | Robust Predictable Control                    | Antoine Demont  |
-| 5.10 | Alpha-Go Zero                                 | Jonas Fontana   |
-| 5.17 | Tree-Based RL                                 | Boris Mottet    |
-| 5.17 | Natural Policy Gradient                       | Vincent Carrel  |
-| 5.24 | Algorithms for IRL                            | Jiahui Yu       |
-| 5.24 | Explainability in DRL                         | Jakub Tiuczek   |
-|------+-----------------------------------------------+-----------------|
+|------+-----------------------------------------------+-----------------+--------------------------|
+|      | Prospect Theory                               | Meisam Asgari   |                          |
+|      | Finite MAB                                    | Antoine Demont  |                          |
+|      | Curiosity-driven exploration                  | Jiahui Yu       |                          |
+|      | Convergence of Stochastic Dynamic Programming | Boris Mottet    |                          |
+|      | Soft Actor-Critic                             | Vincent Carrell |                          |
+| 4.12 | Information-Directed Reward Learning          | Jonas Fontana   |                          |
+| 4.26 | Gran Turismo                                  | Jakub Tiuczek   | Vincent, Antoine, Boris  |
+| 4.26 | Point-based POMDP                             | Meisam Asgari   | Jonas, Jiahui            |
+| 5.10 | Robust Predictable Control                    | Antoine Demont  | Jakub, Jiahui            |
+| 5.10 | Alpha-Go Zero                                 | Jonas Fontana   | Boris, Meisam, Vincent   |
+| 5.17 | Tree-Based RL                                 | Boris Mottet    | Antoine, Jakub           |
+| 5.17 | Natural Policy Gradient                       | Vincent Carrel  | Jonas, Jiahui, Meisam    |
+| 5.24 | Algorithms for IRL                            | Jiahui Yu       | +Boris, Meisam           |
+| 5.24 | Explainability in DRL                         | Jakub Tiuczek   | +Jonas, Antoine, Vincent |
+|------+-----------------------------------------------+-----------------+--------------------------|
 
 
 * Q-Learning convergence
