@@ -8,6 +8,7 @@ class QLearning:
         self.discount = discount
         self.alpha = alpha
         self.epsilon = epsilon
+        self.count = 0
         self.decay = decay
     def act(self):
         ## by default, act greedily
@@ -19,6 +20,9 @@ class QLearning:
         ## fill in
         Q_max = max(self.Q[state, :])
         self.Q[self.state, action] = self.alpha * (reward + self.discount * Q_max) + (1.0 - self.alpha) * self.Q[self.state, action]
+        self.alpha = 100 / (100 + self.count)
+        self.count += 1
+        self.epsilon *= 0.99999
         self.state = state
 
     def reset(self, state):

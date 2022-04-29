@@ -14,8 +14,8 @@ def moving_average(x, K):
   return y
 
 
-n_experiments = 10
-T = 100
+n_experiments = 1
+T = 100000
 environments = []
 
 environments.append(chain.Chain(5))
@@ -30,7 +30,7 @@ n_algs = len(algs)
 alpha = 0.4
 epsilon = 0.3
 decay = 0.1
-for decay in [1]:
+for decay in [0.99]:
   reward_t = np.zeros([T, n_algs])
   total_reward = np.zeros([n_algs])
   for experiment in range(n_experiments):
