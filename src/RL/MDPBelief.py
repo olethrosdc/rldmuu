@@ -55,7 +55,7 @@ class DiscreteMDPBelief:
 
 ## A simple model-base reinforcement learning algorithm
 class ExpectedMDPHeuristic:
-    def __init__(self, n_states, n_actions, discount=0.9, alpha = 0.01, epsilon=0.1):
+    def __init__(self, n_states, n_actions, discount=0.9, alpha = 0.01, epsilon=0.1, decay=0.1):
         self.n_iterations = 10
         self.n_actions = n_actions
         self.n_states = n_states
@@ -87,7 +87,7 @@ class ExpectedMDPHeuristic:
 
     
 class SampleBasedRL:
-    def __init__(self, n_states, n_actions, discount=0.9, alpha = 0.01, epsilon=0.1):
+    def __init__(self, n_states, n_actions, discount=0.9, alpha = 0.01, epsilon=0.1, decay=0.1):
         self.n_iterations = 10
         self.n_actions = n_actions
         self.n_states = n_states

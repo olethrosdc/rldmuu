@@ -23,6 +23,7 @@ environments.append(chain.Chain(5))
 
 algs = []
 algs.append(QLearning.QLearning)
+algs.append(MDPBelief.ExpectedMDPHeuristic)
 n_algs = len(algs)
 
 alpha = 0.4
