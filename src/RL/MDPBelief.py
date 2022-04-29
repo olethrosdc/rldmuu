@@ -14,8 +14,10 @@ class DiscreteMDPBelief:
         self.reward_beta = np.ones([n_states, n_actions])
 
     # Calculate the dirichlet and beta posteriors from the data point
+    # Note that self.alpha[state,action] is the vector of parameters
+    # for the current state-action pair
     def update(self, state, action, next_state, reward):
-
+        
     # get marginal transition probability
     def get_marginal_transition_probability(self, state, action, next_state):
 
