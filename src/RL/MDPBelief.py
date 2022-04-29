@@ -17,16 +17,21 @@ class DiscreteMDPBelief:
     # Note that self.alpha[state,action] is the vector of parameters
     # for the current state-action pair
     def update(self, state, action, next_state, reward):
-        
+        ## update the reward belief
+        self.reward_alpha[state, action] += reward
+        self.reward_beta[state, action] += 1 - reward 
+       ## update the transition belief
+        self.alpha[state, action, next_state] += 1        
     # get marginal transition probability
     def get_marginal_transition_probability(self, state, action, next_state):
-
+        return self.alpha[state, action, next_state] / sum(self.alpha[state, action])
     # get the vector P( . | s,a)
     def get_marginal_transition_probabilities(self, state, action):
-        
+        return self.alpha[state, action] / sum(self.alpha[state, action])
     # get the reward for the current state action
     def get_expected_reward(self, state, action):
-
+        return self.reward_alpha[state, action] / (self.reward_alpha[state, action] + self.reward_beta[state, action])
+    
     ## Get an MDP corresponding to the marginal probabilities
     def get_mean_MDP(self):
         mdp = MDP.DiscreteMDP(self.n_states, self.n_actions)
