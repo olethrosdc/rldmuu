@@ -14,8 +14,8 @@ def moving_average(x, K):
   return y
 
 
-n_experiments = 2
-T = 10
+n_experiments = 10
+T = 100
 environments = []
 
 environments.append(chain.Chain(5))
@@ -24,6 +24,7 @@ environments.append(chain.Chain(5))
 algs = []
 algs.append(QLearning.QLearning)
 algs.append(MDPBelief.ExpectedMDPHeuristic)
+algs.append(MDPBelief.SampleBasedRL)
 n_algs = len(algs)
 
 alpha = 0.4
