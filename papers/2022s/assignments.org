@@ -12,7 +12,7 @@
 | 5.03 | Alpha-Go Zero                                 | Jonas Fontana   | Boris, Meisam, Vincent  |
 | 5.10 | Tree-Based RL                                 | Boris Mottet    | Antoine, Jakub          |
 | 5.10 | Algorithms for IRL                            | Jiahui Yu       | +Vincent, Meisam, Jonas |
-| 5.17 | Point-based POMDP                             | Meisam Asgari   | Jiahui, Vincent         |
+| 5.17 | HSVI                                          | Meisam Asgari   | Jiahui, Vincent         |
 | 5.17 | Explainability in DRL                         | Jakub Tiuczek   | +Jonas, Antoine, Boris  |
 |------+-----------------------------------------------+-----------------+-------------------------|
 

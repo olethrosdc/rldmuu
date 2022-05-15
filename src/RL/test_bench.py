@@ -14,8 +14,8 @@ def moving_average(x, K):
   return y
 
 
-n_experiments = 2
-T = 10
+n_experiments = 1
+T = 100000
 environments = []
 
 environments.append(chain.Chain(5))
@@ -24,12 +24,13 @@ environments.append(chain.Chain(5))
 algs = []
 algs.append(QLearning.QLearning)
 algs.append(MDPBelief.ExpectedMDPHeuristic)
+algs.append(MDPBelief.SampleBasedRL)
 n_algs = len(algs)
 
 alpha = 0.4
 epsilon = 0.3
 decay = 0.1
-for decay in [1]:
+for decay in [0.99]:
   reward_t = np.zeros([T, n_algs])
   total_reward = np.zeros([n_algs])
   for experiment in range(n_experiments):

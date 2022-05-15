@@ -27,21 +27,19 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 |----+--------------------------------------------------|
 |  8 | Function Approximation, Gradient Methods         |
 |----+--------------------------------------------------|
-|  9 | Bayesian RL                                      |
+|  9 | Bayesian RL: Dynamic Programming, Sampling       |
 |----+--------------------------------------------------|
-| 10 | UCB, Regret bounds                               |
-|    | UCRL, Regret bounds                              |
+| 10 | Bayesian RL: Policy Gradient, GPRL               |
+|    | POMDPs                                           |
 |----+--------------------------------------------------|
-| 11 | Large-scale RL.                                  |
-|    | UCT/AlphaZero etc.                               |
-|----+--------------------------------------------------|
-| 11 | Advanced Bayesian models                         |
+| 11 | UCB/UCRL/UCT.                                    |
+|    | UCT/AlphaZero.                                   |
 |----+--------------------------------------------------|
 | 12 | Inverse Reinforcement Learning                   |
 |----+--------------------------------------------------|
 | 13 | Multiagent extensions: Bayesian Games            |
 |----+--------------------------------------------------|
-| 14 | Group work                                       |
+| 14 | Q&A, Mock exam                                   |
 |----+--------------------------------------------------|
 ** Beliefs and decisions
 

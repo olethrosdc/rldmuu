@@ -63,13 +63,20 @@ class ExpectedMDPHeuristic:
         self.discount = discount
         self.alpha = 0.01
         self.epsilon = 0.1
+        self.counter = 0
+        self.decay = decay
         self.V = None
         self.calculate_policy()
     def calculate_policy(self):
         mdp = self.belief.get_mean_MDP()
         self.policy, self.V, _ = ValueIteration.value_iteration(mdp, self.n_iterations, self.discount, self.V)
     def act(self):
-        self.calculate_policy()
+        self.counter += self.decay
+        if (self.counter > 1):
+            self.decay /= 2
+            self.counter = 0
+        if (self.counter == 0):
+            self.calculate_policy()
         self.epsilon = 1 / (1 / self.epsilon + 0.5)
         if (np.random.uniform() < self.epsilon):
             return np.random.choice(self.n_actions)
@@ -78,7 +85,8 @@ class ExpectedMDPHeuristic:
     def update(self, action, reward, state):
         self.belief.update(state=self.state, action=action, next_state=state, reward=reward)
         self.state = state
-
+        self.epsilon *= 0.99999
+        
     def reset(self, state):
         self.calculate_policy()
         self.state = state
@@ -95,13 +103,20 @@ class SampleBasedRL:
         self.discount = discount
         self.alpha = 0.01
         self.epsilon = 0.1
+        self.counter = 0
+        self.decay = decay
         self.V = None
         self.calculate_policy()
     def calculate_policy(self):
         mdp = self.belief.get_MDP_sample()
         self.policy, self.V, _ = ValueIteration.value_iteration(mdp, self.n_iterations, self.discount, self.V)
     def act(self):
-        self.calculate_policy()
+        self.counter += self.decay
+        if (self.counter > 1):
+            self.decay /= 2
+            self.counter = 0
+        if (self.counter == 0):
+            self.calculate_policy()
         return int(self.policy[self.state])
     
     def update(self, action, reward, state):
