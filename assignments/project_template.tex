@@ -1,0 +1,208 @@
+\documentclass[a4paper,11pt]{article}
+
+
+% Please do not change the packages and commands listed here. You can of course add your favourite packages and commands.
+
+%%% Pakete %%% 
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{paralist}
+\usepackage{dsfont}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{ dsfont }
+\usepackage{ xcolor }
+\usepackage{environ}
+\usepackage{lipsum}
+
+
+%%% Additional Commands %%%
+
+%% These commands might mak it easier for you to write formal statements.
+
+\newcommand{\N}{\ensuremath{\mathds{N}}} % natural numbers
+\newcommand{\Z}{\ensuremath{\mathds{Z}}} % integers
+\newcommand{\Q}{\ensuremath{\mathds{Q}}} % rational numbers
+\newcommand{\R}{\ensuremath{\mathds{R}}} % real numbers
+
+\newcommand{\states}{\ensuremath{\mathcal{S}}} % state space
+\newcommand{\actions}{\ensuremath{\mathcal{A}}} % action space
+\newcommand{\policy}{\ensuremath{\pi}} % a policy
+\newcommand{\stateval}{\ensuremath{v}} % state value function
+\newcommand{\actionval}{\ensuremath{q}} % action value function
+\newcommand{\optsval}{\ensuremath{v_*}} % state value function
+\newcommand{\optaval}{\ensuremath{q_*}} % action value function
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\theoremstyle{definition}
+\newtheorem{prob}{Exercise}
+\newtheorem{pcode}{Pseudocode}
+
+
+
+
+% -----------------------------
+\begin{document}
+
+%%% TITLE PAGE %%%
+%   - Please only modify your name(s) and do not change anything else! %
+
+\begin{titlepage}
+\pagestyle{empty}
+  \begin{minipage}[t]{0.6\textwidth}
+    \begin{flushleft}
+      \bf 
+      Reinforcement Learning and Decision Making Under Uncertainty\\
+    \end{flushleft}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.3\textwidth}
+    \begin{flushright}
+      \bf Spring 2022\\
+      FistName, LastName
+    \end{flushright}
+  \end{minipage}
+
+	\medskip
+
+  \begin{center}
+    {\Large\bf Project Report}
+    
+  {\bf Submission Deadline: 03 June 2022, 14:00}
+    \Large
+    \vspace{2cm}
+    
+    %%% ENTER THE NAMES OF GROUP MEMBERS HERE %%%
+    %
+    {Group:}\\
+    {NAME 1}\\
+    {NAME 2}
+    
+    \vspace{2cm}
+    \begin{tabular}[b]{|l|r|}
+    \hline
+    Introduction, Related Work, Preliminaries &\qquad\qquad/\;\;5\\\hline
+    Structure, Notation, Formal correctness &\qquad\qquad/\;\;5\\\hline
+    Main Content and Explanations &\qquad\qquad/30\\\hline 
+    Discussion \& Conclusion&\qquad\qquad/10\\\hline
+    $\Sigma$&\qquad\qquad/50\\\hline
+    \end{tabular}
+  \end{center}
+\end{titlepage}
+%%% END TITLE PAGE %%%
+
+
+%%% Useful hints %%%
+\pagestyle{empty}
+
+First, we describe some useful information. We then go through one possible structure of your report indicating what sections should contain. You can choose a different structure for your report or include more sections if you like. \textbf{Please delete any instruction text from your report.}
+
+\paragraph{Using \LaTeX{}.}
+If you use \LaTeX{} for the first time or work with a project partner, it can be useful to use the collaborative cloud-based \LaTeX{} editor \url{https://www.overleaf.com} which allows, e.g., to keep track of changes and comments code. Additionally, the website offers a comprehensive documentation under \url{https://www.overleaf.com/learn}.
+Apart from this, an online search for almost any \LaTeX{} problem will yield many solutions.
+
+\paragraph{Notation, expressions and commands.}
+When writing text, keep track of the tenses. Scientific text is usually described in present tense, with the exception of experiments which are written in past tense.
+
+Show confidence: try to avoid formulations such as "We will try to..." or "We want to ...". But be moderate with your results: Do not state anything in an absolute form for which you do not have evidence or proof. E.g., rather state "The experiment show ... which might indicate that ..." instead of "The experiment show ... because of ...".
+
+It can be useful to define macros for notation that you use often and are tedious to write (or for which you might decide later on to change the symbols). Some examples can be found above in this \LaTeX{} document (in the .tex file). Feel free to add to that list.  When searching for specific symbols / commands the following website might come in handy: \url{https://detexify.kirelabs.org/classify.html}. Some useful commands are listed in Table~\ref{tab:symbols} (which in the .tex file is at the same time an example of how to write and reference a table in \LaTeX{}).
+\begin{table}[t]
+	\centering
+	\begin{tabular}[t]{rlrl}
+		\toprule
+		Symbol & TeX & Symbol & Tex\\
+		\midrule
+		$=$             & \verb|=|              & $\emptyset$       & \verb|\emptyset|\\
+		$\neq$          & \verb|\neq|           & $\cup$            & \verb|\cup|\\
+		$\coloneqq$     & \verb|\coloneqq|      & $\cap$            & \verb|\cap|\\
+		$<$             & \verb|<|              & $\subseteq$       & \verb|\subseteq|\\
+		$\leq$          & \verb|\leq|           & $\varphi$         & \verb|\varphi|\\ 	   
+		$>$             & \verb|>|              & $\in$             & \verb|\in|\\
+		$\geq$          & \verb|\geq|           & $\not\in$         & \verb|\not\in|\\
+		${}\cdot{}$     & \verb|\cdot|          & $\equiv$          & \verb|\equiv|\\
+		$\mathds{N}$    & \verb|\mathds{N}|     & $\mathds{Z}$      & \verb|\mathds{Z}|\\
+		$\lor$          & \verb|\lor| oder \verb|\vee|& $\land$& \verb|\land| oder \verb|\wedge|\\
+		$\Rightarrow$   & \verb|\Rightarrow|    & $\Leftrightarrow$ & \verb|\Leftrightarrow|\\
+		$\forall$       & \verb|\forall|        & $\exists$         & \verb|\exists|\\
+		$a \bmod b$     & \verb|a \bmod b|      & $\pmod{n}$        & \verb|\pmod{n}|\\
+	    % oben definiert:
+	   % \newcommand{\bdiv}{\mathbin{\text{div}}}
+		\bottomrule
+	\end{tabular}
+	\caption{Häufig verwendete Symbole und die entsprechende TeX-Befehle.}
+	\label{tab:symbols}
+\end{table}
+
+In line formulas and mathematical expressions in \LaTeX{} are written between two \verb|$|-symbols. Expressions that shall be displayed in one new line can be written between 
+\verb|\[| and \verb|\]|. Longer transformations of equations can be written in the 'align' environment, where \verb|&| helps placing expressions on the write position in a line and \verb|\\| ends a line. An  example for writing formulas is given in Example~\ref{ex:formulas} (which in the .tex file is at the same time an example of how to write and reference examples/lemmas/theorems etc. in \LaTeX{}).
+\begin{example}[Writing Formulas]\label{ex:formulas}
+This is a simple in-line formula $a \cdot (b + c) = a \cdot b + a \cdot c$. The same expression could also occupy its own line \[a \cdot (b + c) = a \cdot b + a \cdot c.\]
+If we want to transform the expression over multiple lines we can do this as follows:
+\begin{align*}
+	a \cdot (b + c) &= a \cdot b + a \cdot c  && \\
+					&= a \cdot b  &&  \text{since } a \cdot c = 0\\
+					&= a^2  && \text{since } a=b\\
+\end{align*}
+\end{example}
+
+
+\paragraph{Format.} Please delete any instruction text from your report. 
+
+The maximal number of pages for your report should not exceed 6 pages. This page limit does not include the title page,\footnote{Example footnote.}, bibliography, or any additional code (you can include links to any implementations of yours in the text).  
+
+\paragraph{Problems and Updates.}
+If you have problems / questions / recognise any gaps in this documentation feel free to send an email  \href{mailto:christos.dimitrakakis@unine.ch}{christos.dimitrakakis@unine.ch}.
+
+Any update to this \LaTeX{} template will be announced through ILIAS, and it is your responsibly to keep updated through github.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% From here on we give a sample structure of a report. You can modify this structure as you wish.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+
+\section{Introduction}
+Here you can explain what your project is about and give motivation why this topic is important. You can also give pointers and describe relevant literature and resources (but this could also easily fill another section). After adding an entry to your bib file, you can reference it using \verb|\cite{}| and inserting the abbreviation you gave it (see example in the tex file here \cite{sample_reference}). 
+
+\section{Preliminaries}
+This is a section about preliminaries on the problem setting or framework you are considering, where you  introduce relevant notation and definitions.
+
+\section{Main Content}
+Describe the main methods, setting, algorithms and results that are important for your topic.
+
+\subsection{Experiments}
+If you are planning to run experiments it is advisable to have a separate section or subsection for this. Here you should explain the setup, hypothesis and issues investigated by the experiments, relevant implementation details, experimental results, and a discussion of the results (what might be the reasons behind the observed behaviour?). Make sure that your results are reproducible, i.e., that you include links to your code (or put code into an appendix, which does not count towards the page limit), describe all relevant parameters used and which instances were used for testing. If you generated data, you should also describe how.
+
+\subsection{Own Contributions}
+If you have any own contributions, e.g. if you modified or extended some algorithm, spend about 1 page on them. They could be covered already within an experiments section or interleaved with the other previous sections. They could also take up their own section.
+
+You are \emph{not required} to contribute anything novel to the topic (other than discussing and identifying potential extensions to the topic in the conclusion). However, you are very welcome to do so anyways. 
+
+In either case, it is important that you clearly point out what your own contributions are! Your contributions will count towards "main content and explanations".
+
+\section{Conclusion}
+Here you should briefly summarise the report and possible findings. 
+You should then discuss the work and possible extensions.
+
+
+\bibliographystyle{alpha} % We choose the "alpha" reference style
+\bibliography{sample} % Entries are in the sample.bib file
+
+\end{document}
