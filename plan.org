@@ -225,31 +225,25 @@ Results on backwards induction for bandits.
 ** Model-based RL
 1. Actor-Critic Algorithms (45')
 2. Model-based RL (45')
-
-
-** Large and continuous state spaces
-1. Function approximationm (45')
-2. Gradient methods (45')
-
+** Approximate Dynamic Programming
+1. Fitted Value Iteration (45')
+2. Approximate Policy Iteration (45')
+** Policy Gradient
+1. Direct Policy Gradient, i.e. REINFORCE (45')
+2. Actor-Critic Methods, e.g. Soft Actor Critic (45')
 ** Bayesian methods
-
 1. Thompson sampling (25')
 2. Bayesian Policy Gradient (20')
 3. BAMDPs (25')
 4. POMDPs (20')
 
 ** Regret bounds
-
 1. UCB (45')
 2. UCRL (45')
-
 ** MCTS
-
 1. UCT (45')
 2. Alphazero (45')
-
 ** Advanced Bayesian Models
-
 1. Linear Models (20')
 2. Gaussian Processes (25')
 3. GPTD (45')

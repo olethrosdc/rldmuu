@@ -5,7 +5,7 @@ import numpy as np
 ## -1  10
 ##  1   0
 ##
-## In this utility function, 
+## The utility function can also be initialised otherwise 
 class Utility():
     def __init__(self):
         self.U = np.zeros([2,2])
@@ -13,11 +13,24 @@ class Utility():
         self.U[1,0]=1
         self.U[0,1]=10
         self.U[1,1]=0
-    def U(self, action, outcome):
+        self.n_actions = 2
+        self.n_outcomes = 2
+    ## get the utility for action (a) and outcome (x)
+    def get_U_ax(self, action, outcome):
+        assert(action < self.n_actions)
+        assert(outcome < self.n_outcomes)
         return self.U[action, outcome]
-
-## to fill in
-
+    ## set a new utility function
+    def set_U(self, U):
+        self.U = U
+        self.n_actions = self.U.shape[0]
+        self.n_outcomes = self.U.shape[1]
+    def get_n_actions(self):
+        return self.n_actions;
+    def get_n_outcomes(self):
+        return self.n_outcomes;
+        
+## ---------------------------- to fill in ------------------------------------
 ## Inputs
 ## utility: A Utility class instance
 ## action: the action
@@ -37,7 +50,10 @@ def get_min_outcome(U, policy):
 ## max_\pi \sum_{\omega, a} P(\omega) U(\omega, a) \pi(a)
 def get_worst_case_P(U):
     return None
+## ----------------------------------------------------------------------------
 
+
+## ----------------------------- unit test ------------------------------------
 # initialise the variables
 utility=Utility()
 n_actions = 2
