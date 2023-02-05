@@ -143,9 +143,9 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 ** Decisions with observations
 *** Problems with Observations (45')
-1. Conditional probability (5')
-2. Bayes theorem (10')
-3. Discrete set of models example: the meteorologists problem (30')
+1. Discrete set of models example: the meteorologists problem (30')
+2. Conditional probability (5')
+3. Bayes theorem (10')
 
 *** Basic decisions (45')
 
