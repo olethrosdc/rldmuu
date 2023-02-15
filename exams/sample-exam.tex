@@ -10,7 +10,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 
-\def \GiveSolution {1}
+\def \GiveSolution {0}
 \usepackage{etex} % more counters
 \usepackage{a4wide}
 \usepackage{fancyhdr}
@@ -361,11 +361,11 @@
 EXAMINATION
 \\[1cm]
 \begin{large}
-  \textbf{Adaptive Methods for Data-Based Decision Making (IN-STK 5000/9000), 10 ECTS}
+  \textbf{Reinforcement Learning and Decision Making Under Uncertainty}
 \end{large}
 \\[.5cm]
-Informatics, Mathematics\\
-University of Oslo\\
+Informatics\\
+University of Neuchatel\\
 
 
 \begin{tabular}{@{}ll}
@@ -562,6 +562,7 @@ Since $T=2$, the MDP ends after we take the first action,observe $s_2$ and obtai
 \E \sum_{t=1}^2 r_t.
 \]
 What is the optimal policy for achieving that?
+\if \GiveSolution 1
 \begin{solution}
   We always start in state 1.
 Taking action 0, we end up in state 1 again, with reward 0.
@@ -572,11 +573,13 @@ So $\E[\sum_{t=1}^2 r_t \mid a_1 = 1] = 1 \times 0.8 - 1 \times 0.2 = 0.6$
 
 So it is better to take action 1 in state 0. 
 \end{solution}
+\fi
 \end{question}
 
 
 \begin{question}{Simple decision problems}{2}
-    If $X$ is our set of rewards, our utility function is $U : X \to \Reals$ and we prefer reward $a$ to $b$ (and write $a >^* b$) iff $U(a) > U(b)$, then our preferences are transitive. Give an example of a preference relation $>^*$ among objects so that transitivity can be violated, e.g when $X = \Reals^2$. In that case, we cannot create a utility function that will satisfy the same relation. Back your example with a thought experiment.
+  If $X$ is our set of rewards, our utility function is $U : X \to \Reals$ and we prefer reward $a$ to $b$ (and write $a >^* b$) iff $U(a) > U(b)$, then our preferences are transitive. Give an example of a preference relation $>^*$ among objects so that transitivity can be violated, e.g when $X = \Reals^2$. In that case, we cannot create a utility function that will satisfy the same relation. Back your example with a thought experiment.
+ \if \GiveSolution 1
     \begin{solution}
 A simple example is when $U : \Reals^2 \to \Reals$, with rewards having two attributes. Then we might prefer $a$ to $b$ if $a_1 > b_1 + \epsilon$ , but if $|a_1 - b_1| \epsilon$ then we prefer $a$ to $b$ if $a_2 > b_2$. An example is if the first attribute is the IQ score of a job candidate and the second attribute their years of experience. We might prefer a brighter candidate as long as they are clearly much better (as IQ scores are fiddly), otherwise we will prefer the ones that have more experience. As an example, consider three candidates
 
@@ -595,6 +598,8 @@ Due to this, we have $a >^* c$. However, as $a$ and $b$ have similar IQs we pref
 Note that if we mapped these to a utility function, i.e. $U(a) = a_1 + a_2$, we will always get a transitive relation.
       
     \end{solution}
+
+    \fi
 \end{question}
 
 
@@ -608,11 +613,13 @@ Note that if we mapped these to a utility function, i.e. $U(a) = a_1 + a_2$, we 
   \item Give an example MDP where the policy chosen by the two algorithms will be different.
   \end{enumerate}
 
+  \if \GiveSolution 1
   \begin{solution}
     Firstly, SARSA would satisfy $\lim_{t \to \infty} Q_t = Q^{\pi_{SARSA}}$, while $\lim_{t \to \infty} Q_t = Q^{*}$, unless action selection becomes less and less random. So SARSA would converge to the value of the softmax policy, while Q-learning to the value of the optimal policy. However, both would play softmax wrt the respective Q-values. For that reason one might expect that SARSA performed better sometimes.
 
     Any MDP will do, actually, but a good example is the windy gridworld from Sutton and Barto's book.
   \end{solution}
+  \fi
 \end{question}
 
 \begin{question}{The gambler}{2}
@@ -622,11 +629,13 @@ Note that if we mapped these to a utility function, i.e. $U(a) = a_1 + a_2$, we 
   \item Is this a good type of reward function to consider? In particular, what would you expect the optimal policy to try do in this setting?
   \item Suggest an alternative reward function and termination condition (if necessary by adding more actions to the gambler) that would make more sense if the gambler wanted to maximise gains. What is the optimal policy in this setting?
   \end{enumerate}
+  \if \GiveSolution 1
   \begin{solution}
     Because the game ends only when you either reach 100 or 0, and the reward is 1 only when you reach 100, that means the gambler's goal is to simply get 100 coins. This is not, strictly speaking, the same as trying to maximise profits.
 
     A simpler solution would be to have the gambler decide when to quit, with an additional 'quit' action. Then the reward after quitting could simply be an increasing function of the amount of money the gambler has at the time. (as a side-note, it should then be obvious that if this function is concave (or linear), then the gambler should just immediately quit, at least in this particular game.)
   \end{solution}
+  \fi
 \end{question}
 
 \end{document}
