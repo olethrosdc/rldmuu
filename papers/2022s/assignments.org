@@ -1,3 +1,4 @@
+ 
 
 |------+-----------------------------------------------+-----------------+-------------------------|
 |      | Prospect Theory                               | Meisam Asgari   |                         |
@@ -12,10 +13,11 @@
 | 5.03 | Alpha-Go Zero                                 | Jonas Fontana   | Boris, Meisam, Vincent  |
 | 5.10 | Tree-Based RL                                 | Boris Mottet    | Antoine, Jakub          |
 | 5.10 | Algorithms for IRL                            | Jiahui Yu       | +Vincent, Meisam, Jonas |
-| 5.17 | Point-based POMDP                             | Meisam Asgari   | Jiahui, Vincent         |
+| 5.17 | HSVI                                          | Meisam Asgari   | Jiahui, Vincent         |
 | 5.17 | Explainability in DRL                         | Jakub Tiuczek   | +Jonas, Antoine, Boris  |
+| 5.24 | Office hours                                  |                 |                         |
+| 5.31 | Office hours                                  |                 |                         |
 |------+-----------------------------------------------+-----------------+-------------------------|
-
 
 * Q-Learning convergence
 
@@ -65,3 +67,28 @@ The contraction argument is not given explicitly afterwards, but it not hard eit
 It is given here, together with the variance proof:
 http://users.isr.ist.utl.pt/~mtjspaan/readingGroup/ProofQlearning.pdf
 
+
+* Grading scale for presentations
+
+Presentations are expected to be clear, but this is aspect is not graded.
+
+Presenters should aim to:
+
+(a) Give an introduction to the setting and background.
+(b) Explain the overall paper idea
+(c) Go into the details of some of the more interesting technical aspects of the papers.
+(d) Discuss paper limitations, future work or relations to other works in a larger context.
+
+The following grading scale illustrates what I expect:
+
+10. Excellent understanding. Explains technical details. Gives good background. Interesting discussion points beyond what the paper addresses.
+9. A good overall understanding. Explains details and gives some background or has some interesting discussion.
+8. A good overall understanding. Explains many details or gives some background
+7. A good overall understanding. Explains some details.
+6. A sufficient understanding, only minor errors. Little depth.
+5. Shows a basic understanding of the paper. Only a few errors.
+4. Many details are wrong, or insufficiently understood.
+3. Only some superficial aspects of the paper were explained, there were some errors.
+2. At least a couple of things were undestood, even though there were many errors.
+1. Almost nothing was understood. What was explained was wrong.
+0. Nothing was presented.

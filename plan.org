@@ -8,44 +8,54 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 
 * Schedule
 
-|----+--------------------------------------------------|
-|  1 | Beliefs and Decisions                            |
-|----+--------------------------------------------------|
-|  2 | Bayesian Decision Rules                          |
-|----+--------------------------------------------------|
-|  3 | Estimation Theory and Concentration Inequalities |
-|----+--------------------------------------------------|
-|  4 | Bandit problems.                                 |
-|    | MDPs, belief states, Backwards Induction.        |
-|----+--------------------------------------------------|
-|  5 | MDP Theory: Value Iteration                      |
-|    | Policy Iteration                                 |
-|----+--------------------------------------------------|
-|  6 | Sarsa / Q-Learning                               |
-|----+--------------------------------------------------|
-|  7 | Actor-Critic / Model-Based RL                    |
-|----+--------------------------------------------------|
-|  8 | Function Approximation, Gradient Methods         |
-|----+--------------------------------------------------|
-|  9 | Bayesian RL: Dynamic Programming, Sampling       |
-|----+--------------------------------------------------|
-| 10 | Bayesian RL: Policy Gradient, GPRL               |
-|    | POMDPs                                           |
-|----+--------------------------------------------------|
-| 11 | UCB/UCRL/UCT.                                    |
-|    | UCT/AlphaZero.                                   |
-|----+--------------------------------------------------|
-| 12 | Inverse Reinforcement Learning                   |
-|----+--------------------------------------------------|
-| 13 | Multiagent extensions: Bayesian Games            |
-|----+--------------------------------------------------|
-| 14 | Q&A, Mock exam                                   |
-|----+--------------------------------------------------|
+|------+--------------------------------------------------|
+| Week | Topic                                            |
+|------+--------------------------------------------------|
+|    1 | Beliefs and Decisions                            |
+|------+--------------------------------------------------|
+|    2 | Bayesian Decision Rules                          |
+|------+--------------------------------------------------|
+|    3 | Estimation Theory and Concentration Inequalities |
+|------+--------------------------------------------------|
+|    4 | Bandit problems.                                 |
+|      | MDPs, belief states, Backwards Induction.        |
+|------+--------------------------------------------------|
+|    5 | MDP Theory: Value Iteration                      |
+|      | Policy Iteration                                 |
+|------+--------------------------------------------------|
+|    6 | Sarsa / Q-Learning                               |
+|------+--------------------------------------------------|
+|    7 | Actor-Critic / Model-Based RL                    |
+|------+--------------------------------------------------|
+|    8 | Function Approximation, Gradient Methods         |
+|------+--------------------------------------------------|
+|    9 | Bayesian RL: Dynamic Programming, Sampling       |
+|------+--------------------------------------------------|
+|   10 | Bayesian RL: Policy Gradient, GPRL               |
+|      | POMDPs                                           |
+|------+--------------------------------------------------|
+|   11 | UCB/UCRL/UCT.                                    |
+|      | UCT/AlphaZero.                                   |
+|------+--------------------------------------------------|
+|   12 | Inverse Reinforcement Learning                   |
+|------+--------------------------------------------------|
+|   13 | Multiagent extensions: Bayesian Games            |
+|------+--------------------------------------------------|
+|   14 | Q&A, Mock exam                                   |
+|------+--------------------------------------------------|
 ** Beliefs and decisions
 
 
 
-*** Probability primer (45')
+*** Utility theory (60')
+1. Rewards and preferences
+2. Transitivity of preferences
+3. Random rewards
+4. Utility functions and the expected utility hypothesis
+5. Utility exercise: Gambling (10' pen and paper)
+6. The St. Petersburg Paradox
+
+*** Probability primer
 1. Objective vs Subjective Probability: Example (5')
 2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset (5')
 3. Measure theory (5')
@@ -84,19 +94,17 @@ If $A \cap B = \emptyset$, $P(A \cup B) = P(A) + P(B)$.
 
 6. Random variables
 
-$f: \Omega \to \Reals$
+If $\omega$ is distributed according to $P$, then the function $f(\omega)$, with 
+$f: \Omega \to \Reals$, is a /random variable/ with distribution $P_f$, where:
+\[
+P_f(A) = P(\{\omega : f(\omega) \in A\})
+\]
 
 7. Expectations
 
+$E_P[f] = \sum_{\omega} f(\omega) P(\omega)$.
 
 
-*** Utility theory (45')
-1. Rewards and preferences
-2. Transitivity of preferences
-3. Random rewards
-4. Utility functions and the expected utility hypothesis
-5. Utility exercise: Gambling (10' pen and paper)
-6. The St. Petersburg Paradox
 
 *** Lab: Probability, Expectation, Utility
 
@@ -143,9 +151,10 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 ** Decisions with observations
 *** Problems with Observations (45')
-1. Conditional probability (5')
-2. Bayes theorem (10')
-3. Discrete set of models example: the meteorologists problem (30')
+1. Discrete set of models example: the meteorologists problem (30')
+2. Conditional probability (5')
+3. Bayes theorem (10')
+
 
 *** Basic decisions (45')
 
@@ -225,31 +234,25 @@ Results on backwards induction for bandits.
 ** Model-based RL
 1. Actor-Critic Algorithms (45')
 2. Model-based RL (45')
-
-
-** Large and continuous state spaces
-1. Function approximationm (45')
-2. Gradient methods (45')
-
+** Approximate Dynamic Programming
+1. Fitted Value Iteration (45')
+2. Approximate Policy Iteration (45')
+** Policy Gradient
+1. Direct Policy Gradient, i.e. REINFORCE (45')
+2. Actor-Critic Methods, e.g. Soft Actor Critic (45')
 ** Bayesian methods
-
 1. Thompson sampling (25')
 2. Bayesian Policy Gradient (20')
 3. BAMDPs (25')
 4. POMDPs (20')
 
 ** Regret bounds
-
 1. UCB (45')
 2. UCRL (45')
-
 ** MCTS
-
 1. UCT (45')
 2. Alphazero (45')
-
 ** Advanced Bayesian Models
-
 1. Linear Models (20')
 2. Gaussian Processes (25')
 3. GPTD (45')
