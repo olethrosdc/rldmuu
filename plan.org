@@ -1,60 +1,66 @@
 Course name: Reinforcement Learning and Decision Making Under Uncertainty
 
-The course will give a thorough introduction to reinforcement learning. The first 8 weeks will be devoted to the core theory and algorithms of reinforcement learning. The final 6 weeks will be focused on project work, during which more advanced topics will be inroduced. 
+The course will give a thorough introduction to reinforcement
+learning. The first 8 weeks will be devoted to the core theory and
+algorithms of reinforcement learning. The final 6 weeks will be
+focused on project work, during which more advanced topics will be
+inroduced.
 
-The first 6 weeks will require the students to complete 3 assignments. The remainder of the term, the students will have to prepare a project, for which they will need to submit a report.
+The first 6 weeks will require the students to complete 5
+assignments. The remainder of the term, the students will have to
+prepare a project, for which they will need to submit a report.
 
 
 
 * Schedule
 
-|------+--------------------------------------------------|
-| Week | Topic                                            |
-|------+--------------------------------------------------|
-|    1 | Beliefs and Decisions                            |
-|------+--------------------------------------------------|
-|    2 | Bayesian Decision Rules                          |
-|------+--------------------------------------------------|
-|    3 | Estimation Theory and Concentration Inequalities |
-|------+--------------------------------------------------|
-|    4 | Bandit problems.                                 |
-|      | MDPs, belief states, Backwards Induction.        |
-|------+--------------------------------------------------|
-|    5 | MDP Theory: Value Iteration                      |
-|      | Policy Iteration                                 |
-|------+--------------------------------------------------|
-|    6 | Sarsa / Q-Learning                               |
-|------+--------------------------------------------------|
-|    7 | Actor-Critic / Model-Based RL                    |
-|------+--------------------------------------------------|
-|    8 | Function Approximation, Gradient Methods         |
-|------+--------------------------------------------------|
-|    9 | Bayesian RL: Dynamic Programming, Sampling       |
-|------+--------------------------------------------------|
-|   10 | Bayesian RL: Policy Gradient, GPRL               |
-|      | POMDPs                                           |
-|------+--------------------------------------------------|
-|   11 | UCB/UCRL/UCT.                                    |
-|      | UCT/AlphaZero.                                   |
-|------+--------------------------------------------------|
-|   12 | Inverse Reinforcement Learning                   |
-|------+--------------------------------------------------|
-|   13 | Multiagent extensions: Bayesian Games            |
-|------+--------------------------------------------------|
-|   14 | Q&A, Mock exam                                   |
-|------+--------------------------------------------------|
+|------+--------------------------------------------|
+| Week | Topic                                      |
+|------+--------------------------------------------|
+|    1 | Beliefs and Decisions                      |
+|------+--------------------------------------------|
+|    2 | Decisions with Observations                |
+|      | Bayesian Decision Rules                    |
+|------+--------------------------------------------|
+|    3 | Introduction to bandit problems.           |
+|      | Beliefs and estimation.                    |
+|------+--------------------------------------------|
+|    4 | Bandit problems and MDPs.                  |
+|      | Belief states, Backwards Induction.        |
+|------+--------------------------------------------|
+|    5 | MDP Theory: Value Iteration                |
+|      | Policy Iteration                           |
+|------+--------------------------------------------|
+|    6 | Sarsa / Q-Learning                         |
+|------+--------------------------------------------|
+|    7 | Actor-Critic / Model-Based RL              |
+|------+--------------------------------------------|
+|    8 | Function Approximation, Gradient Methods   |
+|------+--------------------------------------------|
+|    9 | Bayesian RL: Dynamic Programming, Sampling |
+|------+--------------------------------------------|
+|   10 | Bayesian RL: Policy Gradient, GPRL         |
+|      | POMDPs                                     |
+|------+--------------------------------------------|
+|   11 | UCB/UCRL/UCT.                              |
+|      | UCT/AlphaZero.                             |
+|------+--------------------------------------------|
+|   12 | Inverse Reinforcement Learning             |
+|------+--------------------------------------------|
+|   13 | Multiagent extensions: Bayesian Games      |
+|------+--------------------------------------------|
+|   14 | Q&A, Mock exam                             |
+|------+--------------------------------------------|
 ** Beliefs and decisions
-
-
-
-*** Utility theory (60')
-1. Rewards and preferences
-2. Transitivity of preferences
-3. Random rewards
-4. Utility functions and the expected utility hypothesis
-5. Utility exercise: Gambling (10' pen and paper)
-6. The St. Petersburg Paradox
-
+*** Utility theory (90')
+1. Rewards and preferences (15') 
+2. Transitivity of preferences (15')
+3. Random rewards (5')
+4. Decision Diagrams (10')
+5. Utility functions and the expected utility hypothesis (15')
+6. Utility exercise: Gambling (10' pen and paper)
+7. The St. Petersburg Paradox (15')
+   
 *** Probability primer
 1. Objective vs Subjective Probability: Example (5')
 2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset (5')
@@ -104,8 +110,6 @@ P_f(A) = P(\{\omega : f(\omega) \in A\})
 
 $E_P[f] = \sum_{\omega} f(\omega) P(\omega)$.
 
-
-
 *** Lab: Probability, Expectation, Utility
 
 1. Exercise Set 1. Probability introduction.
@@ -147,8 +151,6 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/256692
 The expected-utility hypothesis and the measurability of utility
 https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
-
-
 ** Decisions with observations
 *** Problems with Observations (45')
 1. Discrete set of models example: the meteorologists problem (30')
@@ -171,24 +173,6 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 *** Assignment. An insurance problem
 
 Exercise 20, 21, 22, 23.
-
-
-** Bayesian Analysis and Estimation Theory
-
-Chapter 4, up to 4.3.1. Section 4.4
-
-- Conjugate priors (15')
-- Beta Example  (15')
-- Bayesian estimation (15')
-- Bayes decisions (15')
-- Simple Hypothesis testing (15')
-- Nested Hypothesis Testing (15')
-
-*** Concentration lab
-- Construction of credible intervals (15')
-- Simple Hypothesis testing with Bernoulli (15')
-- Nested Hypothesis testing with Beta-Bernoulli (15')
-
 
 ** Bandit problems
 
