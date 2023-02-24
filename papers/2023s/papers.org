@@ -1,0 +1,7 @@
+* Expected Utility Hypothesis and the Measurability of Utility
+
+- Initially people thought decisions under risk and no risk were different.
+- Can utility be measured?
+
+$n$ choices in X
+
