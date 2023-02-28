@@ -1,7 +1,7 @@
 from gymnasium.core import ObsType
 from numpy import ndarray
 
-from rldmuu.src.projects.gym_skeletons.environments.base_env import BaseEnv
+from .base_env import BaseEnv
 
 
 class MyEnv(BaseEnv):
@@ -37,7 +37,7 @@ and add the following to the __init__.py of the environments package:
 
 register(
     id="MyEnv", # Name of our environment
-    entry_point="gym_skeletons.environments.base_env:MyEnvGym", # Essentially: gym_skeletons.environments.file_name:GymEnvClassName
+    entry_point="environments.base_env:MyEnvGym", # Essentially: gym_skeletons.environments.file_name:GymEnvClassName
     max_episode_steps=300, # Forces the environment episodes to end once the agent played for max_episode_steps steps
 )
 """

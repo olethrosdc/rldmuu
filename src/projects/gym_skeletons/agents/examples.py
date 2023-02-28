@@ -1,7 +1,7 @@
 import gymnasium
 import numpy as np
 
-from rldmuu.src.projects.gym_skeletons.agents.base_agent import BaseAgent
+from .base_agent import BaseAgent
 
 
 class Qlearning(BaseAgent):

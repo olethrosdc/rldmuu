@@ -2,7 +2,10 @@ import numpy as np
 import gymnasium
 from time import sleep
 
-from rldmuu.src.projects.gym_skeletons.agents import qlearning
+from agents import examples
+
+# Run the environments/__init__.py to let python know about our custom environments
+import environments
 
 
 def test(
@@ -12,7 +15,7 @@ def test(
 ):
 
     env = gymnasium.make(env_id, render=False, size=10, max_episode_steps=500)
-    agent = naive_q.SoftQlearning(env)
+    agent = examples.SoftQlearning(env)
 
     n_avg = 100
     avg_score = np.full(n_avg, fill_value=np.nan, dtype=np.float32)

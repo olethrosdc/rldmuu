@@ -5,7 +5,7 @@ import numpy as np
 from gymnasium import spaces
 from numpy import ndarray
 
-from rldmuu.src.projects.gym_skeletons.environments.base_env import BaseEnv
+from .base_env import BaseEnv
 
 
 class GridWorldEnvSparce(BaseEnv):
@@ -107,7 +107,7 @@ class GridWorldEnvSparce(BaseEnv):
             print("\n\t" + "   ".join(line))
 
         # Sleep for visibility
-        sleep(1.)
+        sleep(0.33)
 
     def update(self, action) -> bool:
         # Map the action (element of {0,1,2,3}) to the direction we walk in
