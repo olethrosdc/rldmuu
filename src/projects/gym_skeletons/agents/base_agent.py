@@ -15,7 +15,7 @@ class BaseAgent(ABC):
     def make_decision(self, observation, explore=False) -> int:
         """
         :param observation: observation we base ourselves on to make the action
-        :param explore: Are we exploring ?
+        :param explore: Are we exploring ? if not exploring, deterministic strategy is employed
         :return: the action index
         """
 

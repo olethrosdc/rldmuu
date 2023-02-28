@@ -2,7 +2,7 @@ import numpy as np
 import gymnasium
 from time import sleep
 
-from rldmuu.src.projects.gym_skeletons.agents import naive_q
+from rldmuu.src.projects.gym_skeletons.agents import qlearning
 
 
 def test(
