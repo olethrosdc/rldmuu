@@ -55,11 +55,12 @@
 
 \begin{exercise}[Not handed in, to be done in class after the Beta distribution is explained]
   Now assume that JR is a psychic, but that he can only predict some proportion $\theta \in [0,1]$ of tosses (he could also be a \emph{bad} psychic).
-We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior marginal distribution looks like this:
+We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior looks like this:
 \begin{align}
-  P(A) &= 1.
-  P(B \mid A) &= \int_0^1 P(B \mid \theta) \bel(\theta) d\theta = \int_0^1 \theta \bel(\theta) d\theta = \E_\bel \theta\\
+  P(A) &= 1\\
+  P(B \mid A) &= \int_0^1 P(B \mid \theta) \bel(\theta) d\theta = \int_0^1 \theta \bel(\theta) d\theta = \E_\bel \theta.\\
 \end{align}
+So now we know that JR is psychic, but not how good a psychic he is.
 \begin{enumerate}
 \item What is the resulting posterior distribution $P(B_2 \mid B_1)$ of JR predicting the next toss correctly after he has predicted one correctly? Write this in terms of the resulting Beta posterior parameters, given that $P(A) = 2^{-16}$.
 \item Write an expression for the marginal probability $P(B_{n+1} \mid B^n)$, where $B^n$ is the event that he has predicted correctly $n$ times.
@@ -77,6 +78,7 @@ We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\th
   P(B \mid A) &= \int_0^1 P(B \mid \theta) \bel(\theta) d\theta = \int_0^1 \theta \bel(\theta) d\theta = \E_\bel \theta\\
   P(B \mid \neg A) &= \frac{1}{2}.
 \end{align}
+So now we think that JR is either a psychic or not, but if he is a psychic, we don't know how well he can predict. Still, we place a special emphasis on the case that he is not a psychic, where we'd expect him to predict correctly 50\% of the time.
 \begin{enumerate}
 \item What is the resulting posterior distribution $P(B_2 \mid B_1)$ of JR predicting the next toss correctly after he has predicted one correctly? Write this in terms of the resulting $P(A \mid B_1)$ and the resulting Beta posterior parameters, given that $P(A) = 2^{-16}$.
 \item Write an expression for the marginal probability $P(B_{n+1} \mid B^n)$.
