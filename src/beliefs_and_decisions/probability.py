@@ -4,9 +4,9 @@ import numpy as np
 
 class ProbabilitySpace:
     def __init__(self, n_outcomes=2, P=None):
-        if (P):
-            self.P = P
-            self.n_outcomes = P.shape[0]
+        if P is not None:
+            self.P = np.array(P)
+            self.n_outcomes = self.P.shape[0]
         else:
             self.P = np.ones(n_outcomes) / n_outcomes
             self.n_outcomes = n_outcomes
@@ -32,7 +32,8 @@ def function(x):
 
 P = ProbabilitySpace(n_outcomes = 5)
 Ef = calculate_expectation(P, function)
-print(Ef) # print the expected value of the functio under P
+print(Ef) # print the expected value of the function under P
+
 
 
 
