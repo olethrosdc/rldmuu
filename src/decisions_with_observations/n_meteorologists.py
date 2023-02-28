@@ -14,8 +14,7 @@ def get_posterior(prior, P, outcome):
     n_models = len(prior)
     posterior = np.zeros(n_models)
     for m in range(n_models):
-        posterior[m] = prior[m] * P[m][outcome]
-    posterior /= sum(posterior)
+
     return posterior
 
 
@@ -25,7 +24,7 @@ def get_posterior(prior, P, outcome):
 ## - outcome: actual outcome
 def get_marginal_prediction(belief, P, outcome):
     n_models = len(belief)
-    outcome_probability = sum([belief[i] * P[i][outcome] for i in range(n_models)])
+
     return outcome_probability
 
 ## In this function, U[action,outcome] should be the utility of the action/outcome pair
@@ -34,8 +33,7 @@ def get_expected_utility(belief, P, action, U):
     n_outcomes = np.shape(P)[1]
     EU = 0
     for k in range(n_outcomes):
-        P_k = get_marginal_prediction(belief, P, k)
-        EU += P_k * U[action, k]
+
 
 ## In this function, U[action,outcome] should be the utility of the action/outcome pair, using MAP inference
 def get_MAP_utility(belief, P, action, U):
