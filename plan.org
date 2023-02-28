@@ -173,23 +173,59 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 *** Assignment: James Randi
 
-
 ** Bandit problems
 
 1. n-meteorologists vs partial information (15')
+
+   In the n-meteorologists problem, we make a prediction about the future baed on the opinion of every model. We then make a decision and see the true outcome, and can adjust our beliefs about which model is correct. More formally, we have the following sequence:
+
+   
+   - Observe predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models.
+   - Make decision $a_t$ according to $P_t = \xi_t p_t$.
+   - Observe true outcome $y_t$
+   - Measure score $s_{t,i} = f(y_t, p_{t,i})$ for each model $i$.
+   - Adjust belief $\xi_{t+1} \propto \xi_t s_t$.
+
+   In partial information problems, our observations depend on our actions. So we can only adjust our belief for those models whose predictions are related to the observations. The classical setting of this is the stochatic bandit prblem.
+   
 2. Stochastic bandit problems (15')
+
+
+- Take action $a_t$
+- Obtain reward $r_t \sim P_{a_t}(r)$ with expected value $\mu_{a_t}$.
+- The utility us $U = \sum_t r_t$
+
+A classical example of this is when the rewards are Bernoulli, i.e.
+\[
+r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
+\]
+
 3. A simple algorithm: the belief (15')
-4. The optimisation problem (15')
-5. Backwards induction (15')
-6. Backwards induction example (15')
 
-*** Bandit lab
+- For every arm we pull, we can keep track of the average reward.
+- This requires maintaining a sufficient statistic:
+  $n_{t,i}$: the number of times we pulled arm $i$ until time $t$.
+  $s_{t,i}$: the total reward we obtained from arm $i$ until time $t$.
+- This allows us to use the mean estimate $\hat{\mu}_{t,i} = s_{t.i} / n_{t.i}$.
+- So we can be greedy, and just choose the arm with the highest mean estimate.
+  
 
-Implement backwards induction (45')
+4. Beta distributions as beliefs
+  [Visualise Beta distribution]
 
-*** Assignment
+   Note that the problem here is that this is only a point estimate: it ignores uncertainty. In fact, we can represent our uncertainty about the arms in a probabilistic way with the Beta distribution:
 
-Results on backwards induction for bandits.
+  If our prior over an arm's mean is $\textrm{Beta}(\alpha, \beta)$ then the posterior at time $t$ is $\textrm{Beta}(\alpha + s_{t,i}, \beta + n_{t,i} - s_{t,i})$.
+
+  [Visualise how the posterior changes for a biased coin as we obtain more data].
+  
+
+*** Assignment and exercise
+
+1. Implement epsilon-greedy bandits (lab, 30')
+2. Implement Thompson sampling bandits (lab, 30')
+3, Implement UCB bandits (home)
+4. Compare them in a benchmark (home)
 
 ** Markov Decision Processes: Finite horizon
 
