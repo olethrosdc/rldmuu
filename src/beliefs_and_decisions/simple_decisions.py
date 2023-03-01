@@ -25,8 +25,10 @@ class Utility():
         self.U = U
         self.n_actions = self.U.shape[0]
         self.n_outcomes = self.U.shape[1]
+    ## returns the number of actions
     def get_n_actions(self):
         return self.n_actions;
+    ## returns the number of outcomes
     def get_n_outcomes(self):
         return self.n_outcomes;
         
@@ -35,12 +37,21 @@ class Utility():
 ## utility: A Utility class instance
 ## action: the action
 ## P: an array so that P[outcome] is the probability of each outcome
+## (note that this does not depend on the action -- otherwise we'd have P[action,outcome])
 def expected_utility(utility, action, P):
-    return 0
+    n_w = utility.get_n_outcomes()
+    EU = 0
+    for omega in range(n_w):
+        EU += P[omega] * utility.get_U_ax(action, omega)
+    return EU
 
 ## For a given P, get the optimal action, ie the one maximising expected utility
+## U: utility class object
+## P: probability of outcomes
 def get_max_action(U, P):
-    return 0
+    n_a = utility.get_n_actions()
+    EU = [expected_utility(U, action, P) for action in range(n_a)]
+    return np.argmax(EU)
 
 ## For a given policy assigning probability policy[action] to each action, get the minimising outcome
 def get_min_outcome(U, policy):
@@ -63,6 +74,8 @@ P/= P.sum()
 
 # test
 a_star = get_max_action(utility, P)
+print(a_star)
 for a in range(n_actions):
+    print(a, expected_utility(utility, a, P))
     assert(expected_utility(utility, a, P) <= expected_utility(utility, a_star, P))
 

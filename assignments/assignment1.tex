@@ -24,7 +24,7 @@
 \pagestyle{myheadings}
 
 
-\def \solution {0}
+\def \solution {1}
 \begin{document}
 \title{Exercise set 1}
 \author{Christos Dimitrakakis: \texttt{christos.dimitrakakis@unine.ch}}
@@ -56,17 +56,18 @@
   We have estabilshed that if your utility for money is $U(x) = x$, and the coin was fair, i.e. the probability of heads was $1/2$
   then you should be willing to pay any amount to play the game. In this exercise, let us consider two alternative hypotheses:
   \begin{itemize}
-  \item  Assume that the coin is fair, but your utility for money is $U(x) = ln x$. How much
-    would you now be willing to pay to play the game? Hint: Calculate the expected
-    utility of playing.
-  \item Assume that the coin is not fair, but only comes head with probability 0.4, and your
-    utility is linear: U(x) = x. How much would you be willing to play now?
-  \item Perform an experiment to validate your claims using the code in \verb!src/paradox.ipynb!
+  \item  Assume that the coin is fair, but your utility for money is $U(x) = \max \{0, \ln x\}$. How much
+    would you now be willing to pay to play the game? Hint: Calculate the expected utility of playing.
+  \item Assume that the coin is not fair, but it comes heads with probability 0.6, and your
+    utility is linear: $U(x) = x$. How much would you be willing to play now?
+  \item Perform an experiment to validate your claims using the code in \verb!src/beliefs_and_decisions/paradox.ipynb!
   \end{itemize}
 \end{exercise}
 
 
 \section{Homework}
+(If you are not done with the in-class exercises, finish them at home)
+
 \begin{exercise}
   Assuming that $U$ is increasing and absolutely continuous, consider the following experiment:
   \begin{enumerate}
@@ -76,14 +77,6 @@
   \end{enumerate}
   Show that we should choose $a$ such that $U(a) = \E[U(X)]$.
 \end{exercise}
-
-\begin{exercise}[usefulness of probability and utility]
-  \begin{enumerate}
-    \item Would it be useful to separate randomness from uncertainty? What would be desirable properties of an alternative concept to probability?
-  \item Give an example of how the expected utility assumption might be violated.
-  \end{enumerate}
-\end{exercise}
-
 
 \if\solution 1
 \begin{proof}[Exercise 3 solution]
@@ -210,6 +203,26 @@
   Mathematically, consider the first exercise. If somebody says they prefer A to B in the first case but B to A in the second case, then the expected utility hypothesis is indeed violated.
 \end{proof}
 \fi
+
+\section{Feedback (to be answered in ILIAS)}
+
+
+\begin{exercise}[5]
+  Finally, some questions about today's unit
+  \begin{enumerate}
+  \item Did you find the material interesting?
+  \item Did you find it potentially useful?
+  \item How much did you already know?
+  \item How much had you already seen but did not remember in detail?
+  \item How much have you seen for the first time?
+  \item Which aspect did you like the most?
+  \item Which aspect did you like the least?
+  \item Did the exercises help you in understanding the material?
+  \item Were the exercises necessary to understand the material?
+  \item Feel free to add any further comments.
+  \end{enumerate}
+\end{exercise}
+
 
 \end{document}
 

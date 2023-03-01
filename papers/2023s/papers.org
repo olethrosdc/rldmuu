@@ -1,0 +1,40 @@
+* Expected Utility Hypothesis and the Measurability of Utility
+
+- Initially people thought decisions under risk and no risk were different.
+- Can we justify choices under risk through expected utility?
+- Is there an axiomatic justification?
+- Can utility be measured?
+
+- Final outcomes: $x_1, \ldots, x_n$  in $X$.
+- Probability distributions $F$ so that for any $f \in F$, $f_i$ is the probability of $x_i$.
+- $f \geq g$ means 'f is not preferred to g'
+
+The postulates are:
+
+P1. Perfect linear order
+
+- 1. Universality: $f \geq h$ or $h \geq f$.
+- 2. Transitivity: If $f \leq g$ and $g \leq h$ then $f \leq h$.
+
+P2. Continuity
+
+If $af + (1 - a)h \leq g$ for all $a \in [0,1)$ then $f \leq g$.
+
+P3. If $a \in (0,1)$, $af + (1 - a)h \leq ag + (1 - a)h \Leftrightarrow f \leq g$.
+
+From the above postulates, the expected utility hypothesis follows.
+
+If we assume a perfect linear order, then of course any function
+$U(f)$ such that $U(f) > U(g)$ implies $f > g$ will be enough.
+Any monotonic transform of that function will also be enough. 
+
+However, we can look at a special function $C$ such that
+\[
+U(f) = E_f[C] = \sum_x C(x) P_f(x)
+\]
+
+The paper does not really prove or disprove that the expected utility
+hypothesis. There are actually experiments which we can run that do
+so, but they are only obliquely referred to by this paper.
+
+
