@@ -19,12 +19,12 @@ def get_posterior(prior, P, outcome):
 
 
 ## Get the probability of the specific outcome given your current
-## - belief: vector so that belief[i] is the probabiltiy of mdoel i being correct
-## - P: P[i][j] is the probability the i-th model assignsm to the j-th outcome
+## - belief: vector so that belief[i] is the probability of mdoel i being correct
+## - P: P[i,j] is the probability the i-th model assigns to the j-th outcome
 ## - outcome: actual outcome
 def get_marginal_prediction(belief, P, outcome):
     n_models = len(belief)
-
+    
     return outcome_probability
 
 ## In this function, U[action,outcome] should be the utility of the action/outcome pair
