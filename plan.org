@@ -1,4 +1,21 @@
-Course name: Reinforcement Learning and Decision Making Under Uncertainty
+#+TITLE: Reinforcement Learning and Decision Making Under Uncertainty
+#+AUTHOR: Christos Dimitrakakis
+#+EMAIL:christos.dimitrakakis@unine.ch
+#+LaTeX_HEADER: \newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+#+LaTeX_HEADER: \newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
+#+LaTeX_HEADER: \renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
+#+LaTeX_HEADER: \DeclareMathOperator*{\argmax}{arg\,max}
+#+LaTeX_HEADER: \DeclareMathOperator*{\argmin}{arg\,min}
+#+LaTeX_HEADER: \newcommand \defn {\mathrel{\triangleq}}
+#+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
+#+LaTeX_HEADER: \newcommand \Param {\Theta}
+#+LaTeX_HEADER: \newcommand \param {\theta}
+#+LaTeX_HEADER: \newcommand \pol {\pi}
+#+LaTeX_HEADER: \newcommand \bel {\xi}
+#+TAGS: activity advanced definition exercise homework project example theory code
+#+OPTIONS:   H:3
+
+Course name: 
 
 The course will give a thorough introduction to reinforcement
 learning. The first 8 weeks will be devoted to the core theory and
@@ -175,30 +192,41 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 ** Bandit problems
 
-1. n-meteorologists vs partial information (15')
+*** $n$ meteorologists as prediction with expert advice
 
-   In the n-meteorologists problem, we make a prediction about the future baed on the opinion of every model. We then make a decision and see the true outcome, and can adjust our beliefs about which model is correct. More formally, we have the following sequence:
-
-   
-   - Observe predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models.
-   - Make decision $a_t$ according to $P_t = \xi_t p_t$.
+**** Prediction with expert advice
+   - Predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models for outcomes $y_t$
+   - Make decision $a_t$.
    - Observe true outcome $y_t$
-   - Measure score $s_{t,i} = f(y_t, p_{t,i})$ for each model $i$.
-   - Adjust belief $\xi_{t+1} \propto \xi_t s_t$.
+   - Obtain reward $r_t = \rho(a_t, y_t)$
+   - Utility $U = \sum_{t=1}^T U_t$.
+   - $T$ is the problem *horizon*
 
-   In partial information problems, our observations depend on our actions. So we can only adjust our belief for those models whose predictions are related to the observations. The classical setting of this is the stochatic bandit prblem.
-   
-2. Stochastic bandit problems (15')
+**** Algorithm
+   - Weights $\xi_t(\mu)$ for each model $\mu$.
+   - Make decision $a_t = \argmax_a \sum_\mu  \xi_{t}(\mu) \sum_y p_{t,\mu}(y) \rho(a, y)$
+   - Update: $\xi_{t+1}(\mu) \propto \xi_t(\mu) p_{t,\mu}(y_t)$.
 
+The update *does not depend* on $a_t$
 
+*** Stochastic Bandit Problems
+
+**** The $n$ armed stochastic bandit problem
 - Take action $a_t$
 - Obtain reward $r_t \sim P_{a_t}(r)$ with expected value $\mu_{a_t}$.
 - The utility us $U = \sum_t r_t$
 
+**** Bernoulli bandits
 A classical example of this is when the rewards are Bernoulli, i.e.
 \[
 r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 \]
+
+**** Greedy algorithm
+- Take action $a_t$
+- Obtain reward $r_t \sim P_{a_t}(r)$ with expected value $\mu_{a_t}$.
+- The utility us $U = \sum_t r_t$
+
 
 3. A simple algorithm: a simple belief and greedy actions (15')
 
