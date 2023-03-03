@@ -8,41 +8,41 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 
 * Schedule
 
-|------+--------------------------------------------------|
-| Week | Topic                                            |
-|------+--------------------------------------------------|
-|    1 | Beliefs and Decisions                            |
-|------+--------------------------------------------------|
-|    2 | Bayesian Decision Rules                          |
-|------+--------------------------------------------------|
-|    3 | Estimation Theory and Concentration Inequalities |
-|------+--------------------------------------------------|
-|    4 | Bandit problems.                                 |
-|      | MDPs, belief states, Backwards Induction.        |
-|------+--------------------------------------------------|
-|    5 | MDP Theory: Value Iteration                      |
-|      | Policy Iteration                                 |
-|------+--------------------------------------------------|
-|    6 | Sarsa / Q-Learning                               |
-|------+--------------------------------------------------|
-|    7 | Actor-Critic / Model-Based RL                    |
-|------+--------------------------------------------------|
-|    8 | Function Approximation, Gradient Methods         |
-|------+--------------------------------------------------|
-|    9 | Bayesian RL: Dynamic Programming, Sampling       |
-|------+--------------------------------------------------|
-|   10 | Bayesian RL: Policy Gradient, GPRL               |
-|      | POMDPs                                           |
-|------+--------------------------------------------------|
-|   11 | UCB/UCRL/UCT.                                    |
-|      | UCT/AlphaZero.                                   |
-|------+--------------------------------------------------|
-|   12 | Inverse Reinforcement Learning                   |
-|------+--------------------------------------------------|
-|   13 | Multiagent extensions: Bayesian Games            |
-|------+--------------------------------------------------|
-|   14 | Q&A, Mock exam                                   |
-|------+--------------------------------------------------|
+|------+--------------------------------------------|
+| Week | Topic                                      |
+|------+--------------------------------------------|
+|    1 | Beliefs and Decisions                      |
+|------+--------------------------------------------|
+|    2 | Bayesian Decision Rules                    |
+|------+--------------------------------------------|
+|    3 | Bandit problems.                           |
+|      | MDPs, belief states, Backwards Induction.  |
+|------+--------------------------------------------|
+|    4 | MDP Theory: Value Iteration                |
+|      | Policy Iteration                           |
+|------+--------------------------------------------|
+|    5 | Sarsa / Q-Learning                         |
+|------+--------------------------------------------|
+|    6 | Actor-Critic / Model-Based RL              |
+|------+--------------------------------------------|
+|    7 | Function Approximation, Gradient Methods   |
+|------+--------------------------------------------|
+|    8 | Bayesian RL: Dynamic Programming, Sampling |
+|------+--------------------------------------------|
+|    9 | Bayesian RL: Policy Gradient, GPRL         |
+|      | POMDPs                                     |
+|------+--------------------------------------------|
+|   10 | UCB/UCRL/UCT.                              |
+|      | UCT/AlphaZero.                             |
+|------+--------------------------------------------|
+|   11 | Inverse Reinforcement Learning             |
+|------+--------------------------------------------|
+|   12 | Multiagent extensions: Bayesian Games      |
+|------+--------------------------------------------|
+|   13 | Project presnetations                      |
+|------+--------------------------------------------|
+|   14 | Q&A, Mock exam                             |
+|------+--------------------------------------------|
 ** Beliefs and decisions
 
 
