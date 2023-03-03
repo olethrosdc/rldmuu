@@ -287,7 +287,7 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 **** Upper confidence bound: exploration bonuses
 	 - Take action $a_t = \argmax_a \hat{\mu}_{t,a} + O(1/\sqrt{n_{t,a}})$.
 **** Posterior sampling: randomisation
-	 - $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a) - s_{t,a})$.
+	 - $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a} - s_{t,a})$.
 	 - Sample $\hat{\mu} \sim \bel_t(\mu)$.
 	 - Take action $a_t = \argmax_a \hat{\mu}_a$.
 
