@@ -14,13 +14,50 @@
 #+OPTIONS:   H:3
 * Probability background
 #+TOC: headlines [currentsection]
+** Logic and Set theory
+*** Logic
+**** Statements
+- A statement $A$ may be true or false
+
+**** Unary operators
+- negation: $\neg A$ is true if $A$ is false (and vice-versa).
+
+**** Binary operators
+- or: $A \vee B$ ($A$ or $B$) is true if either $A$ or $B$ are true.
+- and: $A \wedge B$ is true if both $A$ and $B$ are true.
+- implies: $A \Rightarrow B$: is false if $A$ is true and $B$ is false.
+- iff: $A \Leftrightarrow B$: is true if $A,B$ have equal truth values.
+
+**** Operator precedence
+$\neg, \wedge, \vee, \Rightarrow, \Leftrightarrow$
+
+
+*** Set theory
+- First, consider some universal set $\Omega$.
+- A set $A$ is a collection of points $x$ in $\Omega$.
+- $\{x \in \Omega : f(x)\}$: the set of points in $\Omega$ with the property that $f(x)$ is true.
+
+**** Unary operators
+- $\neg A =  \{x \in \Omega : x \notin A\}$.
+**** Binary operators
+- $A \cup B$ if $\{x \in \Omega : x \in A \vee x \in B\}$ - (c.f. $A \vee B$)
+- $A \cap B$ if $\{x \in \Omega : x \in A \wedge x \in B\}$ - (c.f. $A \wedge B$)
+**** Binary relations
+- $A \subset B$ if $x \in A \Rightarrow x \in B$ - (c.f. $A \implies B$)
+- $A = B$ if $x \in A \Leftrightarrow x \in B$ - (c.f. $A \Leftrightarrow B$)
+
+
 ** Probability facts
-*** Axioms of probability
+*** Probability fundamentals
+**** Probability measure $P$
+- Defined on a universe $\Omega$
+- $P : \Sigma \to [0,1]$ is a function of subsets of $\Omega$.
+- A subset $A \subset \Omega$ is an *event* and $P$ measures its likelihood.
+**** Axioms of probability
 - $P(\Omega) = 1$
-- If $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
-- $P(\emptyset) = 0$.
-*** Marginalisation
-If $A_1, \ldots, A_n$ are a partition of $\Omega$
+- For $A, B \subset \Omega$, if $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+**** Marginalisation
+If $A_1, \ldots, A_n \subset \Omega$ are a partition of $\Omega$
 \[
 P(B) = \sum_{i = 1}^n P(B \cap A_i).
 \]
@@ -40,10 +77,24 @@ For any random variable $f: \Omega \to \Reals$, the expectation with respect to 
 \]
 ** Conditional probability and inference
 *** Conditional probability
+**** Conditional probability
+    :PROPERTIES:
+    :BEAMER_env: definition
+    :END:
 The conditional probability of an event $A$ given an event $B$ is defined as 
 \[
-P(A | B) = \frac{P(A \cap B)}{P(B)}
+P(A | B) \defn \frac{P(A \cap B)}{P(B)}
 \]
+The above definition requires $P(B)$ to exist and be positive.
+
+**** Conditional probabilities as a collection of probabilities
+More generally, we can define conditional probabilities as simply a
+collection of probability distributions:
+\[
+\cset{P_\param(A)}{\theta \in \Param},
+\]
+where $\Param$ is an arbitrary set. 
+
 *** Conditional expectation
 The conditional expectation of a random variable $f: \Omega \to \Reals$, with respect to a probability measure $P$ conditioned on some event $B$ is simply
 \[
@@ -74,12 +125,18 @@ P(A_j | B) = \frac{P(B | A_j)}{\sum_{i=1}^n P(B | A_i) P(A_i)}
 \]
 
 *** Independence
-**** Independence
+**** Independent events
 $A, B$ are independent iff $P(A \cap B) = P(A) P(B)$.
 **** Conditional independence
  $A, B$ are conditionally independent given $C$ iff $P(A \cap B | C) = P(A | C) P(B | C)$.
 **** Uncorrelated random variables
 If $x,y : \Omega \to \Reals$ are two random variables, they are *uncorrelated* under $P$ iff $\E_P[xy] = \E_P[x] \E_P[y]$.
+**** Independent random variables
+A sequence $x_t$ of r.v.s distributed according to $P_t$ is independent if
+$(x_1, \ldots, x_t, \ldots, x_T) \sim \prod_{t=1}^T P_t$.
+**** IID (Independent and Identically Distributed) random variables
+A sequence $x_t$ of r.v.s is IID if
+$(x_1, \ldots, x_t, \ldots, x_T) \sim P^T$.
 
 * Linear algebra
 ** Vectors
@@ -110,23 +167,26 @@ A_{1,1} & \cdots & A_{1, m}\\
 \vdots  & \ddots & \vdots \\
 A_{n,1} & \cdots & A_{n, m}
 \end{bmatrix}\)
+Matrices can be seen as linear operators when used to multiply vectors.
+*** Multiplication operators
 **** Matrix multiplication
 For $A \in \Reals^{n \times d}$, $B \in \Reals^{d \times m}$, the
-$ij$-th element of the result of the multiplication $AB$ is
+\(ij\)-th element of the result of the multiplication $AB$ is
  \[
  (AB)_{i,j} = \sum_{k=1}^d A_{i,k} B_{k,j}.
  \]
-
+so that $AB \in \Reals^{n \times m}$.
 **** Matrix-vector multiplication
-A matrix $A \in \Reals^{n \to m}$ defines the following linear operator $A : \Reals^m \to \Reals^n$.
+A matrix $A \in \Reals^{n \times m}$ defines the following linear operator $A : \Reals^m \to \Reals^n$.
 \[
 Ax = \left(\sum_{j=1}^m A_{i,j} x_j : i = 1, \ldots, n \right)
 \]
 All vectors $x \in \Reals^m$ are equivalent to matrices in $\Reals^{m \times 1}$.
-A matrix $A \in \Reals^{n \to m}$ defines the following linear operator
+
+
 *** Matrix inverses
 **** The identity matrix $I \in \Reals^{n \times n}$
-- For this matrix, $I_{i,i} = 1$ and $I_{i,j} = 0$.
+- For this matrix, $I_{i,i} = 1$ and $I_{i,j} = 0$ when $j \neq i$.
 - $Ix = x$ and $IA = A$.
 
 **** The inverse of a matrix $A \in \Reals^{n \times n}$
@@ -135,8 +195,9 @@ $A^{-1}$ is called the inverse of $A$ if
 - or equivalently $A^{-1} A = I$.
 
 **** The pseudo-inverse of a matrix $A \in \Reals^{n \times m}$
--$\tilde{A}^{-1}$ is called the *left pseudoinverse* of $A$ if $\tilde{A}^{-1} A = I.
--$\tilde{A}^{-1}$ is called the *right pseudoinverse* of $A$ if $A \tilde{A}^{-1} = I.
+- $\tilde{A}^{-1}$ is called the *left pseudoinverse* of $A$ if $\tilde{A}^{-1} A = I$.
+- $\tilde{A}^{-1}$ is called the *right pseudoinverse* of $A$ if $A \tilde{A}^{-1} = I$.
+
 
 * Calculus
 ** Univariate caclulus
@@ -147,7 +208,6 @@ The derivative of a single-argument function is defined as:
 \frac{d}{dx} f(x) = \lim_{\epsilon \to 0} \frac{f(x + \epsilon) - f(x)}{\epsilon}.
 \]
 $f$ must be absolutely continuous at $x$ for the derivative to exist.
-**** Directional derivative
 **** Subdifferential
 For non-differential functions, we can sometimes define the set of all subderivatives:
 \[
@@ -172,28 +232,32 @@ $S_t = \{x : f(x) \in (y_{t-1}, y_t\}$, $y_0 = -\infty$, $y_n = \sup_x f(x)$.
 
 *** Fundamental theorem of calculus
 \[
-F(x) = \int_a^x f(x) dx \qquad \Rightarrow \qquad f(x) = \frac{d}{dx} F(x).
+f(x) = \frac{d}{dx} \int_a^x f(t) dt
 \]
 If $\frac{d}{dx} F = f$ then its integral from $a$ to $b$ is:
 \[
 \int_a^b f(x) dx = F(b) - F(a),
 \]
 ** Multivariate calculus
-
-*** Multivariate functions
-Consider a function $f: \Reals^n \to \Reals$. 
-- Any $x \in \Reals^n$ is decomposed into $x = (x_1, \ldots, x_n)$, with each $x_i \in \Reals^n$.
+*** Multivariate Functions
+We consider functions operating in multi-dimensional Euclidean spaces.
+**** $f: \Reals^n \to \Reals$. 
+- Any $x \in \Reals^n$ is $x = (x_1, \ldots, x_n)$, with $x_i \in \Reals$.
 - We write $f(x)$ instead of $f(x_1, \ldots, x_n)$.
 
-*** Partial derivative
-The partial derivative of $f$ with respect to its \(i\)-th argument is:
-\[
-\frac{\partial}{\partial x_i} f(x)
-\]
-is the derivative of the function $f_i$ where all terms other than $x_i$ are held constant.
+**** $f: \Reals^n \to \Reals^m$. 
+- If $y = f(x)$ then $y_i$ is the \(i\)-th component of $y \in \Reals^m$.
+- Can be seen as $m$ functions $f_i: \Reals^n \to \Reals$, with $y_i = f_i(x)$.
 
-*** Gradient
-The gradient of $f$ with respect to all its arguments is the column vector of partial derivatives
+*** Derivatives in many dimensions
+    
+**** Partial derivative
+The partial derivative of $f$ with respect to its \(i\)-th argument is:
+$\frac{\partial}{\partial x_i} f(x)$,
+where we see all $x_j$ with $j \neq i$ as fixed.
+
+**** Gradient of $f$
+This is the vector of all its partial derivatives:
 \[
 \nabla_x f(x) = 
 \left(
@@ -204,3 +268,8 @@ The gradient of $f$ with respect to all its arguments is the column vector of pa
 \frac{\partial}{\partial x_n} f(x)
 \right)^\top
 \]
+**** Directional derivative
+\[
+D_\delta f(x) = \lim_{\epsilon \to 0} \frac{f(x + \epsilon \delta) - f(x)}{\epsilon}.
+\]
+

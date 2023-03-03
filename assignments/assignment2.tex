@@ -10,11 +10,13 @@
 
 
 \begin{document}
-\title{Exercise set 2, IN-STK 5100}
-\author{Christos Dimitrakakis: \texttt{chridim@ifi.uio.no}}
+\title{Exercise set 2}
+
+\author{Christos Dimitrakakis: \texttt{christos.dimitrakakis@unine.ch}}
 
 \maketitle
-\large{Deadline: 29 Jan 2021}
+\large{Deadline: 7 March 2023}
+
 
 \vspace{1em}
 
@@ -53,7 +55,24 @@
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}
+\begin{exercise}[Not handed in, to be done in class after the Beta distribution is explained]
+  Now assume that JR is a psychic, but that he can only predict some proportion $\theta \in [0,1]$ of tosses (he could also be a \emph{bad} psychic).
+We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior looks like this:
+\begin{align}
+  P(A) &= 1\\
+  P(B \mid A) &= \int_0^1 P(B \mid \theta) \bel(\theta) d\theta = \int_0^1 \theta \bel(\theta) d\theta = \E_\bel \theta.\\
+\end{align}
+So now we know that JR is psychic, but not how good a psychic he is.
+\begin{enumerate}
+\item What is the resulting posterior distribution $P(B_2 \mid B_1)$ of JR predicting the next toss correctly after he has predicted one correctly? Write this in terms of the resulting Beta posterior parameters, given that $P(A) = 2^{-16}$.
+\item Write an expression for the marginal probability $P(B_{n+1} \mid B^n)$, where $B^n$ is the event that he has predicted correctly $n$ times.
+\end{enumerate}
+
+\end{exercise}
+
+
+\begin{exercise}[Advanced, to be done by motivated students.]
+  The following is an example of a \emph{hierarchical model.}
   Instead of assuming that Randi is either a perfect psychic or a fraud, we can relax our assumption. Let $A$ denote the event that Randi is psychic, but that he can only predict some proportion $\theta \in [0,1]$ of tosses (he could also be a \emph{bad} psychic).
 We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior marginal distribution looks like this:
 \begin{align}
@@ -61,10 +80,11 @@ We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\th
   P(B \mid A) &= \int_0^1 P(B \mid \theta) \bel(\theta) d\theta = \int_0^1 \theta \bel(\theta) d\theta = \E_\bel \theta\\
   P(B \mid \neg A) &= \frac{1}{2}.
 \end{align}
+So now we think that JR is either a psychic or not, but if he is a psychic, we don't know how well he can predict. Still, we place a special emphasis on the case that he is not a psychic, where we'd expect him to predict correctly 50\% of the time.
 \begin{enumerate}
 \item What is the resulting posterior distribution $P(B_2 \mid B_1)$ of JR predicting the next toss correctly after he has predicted one correctly? Write this in terms of the resulting $P(A \mid B_1)$ and the resulting Beta posterior parameters, given that $P(A) = 2^{-16}$.
 \item Write an expression for the marginal probability $P(B_{n+1} \mid B^n)$.
-\item \emph{Advanced:} Randi now offers you the opportunity to bet 100CU at every time step $t$ that he would guess the next coin toss, with equal odds (i.e. you get 100CU if he doesn't guess correctly and lose 100CU if he does). If you accept the bet at time $t$, you throw the coin and Randi guesses, and you get/pay money depending on the outcome. Then he offers another bet at time $t+1$. If at any time you decline the bet, the game stops. Define a strategy for playing this game.
+\item Randi now offers you the opportunity to bet 100CU at every time step $t$ that he would guess the next coin toss, with equal odds (i.e. you get 100CU if he doesn't guess correctly and lose 100CU if he does). If you accept the bet at time $t$, you throw the coin and Randi guesses, and you get/pay money depending on the outcome. Then he offers another bet at time $t+1$. If at any time you decline the bet, the game stops. Define a strategy for playing this game.
 \end{enumerate}
 
 \end{exercise}

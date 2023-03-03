@@ -1,8 +1,31 @@
-Course name: Reinforcement Learning and Decision Making Under Uncertainty
+#+TITLE: Reinforcement Learning and Decision Making Under Uncertainty
+#+AUTHOR: Christos Dimitrakakis
+#+EMAIL:christos.dimitrakakis@unine.ch
+#+LaTeX_HEADER: \newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+#+LaTeX_HEADER: \newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
+#+LaTeX_HEADER: \renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
+#+LaTeX_HEADER: \DeclareMathOperator*{\argmax}{arg\,max}
+#+LaTeX_HEADER: \DeclareMathOperator*{\argmin}{arg\,min}
+#+LaTeX_HEADER: \newcommand \defn {\mathrel{\triangleq}}
+#+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
+#+LaTeX_HEADER: \newcommand \Param {\Theta}
+#+LaTeX_HEADER: \newcommand \param {\theta}
+#+LaTeX_HEADER: \newcommand \pol {\pi}
+#+LaTeX_HEADER: \newcommand \bel {\xi}
+#+TAGS: activity advanced definition exercise homework project example theory code
+#+OPTIONS:   H:3
 
-The course will give a thorough introduction to reinforcement learning. The first 8 weeks will be devoted to the core theory and algorithms of reinforcement learning. The final 6 weeks will be focused on project work, during which more advanced topics will be inroduced. 
+Course name: 
 
-The first 6 weeks will require the students to complete 3 assignments. The remainder of the term, the students will have to prepare a project, for which they will need to submit a report.
+The course will give a thorough introduction to reinforcement
+learning. The first 8 weeks will be devoted to the core theory and
+algorithms of reinforcement learning. The final 6 weeks will be
+focused on project work, during which more advanced topics will be
+inroduced.
+
+The first 6 weeks will require the students to complete 5
+assignments. The remainder of the term, the students will have to
+prepare a project, for which they will need to submit a report.
 
 
 
@@ -15,46 +38,45 @@ The first 6 weeks will require the students to complete 3 assignments. The remai
 |------+--------------------------------------------|
 |    2 | Bayesian Decision Rules                    |
 |------+--------------------------------------------|
-|    3 | Bandit problems.                           |
-|      | MDPs, belief states, Backwards Induction.  |
+|    3 | Introduction to Bandit problems.           |
 |------+--------------------------------------------|
-|    4 | MDP Theory: Value Iteration                |
+|    4 | Finite Horizon MDPs                        |
+|      | Backwards Induction                        |
+|      | The Bandit MDP                             |
+|------+--------------------------------------------|
+|    5 | Infite Horizon MDPs                        |
+|      | Value Iteration                            |
 |      | Policy Iteration                           |
 |------+--------------------------------------------|
-|    5 | Sarsa / Q-Learning                         |
+|    6 | Sarsa / Q-Learning                         |
 |------+--------------------------------------------|
-|    6 | Actor-Critic / Model-Based RL              |
+|    7 | Model-Based RL                             |
 |------+--------------------------------------------|
-|    7 | Function Approximation, Gradient Methods   |
+|    8 | Function Approximation, Gradient Methods   |
 |------+--------------------------------------------|
-|    8 | Bayesian RL: Dynamic Programming, Sampling |
+|    9 | Bayesian RL: Dynamic Programming, Sampling |
 |------+--------------------------------------------|
-|    9 | Bayesian RL: Policy Gradient, GPRL         |
-|      | POMDPs                                     |
-|------+--------------------------------------------|
-|   10 | UCB/UCRL/UCT.                              |
+|   11 | UCB/UCRL/UCT.                              |
 |      | UCT/AlphaZero.                             |
 |------+--------------------------------------------|
-|   11 | Inverse Reinforcement Learning             |
+|   12 | Inverse Reinforcement Learning             |
 |------+--------------------------------------------|
-|   12 | Multiagent extensions: Bayesian Games      |
+|   13 | Multiagent extensions: Bayesian Games      |
 |------+--------------------------------------------|
 |   13 | Project presnetations                      |
 |------+--------------------------------------------|
 |   14 | Q&A, Mock exam                             |
 |------+--------------------------------------------|
 ** Beliefs and decisions
-
-
-
-*** Utility theory (60')
-1. Rewards and preferences
-2. Transitivity of preferences
-3. Random rewards
-4. Utility functions and the expected utility hypothesis
-5. Utility exercise: Gambling (10' pen and paper)
-6. The St. Petersburg Paradox
-
+*** Utility theory (90')
+1. Rewards and preferences (15') 
+2. Transitivity of preferences (15')
+3. Random rewards (5')
+4. Decision Diagrams (10')
+5. Utility functions and the expected utility hypothesis (15')
+6. Utility exercise: Gambling (10' pen and paper)
+7. The St. Petersburg Paradox (15')
+   
 *** Probability primer
 1. Objective vs Subjective Probability: Example (5')
 2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset (5')
@@ -104,8 +126,6 @@ P_f(A) = P(\{\omega : f(\omega) \in A\})
 
 $E_P[f] = \sum_{\omega} f(\omega) P(\omega)$.
 
-
-
 *** Lab: Probability, Expectation, Utility
 
 1. Exercise Set 1. Probability introduction.
@@ -147,65 +167,166 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/256692
 The expected-utility hypothesis and the measurability of utility
 https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
-
-
 ** Decisions with observations
 *** Problems with Observations (45')
-1. Discrete set of models example: the meteorologists problem (30')
-2. Conditional probability (5')
-3. Bayes theorem (10')
+1. Discrete set of models example: the meteorologists problem (25')
+2. Marginal probabilities (5').
+3. Conditional probability (5').
+4. Bayes theorem (10').
 
+*** Statistical decisions (45')
+1. ML Estimation (10')
+2. MAP Estimation (10')
+3. Bayes Estimation (10')
+4. MSE Estimation (10') [not done]
+5. Linearity of Expectations (10') [not done]
+6. Convexity of Bayes Decisions (10') [not done]
 
-*** Basic decisions (45')
+*** Lab: Decision problems and estimation (45')
 
-1. Linearity of Expectations (5')
-2. Convexity of Bayes Decisions (5')
-3. Bandit Problems
-4. Linear programming for games (10')
+1. Problems with no observations. Book Exercise: 13,14,15.
+2. Problems with observations. Book Exercise: 17, 18.
 
-*** Lab: Decision problems and estimation
-
-1. Problems with no observations. Exercise: 1, 2, 3a.
-2. Problems with observations. Exercises 4,5
-
-*** Assignment. An insurance problem
-
-Exercise 20, 21, 22, 23.
-
-
-** Bayesian Analysis and Estimation Theory
-
-Chapter 4, up to 4.3.1. Section 4.4
-
-- Conjugate priors (15')
-- Beta Example  (15')
-- Bayesian estimation (15')
-- Bayes decisions (15')
-- Simple Hypothesis testing (15')
-- Nested Hypothesis Testing (15')
-
-*** Concentration lab
-- Construction of credible intervals (15')
-- Simple Hypothesis testing with Bernoulli (15')
-- Nested Hypothesis testing with Beta-Bernoulli (15')
-
+*** Assignment: James Randi
 
 ** Bandit problems
 
-1. n-meteorologists vs partial information (15')
-2. Stochastic bandit problems (15')
-3. A simple algorithm: the belief (15')
-4. The optimisation problem (15')
-5. Backwards induction (15')
-6. Backwards induction example (15')
+*** $n$ meteorologists as prediction with expert advice
 
-*** Bandit lab
+   - Predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models for outcomes $y_t$
+   - Make decision $a_t$.
+   - Observe true outcome $y_t$
+   - Obtain instant reward $r_t = \rho(a_t, y_t)$
+   - Utility $U = \sum_{t=1}^T r_t$.
+   - $T$ is the problem *horizon*
 
-Implement backwards induction (45')
+**** At each step $t$:
+1. Observe $p_t$.
+2. Calculate $\hat{p}_t = \sum_\mu \xi_{t}(\mu) p_{t,\mu}$
+3. Make decision $a_t = \argmax_a \sum_{y} \hat{p}_t(y) \rho(a, y)$.
+4. Observe $y_t$ and obtain reward $r_t = \rho(a_t, y_t)$.
+5. Update: $\xi_{t+1}(\mu) \propto \xi_t(\mu) p_{t,\mu}(y_t)$.
 
-*** Assignment
+The update *does not depend* on $a_t$
 
-Results on backwards induction for bandits.
+*** Prediction with expert advice
+
+   - Advice $p_t= p_{t,1}, \ldots, p_{t,n} \in D$ 
+   - Make prediction $\hat{p}_t \in D$
+   - Observe true outcome $y_t \in Y$
+   - Obtain instant reward $r_t = u(\hat{p}_t, y_t)$
+   - Utility $U = \sum_{t=1}^T r_t$.
+
+**** Relation to $n$ meteorologists
+- $D$ is the set of distributions on $Y$.
+- However, there are only predictions, no actions. To add actions:
+\[
+u(\hat{p}_t, y_t) = \rho(a^*(\hat{p}_t), y_t),
+\qquad
+a^*(\hat{p}_t) = \argmax_a \rho(a, y_t)
+\]
+
+The update *does not depend* on $a_t$
+
+
+
+
+*** The Exponentially Weighted Average
+
+**** MWA Algorithm
+- Predict by averaging all of the predictions:
+\[
+\hat{p}_t(y) = \sum_{\mu} \bel_t(\mu)  p_{t,\mu}(y)
+\]
+- Update by weighting the quality of each prediction
+\[
+\bel_{t+1}(\mu)
+=
+\frac{\bel_t(\mu) \exp[\eta u(p_{t, \mu }, y_t)]}{\sum_{\mu'} \bel_t(\mu') \exp[\eta u(p_{t,\mu}, y_t)]}
+\]
+**** Choices for $u$
+- $u(p_{t,\mu}, y_t) = \ln p_{t,\mu}(y_t)$, $\eta = 1$, Bayes's theorem.
+- $u(p_{t,\mu}, y_t) = \rho(a^*(p_{t,\mu}), y_t)$: quality of expert prediction.
+
+*** The $n$ armed stochastic bandit problem
+- Take action $a_t$
+- Obtain reward $r_t \sim P_{a_t}(r)$ with expected value $\mu_{a_t}$.
+- The utility is $U = \sum_t r_t$, while $P$ is *unknown*.
+
+**** The Regret
+Total regret with respect to the best arm:
+\[
+L = \sum_{t = 1}^T [\mu^* - r_t],
+\qquad
+\mu^* = \max_a \mu_a
+\]
+Expected regret of an algorithm $\pi$:
+\[
+\E^\pi [L] = \sum_{t = 1}^T \E^\pi[\mu^* - r_t],
+= \E^\pi[N(a_t = a)](\mu^* - \mu_a)
+\]
+
+*** Bernoulli bandits
+A classical example of this is when the rewards are Bernoulli, i.e.
+\[
+r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
+\]
+
+**** Greedy algorithm
+- Take action $a_t = \argmax_a \hat{\mu}_{t,a}$
+- Obtain reward $r_t \sim P_{a_t}(r)$ with expected value $\mu_{a_t}$.
+- Update selected arm: $s_{t, a_t} = s_{t - 1, a_t} + r_t$, $n_{t, a_t} = n_{t - 1, a_t} + 1$.
+- Other arms stay the same:  $s_{t,a} = s_{t-1, a}$, $n_{t,a} = n_{t-1, a}$ for $a \neq a_t$.
+- Update means: $\hat{\mu}_{t,i} = s_{t,i} / n_{t,i}$.
+  
+
+*** Policies and exploration
+
+- $n_{t,i}, s_{t,i}$ are *sufficient statistics$ for Bernoulli bandits.
+- Intuitively, the more often we pull an arm, the more certain we are the mean is correct.
+**** Upper confidence bound: exploration bonuses
+	 - Take action $a_t = \argmax_a \hat{\mu}_{t,a} + O(1/\sqrt{n_{t,a}})$.
+**** Posterior sampling: randomisation
+	 - $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a) - s_{t,a})$.
+	 - Sample $\hat{\mu} \sim \bel_t(\mu)$.
+	 - Take action $a_t = \argmax_a \hat{\mu}_a$.
+
+*** The upper confidence bound
+	Let
+	\[
+	\hat{\mu}_n = \sum_{i=1}^t r_i / n,
+	\]
+	be the sample mean estimate of an iiid RV in [0,1] with $\E[r_i] = \mu$. Then we have
+	\[
+	\Pr(\hat{\mu}_n \geq \mu + \epsilon) \leq \exp(-2n\epsilon^2)
+	\]
+	or equivalently
+	\[
+	\Pr(
+	\hat{\mu}_n \geq \mu_n + \sqrt{\ln(1/\delta)/2n} \leq \delta.
+	)
+	\]
+	
+*** Beta distributions as beliefs
+
+
+-   [Go through Chapter 4, Beta distribution]
+-  [Visualise Beta distribution]
+-   [Do the James Random Exercise 3]
+  
+-   Note that the problem here is that this is only a point estimate: it ignores uncertainty. In fact, we can represent our uncertainty about the arms in a probabilistic way with the Beta distribution:
+
+  If our prior over an arm's mean is $\textrm{Beta}(\alpha, \beta)$ then the -posterior at time $t$ is $\textrm{Beta}(\alpha + s_{t,i}, \beta + n_{t,i} - s_{t,i})$.
+
+-  [Visualise how the posterior changes for a biased coin as we obtain more data].
+  
+
+*** Assignment and exercise
+
+1. Implement epsilon-greedy bandits (lab, 30')
+2. Implement Thompson sampling bandits (lab, 30')
+3, Implement UCB bandits (home)
+4. Compare them in a benchmark (home)
 
 ** Markov Decision Processes: Finite horizon
 
@@ -215,6 +336,34 @@ Results on backwards induction for bandits.
 4. Monte Carlo Policy Evaluation (15')
 5. DP: Finite Horizon Policy Evaluation (15')
 6. DP: Finite Horizon Backward Induction (15')
+*** The Markov decision process
+**** Interaction at time $t$
+- Observe state $s_t \in S$
+- Take action $a_t \in A$.
+- Obtain reward $r_t \in \Reals$.
+**** The MDP model $\mu$
+- Transition kernel $P_\mu(s_{t+1} | s_t, a_t)$.
+- Reward with mean $\rho_\mu(s_t, a_t)$
+**** Policies
+- Markov policies $\pol(a_t | s_t)$
+**** Utility
+Total reward up to a finite (but not necessarily fixed) horizon $T$
+\[
+U = \sum_{t=1}^T r_t
+\]
+
+*** MDP examples
+**** Shortest path problems
+- Goal state $s^* \in S$.
+- Reward $r_t = -1$ for all $s \neq s^*$
+- Game ends time $T$ where $s_T = s^*$.
+
+**** Blackjack against a croupier
+- Croupier shows one card.
+- Current state is croupier's card and your cards.
+- Reward is $r_T = 1$ if you win, $r_T = -1$ if you lose at the end, otherwise $0$.
+
+
 
 ** Markov Decision Processes: Infinite horizon I
 
