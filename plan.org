@@ -254,17 +254,18 @@ The update *does not depend* on $a_t$
 - The utility is $U = \sum_t r_t$, while $P$ is *unknown*.
 
 **** The Regret
-Total regret with respect to the best arm:
+-Total regret with respect to the best arm:
 \[
-L = \sum_{t = 1}^T [\mu^* - r_t],
+L \defn \sum_{t = 1}^T [\mu^* - r_t],
 \qquad
 \mu^* = \max_a \mu_a
 \]
-Expected regret of an algorithm $\pi$:
+- Expected regret of an algorithm $\pi$:
 \[
 \E^\pi [L] = \sum_{t = 1}^T \E^\pi[\mu^* - r_t],
-= \sum_{a=1}^n \E^\pi[N(a_t = a)](\mu^* - \mu_a)
+= \sum_{a=1}^n \E^\pi[n_{T,a}](\mu^* - \mu_a)
 \]
+- $n_{T,a}$ is the number of times $a$ has been pulled after $n$ steps.
 
 *** Bernoulli bandits
 A classical example of this is when the rewards are Bernoulli, i.e.
@@ -275,18 +276,19 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 **** Greedy algorithm
 - Take action $a_t = \argmax_a \hat{\mu}_{t,a}$
 - Obtain reward $r_t \sim P_{a_t}(r)$ with expected value $\mu_{a_t}$.
-- Update selected arm: $s_{t, a_t} = s_{t - 1, a_t} + r_t$, $n_{t, a_t} = n_{t - 1, a_t} + 1$.
-- Other arms stay the same:  $s_{t,a} = s_{t-1, a}$, $n_{t,a} = n_{t-1, a}$ for $a \neq a_t$.
+- Update arm: $s_{t, a_t} = s_{t - 1, a_t} + r_t$, $n_{t, a_t} = n_{t - 1, a_t} + 1$.
+- Others stay the same:  $s_{t,a} = s_{t-1, a}$, $n_{t,a} = n_{t-1, a}$ for $a \neq a_t$.
 - Update means: $\hat{\mu}_{t,i} = s_{t,i} / n_{t,i}$.
   
 
 *** Policies and exploration
 
-- $n_{t,i}, s_{t,i}$ are *sufficient statistics$ for Bernoulli bandits.
-- Intuitively, the more often we pull an arm, the more certain we are the mean is correct.
+- $n_{t,i}, s_{t,i}$ are *sufficient statistics* for Bernoulli bandits.
+- The more often we pull an arm, the more certain we are the mean is correct.
 **** Upper confidence bound: exploration bonuses
 - Take action $a_t = \argmax_a \hat{\mu}_{t,a} + O(1/\sqrt{n_{t,a}})$.
 **** Posterior sampling: randomisation
+- Given some prior parameters $\alpha, \beta > 0$ (e.g. 1).
 - $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a} - s_{t,a})$.
 - Sample $\hat{\mu} \sim \bel_t(\mu)$.
 - Take action $a_t = \argmax_a \hat{\mu}_a$.
