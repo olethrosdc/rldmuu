@@ -36,28 +36,25 @@ prepare a project, for which they will need to submit a report.
 |------+--------------------------------------------|
 |    1 | Beliefs and Decisions                      |
 |------+--------------------------------------------|
-|    2 | Decisions with Observations                |
-|      | Bayesian Decision Rules                    |
+|    2 | Bayesian Decision Rules                    |
 |------+--------------------------------------------|
-|    3 | Introduction to bandit problems.           |
-|      | Beliefs and estimation.                    |
+|    3 | Introduction to Bandit problems.           |
 |------+--------------------------------------------|
-|    4 | Bandit problems and MDPs.                  |
-|      | Belief states, Backwards Induction.        |
+|    4 | Finite Horizon MDPs                        |
+|      | Backwards Induction                        |
+|      | The Bandit MDP                             |
 |------+--------------------------------------------|
-|    5 | MDP Theory: Value Iteration                |
+|    5 | Infite Horizon MDPs                        |
+|      | Value Iteration                            |
 |      | Policy Iteration                           |
 |------+--------------------------------------------|
 |    6 | Sarsa / Q-Learning                         |
 |------+--------------------------------------------|
-|    7 | Actor-Critic / Model-Based RL              |
+|    7 | Model-Based RL                             |
 |------+--------------------------------------------|
 |    8 | Function Approximation, Gradient Methods   |
 |------+--------------------------------------------|
 |    9 | Bayesian RL: Dynamic Programming, Sampling |
-|------+--------------------------------------------|
-|   10 | Bayesian RL: Policy Gradient, GPRL         |
-|      | POMDPs                                     |
 |------+--------------------------------------------|
 |   11 | UCB/UCRL/UCT.                              |
 |      | UCT/AlphaZero.                             |
@@ -65,6 +62,8 @@ prepare a project, for which they will need to submit a report.
 |   12 | Inverse Reinforcement Learning             |
 |------+--------------------------------------------|
 |   13 | Multiagent extensions: Bayesian Games      |
+|------+--------------------------------------------|
+|   13 | Project presnetations                      |
 |------+--------------------------------------------|
 |   14 | Q&A, Mock exam                             |
 |------+--------------------------------------------|
@@ -288,7 +287,7 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 **** Upper confidence bound: exploration bonuses
 - Take action $a_t = \argmax_a \hat{\mu}_{t,a} + O(1/\sqrt{n_{t,a}})$.
 **** Posterior sampling: randomisation
-- $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a) - s_{t,a})$.
+- $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a} - s_{t,a})$.
 - Sample $\hat{\mu} \sim \bel_t(\mu)$.
 - Take action $a_t = \argmax_a \hat{\mu}_a$.
 
