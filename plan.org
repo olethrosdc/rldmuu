@@ -264,7 +264,7 @@ L = \sum_{t = 1}^T [\mu^* - r_t],
 Expected regret of an algorithm $\pi$:
 \[
 \E^\pi [L] = \sum_{t = 1}^T \E^\pi[\mu^* - r_t],
-= \E^\pi[N(a_t = a)](\mu^* - \mu_a)
+= \sum_{a=1}^n \E^\pi[N(a_t = a)](\mu^* - \mu_a)
 \]
 
 *** Bernoulli bandits
@@ -286,27 +286,27 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 - $n_{t,i}, s_{t,i}$ are *sufficient statistics$ for Bernoulli bandits.
 - Intuitively, the more often we pull an arm, the more certain we are the mean is correct.
 **** Upper confidence bound: exploration bonuses
-	 - Take action $a_t = \argmax_a \hat{\mu}_{t,a} + O(1/\sqrt{n_{t,a}})$.
+- Take action $a_t = \argmax_a \hat{\mu}_{t,a} + O(1/\sqrt{n_{t,a}})$.
 **** Posterior sampling: randomisation
-	 - $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a) - s_{t,a})$.
-	 - Sample $\hat{\mu} \sim \bel_t(\mu)$.
-	 - Take action $a_t = \argmax_a \hat{\mu}_a$.
+- $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a) - s_{t,a})$.
+- Sample $\hat{\mu} \sim \bel_t(\mu)$.
+- Take action $a_t = \argmax_a \hat{\mu}_a$.
 
 *** The upper confidence bound
-	Let
-	\[
-	\hat{\mu}_n = \sum_{i=1}^t r_i / n,
-	\]
-	be the sample mean estimate of an iiid RV in [0,1] with $\E[r_i] = \mu$. Then we have
-	\[
-	\Pr(\hat{\mu}_n \geq \mu + \epsilon) \leq \exp(-2n\epsilon^2)
-	\]
-	or equivalently
-	\[
-	\Pr(
-	\hat{\mu}_n \geq \mu_n + \sqrt{\ln(1/\delta)/2n} \leq \delta.
-	)
-	\]
+Let
+\[
+\hat{\mu}_n = \sum_{i=1}^t r_i / n,
+\]
+be the sample mean estimate of an iiid RV in [0,1] with $\E[r_i] = \mu$. Then we have
+\[
+\Pr(\hat{\mu}_n \geq \mu + \epsilon) \leq \exp(-2n\epsilon^2)
+\]
+or equivalently
+\[
+\Pr(
+\hat{\mu}_n \geq \mu_n + \sqrt{\ln(1/\delta)/2n} \leq \delta.
+)
+\]
 	
 *** Beta distributions as beliefs
 
@@ -337,6 +337,7 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 4. Monte Carlo Policy Evaluation (15')
 5. DP: Finite Horizon Policy Evaluation (15')
 6. DP: Finite Horizon Backward Induction (15')
+
 *** The Markov decision process
 **** Interaction at time $t$
 - Observe state $s_t \in S$
