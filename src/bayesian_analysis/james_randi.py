@@ -56,13 +56,13 @@ for i in range(19):
 # The expected utility is 100 * time the probability that he fails.
 # We have an initial belief regarding his psychic power, of probability p0.
 # This has an impact over the expected utility. We want to not bet anything, if he trully is a psychic !
-EU_1 = (1 - np.prod([P_Bk[i] for i in range(0, 4)])) * 100 # -> 93.75
+EU_1 = (1 - 2*np.prod([P_Bk[i] for i in range(0, 4)])) * 100 # -> 93.75
 # We already witnessed James guessing 4 times in a row
-EU_2 = (1 - np.prod([P_Bk[i] for i in range(4, 8)])) * 100
+EU_2 = (1 - 2*np.prod([P_Bk[i] for i in range(4, 8)])) * 100
 # 8 times in a row ...
-EU_3 = (1 - np.prod([P_Bk[i] for i in range(8, 12)])) * 100
-EU_4 = (1 - np.prod([P_Bk[i] for i in range(12, 16)])) * 100
-EU_5 = (1 - np.prod([P_Bk[i] for i in range(16, 20)])) * 100 # -> 46.87
+EU_3 = (1 - 2*np.prod([P_Bk[i] for i in range(8, 12)])) * 100
+EU_4 = (1 - 2*np.prod([P_Bk[i] for i in range(12, 16)])) * 100
+EU_5 = (1 - 2*np.prod([P_Bk[i] for i in range(16, 20)])) * 100 # -> 46.87
 
 print(P_Bk)
 print(EU_1, EU_2, EU_3, EU_4, EU_5)
