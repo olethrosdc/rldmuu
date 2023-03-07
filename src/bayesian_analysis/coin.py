@@ -22,14 +22,17 @@ class BetaConjugatePrior:
 
     ## get the probability of a new observation $P_\xi(x)$
     def get_marginal_probability(self, observation):
-        p = self.alpha / (self.alpha + self.beta)
-        if observation == 1:
-            p = 1 - p
-        return p
+        if observation == 0:
+            return self.sample_parameter()
+        else:
+            return 1 - self.sample_parameter()
 
     ## Sample a Bernoulli parameter $\omega \sim Beta(\alpha, \beta)$
     def sample_parameter(self):
         return np.random.beta(self.alpha, self.beta)
+
+    def get_expected(self):
+        return self.alpha / (self.alpha + self.beta)
 
 
 T = 20  # number of time steps

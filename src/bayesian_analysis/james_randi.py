@@ -105,6 +105,14 @@ class BetaConjugatePrior:
 
         return probability
 
+    ## Sample a Bernoulli parameter $\omega \sim Beta(\alpha, \beta)$
+    def sample_parameter(self):
+        return np.random.beta(self.alpha, self.beta)
+
+    # Get the expected value
+    def get_expected(self):
+        pass
+
 # James' true probability to predict a toss (we can play around with it)
 # This is what we want to model and learn to maximize our gains
 true_theta = 0.75
