@@ -36,28 +36,25 @@ prepare a project, for which they will need to submit a report.
 |------+--------------------------------------------|
 |    1 | Beliefs and Decisions                      |
 |------+--------------------------------------------|
-|    2 | Decisions with Observations                |
-|      | Bayesian Decision Rules                    |
+|    2 | Bayesian Decision Rules                    |
 |------+--------------------------------------------|
-|    3 | Introduction to bandit problems.           |
-|      | Beliefs and estimation.                    |
+|    3 | Introduction to Bandit problems.           |
 |------+--------------------------------------------|
-|    4 | Bandit problems and MDPs.                  |
-|      | Belief states, Backwards Induction.        |
+|    4 | Finite Horizon MDPs                        |
+|      | Backwards Induction                        |
+|      | The Bandit MDP                             |
 |------+--------------------------------------------|
-|    5 | MDP Theory: Value Iteration                |
+|    5 | Infite Horizon MDPs                        |
+|      | Value Iteration                            |
 |      | Policy Iteration                           |
 |------+--------------------------------------------|
 |    6 | Sarsa / Q-Learning                         |
 |------+--------------------------------------------|
-|    7 | Actor-Critic / Model-Based RL              |
+|    7 | Model-Based RL                             |
 |------+--------------------------------------------|
 |    8 | Function Approximation, Gradient Methods   |
 |------+--------------------------------------------|
 |    9 | Bayesian RL: Dynamic Programming, Sampling |
-|------+--------------------------------------------|
-|   10 | Bayesian RL: Policy Gradient, GPRL         |
-|      | POMDPs                                     |
 |------+--------------------------------------------|
 |   11 | UCB/UCRL/UCT.                              |
 |      | UCT/AlphaZero.                             |
@@ -65,6 +62,8 @@ prepare a project, for which they will need to submit a report.
 |   12 | Inverse Reinforcement Learning             |
 |------+--------------------------------------------|
 |   13 | Multiagent extensions: Bayesian Games      |
+|------+--------------------------------------------|
+|   13 | Project presnetations                      |
 |------+--------------------------------------------|
 |   14 | Q&A, Mock exam                             |
 |------+--------------------------------------------|
@@ -194,61 +193,134 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 *** $n$ meteorologists as prediction with expert advice
 
-**** Prediction with expert advice
    - Predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models for outcomes $y_t$
    - Make decision $a_t$.
    - Observe true outcome $y_t$
-   - Obtain reward $r_t = \rho(a_t, y_t)$
-   - Utility $U = \sum_{t=1}^T U_t$.
+   - Obtain instant reward $r_t = \rho(a_t, y_t)$
+   - Utility $U = \sum_{t=1}^T r_t$.
    - $T$ is the problem *horizon*
 
-**** Algorithm
-   - Weights $\xi_t(\mu)$ for each model $\mu$.
-   - Make decision $a_t = \argmax_a \sum_\mu  \xi_{t}(\mu) \sum_y p_{t,\mu}(y) \rho(a, y)$
-   - Update: $\xi_{t+1}(\mu) \propto \xi_t(\mu) p_{t,\mu}(y_t)$.
+**** At each step $t$:
+1. Observe $p_t$.
+2. Calculate $\hat{p}_t = \sum_\mu \xi_{t}(\mu) p_{t,\mu}$
+3. Make decision $a_t = \argmax_a \sum_{y} \hat{p}_t(y) \rho(a, y)$.
+4. Observe $y_t$ and obtain reward $r_t = \rho(a_t, y_t)$.
+5. Update: $\xi_{t+1}(\mu) \propto \xi_t(\mu) p_{t,\mu}(y_t)$.
 
 The update *does not depend* on $a_t$
 
-*** Stochastic Bandit Problems
+*** Prediction with expert advice
 
-**** The $n$ armed stochastic bandit problem
+   - Advice $p_t= p_{t,1}, \ldots, p_{t,n} \in D$ 
+   - Make prediction $\hat{p}_t \in D$
+   - Observe true outcome $y_t \in Y$
+   - Obtain instant reward $r_t = u(\hat{p}_t, y_t)$
+   - Utility $U = \sum_{t=1}^T r_t$.
+
+**** Relation to $n$ meteorologists
+- $D$ is the set of distributions on $Y$.
+- However, there are only predictions, no actions. To add actions:
+\[
+u(\hat{p}_t, y_t) = \rho(a^*(\hat{p}_t), y_t),
+\qquad
+a^*(\hat{p}_t) = \argmax_a \rho(a, y_t)
+\]
+
+The update *does not depend* on $a_t$
+
+
+
+
+*** The Exponentially Weighted Average
+
+**** MWA Algorithm
+- Predict by averaging all of the predictions:
+\[
+\hat{p}_t(y) = \sum_{\mu} \bel_t(\mu)  p_{t,\mu}(y)
+\]
+- Update by weighting the quality of each prediction
+\[
+\bel_{t+1}(\mu)
+=
+\frac{\bel_t(\mu) \exp[\eta u(p_{t, \mu }, y_t)]}{\sum_{\mu'} \bel_t(\mu') \exp[\eta u(p_{t,\mu}, y_t)]}
+\]
+**** Choices for $u$
+- $u(p_{t,\mu}, y_t) = \ln p_{t,\mu}(y_t)$, $\eta = 1$, Bayes's theorem.
+- $u(p_{t,\mu}, y_t) = \rho(a^*(p_{t,\mu}), y_t)$: quality of expert prediction.
+
+*** The $n$ armed stochastic bandit problem
 - Take action $a_t$
 - Obtain reward $r_t \sim P_{a_t}(r)$ with expected value $\mu_{a_t}$.
-- The utility us $U = \sum_t r_t$
+- The utility is $U = \sum_t r_t$, while $P$ is *unknown*.
 
-**** Bernoulli bandits
+**** The Regret
+-Total regret with respect to the best arm:
+\[
+L \defn \sum_{t = 1}^T [\mu^* - r_t],
+\qquad
+\mu^* = \max_a \mu_a
+\]
+- Expected regret of an algorithm $\pi$:
+\[
+\E^\pi [L] = \sum_{t = 1}^T \E^\pi[\mu^* - r_t],
+= \sum_{a=1}^n \E^\pi[n_{T,a}](\mu^* - \mu_a)
+\]
+- $n_{T,a}$ is the number of times $a$ has been pulled after $n$ steps.
+
+*** Bernoulli bandits
 A classical example of this is when the rewards are Bernoulli, i.e.
 \[
 r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 \]
 
 **** Greedy algorithm
-- Take action $a_t$
+- Take action $a_t = \argmax_a \hat{\mu}_{t,a}$
 - Obtain reward $r_t \sim P_{a_t}(r)$ with expected value $\mu_{a_t}$.
-- The utility us $U = \sum_t r_t$
-
-
-3. A simple algorithm: a simple belief and greedy actions (15')
-
-- For every arm we pull, we can keep track of the average reward.
-- This requires maintaining a /sufficient statistic/ (see chapter 4)
-  $n_{t,i}$: the number of times we pulled arm $i$ until time $t$.
-  $s_{t,i}$: the total reward we obtained from arm $i$ until time $t$.
-- This allows us to use the mean estimate $\hat{\mu}_{t,i} = s_{t.i} / n_{t.i}$.
-- So we can be greedy, and just choose the arm with the highest mean estimate.
+- Update arm: $s_{t, a_t} = s_{t - 1, a_t} + r_t$, $n_{t, a_t} = n_{t - 1, a_t} + 1$.
+- Others stay the same:  $s_{t,a} = s_{t-1, a}$, $n_{t,a} = n_{t-1, a}$ for $a \neq a_t$.
+- Update means: $\hat{\mu}_{t,i} = s_{t,i} / n_{t,i}$.
   
 
-4. Beta distributions as beliefs
+*** Policies and exploration
 
-  [Go through Chapter 4, Beta distribution]
-  [Visualise Beta distribution]
-  [Do the James Random Exercise 3]
+- $n_{t,i}, s_{t,i}$ are *sufficient statistics* for Bernoulli bandits.
+- The more often we pull an arm, the more certain we are the mean is correct.
+**** Upper confidence bound: exploration bonuses
+- Take action $a_t = \argmax_a \hat{\mu}_{t,a} + O(1/\sqrt{n_{t,a}})$.
+**** Posterior sampling: randomisation
+- Given some prior parameters $\alpha, \beta > 0$ (e.g. 1).
+- $\bel_t(\mu_a) = \textrm{Beta}(\alpha + s_{t,a}, \beta + n_{t,a} - s_{t,a})$.
+- Sample $\hat{\mu} \sim \bel_t(\mu)$.
+- Take action $a_t = \argmax_a \hat{\mu}_a$.
+
+*** The upper confidence bound
+Let
+\[
+\hat{\mu}_n = \sum_{i=1}^t r_i / n,
+\]
+be the sample mean estimate of an iiid RV in [0,1] with $\E[r_i] = \mu$. Then we have
+\[
+\Pr(\hat{\mu}_n \geq \mu + \epsilon) \leq \exp(-2n\epsilon^2)
+\]
+or equivalently
+\[
+\Pr(
+\hat{\mu}_n \geq \mu_n + \sqrt{\ln(1/\delta)/2n} \leq \delta.
+)
+\]
+	
+*** Beta distributions as beliefs
+
+
+-   [Go through Chapter 4, Beta distribution]
+-  [Visualise Beta distribution]
+-   [Do the James Random Exercise 3]
   
-   Note that the problem here is that this is only a point estimate: it ignores uncertainty. In fact, we can represent our uncertainty about the arms in a probabilistic way with the Beta distribution:
+-   Note that the problem here is that this is only a point estimate: it ignores uncertainty. In fact, we can represent our uncertainty about the arms in a probabilistic way with the Beta distribution:
 
-  If our prior over an arm's mean is $\textrm{Beta}(\alpha, \beta)$ then the posterior at time $t$ is $\textrm{Beta}(\alpha + s_{t,i}, \beta + n_{t,i} - s_{t,i})$.
+  If our prior over an arm's mean is $\textrm{Beta}(\alpha, \beta)$ then the -posterior at time $t$ is $\textrm{Beta}(\alpha + s_{t,i}, \beta + n_{t,i} - s_{t,i})$.
 
-  [Visualise how the posterior changes for a biased coin as we obtain more data].
+-  [Visualise how the posterior changes for a biased coin as we obtain more data].
   
 
 *** Assignment and exercise
@@ -266,6 +338,35 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 4. Monte Carlo Policy Evaluation (15')
 5. DP: Finite Horizon Policy Evaluation (15')
 6. DP: Finite Horizon Backward Induction (15')
+
+*** The Markov decision process
+**** Interaction at time $t$
+- Observe state $s_t \in S$
+- Take action $a_t \in A$.
+- Obtain reward $r_t \in \Reals$.
+**** The MDP model $\mu$
+- Transition kernel $P_\mu(s_{t+1} | s_t, a_t)$.
+- Reward with mean $\rho_\mu(s_t, a_t)$
+**** Policies
+- Markov policies $\pol(a_t | s_t)$
+**** Utility
+Total reward up to a finite (but not necessarily fixed) horizon $T$
+\[
+U = \sum_{t=1}^T r_t
+\]
+
+*** MDP examples
+**** Shortest path problems
+- Goal state $s^* \in S$.
+- Reward $r_t = -1$ for all $s \neq s^*$
+- Game ends time $T$ where $s_T = s^*$.
+
+**** Blackjack against a croupier
+- Croupier shows one card.
+- Current state is croupier's card and your cards.
+- Reward is $r_T = 1$ if you win, $r_T = -1$ if you lose at the end, otherwise $0$.
+
+
 
 ** Markov Decision Processes: Infinite horizon I
 
