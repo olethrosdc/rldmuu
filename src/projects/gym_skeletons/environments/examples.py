@@ -82,7 +82,7 @@ class GridWorldEnvSparce(BaseEnv):
         self.past_agent_location = self._agent_location.copy()
 
 
-        # return the observation and some additional information we could want to pass
+        # return the initial observation
         return observation
 
     def render(self):
@@ -125,12 +125,10 @@ class GridWorldEnvSparce(BaseEnv):
 
     def compute_reward(self, action) -> float:
         # Binary sparce rewards.
-        # If we are terminated, then this means we reached the goal.
         return int(self.reached_goal)
 
     def step(self, action):
 
-        # Map the action (element of {0,1,2,3}) to the direction we walk in
         terminated = self.update(action)
         self.reached_goal = terminated
         observation = self.get_observation()
