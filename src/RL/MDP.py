@@ -2,6 +2,9 @@ import numpy as np
 
 ## This a discrete MDP with a finite number of states and actions
 class DiscreteMDP:
+    ## initalise a random MDP with
+    ## n_states: the number of states
+    ## n_actions: the number of acitons
     def __init__(self, n_states, n_actions):
         self.n_states = n_states # the number of states of the MDP
         self.n_actions = n_actions # the number of actions of the MDP
