@@ -18,12 +18,6 @@ class QLearning:
     
     def update(self, action, reward, state):
         ## fill in
-        Q_max = max(self.Q[state, :])
-        self.Q[self.state, action] = self.alpha * (reward + self.discount * Q_max) + (1.0 - self.alpha) * self.Q[self.state, action]
-        self.alpha = 100 / (100 + self.count)
-        self.count += 1
-        self.epsilon *= 0.99999
-        self.state = state
 
     def reset(self, state):
         self.state = state

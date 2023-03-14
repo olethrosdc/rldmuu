@@ -332,12 +332,14 @@ or equivalently
 
 ** Markov Decision Processes: Finite horizon
 
-1. MDP definitions (15')
-2. MDP examples (15')
-3. The bandit MDP (15')
+1. The bandit MDP (30')
+2. MDP definitions (15')
+3. MDP examples (15')
 4. Monte Carlo Policy Evaluation (15')
 5. DP: Finite Horizon Policy Evaluation (15')
 6. DP: Finite Horizon Backward Induction (15')
+7. DP: Proof of Backwards Induction (15')
+8. DP: Implementation of Backwards Induction (30')
 
 *** The Markov decision process
 **** Interaction at time $t$
@@ -365,7 +367,6 @@ U = \sum_{t=1}^T r_t
 - Croupier shows one card.
 - Current state is croupier's card and your cards.
 - Reward is $r_T = 1$ if you win, $r_T = -1$ if you lose at the end, otherwise $0$.
-
 
 
 ** Markov Decision Processes: Infinite horizon I

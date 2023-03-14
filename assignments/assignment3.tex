@@ -56,8 +56,8 @@
 
 \begin{document}
 \title{Exercise set 3}
-\author{Christos Dimitrakakis  \texttt{christos.dimitrakakis@uinine.ch}}
-\date{Deadline: 18 March 2022}
+\author{Christos Dimitrakakis  \texttt{christos.dimitrakakis@unine.ch}}
+\date{Deadline: 21 March 2023}
 \maketitle
 
 \section{Programming exercise}
@@ -66,13 +66,25 @@
 
 \begin{exercise}[Start in class, continue at home]
   \begin{enumerate}  
-  \item Describe a problem that can be modelled as a Markov decision process with a finite horizon, including the state space, action space, rewards and transition distribution.
+  \item Describe a problem that can be modelled as a Markov decision process with a finite horizon, including the state space, action space, reward function and transition distribution. Some ideas are given below.
   \item Implement the MDP as an instance of the \verb|MDP| class.
   \item Calculate the optimal policy and value function for your problem, and interpret the results. What does the value of the different states mean? Is the optimal policy what you expected it to be? 
   \end{enumerate}
 \end{exercise}
 
-\section{Pen-and-paper exercise}
+\iftrue
+  \section{Example problems.}
+  These problems are described in detail in the Puterman book (see class materials). You do not need to implement them exactly as described, but it's useful to read.
+  
+  \paragraph{Stochastic inventory.}  (Sec. 3.2) You stock a single product in a warehouse. You have to decide how much to order every month, given that (a) storage costs and (b) you must have enough inventory to sell. For this problem, you can assume planning over $N=12$ months. 
+  \paragraph{Routing problems.}  (Sec 3.3.2) Given a graph describing possible routes, find the shortest path from any node of the graph to the terminal node.
+  \paragraph{Sequential allocation.} (Sec 3.3.3) in this problem, we have a finite amount to use over $N$ periods, and the utility of consuming $x_t$ at time $t$ is $g_t(x_t)$, with overall utility $\sum_t g_t(x_t)$. 
+  \paragraph{The secretary problem.} (Sec. 3.4.3). This is a special case of general stopping problems. At each step, you interview one candidate. After an interview, you must decide whether or not to offer the job to the current candidate. If not, this candidate leaves and is not available anymore.  
+
+\fi
+\iffalse
+
+\section{Example MDP problem}
 
 Many patients arriving at an emergency room, suffer from chest pain. This may indicate acute coronary syndrome (ACS). Patients suffering from ACS that go untreated may die with probability 2\% in the next few days. Successful diagnosis results lowers the short-term mortality rate to 0.2\%. Consequently, a prompt diagnosis is essential.\footnote{The figures given are not really accurate, as they are liberally adapted from different studies.}
 
@@ -102,7 +114,6 @@ An X-ray can diagnose lung cancer with a sensitivity of 90\% and a specificity o
 \begin{assumption}
   The existence of lung cancer \emph{does not} affect the probability that the ECG will be positive. Conversely, the existence of ACS \emph{does not} affect the probability that the X-ray will be positive.
 \end{assumption}
-
 
 The main problem we want to solve, is how to perform experiments or
 tests, so as to
@@ -170,6 +181,8 @@ death with probability $0.1\%$ (while no treatment results in no deaths) so we w
 
 
 
+\fi
+
 \section{Feedback}
 
 
@@ -192,3 +205,8 @@ death with probability $0.1\%$ (while no treatment results in no deaths) so we w
 
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
