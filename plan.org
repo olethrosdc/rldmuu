@@ -368,7 +368,16 @@ U_1 = \sum_{t=1}^T r_t
 - Current state is croupier's card and your cards.
 - Reward is $r_T = 1$ if you win, $r_T = -1$ if you lose at the end, otherwise $0$.
 
-*** Backwards induction
+
+*** Monte Carlo Policy Evaluation
+
+\begin{align*}
+V^\pi_t(s)
+& = \E^\pi[U_t | s_t = s] \\
+& \approx \frac{1}{N} \sum_{n=1}^N U^{(n)}_t 
+\end{align*}
+
+*** Policy Evaluation
 
 \begin{align*}
 V^\pi_t(s) 
@@ -381,6 +390,7 @@ V^\pi_t(s)
 &= \E^\pi[r_t | s_t = s] + \sum_{s'} V^\pi_{t+1}(s') \sum_a \Pr(s_{t+1} = s' | s_t = s, a_t = a) \pi_t( a |  s).
 \end{align*}
 
+*** Backwards induction
 Let $v_t$ be the estimates of the backwards induction algorithm. We want to prove that $v_t = V^*_t$.
 This is true for $t = T$. Let us assume by induction that $v_{t+1} > V^*_{t+1}$. Then it must hold for $t$ as well:
 \begin{align*}
