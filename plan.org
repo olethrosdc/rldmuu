@@ -354,7 +354,7 @@ or equivalently
 **** Utility
 Total reward up to a finite (but not necessarily fixed) horizon $T$
 \[
-U = \sum_{t=1}^T r_t
+U_1 = \sum_{t=1}^T r_t
 \]
 
 *** MDP examples
@@ -362,11 +362,40 @@ U = \sum_{t=1}^T r_t
 - Goal state $s^* \in S$.
 - Reward $r_t = -1$ for all $s \neq s^*$
 - Game ends time $T$ where $s_T = s^*$.
-
+  
 **** Blackjack against a croupier
 - Croupier shows one card.
 - Current state is croupier's card and your cards.
 - Reward is $r_T = 1$ if you win, $r_T = -1$ if you lose at the end, otherwise $0$.
+
+*** Backwards induction
+
+\begin{align*}
+V^\pi_t(s) 
+&= \E^\pi[U_t | s_t = s]\\
+&= \E^\pi[\sum_{k=t}^T r_k | s_t=s]\\
+&= \E^\pi[r_t | s_t = s] + \E^\pi[\sum_{k=t+1}^T r_k | s_t=s]\\
+&= \E^\pi[r_t | s_t = s] + \E^\pi[U_{t+1} | s_t=s]\\
+&= \E^\pi[r_t | s_t = s] + \sum_{s'} \E^\pi[U_{t+1} | s_{t+1}=s'] \Pr^\pi(s_{t+1} = s' | s_t = s)\\
+&= \E^\pi[r_t | s_t = s] + \sum_{s'} V^\pi_{t+1}(s') \Pr^\pi(s_{t+1} = s' | s_t = s)\\
+&= \E^\pi[r_t | s_t = s] + \sum_{s'} V^\pi_{t+1}(s') \sum_a \Pr(s_{t+1} = s' | s_t = s, a_t = a) \pi_t( a |  s).
+\end{align*}
+
+Let $v_t$ be the estimates of the backwards induction algorithm. We want to prove that $v_t = V^*_t$.
+This is true for $t = T$. Let us assume by induction that $v_{t+1} > V^*_{t+1}$. Then it must hold for $t$ as well:
+\begin{align*}
+v_t(s)
+&= \max_a {r(s) + \sum_j p(j|s,a) v_{t+1}(j)}\\
+& \geq \max_a {r(s) + \sum_j p(j|s,a) V^*_{t+1}(j)}\\
+& \geq \max_a {r(s) + \sum_j p(j|s,a) V^\pi_{t+1}(j)} & & \forall \pi\\
+& \geq V_t^\pi(s) 
+\end{align*}
+
+If $\pi^*$ is the policy returned by backwards induction, then $v_t = V^{\pi^*}$.
+Consequently
+\[
+V^* \geq V^*{\pi^*} = v \geq V^* \Rightarrow v = V^*.
+\]
 
 
 ** Markov Decision Processes: Infinite horizon I
