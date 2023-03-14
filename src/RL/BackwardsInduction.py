@@ -17,6 +17,8 @@ T = 1000
 mdp = MDP.DiscreteMDP(n_states, n_actions)
 policy, V = backwards_induction(mdp, T)
 
+policy = np.zeros(n_states, T) #this plays action 0 all the time
+
 for s in range(mdp.n_states):
     for a in range(mdp.n_actions):
         print("S:", s, "A:", a, mdp.get_transition_probabilities(s,a))
