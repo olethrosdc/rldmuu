@@ -1,4 +1,5 @@
 import MDP
+import mdp_examples
 import numpy as np
 
 def policy_evaluation(mdp, gamma, policy):
@@ -9,11 +10,10 @@ def policy_evaluation(mdp, gamma, policy):
         P[s,:] = mdp.get_transition_probabilities(s, policy[s])
         R[s] = mdp.R[s, policy[s]]
     I = np.eye(mdp.n_states)
-    print( np.linalg.inv(I - gamma * P))
-    print("X")
-    print(R)
-    
-    return np.linalg.inv(I - gamma * P) @ R # not sure if the order/row-columns is right, assuming R is column matrix
+    ## A @ y equivalent to np.matmul(A, Y)
+    ## If y is a vector in $R^n$, then it becomes a [n x 1] matrix
+    ## So if A is $R^{n \times n}$ then $A r \in R^n$.
+    return np.linalg.inv(I - gamma * P) @ R 
 
 def policy_evaluation_dp(mdp, gamma, policy):
     # build the matrix of next states
@@ -59,11 +59,11 @@ n_actions = 2
 n_states = 2
 n_iterations = 1000
 gamma = 0.9
-mdp = MDP.DiscreteMDP(n_states, n_actions)
+mdp = mdp_examples.ChainMDP(5)
 policy, V, Q = policy_iteration(mdp, n_iterations, gamma)
-print(policy)
+#print(policy)
 print(V)
-print(Q)
+#print(Q)
 
 
 
