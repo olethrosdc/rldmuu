@@ -11,6 +11,7 @@
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
 #+LaTeX_HEADER: \newcommand \pol {\pi}
+#+LaTeX_HEADER: \newcommand \mdp {\mu}
 #+LaTeX_HEADER: \newcommand \bel {\xi}
 #+TAGS: activity advanced definition exercise homework project example theory code
 #+OPTIONS:   H:3
@@ -332,6 +333,7 @@ or equivalently
 
 ** Markov Decision Processes: Finite horizon
 
+
 1. The bandit MDP (30')
 2. MDP definitions (15')
 3. MDP examples (15')
@@ -410,14 +412,167 @@ V^* \geq V^*{\pi^*} = v \geq V^* \Rightarrow v = V^*.
 
 ** Markov Decision Processes: Infinite horizon I
 
+*** Plan
 1. DP: Value Iteration (45')
 2. DP: Policy Iteration (45')
+
+*** Infinite horizon setting
+
+**** Utility
+\[
+U = \sum_{t=0}^\infty \gamma^t r_t
+\]
+**** Discount factor $\gamma \in (0,1)$
+Tells us how much we care about the future. Note that
+\[
+\sum_{t=0}^\infty \gamma^t = \frac{1}{1 - \gamma}
+\]
+
+*** Value iteration
+
+Idea: Run backwards induction, discounting by $\gamma$
+until convergence.
+
+**** Algorithm
+- Input: MDP $\mu$, discount factor $\gamma$, threshold $\epsilon$
+- $v_0(s) = \rho_\mu(s)$ for all $s$
+- For $n=1, \ldots$
+\[
+v_{n+1}(s) = \rho_\mu(s) + \gamma \sum_{j} P_\mu(j | s, a) v_n(j).
+\]
+- Until $\|v_{n+1} - v_n\|_\infty \leq \epsilon$.
+
+**** Norms
+- $\|x\|_1 = \sum_t |x_t|$
+- $\|x\|_\infty = \max_t |x_t|$
+- $\|x\|_p = \left(\sum_t |x_t|^p\right)^{1/p}$
+
+*** Matrix notation for finite MDPs
+
+
+
+- $r$: reward vector.
+- $P_\pi$: transition matrix.
+- $v$: value function vector.
+
+**** Stationary policies
+\[
+\pi(a_t | s_t) = \pi(a_k | s_k)
+\]
+
+     
+**** Matrix formula for value function
+\[
+v^\pi = \sum_{t=0}^\infty \gamma^t P_\pi^t r.
+\]
+Note that $(P_\pi r)(s) = \sum_j P_\pi(s, j) r(j)$.
+
+
+*** Convergence of value iteration
+
+**** Proof idea
+1. Define the VI operator $L$ so that $v_{n+1} = L v_n$.
+2. Show that if $v = V^*$ then $v = L v$.
+3. Show that $\lim_{n \to \infty} v = V^*$.
+
+**** Further questions
+- How fast does it converge?
+- When is the policy actually optimal?
+
+*** Policy evaluation
+
+**** Policy evaluation theorem
+For any stationary policy $\pol$, the unique solution of
+\[
+v = r + \gamma P_\pi v
+\qquad \textrm{is}
+\qquad
+v^\pol = (I - \gamma P_\pi)^{-1} r
+\]
+**** Proof
+If $\|A\| < 1$, then $(I - A)^{-1}$ exists and
+\[
+(I - A)^{-1} = \lim_{T \to \infty} \sum_{t=0}^T A^t.
+\]
+
+**** Interpretation: $X = (I - P)^{-1}$
+Is the total discounted number of times reaching a state
+\[
+X(i, j) = \E \sum_{t=0}^\infty \gamma^t \ind{s_t = j | s_0 = i}
+\]
+
+*** Optimality equations
+**** Policy operator
+\[
+L_\pi v = r + \gamma P_\pi v.
+\]
+
+**** Bellman operator
+\[
+L v = \max_\pi \{r + \gamma P_\pi v\}.
+\]
+
+**** Bellman optimality equation
+\[
+v = Lv
+\]
+
+*** Value iteration convergence proof
+
+**** Contraction mappings
+$M$ is a contraction mapping if there is $\gamma < 1$ so that
+\[
+\|Mx - My\| \leq \gamma \|x - y\| \qquad \forall x, y.
+\]
+
+**** Banach fixed point theorem
+If $M$ is a contraction mapping
+1. There is a unique $x^*$ so that $Mx^* = x^*$.
+2. If $x_{n+1} = M x_n$ then $x_n \to x^*$.
+
+**** Value iteration
+- Since $L$ is a contraction mapping, it converges to $v^* = L v^*$ (Theorem 6.5.7)
+- If $v = L v$ then $v = \max_\pi v^\pi$ (Theorem 6.5.3)
+- Hence, value iteration converges to $v^*$.
+
+*** Speed of convergence of value iteration
+**** Theorem
+If $r_t \in [0,1]$, $v_0 = 0$, then
+\[
+\|v_n - v^*\| \leq \gamma^n / (1 - \gamma).
+\]
+**** Proof
+Note that $\|v_0 - v^*\| = \gamma^0 / (1 - \gamma)$, and
+\[
+\|v_{n+1}- v^*\|
+=
+\|L v_n - Lv^*\|
+\leq
+\gamma \|v_n - v^*\|.
+\]
+Induction: $\|v_n - v^*\| \leq \gamma^{n} / (1 - \gamma)$
+\[
+\|v_{n+1}- v^*\| \leq \gamma \|v_n - v^*\| \leq \gamma^{n+1} / (1 - \gamma). 
+\]
+
+*** Policy Iteration
+**** Algorithm
+- Input: MDP $\mdp$, discount factor $\gamma$, initial policy $\pol_0$.
+- For $n = 0, 1,\ldots$
+- $v_n = (I - \discount P_{\pol_n})^{-1} r = V^{\pol_n}$.
+- $\pi_{n+1} = \argmax_\pol \{r + \gamma P_\pol v_n$.
+- Until $\pi_{n+1} = \pi_n$.
+
+**** Policy iteration terminates with the optimal policy in a finite number of steps.
+- $v_n \leq v_{n+1}$ (Theorem 6.5.10)
+- There is a finite number of policies.
+- $v_n = \max_\pol \{r + \gamma P_\pi v_n}$
 
 ** Markov Decision Processes: Infinite horizon II
 
 1. DP: Temporal Differences (45')
 2. DP: Modified Policy Iteration (45')
-
+   
 ** Markov Decision Processes: Stochastic Approximation
 
 1. Sarsa (45')

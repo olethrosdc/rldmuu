@@ -11,8 +11,8 @@ def backwards_induction(mdp, policy, T):
     for state in range(mdp.n_states):
         for action in range(mdp.n_actions): 
             Q[state, action, T - 1] = mdp.get_reward(state, action)
-            V[state, T-1] = max(Q[state, :, T-1])
-            policy[state, T-1] = np.argmax(Q[state, :, T-1])
+        V[state, T-1] = max(Q[state, :, T-1])
+        policy[state, T-1] = np.argmax(Q[state, :, T-1])
 
     for k in range(T - 1):
         t = T - 2 - k
