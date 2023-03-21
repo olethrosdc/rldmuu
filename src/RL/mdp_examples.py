@@ -13,6 +13,9 @@ class ChainMDP(MDP.DiscreteMDP):
         n_actions = 2
         super().__init__(n_states=n_states, n_actions=n_actions)
 
+        self.R[:] = 0.
+        self.P[:] = 0.
+
         self.R[:, 1] = -1 / (n_states-1)
         self.R[n_states-1, 1] = 1.
         self.R[:, 0] = 1/n_states
@@ -27,10 +30,8 @@ class ChainMDP(MDP.DiscreteMDP):
 
         self.P[self.n_states-1, :, self.n_states-1] = 1.
 
-        print(self.P.shape, self.R)
-
-
 if __name__ == '__main__':
     # Unit test
 
-    TestMDP()
+    p = ChainMDP()
+    print(p.P, p.R)
