@@ -18,7 +18,6 @@ def backwards_induction(mdp, policy, T):
         t = T - 2 - k
         for state in range(mdp.n_states):
             for action in range(mdp.n_actions):
-                action = policy[state, t]
                 reward = mdp.get_reward(state, action)
                 Q[state, action, t] = reward
                 for next_state in range(mdp.n_states):
