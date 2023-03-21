@@ -1,4 +1,5 @@
 import MDP
+import mdp_examples
 import numpy as np
 
 ## Define algorithm
@@ -26,7 +27,7 @@ n_actions = 2
 n_states = 2
 n_iterations = 1000
 gamma = 0.9
-mdp = MDP.DiscreteMDP(n_states, n_actions)
+mdp = mdp_examples.ChainMDP()
 policy, V, Q = value_iteration(mdp, n_iterations, gamma)
 
 

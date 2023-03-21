@@ -1,4 +1,4 @@
-from rldmuu.src.RL import MDP
+import MDP #from rldmuu.src.RL import MDP
 import numpy as np
 
 
