@@ -100,7 +100,7 @@ So, in this problem $s_2$ is a bad state. However, the optimal policy depends cr
 \section{The simple MDP as a test-bench}
 \label{sec:simple-mdp-as}
 \begin{exercise}[30-60!]
-  Calculate the values of different policies for different horizons, with no discounting, i.e. $\disc = 1$.
+  Calculate (can be done analytically) the values of different policies for different horizons, with no discounting, i.e. $\disc = 1$.
   \begin{enumerate}
   \item Calculate the value of the policy always taking action $a_1$ for a finite horizon $T$. 
   \item Calculate the value of the policy always taking action $a_2$ for a finite horizon $T$. 
@@ -111,7 +111,7 @@ So, in this problem $s_2$ is a bad state. However, the optimal policy depends cr
 
 
 \begin{exercise}[30-60!]
-  Repeat the above exercise for $T \to \infty$, but with a varying discount factor $\gamma \in [0,1)$. 
+  Repeat the above exercise for $T \to \infty$, but with a varying discount factor $\gamma \in [0,1)$.  (This can also be done analytially!)
   \begin{enumerate}
   \item Calculate the value of the policy always taking action $a_1$ for varying $\gamma$
   \item Calculate the value of the policy always taking action $a_2$ for varying $\gamma$. 
@@ -122,6 +122,8 @@ So, in this problem $s_2$ is a bad state. However, the optimal policy depends cr
 
 
 \begin{exercise}[60-120]
+  Implement the above MDP in \verb|src/RL/simple_MDP.py|
+  
   Now implement and verify a number of algorithms. I suggest the following sequence.
   \begin{enumerate}
   \item Use your implementation of backwards induction for finite $T$. Do your analytical results hold until the change point? If not, why not?
