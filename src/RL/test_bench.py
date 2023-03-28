@@ -22,9 +22,10 @@ environments.append(chain.Chain(5))
 
 
 algs = []
-algs.append(QLearning.QLearning)
-algs.append(MDPBelief.ExpectedMDPHeuristic)
-algs.append(MDPBelief.SampleBasedRL)
+algs.append(Sarsa.Sarsa)
+#algs.append(QLearning.QLearning)
+#algs.append(MDPBelief.ExpectedMDPHeuristic)
+#algs.append(MDPBelief.SampleBasedRL)
 n_algs = len(algs)
 
 alpha = 0.4

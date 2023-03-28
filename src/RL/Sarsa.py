@@ -10,6 +10,7 @@ class Sarsa:
         self.epsilon = epsilon
         self.count = 0
         self.decay = decay
+        
     def act(self):
         ## by default, act greedily
         if (np.random.uniform() < self.epsilon):
