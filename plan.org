@@ -409,8 +409,7 @@ Consequently
 V^* \geq V^*{\pi^*} = v \geq V^* \Rightarrow v = V^*.
 \]
 
-
-** Markov Decision Processes: Infinite horizon I
+** Markov Decision Processes: Infinite horizon
 
 *** Plan
 1. DP: Value Iteration (45')
@@ -559,25 +558,124 @@ Induction: $\|v_n - v^*\| \leq \gamma^{n} / (1 - \gamma)$
 **** Algorithm
 - Input: MDP $\mdp$, discount factor $\gamma$, initial policy $\pol_0$.
 - For $n = 0, 1,\ldots$
-- $v_n = (I - \discount P_{\pol_n})^{-1} r = V^{\pol_n}$.
+- $v_n = (I - \gamma P_{\pol_n})^{-1} r = V^{\pol_n}$.
 - $\pi_{n+1} = \argmax_\pol \{r + \gamma P_\pol v_n$.
 - Until $\pi_{n+1} = \pi_n$.
 
 **** Policy iteration terminates with the optimal policy in a finite number of steps.
 - $v_n \leq v_{n+1}$ (Theorem 6.5.10)
 - There is a finite number of policies.
-- $v_n = \max_\pol \{r + \gamma P_\pi v_n}$
+- $v_n = \max_\pol \{r + \gamma P_\pi v_n\}$
 
-** Markov Decision Processes: Infinite horizon II
-
-1. DP: Temporal Differences (45')
-2. DP: Modified Policy Iteration (45')
-   
-** Markov Decision Processes: Stochastic Approximation
+** RL: Stochastic Approximation
 
 1. Sarsa (45')
 2. Q-learning (45')
- 
+*** Two reinforcement learning setting 
+**** Online learning
+- \alert<Observe> state $s_t$
+- Take action $a_t$
+- Get reward $r_{t+1}$
+- See next state $s_{t+1}$
+
+**** Simulator access
+- \alert<Select> a state $s_t$
+- Take action $a_t$
+- Get reward $r_{t+1}$
+- See next state $s_{t+1}$
+
+*** Learning goals
+
+**** Value function estimation
+\[
+v^\pi_t \to V^\pi
+\qquad
+q^\pi_t \to Q^\pi
+\]
+\[
+v^*_t \to V^*
+\qquad
+q^*_t \to Q^*
+\]
+**** Optimal policy approximation
+\[
+\pi_t \to \pi^*
+\]
+**** Bayes-optimal policy approximation
+\[
+\pi_t \approx \argmax_\pi \int_{\mu} \bel_t(\mu)
+\]
+
+
+*** Monte Carlo Policy Evaluation
+**** Direct Monte Carlo
+- For all states $s$
+- For $k= 1, \ldots, K$
+- Run policy $\pi$, obtain $U^{(k)} = \sum_{t=1}^T r^{(k)}_t$ 
+\[
+v_K(s) = \frac{1}{K} U^{(k)}
+\]
+
+**** Online update
+- For each $k$
+\[
+v_k(s) = v_{k-1}(s) + \alpha_k[U^{(k)}- v_{k-1}(s)]
+\]
+- For $\alpha_k = 1/k$, the algorithm is the same as direct MC.
+
+*** Monte Carlo Updates
+**** Every-visit Monte Carlo
+- Observe trajectory $(s_t, r_t)_t$, set $U = 0$.
+- For $t = T, T-1, \ldots$
+- $U = U + r_t$
+- $n(s_t) = n(s_t) + 1$
+- $v(s_t) = v(s_t) + \frac{1}{n(s_t)}[U - v(s_t)]$.
+
+**** First-visit Monte Carlo
+- Observe trajectory $(s_t, r_t)_t$, set $U = 0$.
+- For $t = T, T-1, \ldots$
+- $U = U + r_t$
+- If $s_t$ not observed before
+- $n(s_t) = n(s_t) + 1$
+- $v(s_t) = v(s_t) + \frac{1}{n(s_t)}[U - v(s_t)]$.
+  
+*** Temporal Differences
+- Idea: Replace actual $U$ with an estimate: $r_t + \gamma v(s_{t+1})$.
+- Temporal difference error: $d_t = r_t + \gamma v(s_{t+1}) - v(s_t)$.
+**** Temporal difference learning
+\[
+v(s_t) = v(s_t) + \alpha_t d_t
+\]
+**** TD (\lambda)
+\[
+v(s_t) = v(s_t) + \alpha_t \sum_{\ell=t}^\infty (\gamma \lambda)^{\ell - t} d_t
+\]
+
+**** Online TD (\lambda)
+- $n(s_{t+1}) = n(s_{t+1}) + 1$
+- For all $s$
+\[
+v(s_t) = v(s_t) + \alpha_t n(s) d_t
+\]
+- $n = \lambda n$
+
+*** Stochastic state-action value approximation
+**** SARSA
+- Input policy $\pi$
+- Generate $s_t, a_t, r_t, s_{t+1}, a_{t+1}$
+- Update value
+\[
+$q(s_t, a_t) = q(s_t, a_t) + \alpha[r_t + \gamma q(s_{t+1}, a_{t+1}) - q(s_t, a_t)
+\]
+**** QLearning
+- Observe $s_t, a_t, r_t, s_{t+1}$
+- Update value
+\[
+$q(s_t, a_t) = q(s_t, a_t) + \alpha[r_t + \gamma \max_a q(s_{t+1}, a) - q(s_t, a_t)
+\]
+
+
+
 ** Model-based RL
 1. Actor-Critic Algorithms (45')
 2. Model-based RL (45')
