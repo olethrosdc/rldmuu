@@ -4,6 +4,8 @@ import chain
 import numpy as np
 import matplotlib.pyplot as plt
 import MDPBelief
+import ModelBasedRL
+#import ../../projects/gym_skeletons/environments
 def moving_average(x, K):
   T = x.shape[0]
   n = x.shape[1]
@@ -16,15 +18,15 @@ def moving_average(x, K):
 
 
 n_experiments = 100
-T = 1000
+T = 10000
 environments = []
 
 environments.append(chain.Chain(5))
 
-
 algs = []
 algs.append(Sarsa.Sarsa)
-algs.append(QLearning.QLearning)
+#algs.append(QLearning.QLearning)
+algs.append(ModelBasedRL.GreedyQIteration)
 #algs.append(MDPBelief.ExpectedMDPHeuristic)
 #algs.append(MDPBelief.SampleBasedRL)
 n_algs = len(algs)
@@ -38,11 +40,11 @@ for decay in [0.99]:
   reward_t = np.zeros([T, n_algs])
   total_reward = np.zeros([n_algs])
   for experiment in range(n_experiments):
-    env = environments[0];#experiment]
+    env = environments[0];
     env.reset()
     alg_index = 0
     for Alg in algs:
-      alg = Alg(n_states = env.observation_space.n, n_actions = env.action_space.n, alpha = alpha, epsilon = epsilon, decay = decay)
+      alg = Alg(n_states = env.observation_space.n, n_actions = env.action_space.n, discount = 0.9, alpha = alpha, epsilon = epsilon, decay = decay)
       run_reward = 0
       for i_episode in range(1):
         observation = env.reset()
@@ -65,9 +67,13 @@ for decay in [0.99]:
   total_reward /= n_experiments
   reward_t /= n_experiments
   reward_i /= n_experiments
-  print(alpha, epsilon, decay, total_reward)
+  print("Total reward")
+  print(total_reward)
+  
   plt.plot(reward_i)
+  plt.legend(algs)
   plt.show()
+  
   
   
   
