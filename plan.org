@@ -701,10 +701,64 @@ so far.
 
 
 
-
 ** Model-based RL
-1. Actor-Critic Algorithms (45')
-2. Model-based RL (45')
+*** Model-Based RL
+**** Model $\hat{\mdp_t}$
+Built using data $h_t = \{(s_1, a_1, r_1), \ldots, (s_t, a_t, r_t)\}$.
+\[
+P_t(s'|s,a) \defn P_{\hat{\mdp_t}}(s'|s,a)
+\]
+
+**** Algorithm
+At time $t$
+- $\hat{\mdp}_t = f(h_t)$
+- $\pol_t = \argmax_\pol V_{\hat{\mdp}}^\pol$.
+
+*** Example 1: Model-Based Value Iteration
+
+**** Model
+\[
+P_t(s'|s,a) = \frac{\sum_t \ind{s_{t+1} = s' \wedge s_t = s \wedge a_t = a}}{\sum_t \ind{s_t = s \wedgea_t = a}}
+= 
+\frac{N_t(s,a,s')}{N_t(s,a)}
+\]
+\[
+\rho_t(s,a) = \frac{\sum_t r_t \ind{s_t = s, a_t = a}}{N_t(s,a)}
+\]
+
+*** Asynchronous Value Iteration
+For $n = 1, \ldots, n_{max}$, all $s$
+\[
+v(s) := \max_a \rho_t(s,a) + \gamma \sum_{s'} P_t(s'|s,a) v(s')
+\]
+
+*** Greedy actions
+\[
+a_t = \argmax_a \rho_t(s,a) \gamma \sum_{s'} P_t(s'|s,a) v_{n_\max}(s' | s,a)
+\]
+
+*** Example 2: Dyna-Q Learning
+Why do value full iteration at *every* step?
+**** Model
+$P_t,  \rho_t$
+*** Q-iteration
+For some $s \in S$, e.g. $s_t$
+\begin{align}
+q_t(s,a) = \rho_t(s,a) + \gamma \sum_{s'} P_t(s'|s,a) v_{t-1}(s')\\
+v_t(s,a) = \max_a q_t(s,a)
+\]
+*** Greedy actions
+\[
+a_t = \argmax_a q_t(s,a)
+\]
+
+*** Questions
+- Is a point-estimate of the MDP enough?
+- How fully do we need to update the value function?
+- Which states should we update?
+- How fast should the policy change?
+
+
 ** Approximate Dynamic Programming
 1. Fitted Value Iteration (45')
 2. Approximate Policy Iteration (45')
