@@ -10,6 +10,8 @@ class QLearning:
         self.epsilon = epsilon
         self.count = 0
         self.decay = decay
+        self.prev_state = -1
+        self.prev_action = -1
     def act(self):
         ## by default, act greedily
         if (np.random.uniform() < self.epsilon):
@@ -17,7 +19,12 @@ class QLearning:
         return np.argmax(self.Q[self.state, :])
     
     def update(self, action, reward, state):
-        ## fill in
+        self.prev_action = action
+        if (self.prev_state >=0):
+            self.Q[self.prev_state, self.prev_action] += self.alpha * (reward + self.discount * max(self.Q[state, :]) - self.Q[self.prev_state, self.prev_action])
+        self.prev_state = state
 
     def reset(self, state):
         self.state = state
+        self.prev_state = -1
+        

@@ -10,15 +10,27 @@ class Sarsa:
         self.epsilon = epsilon
         self.count = 0
         self.decay = decay
-        
+        self.prev_action = -1
+        self.prev_state = -1
+        self.prev2_state = -1
+
     def act(self):
         ## by default, act greedily
         if (np.random.uniform() < self.epsilon):
             return np.random.randint(self.n_actions)
         return np.argmax(self.Q[self.state, :])
     
-    def update(self, action, reward, state):
-        ## fill in
+    def update(self, action, reward, next_state):
+        if (self.prev2_state >=0):
+            self.Q[self.prev2_state, self.prev_action] += self.alpha * (reward + self.discount * self.Q[self.prev_state, action] - self.Q[self.prev2_state, self.prev_action])
+
+        self.prev2_state = self.prev_state
+        self.prev_state = next_state
+        self.prev_action = action
 
     def reset(self, state):
         self.state = state
+        self.prev2_state = -1
+        self.prev_state = -1
+        self.prev_action = -1
+        

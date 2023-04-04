@@ -1,3 +1,4 @@
+import Sarsa
 import QLearning
 import chain
 import numpy as np
@@ -14,8 +15,8 @@ def moving_average(x, K):
   return y
 
 
-n_experiments = 1
-T = 100000
+n_experiments = 100
+T = 1000
 environments = []
 
 environments.append(chain.Chain(5))
@@ -23,7 +24,7 @@ environments.append(chain.Chain(5))
 
 algs = []
 algs.append(Sarsa.Sarsa)
-#algs.append(QLearning.QLearning)
+algs.append(QLearning.QLearning)
 #algs.append(MDPBelief.ExpectedMDPHeuristic)
 #algs.append(MDPBelief.SampleBasedRL)
 n_algs = len(algs)
@@ -31,6 +32,8 @@ n_algs = len(algs)
 alpha = 0.4
 epsilon = 0.3
 decay = 0.1
+reward_i = np.zeros([T, n_algs])
+      
 for decay in [0.99]:
   reward_t = np.zeros([T, n_algs])
   total_reward = np.zeros([n_algs])
@@ -52,6 +55,7 @@ for decay in [0.99]:
           alg.update(action, reward, observation)
           run_reward += reward
           reward_t[i_episode, alg_index] += reward
+          reward_i[t, alg_index] += reward
           if done:
             #            print("Episode finished after {} timesteps".format(t+1))
             break
@@ -60,8 +64,12 @@ for decay in [0.99]:
       env.close()
   total_reward /= n_experiments
   reward_t /= n_experiments
+  reward_i /= n_experiments
   print(alpha, epsilon, decay, total_reward)
-
+  plt.plot(reward_i)
+  plt.show()
+  
+  
   
  
 
