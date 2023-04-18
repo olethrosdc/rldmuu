@@ -55,16 +55,16 @@ prepare a project, for which they will need to submit a report.
 |------+--------------------------------------------|
 |    8 | Function Approximation, Gradient Methods   |
 |------+--------------------------------------------|
-|    9 | Bayesian RL: Dynamic Programming, Sampling |
+|    9 | Function Approximation Lab                 |
+|------+--------------------------------------------|
+|   10 | Bayesian RL: Dynamic Programming, Sampling |
 |------+--------------------------------------------|
 |   11 | UCB/UCRL/UCT.                              |
 |      | UCT/AlphaZero.                             |
 |------+--------------------------------------------|
-|   12 | Inverse Reinforcement Learning             |
+|   12 | Project Lab                                |
 |------+--------------------------------------------|
-|   13 | Multiagent extensions: Bayesian Games      |
-|------+--------------------------------------------|
-|   13 | Project presnetations                      |
+|   13 | Project presentations                      |
 |------+--------------------------------------------|
 |   14 | Q&A, Mock exam                             |
 |------+--------------------------------------------|
@@ -801,6 +801,15 @@ v_\theta(s) = \sum_{i} \phi_i(s) \theta_i
 - Initialise $\theta \in \Theta$.
 - For $n = 1, \ldots, N$
 - $\theta 
+*** Approximate Value Iteration
+- For $s \in S$
+- Calculate $u(s) = \max_a r(s,a) + \gamma \int_{S} dP(s'|s,a) v_\theta(s')$ for all $s \in \hat{S}$.
+-  $\min_\param \| v_\param - u\|_{\hat{S}}$, e.g.
+\[
+\|v_\param(s) - u\|_{\hat{S}} = 
+\sum_{s \in \hat{S}} |v_\param(s) - u(s)|^2
+\]
+
 *** Q-learning with function approximation
 
 **** Standard Q-update:
@@ -816,7 +825,6 @@ d_t = r_t + \gamma \max_a q_t(s_{t+1}, a) - \alert{q_t(s_t, a_t)}
 \[
 \nabla_\param d_t^2 = 2 d_t \nabla_\param q_t(s_t, a_t)
 \]
-
 
 
 
