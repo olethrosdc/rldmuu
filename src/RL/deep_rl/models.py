@@ -1,9 +1,6 @@
 import tensorflow as tf
-from tensorflow.keras.layers import Dense, LSTM
-from tensorflow.keras.backend import set_value
+from tensorflow.keras.layers import Dense
 import numpy as np
-from tensorflow.keras.activations import relu, softmax
-import itertools
 from copy import deepcopy
 
 
