@@ -41,8 +41,8 @@ environments.append(gym.make("CartPole-v1"))
 algs = []
 hyper_params = []
 #algs.append(QLearning.QLearning)
-algs.append(dql.DQL)
-#algs.append(actor_critic.A2C)
+#algs.append(dql.DQL)
+algs.append(actor_critic.A2C)
 
 
 #algs.append(ModelBasedRL.GreedyQiteration)
