@@ -1,6 +1,9 @@
 import tensorflow as tf
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dense, LSTM
+from tensorflow.keras.backend import set_value
 import numpy as np
+from tensorflow.keras.activations import relu, softmax
+import itertools
 from copy import deepcopy
 
 
@@ -78,14 +81,22 @@ class CategoricalActor(tf.keras.Model):
     def __init__(self, state_dim, action_dim, name="CategoricalActor"):
         super().__init__(name=name)
 
+        self.dist = Categorical(dim=action_dim)
         self.action_dim = action_dim
 
-        # TODO
-        # Build the network
+        self.core = [Dense(64, activation="relu", dtype="float32", name='dense_%d' % i) for i in range(2)]
+
+        self.prob = Dense(action_dim, dtype='float32', name="prob", activation="softmax")
+
+        # We simply initialize the network parameters by calling the network.
+        self.get_action(np.zeros((1, state_dim), dtype=np.float32))
 
     def _compute_feature(self, features):
-        # Pass forward through the layers
-        pass
+
+        for layer in self.core:
+            features = layer(features)
+
+        return features
 
     def _compute_dist(self, states):
         """
@@ -95,21 +106,38 @@ class CategoricalActor(tf.keras.Model):
             NN outputs probabilities of K classes
         :return: Categorical distribution
         """
-        pass
+
+        features = self._compute_feature(states)
+
+        probs = self.prob(features)
+        return probs
 
     def get_action(self, state):
-        # We have to handle both single states and batches
+        single_state = len(state.shape) == 1
+        if not isinstance(state, np.ndarray):
+            state = np.array([[state]])
+        else:
+            missing_dims = 3 - len(state.shape)
+            for missing_dim in range(missing_dims):
+                state = state[np.newaxis]
 
-        pass
+        action, probs = self._get_action_body(tf.constant(state))
+
+
+        return action.numpy()[0, 0] if single_state else action
 
     @tf.function
     def _get_action_body(self, state):
-        # inner function that does the computing
-        # returns (action, probabilities)
-        pass
+        probs = self._compute_dist(state)
+        action = tf.squeeze(self.dist.sample(probs), axis=1)
+        return action, probs
 
     def get_probs(self, states):
-        pass
+        return self._compute_dist(states)
+
+    def compute_entropy(self, states):
+        param = self._compute_dist(states)
+        return self.dist.entropy(param)
 
 
 class VNN(tf.keras.Model):
@@ -130,14 +158,26 @@ class VNN(tf.keras.Model):
 
         super().__init__(name=name)
 
-        # TODO
-        # Build the network
+        # Input
+        self.core = [Dense(64, activation='relu', dtype='float32', name="core_%d" % i) for i in range(2)]
+        # Output
+        # Our output is unbounded, -inf to inf, thus the linear activation:
+        self.v = Dense(1, activation='linear', dtype='float32', name="output")
+
+        # The first dimension if for batches
+        # We simply initialize the network parameters by calling the network.
+        self.call(np.zeros((1, state_dim), dtype=np.float32))
 
     def call(self, states):
         """
         Pass forward through the layers.
         """
-        pass
+
+        features = states
+        for layer in self.core:
+            features = layer(features)
+
+        return self.v(features)
 
 
 class QNN(tf.keras.Model):
@@ -154,14 +194,25 @@ class QNN(tf.keras.Model):
         super().__init__(name=name)
         self.num_actions = num_actions
 
-        # TODO
-        # Build the network
+        # Input
+        self.core = [Dense(32, activation='relu', dtype='float32', name="core_%d" % i) for i in range(2)]
+        # Output
+        # Our output is unbounded, -inf to inf, thus the linear activation:
+        self.q = Dense(num_actions, activation='linear', dtype='float32', name="output")
+
+        # We simply initialize the network parameters by calling the network.
+        self.call(np.zeros((1, state_dim), dtype=np.float32))
 
     def call(self, states):
         """
         Pass forward through the layers.
         """
-        pass
+
+        features = states
+        for layer in self.core:
+            features = layer(features)
+
+        return self.q(features)
 
 
 class QPolicy(QNN):
@@ -169,9 +220,10 @@ class QPolicy(QNN):
         super().__init__(state_dim, num_actions, name)
 
     def act(self, states):
-        # If discrete observation
         if not isinstance(states, np.ndarray):
             states = np.array([states])
-
-        # Check if we have the state in a batch or not
-        # then return the action
+        if len(states.shape) < 2:
+            states = states[np.newaxis]
+            return np.argmax(self(states))
+        else:
+            return np.argmax(self(states), axis=-1)
