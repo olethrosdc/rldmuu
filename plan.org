@@ -170,7 +170,7 @@ The following topics must be absolutely mastered, although a refresher will be g
 - Use of (La)TeX.
 
 ** Course Books 
-- *Course book* /Reinforcement Learning and Decision Making Under Uncertainty/, Dimitrakakis and Ortner
+- *Course book* /Decision Making Under Uncertainty and Reinforcement Learning/, Dimitrakakis and Ortner
 - *Statistical reference* Optimal Statistical Decisions, De Groot.
 - *MDP Reference* Markov Decision Processes, Putterman.
 - *Basic RL Reference* Reinforcement Learning: An Introduction, Sutton and Barto.
@@ -278,6 +278,10 @@ $E_P[f] = \sum_{\omega} f(\omega) P(\omega)$.
 *** Assignment.
 
 Exercise 7, 8, 9.
+
+*** Further Reading:
+
+Decision Making Under Uncertainty and Reinforcement Learning. Chapter 1, 2.
 
 *** Seminar:
 
