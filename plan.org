@@ -12,6 +12,7 @@
 #+LaTeX_HEADER: \newcommand \param {\theta}
 #+LaTeX_HEADER: \newcommand \pol {\pi}
 #+LaTeX_HEADER: \newcommand \mdp {\mu}
+#+LaTeX_HEADER: \newcommand \MDPs {\mathcal{M}}
 #+LaTeX_HEADER: \newcommand \bel {\xi}
 #+TAGS: activity advanced definition exercise homework project example theory code
 #+OPTIONS:   H:3
@@ -349,6 +350,49 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 2. Marginal probabilities (5').
 3. Conditional probability (5').
 4. Bayes theorem (10').
+
+*** The meteorologists problem
+-$n$ metereological stations $\MDPs = \{1, \ldots, n\}$.
+- $x_t$: Weather on day t (0 = dry, 1 = rain)$
+- $P_\mdp(x_t | x_{t-1}, x_{t-2}, \ldots)$ station $\mdp$ prediction for dry/rain.
+
+  
+|---------+-------+-------+-------+-------|
+| Station | Day 1 | Day 2 | Day 3 | Day 4 |
+|---------+-------+-------+-------+-------|
+|       1 |   60% |   50% |   40% |   30% |
+|       2 |   30% |   25% |   20% |   15% |
+|       3 |   40% |   50% |   50% |   40% |
+|---------+-------+-------+-------+-------|
+
+- How should we combine these predictions?
+
+*** Statistical estimation
+
+**** Maximum Likelihood Estimation
+- Input: Data $x_1, \ldots, x_t$, A set of models $\{P_\mdp | \mdp \in \MDPs\}$
+- Inference: The model $\mdp^*_{ML}$ maximising
+  \[
+  P_\mdp(x_1, \ldots, x_t)
+  \]
+- Prediction: $P_{\mdp^*_{ML}}(x_{t+1} | x_1, \ldots, x_t)$.
+**** Maximum A Posteriori Estimation
+- Input: Data $x_1, \ldots, x_t$, set of models $\{P_\mdp | \mdp \in \MDPs\}$, prior $\bel(\mdp)$ on models
+- Inference: The model $\mdp^*_{MAP}$ maximising
+  \[
+  P_\mdp(x_1, \ldots, x_t) \bel(\mdp)
+  \]
+- Prediction: $P_{\mdp^*_{MAP}}(x_{t+1} | x_1, \ldots, x_t)$.
+    
+**** Bayesian Estimation
+- Input: Data $D$, set of models $\{P_\mdp | \mdp \in \MDPs\}$, prior $\bel(\mdp)$ on models
+- Inference: The posterior probability over models:
+  \[
+  \bel(\mdp | x_1, \ldots, x_t) = \frac{P_{\mdp}(x_1, \ldots, x_t) \bel(\mdp)}{\sum_{\mdp'} P_{\mdp'}(x_1, \ldots, x_t) \bel(\mdp)}
+  \]
+- Prediction: $P(x_{t+1} | x_1, \ldots, x_t) = \sum_\mdp P_\mdp(x_{t+1} | x_1, \ldots, x_t)$.
+
+
 
 *** Statistical decisions (45')
 1. ML Estimation (10')
