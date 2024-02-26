@@ -1,3 +1,29 @@
+#+TITLE: Seminar on Reinforcement Learning and Decision Making Under Uncertainty
+#+AUTHOR: Christos Dimitrakakis
+#+EMAIL:christos.dimitrakakis@unine.ch
+#+LaTeX_HEADER: \newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+#+LaTeX_HEADER: \newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
+#+LaTeX_HEADER: \renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
+#+LaTeX_HEADER: \DeclareMathOperator*{\argmax}{arg\,max}
+#+LaTeX_HEADER: \DeclareMathOperator*{\argmin}{arg\,min}
+#+LaTeX_HEADER: \newcommand \defn {\mathrel{\triangleq}}
+#+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
+#+LaTeX_HEADER: \newcommand \Param {\Theta}
+#+LaTeX_HEADER: \newcommand \param {\theta}
+#+LaTeX_HEADER: \newcommand \pol {\pi}
+#+LaTeX_HEADER: \newcommand \mdp {\mu}
+#+LaTeX_HEADER: \newcommand \bel {\xi}
+#+LaTeX_HEADER: \usepackage{svg}
+#+LaTeX_HEADER: \usepackage{tikz}
+#+LaTeX_HEADER: \usepackage{tikzsymbols}
+#+LaTeX_HEADER: \usepackage{fontawesome5}
+#+HEADER: :exports results
+#+HEADER: :imagemagick yes
+#+HEADER: :results output graphics file
+#+HEADER: :file contour.svg
+#+TAGS: activity advanced definition exercise homework project example theory code
+#+OPTIONS:   H:2
+
 * Expected Utility Hypothesis and the Measurability of Utility
 
 - Initially people thought decisions under risk and no risk were different.
@@ -36,5 +62,252 @@ U(f) = E_f[C] = \sum_x C(x) P_f(x)
 The paper does not really prove or disprove that the expected utility
 hypothesis. There are actually experiments which we can run that do
 so, but they are only obliquely referred to by this paper.
+
+* Fairness, matching and regret
+** Matching illustration: One-sided matching
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}[x=2cm,y=2cm]
+\node at (0,0) (1) {\Changey[2][red]{0}};
+\node at (1,0) (2) {\Changey[2][green]{0}};
+\node at (2,0) (3) {\Changey[2][blue]{0}}; 
+\node at (0,2) (a) {\faHospital}; 
+\node at (1,2) (b) {\faHospital}; 
+\node at (2,2) (c) {\faHospital}; 
+\draw [red] (1)--(a);
+\draw [red, dashed] (1)--(b);
+\draw [red, dotted] (1)--(c);
+\draw [green] (2)--(b);
+\draw [green, dashed] (2)--(c);
+\draw [green, dotted] (2)--(a);
+\draw [blue] (3)--(b);
+\draw [blue, dashed] (3)--(a);
+\draw [blue, dotted] (3)--(c);
+\end{tikzpicture}
+#+END_EXPORT
+
+** Matching illustration: One-sided matching
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}[x=2cm,y=2cm]
+\node at (0,0) (1) {\Changey[2][red]{2}};
+\node at (1,0) (2) {\Changey[2][green]{2}};
+\node at (2,0) (3) {\Changey[2][blue]{-2}}; 
+\node at (0,2) (a) {\faHospital}; 
+\node at (1,2) (b) {\faHospital}; 
+\node at (2,2) (c) {\faHospital}; 
+\draw [red] (1)--(a);
+\draw [green] (2)--(b);
+\draw [blue, dotted] (3)--(c);
+\end{tikzpicture}
+#+END_EXPORT
+
+A stable match: no two agents want to swap.
+
+** Matching illustration: Two-sided matching
+*** Renter preferences
+    :PROPERTIES:
+    :BEAMER_col: 0.5
+    :BEAMER_env: block
+    :END:
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}[x=2cm,y=2cm]
+\node at (0,0) (1) {\Changey[2][red]{0}};
+\node at (1,0) (2) {\Changey[2][green]{0}};
+\node at (2,0) (3) {\Changey[2][blue]{0}}; 
+\node at (0,2) (a) {\faHospital}; 
+\node at (1,2) (b) {\faHospital}; 
+\node at (2,2) (c) {\faHospital}; 
+\draw [red] (1)--(a);
+\draw [red, dashed] (1)--(b);
+\draw [red, dotted] (1)--(c);
+\draw [green] (2)--(b);
+\draw [green, dashed] (2)--(c);
+\draw [green, dotted] (2)--(a);
+\draw [blue] (3)--(b);
+\draw [blue, dashed] (3)--(a);
+\draw [blue, dotted] (3)--(c);
+\end{tikzpicture}
+#+END_EXPORT
+*** Owner preferences
+    :PROPERTIES:
+    :BEAMER_col: 0.5
+    :BEAMER_env: block
+    :END:
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}[x=2cm,y=2cm]
+\node at (0,0) (1) {\Changey[2][red]{0}};
+\node at (1,0) (2) {\Changey[2][green]{0}};
+\node at (2,0) (3) {\Changey[2][blue]{0}}; 
+\node at (0,2) (a) {\faHospital}; 
+\node at (1,2) (b) {\faHospital}; 
+\node at (2,2) (c) {\faHospital}; 
+\draw [red] (1)--(a);
+\draw [green, dashed] (2)--(a);
+\draw [blue, dotted] (3)--(a);
+\draw [red] (1)--(b);
+\draw [green, dashed] (2)--(b);
+\draw [blue, dotted] (3)--(b);
+\draw [green] (2)--(c);
+\draw [blue, dashed] (3)--(c);
+\draw [red, dotted] (1)--(c);
+\end{tikzpicture}
+#+END_EXPORT
+
+** Matching illustration: Two-sided matching
+*** Renter preferences
+    :PROPERTIES:
+    :BEAMER_col: 0.5
+    :BEAMER_env: block
+    :END:
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}[x=2cm,y=2cm]
+\node at (0,0) (1) {\Changey[2][red]{2}};
+\node at (1,0) (2) {\Changey[2][green]{2}};
+\node at (2,0) (3) {\Changey[2][blue]{-2}}; 
+\node at (0,2) (a) {\faHospital}; 
+\node at (1,2) (b) {\faHospital}; 
+\node at (2,2) (c) {\faHospital}; 
+\draw [red] (1)--(a);
+\draw [green] (2)--(b);
+\draw [blue, dotted] (3)--(c);
+\end{tikzpicture}
+#+END_EXPORT
+A stable match: no owner and renter would like to swap!
+
+*** Owner preferences
+    :PROPERTIES:
+    :BEAMER_col: 0.5
+    :BEAMER_env: block
+    :END:
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}[x=2cm,y=2cm]
+\node at (0,0) (1) {\Changey[2][red]{0}};
+\node at (1,0) (2) {\Changey[2][green]{0}};
+\node at (2,0) (3) {\Changey[2][blue]{0}}; 
+\node at (0,2) (a) {\faHospital}; 
+\node at (1,2) (b) {\faHospital}; 
+\node at (2,2) (c) {\faHospital}; 
+\draw [red] (1)--(a);
+\draw [green, dashed] (2)--(b);
+\draw [blue, dashed] (3)--(c);
+\end{tikzpicture}
+#+END_EXPORT
+
+A stable match: no owner and renter would like to swap!
+
+
+** Matching problems: definition
+- Agents $i \in A$, $j \in B$.
+*** Ordinal preferences
+- Each agent $i \in A$ has a preference $k > j$ for $k, j \in B$.
+- Each agent $j \in B$ has a preference $l > i$ for $l, i \in A$.
+*** Cardinal preferences
+- Each agent $i \in A$ prefers $k$ over $j$ if $v_i(k) > v_k(j)$.
+- Each agent $j \in B$ prefers $l$ over $i$ if $u_j(l) > u_j(i)$.
+*** Bi-partite Matching
+- $M_{i,j} = 1$ if two agents are matched.
+- $M_{i,j} = 0$ if two agents are not matched.
+- $\sum_{i} M_{i,j} = 1$ for all $i \in A$.
+- $\sum_{j} M_{i,j} = 1$ for all $j \in B$.
+
+** Properties of matchings
+*** Stability
+A matching $M$ is stable if there is no pair $i,j$ for which
+\[
+ M_{i, \cdot} v_i < v_i(j), 
+\qquad M^\top_{\cdot, j} u_j < u_j(i).
+\]
+*** Social welfare
+The matchings maximising renter or owner side are stable:
+\[
+\sum_i M_{i,j} v_i(j),
+\qquad
+\sum_j M_{i,j} u_j(i)
+\]
+
+*** Truthfulness
+If we are maximising renter's welfare, then they have no incentive to
+lie about their preferences.
+
+** Learning to match
+
+*** The interaction
+
+- At step $t$.
+- The agents report their preferences $N_t$.
+- The platform selects a match $M_t$ for all agents.
+- The players obtain a reward $X_t(a, M(a, \nu_t))$
+- Agents incur costs $C$ and receive transfers $T$
+
+*** The agents
+- Learn their preferences
+- Payoff function relative to a preference $u$:
+\[
+V = u - C + T
+\]
+- Observed payoff
+\[
+U_t = X_t - C + T
+\]
+
+
+*** The platform
+- Matches
+- Selects costs
+- Selects transfers
+
+** Properties
+*** Stability
+If there are no $i,j$ such that
+\[
+V(i, M(i)) < V(i, j), \qquad V(j, M(j)) < V(j, i).
+\]
+*** Fair regret
+If for all agents
+\[
+\sum_{t=1}^T \E[U_t(\bar{M_t}(i)) - U_t] \leq O(\ln (T))
+\]
+where $\bar{M}_t$ denotes the best possible match for $i$.
+
+
+*** Social welfare
+\[
+W_t(M) = \sum_i V(i, M), \qquad W_t(M) \geq \kappa \max_{M'} W_t(M')
+\]
+
+** Results
+
+- Without costs and transfers, fairness-regret is not guranteed.
+- With costs and transfers, we can gurantee it
+
+** Examples
+
+*** Proportional-cost, no transfer
+\[
+C(i,j) = \gamma v(i,j), \qquad T = 0
+\]
+The matching is stable.
+
+*** Balanced tranfser
+\[
+C(i,j) = 0, \qquad T(i,j) = \frac{1}{2}(v(j,i) - v(i, j))
+\]
+This is sufficient for all properties, if we use the GS algorithm for stable matching.
+*** Pricing
+\[
+C(i,j) = c_{i,j},
+\quad
+T(i,j) = g(i), 
+\quad
+T(j,i) = -g(j)
+\]
+With GS, we guarantee stability and fairness-regret.
+
+** Questions
+
+- Low optimistic regret seems to imply fairness...
+- If we doing GS on the $i$ side, then only their welfare is
+  maximised. Why not use a different matching algorithm to guarantee
+  high social welfare?
+- All definitions are with respect to the reported preferences. Are any results possible for their latent preferences?
 
 

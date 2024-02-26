@@ -5,7 +5,8 @@ from gym import spaces
 from gym.utils import seeding
 
 import numpy as np
-## Here bandit problems are sampled from a Beta distribution
+
+## This defines the Chain environment
 class Chain(gym.Env):
   def __init__(self, states=5, delta=0.4, epsilon=0.1):
     self.n_states = states
