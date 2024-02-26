@@ -136,24 +136,26 @@ cd
 |    1 | Beliefs and Decisions                      |
 |------+--------------------------------------------|
 |    2 | Bayesian Decision Rules                    |
+|      | Introduction to Bandit Problems            |
 |------+--------------------------------------------|
-|    3 | Introduction to Bandit problems.           |
+|    3 | Decision problem exercises.                |
+|      | Bandit problem exercises                   |
 |------+--------------------------------------------|
 |    4 | Finite Horizon MDPs                        |
 |      | Backwards Induction                        |
 |      | The Bandit MDP                             |
 |------+--------------------------------------------|
-|    5 | Infite Horizon MDPs                        |
+|    5 | Finite Horizon Lab                         |
+|------+--------------------------------------------|
+|    6 | Infite Horizon MDPs                        |
 |      | Value Iteration                            |
 |      | Policy Iteration                           |
 |------+--------------------------------------------|
-|    6 | Sarsa / Q-Learning                         |
+|    7 | Sarsa / Q-Learning                         |
 |------+--------------------------------------------|
-|    7 | Model-Based RL                             |
+|    8 | Model-Based RL                             |
 |------+--------------------------------------------|
-|    8 | Function Approximation, Gradient Methods   |
-|------+--------------------------------------------|
-|    9 | Function Approximation Lab                 |
+|    9 | Function Approximation, Gradient Methods   |
 |------+--------------------------------------------|
 |   10 | Bayesian RL: Dynamic Programming, Sampling |
 |------+--------------------------------------------|
@@ -915,9 +917,10 @@ Why do value full iteration at *every* step?
 **** Model
 $P_t,  \rho_t$
 *** Q-iteration
-For some $s \in S$, e.g. $s_t$
+For some $s \in S$, e.g. $s = s_t$, update:
 \[
-q_t(s,a) = \rho_t(s,a) + \gamma \sum_{s'} P_t(s'|s,a) v_{t-1}(s')\\
+q_t(s,a) = \rho_t(s,a) + \gamma \sum_{s'} P_t(s'|s,a) v_{t-1}(s'),
+\qquad
 v_t(s,a) = \max_a q_t(s,a)
 \]
 *** Greedy actions
