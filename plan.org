@@ -27,7 +27,38 @@ The first 6 weeks will require the students to complete 5
 assignments. The remainder of the term, the students will have to
 prepare a project, for which they will need to submit a report.
 
+* Grading
 
+A: 6
+B: 5
+C: 4
+D: 3
+E: 2
+F: 1
+
+** Project
+There are two main types of projects, though a project can be hybrid.
+
+*** Application project.
+Application projects proposals need to contain the following:
+-  Domain description and goals: What is the problem, in general terms, and which aspect would you try and solve in an MDP/RL framework? Make sure to cite relevant literaure.
+-  Methodology: How would you formalise the problem mathematically? Which algorithms and/or models do you intend to apply at different stages of the project? Feel free to read widely about both the problem and algorithms and do cite relevant literature.
+-  Experiment design: How would you know that the method is working? How would you compare with existing solutions? In what context would you expect an improvement? How would you measure it? How will you test the robustness of your solution over variations in the problem instance?
+- Expected results: What results do you expect to obtain, and what do you think might go wrong? In what way do you expect an improvement?
+
+*** Algorithmic project.
+-  Algorithmic/theory problem and goals: What is the deficiency, in general terms, of current theory and algorithms that your method would try to improve? As an example, the goal could be reducing computational complexity, increasing data efficiency, improving robustness or applicability of a specific family of algorithms; or introducing a slightly different setting to existing ones. In other words, which is the open problem you will be addressing? Make sure to cite relevant literature to better identify the problem.
+-  Methodology: What kind of existing algorithms, theory or technical result would you rely on? Would you be combining various existing results? What would be the most significant novelty of your methodology? Do cite relevant literature.
+- Experiment design (if applicable): How would you know that the method is working? How would you compare with existing solutions? In what context would you expect an improvement? How would you measure it? 
+- Expected results: What results do you expect to obtain, and what do you think might go wrong? In what way do you expect an improvement?
+
+*** Grading for projets:
+
+Grades will be adjusted based on group size with on letter grade up/down for double/half the mean group size.
+
+- Environments: A. Complex, well described environment that captures all of the elements of the application or algorithmic cproblem. B. The environment is simple or lacks description. C. An adequate environment that captures the basic setting. D. Insufficient environment or description. E. Insuffcient environment and description.
+- Algorithms: A. Significantly novel algorithms that are well described. B. Some novelty in the algorithms, with good descriptions. C. Some novelty in the algorithms, but descriptions are lacking. D. Insufficient novelty or descriptions. E. Insufficient novelty and descriptions. 
+- Experiments: A. Thorough experiments with ablation tests and comparisons over algorithms and environments, that are well-described. B. Somewhat incomplete experiments or descriptions. C. Sufficient experiments and descriptions. D. Insufficient experiments or descriptions. E. Insufficient experiments and descriptions.
 
 * Schedule
 
