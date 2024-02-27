@@ -367,8 +367,16 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 - How should we combine these predictions?
 
-*** Statistical estimation
 
+*** Statistical decisions (45')
+1. ML Estimation (10')
+2. MAP Estimation (10')
+3. Bayes Estimation (10')
+4. MSE Estimation (10') [not done]
+5. Linearity of Expectations (10') [not done]
+6. Convexity of Bayes Decisions (10') [not done]
+
+*** Statistical estimation
 **** Maximum Likelihood Estimation
 - Input: Data $x_1, \ldots, x_t$, A set of models $\{P_\mdp | \mdp \in \MDPs\}$
 - Inference: The model $\mdp^*_{ML}$ maximising
@@ -393,14 +401,39 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 - Prediction: $P(x_{t+1} | x_1, \ldots, x_t) = \sum_\mdp P_\mdp(x_{t+1} | x_1, \ldots, x_t)$.
 
 
+*** MSE estimation
 
-*** Statistical decisions (45')
-1. ML Estimation (10')
-2. MAP Estimation (10')
-3. Bayes Estimation (10')
-4. MSE Estimation (10') [not done]
-5. Linearity of Expectations (10') [not done]
-6. Convexity of Bayes Decisions (10') [not done]
+Sometimes we care about finding a point estimate for some distribution.
+For example, let us say we have some distribution $\bel$ over some unknown variable $\mdp$ and we need to select one $\mdp$, and we want to report a value $\mdp^*$ minimising the squared error $(\mdp - \mdp^*)^2$ in expectation
+\[
+\E_\bel[(\mdp - \mdp^*)^2] = \int_\MDPs (\mdp - \mdp^*)^2 d \bel(\mdp)
+\]
+To find the minimising $\mdp^*$ we can take the derivative
+\[
+d/d\mdp^* \E_\bel[(\mdp - \mdp^*)^2] 
+= \int_\MDPs d/d\mdp^* (\mdp - \mdp^*)^2 d \bel(\mdp)
+= \int_\MDPs 2 (\mdp - \mdp^*) d \bel(\mdp)
+\]
+
+*** Example: Beta-Bernoulli
+Consider a coin with an unknown distribution of head or tails. We can model this as
+\begin{align*}
+x_t \mid \mdp \sim \Bern(\mdp)\\
+\mdp \sim \Beta(\alpha_0, \beta_0)
+\end{align*}
+[Drawing on board]
+Data: $x_1, \ldots, x_T$ with empirical mean $\hat{\mdp} = \frac{1}{t} \sum_{t=1}^T x_t$.
+**** Bayesian estimate:
+$\alpha_T = \alpha_0 + \sum_{t=1}^T x_t$,
+$\beta_T = \beta_0 + \sum_{t=1}^T (1 - x_t)$
+**** ML estimation:
+We can show that $\mdp^*_{ML} = \hat{\mdp}$.
+**** MAP estimation:
+We can show that $\mdp^*_{MAP} = {\alpha_T - 1}{T}$.
+**** MSE estimation:
+We can show that $\mdp^*_{MSE} = {\alpha_T}{\alpha_T + \beta_T}$.
+
+
 
 *** Lab: Decision problems and estimation (45')
 
@@ -413,12 +446,12 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 *** $n$ meteorologists as prediction with expert advice
 
-   - Predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models for outcomes $y_t$
-   - Make decision $a_t$.
-   - Observe true outcome $y_t$
-   - Obtain instant reward $r_t = \rho(a_t, y_t)$
-   - Utility $U = \sum_{t=1}^T r_t$.
-   - $T$ is the problem *horizon*
+- Predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models for outcomes $y_t$
+- Make decision $a_t$.
+ - Observe true outcome $y_t$
+- Obtain instant reward $r_t = \rho(a_t, y_t)$
+- Utility $U = \sum_{t=1}^T r_t$.
+- $T$ is the problem *horizon*
 
 **** At each step $t$:
 1. Observe $p_t$.
@@ -501,6 +534,8 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 - Update means: $\hat{\mu}_{t,i} = s_{t,i} / n_{t,i}$.
   
 
+*** Priors for Bernoulli distribution
+The standard prio
 *** Policies and exploration
 
 - $n_{t,i}, s_{t,i}$ are *sufficient statistics* for Bernoulli bandits.
