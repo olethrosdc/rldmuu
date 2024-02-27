@@ -15,10 +15,53 @@
 \author{Christos Dimitrakakis: \texttt{christos.dimitrakakis@unine.ch}}
 
 \maketitle
-\large{Deadline: 7 March 2023}
+\large{Deadline: 5 March 2024}
 
 
 \vspace{1em}
+
+
+\begin{exercise}
+  Complete the meteorologists exercise for the Bayesian and Maximum-A-Posteriori models.
+\end{exercise}
+
+\begin{exercise}
+  Consider a  Bernoulli random variable with unknown mean
+  \[
+    x_t \mid \mu \sim \Bernoulli(\mu),
+  \]
+  where the mean is sampled from a Beta distribution
+  \[
+    \mu \sim \Beta(\alpha, \beta).
+  \]
+  The Bernoulli distribution satisfies
+  \[
+    P_\mu(x_1, \ldots, x_T) = \prod_{t=1}^T P_\mu(x_t) = \prod_{t=1}^T \mu^{s_T} (1 - \mu)^{T - s_T},
+  \]
+  where $s_T = \sum_{t=1}^T x_T$, while the Beta distribution has the form
+  \[
+    \bel(\mu) \defn \frac{1}{B(\alpha, \beta)} \mu^{\alpha - 1} (1 - \mu)^{\beta - 1},
+  \]
+  where the factor $B(\alpha, \beta)$ is a normalisation constant independent of $\mu$ that ensures the density integrates to one.
+  \begin{enumerate}
+  \item Show that the maximum likelihood estimate
+    \[
+      \argmax_\mu P_\mu(x_1, \ldots, x_T) 
+    \]
+    is $\mu = s_T/T$.
+  \item Show that the maximum a posteriori estimate
+    \[
+      \argmax_\mu P_\mu(x_1, \ldots, x_T) \bel(\mu)
+    \]
+    is $\mu = (\alpha + s_T - 1) / (\alpha + \beta + T - 2)$.
+  \item Show that the posterior expected value
+    \[
+      \E_\bel(\mu | x_1, \ldots, x_t) = \int_{-\infty}^\infty \mu \bel(\mu \mid x_1, \ldots, x_T)
+    \]
+    is $\mu = (\alpha + s_T) / (\alpha + \beta + T)$.
+  \end{enumerate}
+  
+\end{exercise}
 
 \begin{exercise}
   James Randi claims that he is \emph{psychic} and can \emph{always predict a coin toss}. Let $A$ denote the event that JR is psychic and let $P(A) = 2^{-16}$ be your prior belief that JR is a psychic. Let us now make a set of bets about Randi.
@@ -55,7 +98,8 @@
   \end{enumerate}
 \end{exercise}
 
-\begin{exercise}[Not handed in, to be done in class after the Beta distribution is explained]
+
+\begin{exercise}[DO NOT HAND IN]
   Now assume that JR is a psychic, but that he can only predict some proportion $\theta \in [0,1]$ of tosses (he could also be a \emph{bad} psychic).
 We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior looks like this:
 \begin{align}
@@ -71,7 +115,7 @@ So now we know that JR is psychic, but not how good a psychic he is.
 \end{exercise}
 
 
-\begin{exercise}[Advanced, to be done by motivated students.]
+\begin{exercise}[DO NOT HAND IN]
   The following is an example of a \emph{hierarchical model.}
   Instead of assuming that Randi is either a perfect psychic or a fraud, we can relax our assumption. Let $A$ denote the event that Randi is psychic, but that he can only predict some proportion $\theta \in [0,1]$ of tosses (he could also be a \emph{bad} psychic).
 We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior marginal distribution looks like this:
