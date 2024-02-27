@@ -12,6 +12,7 @@
 #+LaTeX_HEADER: \newcommand \param {\theta}
 #+LaTeX_HEADER: \newcommand \pol {\pi}
 #+LaTeX_HEADER: \newcommand \mdp {\mu}
+#+LaTeX_HEADER: \newcommand \MDPs {\mathcal{M}}
 #+LaTeX_HEADER: \newcommand \bel {\xi}
 #+TAGS: activity advanced definition exercise homework project example theory code
 #+OPTIONS:   H:3
@@ -27,6 +28,31 @@ The first 6 weeks will require the students to complete 5
 assignments. The remainder of the term, the students will have to
 prepare a project, for which they will need to submit a report.
 
+* Grading
+
+** Project
+There are two main types of projects, though a project can be hybrid.
+
+*** Application project.
+Application projects proposals need to contain the following:
+-  Domain description and goals: What is the problem, in general terms, and which aspect would you try and solve in an MDP/RL framework? Make sure to cite relevant literaure.
+-  Methodology: How would you formalise the problem mathematically? Which algorithms and/or models do you intend to apply at different stages of the project? Feel free to read widely about both the problem and algorithms and do cite relevant literature.
+-  Experiment design: How would you know that the method is working? How would you compare with existing solutions? In what context would you expect an improvement? How would you measure it? How will you test the robustness of your solution over variations in the problem instance?
+- Expected results: What results do you expect to obtain, and what do you think might go wrong? In what way do you expect an improvement?
+
+*** Algorithmic project.
+-  Algorithmic/theory problem and goals: What is the deficiency, in general terms, of current theory and algorithms that your method would try to improve? As an example, the goal could be reducing computational complexity, increasing data efficiency, improving robustness or applicability of a specific family of algorithms; or introducing a slightly different setting to existing ones. In other words, which is the open problem you will be addressing? Make sure to cite relevant literature to better identify the problem.
+-  Methodology: What kind of existing algorithms, theory or technical result would you rely on? Would you be combining various existing results? What would be the most significant novelty of your methodology? Do cite relevant literature.
+- Experiment design (if applicable): How would you know that the method is working? How would you compare with existing solutions? In what context would you expect an improvement? How would you measure it? 
+- Expected results: What results do you expect to obtain, and what do you think might go wrong? In what way do you expect an improvement?
+
+*** Grading for projets:
+
+Grades will be adjusted based on group size with on letter grade up/down for double/half the mean group size.
+
+- Environments: A. Complex, well described environment that captures all of the elements of the application or algorithmic cproblem. B. The environment is simple or lacks description. C. An adequate environment that captures the basic setting. D. Insufficient environment or description. E. Insuffcient environment and description.
+- Algorithms: A. Significantly novel algorithms that are well described. B. Some novelty in the algorithms, with good descriptions. C. Some novelty in the algorithms, but descriptions are lacking. D. Insufficient novelty or descriptions. E. Insufficient novelty and descriptions. 
+- Experiments: A. Thorough experiments with ablation tests and comparisons over algorithms and environments, that are well-described. B. Somewhat incomplete experiments or descriptions. C. Sufficient experiments and descriptions. D. Insufficient experiments or descriptions. E. Insufficient experiments and descriptions.
 
 ** Prerequisites
 
@@ -102,6 +128,7 @@ The follow marking guidelines are what one would expect from students attaining 
 5. There is no mention of methods beyond the source material or independent thinking.
 cd
 
+
 * Schedule
 
 |------+--------------------------------------------|
@@ -110,24 +137,26 @@ cd
 |    1 | Beliefs and Decisions                      |
 |------+--------------------------------------------|
 |    2 | Bayesian Decision Rules                    |
+|      | Introduction to Bandit Problems            |
 |------+--------------------------------------------|
-|    3 | Introduction to Bandit problems.           |
+|    3 | Decision problem exercises.                |
+|      | Bandit problem exercises                   |
 |------+--------------------------------------------|
 |    4 | Finite Horizon MDPs                        |
 |      | Backwards Induction                        |
 |      | The Bandit MDP                             |
 |------+--------------------------------------------|
-|    5 | Infite Horizon MDPs                        |
+|    5 | Finite Horizon Lab                         |
+|------+--------------------------------------------|
+|    6 | Infite Horizon MDPs                        |
 |      | Value Iteration                            |
 |      | Policy Iteration                           |
 |------+--------------------------------------------|
-|    6 | Sarsa / Q-Learning                         |
+|    7 | Sarsa / Q-Learning                         |
 |------+--------------------------------------------|
-|    7 | Model-Based RL                             |
+|    8 | Model-Based RL                             |
 |------+--------------------------------------------|
-|    8 | Function Approximation, Gradient Methods   |
-|------+--------------------------------------------|
-|    9 | Function Approximation Lab                 |
+|    9 | Function Approximation, Gradient Methods   |
 |------+--------------------------------------------|
 |   10 | Bayesian RL: Dynamic Programming, Sampling |
 |------+--------------------------------------------|
@@ -321,6 +350,49 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 2. Marginal probabilities (5').
 3. Conditional probability (5').
 4. Bayes theorem (10').
+
+*** The meteorologists problem
+-$n$ metereological stations $\MDPs = \{1, \ldots, n\}$.
+- $x_t$: Weather on day t (0 = dry, 1 = rain)$
+- $P_\mdp(x_t | x_{t-1}, x_{t-2}, \ldots)$ station $\mdp$ prediction for dry/rain.
+
+  
+|---------+-------+-------+-------+-------|
+| Station | Day 1 | Day 2 | Day 3 | Day 4 |
+|---------+-------+-------+-------+-------|
+|       1 |   60% |   50% |   40% |   30% |
+|       2 |   30% |   25% |   20% |   15% |
+|       3 |   40% |   50% |   50% |   40% |
+|---------+-------+-------+-------+-------|
+
+- How should we combine these predictions?
+
+*** Statistical estimation
+
+**** Maximum Likelihood Estimation
+- Input: Data $x_1, \ldots, x_t$, A set of models $\{P_\mdp | \mdp \in \MDPs\}$
+- Inference: The model $\mdp^*_{ML}$ maximising
+  \[
+  P_\mdp(x_1, \ldots, x_t)
+  \]
+- Prediction: $P_{\mdp^*_{ML}}(x_{t+1} | x_1, \ldots, x_t)$.
+**** Maximum A Posteriori Estimation
+- Input: Data $x_1, \ldots, x_t$, set of models $\{P_\mdp | \mdp \in \MDPs\}$, prior $\bel(\mdp)$ on models
+- Inference: The model $\mdp^*_{MAP}$ maximising
+  \[
+  P_\mdp(x_1, \ldots, x_t) \bel(\mdp)
+  \]
+- Prediction: $P_{\mdp^*_{MAP}}(x_{t+1} | x_1, \ldots, x_t)$.
+    
+**** Bayesian Estimation
+- Input: Data $D$, set of models $\{P_\mdp | \mdp \in \MDPs\}$, prior $\bel(\mdp)$ on models
+- Inference: The posterior probability over models:
+  \[
+  \bel(\mdp | x_1, \ldots, x_t) = \frac{P_{\mdp}(x_1, \ldots, x_t) \bel(\mdp)}{\sum_{\mdp'} P_{\mdp'}(x_1, \ldots, x_t) \bel(\mdp)}
+  \]
+- Prediction: $P(x_{t+1} | x_1, \ldots, x_t) = \sum_\mdp P_\mdp(x_{t+1} | x_1, \ldots, x_t)$.
+
+
 
 *** Statistical decisions (45')
 1. ML Estimation (10')
@@ -889,9 +961,10 @@ Why do value full iteration at *every* step?
 **** Model
 $P_t,  \rho_t$
 *** Q-iteration
-For some $s \in S$, e.g. $s_t$
+For some $s \in S$, e.g. $s = s_t$, update:
 \[
-q_t(s,a) = \rho_t(s,a) + \gamma \sum_{s'} P_t(s'|s,a) v_{t-1}(s')\\
+q_t(s,a) = \rho_t(s,a) + \gamma \sum_{s'} P_t(s'|s,a) v_{t-1}(s'),
+\qquad
 v_t(s,a) = \max_a q_t(s,a)
 \]
 *** Greedy actions
