@@ -30,11 +30,10 @@
 \author{Christos Dimitrakakis: \texttt{christos.dimitrakakis@unine.ch}}
 
 \maketitle
-\large{Deadline: 28 February 2023}
+\large{Deadline: 27 February 2023}
 
 \vspace{1em}
 
-\section{In-class exercises}
 \begin{exercise}
   Case 1:
   \begin{enumerate}
@@ -49,6 +48,7 @@
   \end{enumerate}
 
   Show that under the expected utility hypothesis, if gamble 1 is preferred in Case 1, gamble 1 must also be preferred in the Case 2, for any increasing utility function.
+  \emph{Hint: You do not need to know the function $U$ to prove this.}
 \end{exercise}
 
 \begin{exercise}[15]
@@ -62,11 +62,9 @@
     utility is linear: $U(x) = x$. How much would you be willing to play now?
   \item Perform an experiment to validate your claims using the code in \verb!src/beliefs_and_decisions/paradox.ipynb!
   \end{itemize}
+  \emph{Hint: A closed-form solution for the linear utility through the geometric series. You can also implement this on a computer through sampling the geometric distribution. A naive implementation will give you strange results.}
 \end{exercise}
 
-
-\section{Homework}
-(If you are not done with the in-class exercises, finish them at home)
 
 \begin{exercise}
   Assuming that $U$ is increasing and absolutely continuous, consider the following experiment:
@@ -76,6 +74,7 @@
   \item If $Y < a$, you receive a random amount $X$ with known distribution (independent of~$Y$).
   \end{enumerate}
   Show that we should choose $a$ such that $U(a) = \E[U(X)]$.
+  \emph{Hint: You need to use elementary calculus in this exercise.}
 \end{exercise}
 
 \if\solution 1
