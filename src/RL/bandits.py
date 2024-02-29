@@ -1,33 +1,33 @@
 from abc import ABC
+from typing import Any
 
-# pip install gymnasium==0.27.1
+# pip install gymnasium
 import gymnasium as gym
 
 from gymnasium import spaces
+from gymnasium.core import ObsType
 from gymnasium.utils import seeding
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 
-# Smooth down the values, to better visualize improvement
-def moving_average(x, K):
-    T = x.shape[0]
-    n = x.shape[1]
-    m = int(np.ceil(T / K))
-    y = np.zeros([m, n])
-    for alg in range(n):
-        for t in range(m):
-            y[t, alg] = np.mean(x[t * K:(t + 1) * K, alg])
-    return y
-
-
 ## Here bandit problems are sampled from a Beta distribution
 class BetaBandits(gym.Env):
-    def __init__(self, bandits=10, alpha=1, beta=1):
+    def __init__(self,
+                 bandits=10,
+                 initial_alpha=1,
+                 initial_beta=1,
+                 seed=None,
+                 ):
+
+        self.seed = seed
+        self.random = np.random.default_rng(seed)
         self.r_dist = np.zeros(bandits)
+
         for i in range(bandits):
-            self.r_dist[i] = np.random.beta(alpha, beta)
+            self.r_dist[i] = self.random.beta(initial_alpha, initial_beta)
+
         self.n_bandits = bandits
         self.action_space = spaces.Discrete(self.n_bandits)
         self.observation_space = spaces.Discrete(1)
@@ -35,23 +35,22 @@ class BetaBandits(gym.Env):
         # Actual best arm (unknown to the algorithm)
         self.best_arm_param = np.max(self.r_dist)
 
-        self._seed()
-
-    def _seed(self, seed=None):
-        self.np_random, seed = seeding.np_random(seed)
-        return [seed]
-
     def step(self, action):
-        assert self.action_space.contains(action)
+        assert self.action_space.contains(action), f"Received wrong action {action}"
         done = True
-        reward = np.random.binomial(1, self.r_dist[action])
-        return 0, reward, done, {}
+        reward = self.random.binomial(1, self.r_dist[action])
+        return 0, reward, done, done, {}
 
     def reset(self):
-        return 0
+        self.random = np.random.default_rng(self.seed)
+        return 0, {}
 
 
 class BanditAlgorithm(ABC):
+    """
+    Abstract class
+    Do not modify
+    """
     def __init__(self, n_actions):
         self.n_actions = n_actions
 
@@ -68,7 +67,39 @@ class BanditAlgorithm(ABC):
         pass
 
 
+class RandomSampling(BanditAlgorithm):
+
+    def act(self) -> int:
+        return np.random.choice(self.n_actions)
+
+
+class Greedy(BanditAlgorithm):
+    def __init__(self, n_actions):
+        super().__init__(n_actions)
+
+        ...
+
+    def act(self):
+        pass
+
+    def update(self, action, reward):
+        pass
+
+
 class EpsilonGreedy(BanditAlgorithm):
+    def __init__(self, n_actions):
+        super().__init__(n_actions)
+
+        ...
+
+    def act(self):
+        pass
+
+    def update(self, action, reward):
+        pass
+
+
+class UCB(BanditAlgorithm):
     def __init__(self, n_actions):
         super().__init__(n_actions)
 
@@ -95,78 +126,82 @@ class ThompsonSampling(BanditAlgorithm):
 
 
 
-# (At home)
-class UCB(BanditAlgorithm):
-    def __init__(self, n_actions):
-        super().__init__(n_actions)
+# Smooth down the values, to better visualize improvement
+def smooth_curve(x, K):
+    T = x.shape[0]
+    smoothed_x = np.empty_like(x)
+    for t in range(0, T):
+        min_idx = np.maximum(0, t - K)
+        max_idx = np.minimum(T, t + K)
+        smoothed_x[t, :] = np.mean(x[min_idx: max_idx], axis=0)
 
-        ...
+    return smoothed_x
 
-    def act(self):
-        pass
 
-    def update(self, action, reward):
-        pass
+if __name__ == '__main__':
 
-# We can play with this
-n_actions = 2
+    # --------------------------- Experiments ---------------------------
+    # You can try changing these
+    # More actions requires more learning steps
+    n_actions = 2
 
-n_experiments = 30
-T = 10000
-environments = []
+    n_experiments = 30
+    T = 2000
+    environments = []
 
-# Instantiate some bandit problems
-for experiment in range(n_experiments):
-    environments.append(BetaBandits(n_actions, 1, 1))
+    # Instantiate some bandit problems
+    for experiment_id in range(n_experiments):
+        environments.append(BetaBandits(n_actions, 1, 1, seed=experiment_id))
 
-# The algorithms we want to benchmark
-algs = [EpsilonGreedy]
+    # The algorithms we want to benchmark
+    algs = [RandomSampling]
 
-n_algs = len(algs)
-reward_t = np.zeros((T, n_algs))
-regret_t = np.zeros((T, n_algs))
+    n_algs = len(algs)
+    reward_t = np.zeros((T, n_algs), dtype=np.float32)
+    regret_t = np.zeros((T, n_algs), dtype=np.float32)
 
-total_reward = np.zeros(n_algs)
-for experiment in range(n_experiments):
-    env = environments[experiment]
-    for alg_index, Alg in enumerate(algs):
-        alg = Alg(n_actions)
-        run_reward = 0
-        for i_episode in range(T):
-
-            # An episode lasts one step
+    total_reward = np.zeros(n_algs)
+    for experiment in range(n_experiments):
+        env = environments[experiment]
+        print("Running experiment N°", experiment)
+        for alg_index, Alg in enumerate(algs):
+            np.random.seed(experiment)
+            alg = Alg(n_actions)
+            run_reward = 0
             env.reset()
+            for i_episode in range(T):
 
-            # we choose an arm (action)
-            action = alg.act()
+                # we choose an arm (action)
+                action = alg.act()
 
-            # Observe the reward for choosing the action
-            reward = env.step(action)  # play the action in the environment
+                # Observe the reward for choosing the action
+                _, reward, _, _, _ = env.step(action)  # play the action in the environment
 
-            # learn
-            alg.update(action, reward)
+                # learn
+                alg.update(action, reward)
 
-            run_reward += reward
-            reward_t[i_episode, alg_index] += reward
-            regret_t[i_episode, alg_index] += env.best_arm_param - reward
+                run_reward += reward
+                reward_t[i_episode, alg_index] += reward
+                regret_t[i_episode, alg_index] += env.best_arm_param - reward
 
-        total_reward[alg_index] += run_reward
-        env.close()
+            total_reward[alg_index] += run_reward
 
-total_reward /= n_experiments
-reward_t /= n_experiments
-regret_t /= n_experiments
+    total_reward /= n_experiments
+    reward_t /= n_experiments
+    regret_t /= n_experiments
+    cumulative_regret = np.cumsum(regret_t, axis=0)
 
-cummulative_regret = np.cumsum(regret_t, axis=0)
+    smoothing = 20
+    plt.plot(smooth_curve(reward_t, smoothing))
+    plt.legend([c.__name__ for c in algs])
+    plt.ylabel("Average reward")
+    plt.xlabel("Timesteps")
+    plt.savefig("benchmark_reward.pdf")
+    plt.clf()
 
-plt.plot(moving_average(reward_t, 10))
-plt.legend([c.__name__ for c in algs])
-plt.ylabel("Average reward")
-plt.savefig("benchmark_reward.pdf")
-plt.clf()
-
-plt.plot(moving_average(cummulative_regret, 10))
-plt.legend([c.__name__ for c in algs])
-plt.ylabel("Cumulative regret")
-plt.title("Total algorithm regret")
-plt.savefig("benchmark_regret.pdf")
+    plt.plot(smooth_curve(cumulative_regret, smoothing))
+    plt.legend([c.__name__ for c in algs])
+    plt.ylabel("Cumulative regret")
+    plt.xlabel("Timesteps")
+    plt.title("Total algorithm regret")
+    plt.savefig("benchmark_regret.pdf")
