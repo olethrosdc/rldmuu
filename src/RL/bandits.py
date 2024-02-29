@@ -1,12 +1,7 @@
 from abc import ABC
-from typing import Any
-
-# pip install gymnasium
 import gymnasium as gym
 
 from gymnasium import spaces
-from gymnasium.core import ObsType
-from gymnasium.utils import seeding
 
 import matplotlib.pyplot as plt
 import numpy as np
