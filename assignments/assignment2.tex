@@ -91,7 +91,17 @@
       (s_T + \alpha - 1)  &= (T + \beta + \alpha - 2 ) \mu\\
       \mu & = \frac{s_T + \alpha - 1}{T + \beta + \alpha - 2 }
     \end{align*}
-    Finally, we can look at the expected value of the distribution. Here we can use a shortcut. We know that the expected value of a Beta distribution with parameters $\alpha, \beta$ is $\alpha / (\alpha + \beta)$. Since we now have a Beta distribution with parameters $\alpha + s_T, \beta + T - s_T$, the expected value is $\alpha + s_T / (\alpha + \beta + T)$.
+    Finally, we can look at the expected value of the distribution. Here we can use a shortcut. We know that the expected value of a Beta distribution with parameters $\alpha, \beta$ is $\alpha / (\alpha + \beta)$. Since we now have a Beta distribution with parameters $\alpha + s_T, \beta + T - s_T$, the expected value is $\alpha + s_T / (\alpha + \beta + T)$. We can prove that this is the
+    correct expectation as follows:
+    \begin{align*}
+      1/B(\alpha, \beta)
+      \int_0^1 
+      \mu \mu^{\alpha- 1}
+      (1 - \mu)^{\beta - 1} d\mu
+      &=
+        B(\alpha + 1, \beta)/B(\alpha, \beta)
+    \end{align*}
+    The Beta function has the property that $B(\alpha + 1, \beta) = B(\alpha, \beta) \frac{\alpha}{\alpha + \beta}$. Replacing, we obtain the stated result.
   \end{proof}
 \fi
 
