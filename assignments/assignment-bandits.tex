@@ -1,0 +1,50 @@
+\documentclass[twoside,a4paper]{article}
+% \usepackage{enumerate}
+% \setbeamertemplate{enumerate item}{(\alph{enumi})}
+% \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
+\input{preamble}
+
+
+\pagestyle{myheadings}
+
+
+
+\begin{document}
+\title{Bandit questions}
+
+\author{Christos Dimitrakakis: \texttt{christos.dimitrakakis@unine.ch}}
+
+\maketitle
+\large{Deadline: 12 March 2024}
+
+
+\vspace{1em}
+
+\begin{exercise}
+  Consider the following variant of the meteorologists problem.  You
+  have $n$ stations, each one making a prediction for $k$ different
+  locations. You can only observe the weather at the location by
+  travelling there. Then you obtain a reward depending on the 
+
+  More formally, at time $t$, each model makes a prediction
+  $P(x_{t} | h_t)$ where $x_{t} = (x_{t,1}, \ldots, x_{t,k})$ are the
+  possible weather values in the $k$ locations and where $h_t$ is the
+  information history. We assume that the meteorologist have complete
+  access to $h_t$, and so past weather in these locations. You select
+  an action $a_t = i$, observe $x_{t.i}$ and obtain reward $\rho(x_{t,i})$ where $\rho$ is a scalar reward function. Your goal is to maximise $\sum_t \rho(x_{t,a_t})$.
+
+  Is this a type of bandit problem, or something different? How does the amount of information differ from bandit problems and/or the original meteorologists problem? What might an algorithm for solving this problem look like?
+\end{exercise}
+
+
+\begin{exercise}
+  Consider the following variant of the bandit problem.  Instead of maximising total reward over time, you have $T$ rounds (where $T$ is known ahead of time) in which to find the highest-reward giving bandit. How would you formalise the problem's objective? Would the algorithms discussed in class be suitable for this problem? Why, or why not?
+\end{exercise}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
