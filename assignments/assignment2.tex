@@ -56,12 +56,43 @@
     is $\mu = (\alpha + s_T - 1) / (\alpha + \beta + T - 2)$.
   \item Show that the posterior expected value
     \[
-      \E_\bel(\mu | x_1, \ldots, x_t) = \int_{-\infty}^\infty \mu \bel(\mu \mid x_1, \ldots, x_T)
+      \E_\bel(\mu | x_1, \ldots, x_t) = \int_{-\infty}^\infty \mu \, d \bel(\mu \mid x_1, \ldots, x_T)
     \]
     is $\mu = (\alpha + s_T) / (\alpha + \beta + T)$.
   \end{enumerate}
   
 \end{exercise}
+\if\solution 1
+  \begin{proof}[Exercise 2 solution]
+    To make this simpler, we can take the logarithm of the likelihood
+    \begin{align*}
+      \ln P_\mu(x_1, \ldots, x_T)
+      &=  s_T \ln \mu + (T - s_T) \ln (1 - \mu)
+    \end{align*}
+    Since $\ln$ is a monotonic function, finding the maximum of the log-likelihood is equivalent to finding the maximum of the likelihood. We can do so by taking the derivative and setting it to zero:
+    \begin{align*}
+      0 &= \frac{d}{d\mu} \ln P_\mu(x_1, \ldots, x_T)\\
+        &=  \frac{d}{d\mu} s_T \ln \mu + \frac{d}{d\mu}  (T - s_T) \ln (1 - \mu)\\
+        &=   s_T/\mu  - (T - s_T) / (1 - \mu)\\
+      \mu &=   s_T /T.
+    \end{align*}
+    For the \emph{maximum a posteriori} estimate, we can use the same approach
+    \begin{align*}
+      0 &=\frac{d}{d\mu} \ln [P_\mu(x_1, \ldots, x_T) \bel(\mu)]\\
+      &=
+        \frac{d}{d\mu} \ln P_\mu(x_1, \ldots, x_T) + \frac{d}{d\mu} \ln \bel(\mu)\\
+      &=
+        \frac{s_T}{\mu} - \frac{T - s_T}{1 - \mu}
+        +
+        \frac{\alpha - 1}{\mu} -  \frac{\beta - 1}{1 - \mu}\\
+      &=
+        \frac{s_T + \alpha - 1}{\mu}  - \frac{T - s_T + \beta - 1}{1 - \mu}\\
+      (s_T + \alpha - 1)(1 - \mu) &= (T - s_T + \beta - 1) \mu\\
+      (s_T + \alpha - 1)  &= (T + \beta + \alpha - 2 ) \mu\\
+      \mu & = \frac{s_T + \alpha - 1}{T + \beta + \alpha - 2 }
+    \end{align*}
+  \end{proof}
+\fi
 
 \begin{exercise}
   James Randi claims that he is \emph{psychic} and can \emph{always predict a coin toss}. Let $A$ denote the event that JR is psychic and let $P(A) = 2^{-16}$ be your prior belief that JR is a psychic. Let us now make a set of bets about Randi.
