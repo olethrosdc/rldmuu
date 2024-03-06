@@ -8,7 +8,7 @@
 \usepackage{listings}
  \usepackage{enumerate}
 \usepackage{xr}
-
+\externaldocument{book}
 
 % \setbeamertemplate{enumerate item}{(\alph{enumi})}
 % \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
@@ -48,35 +48,120 @@
 
 
 \pagestyle{myheadings}
-\markboth{Exercise set 5}{Reinforcement Learning and Decision Making under Uncertainty}
+\markboth{Assignment 4}{Decision Making under Uncertainty}
 
 %\newcommand\sinc{\mathop{\rm sinc}}
 
 \def\solution {1}
 
 \begin{document}
-\title{Assignment 5}
-\author{Christos Dimitrakakis  \texttt{christos.dimitrakakis@unine.ch}}
-\date{Deadline: 7 April 2022}
-\maketitle
 
-The purpose of this exercise is to see how different algorithms converge with different amounts of data, and different hyperparameters.
+\Large{\bf Assignment 4. Infinite vs Finite Horizon}
+\vspace{1em}
+\\
+%\Large{\it Due: 23 Nov 2014}
+\vspace{1em}
+\\
+\large{Christos Dimitrakakis:} \texttt{christos.dimitrakakis@unine.ch}
 
-For this exercise, implement either QLearning or Sarsa. Using any OpenAI Gym environment,\footnote{As an example, use Chain, with a discount factor of $\gamma = 0.95$.} perform the following experiments:
-\begin{itemize}
-\item An important parameter is the step size  $\alpha_n$, which affects the convergence of the value function estimate. How easy is it to set this parameter? In particular, plot the average reward and/or utility of the policy as you obtain more data.
-\item Another important parameter is how to choose the policy of the agent. Simply choosing the action maximising the $Q$ function risks the agent getting stuck with a sub-optimal policy. The simplest idea is to use epsilon-greedy action selection  with parameter $\epsilon_t$ slowly tending to zero. Investigate the effect of this parameter on how quickly the optimal policy can be found.
-\item Q-Learning and Sarsa are typically implemented by online updating. For every observed $(s_t,a_t, r_t, s_{t+1})$---as well as $a_{t+1}$ for SARSA---the values are updated with
-  \begin{align}
-    Q_t(s_t, a_t) &+=  \alpha_t [r_t + \gamma \max_a Q_t(s_{t+1}, a) -  Q_t(s_t, a_t)] \tag{Q-Learning}\\
-    Q_t(s_t, a_t) &+=  \alpha_t [r_t + \gamma Q_t(s_{t+1}, a_{t+1}) -  Q_t(s_t, a_t)] \tag{SARSA}.
-  \end{align}
-  Implement a version of these algorithms where, after every step $t$ taken in the real environment, you perform one or more updates over (some, or all) previously collected data $s_1, a_1, r_1, \ldots, s_k, a_k, r_k, \ldots, s_t, a_t, r_t$.
-  \begin{align}
-    Q_n(s_k, a_k) &+=  \alpha_n [r_k + \gamma \max_a Q_n(s_{k+1}, a) -  Q_n(s_k, a_k)] \tag{Q-Learning}\\
-    Q_n(s_k, a_k) &+=  \alpha_n [r_k + \gamma Q_n(s_{k+1}, a_{k+1}) -  Q_n(s_k, a_k)] \tag{SARSA}.
-  \end{align}
-  Keeping in mind that Q-Learning is an off-policy algorithm (i.e. it estimates the value of the optimal policy while using data from any arbitrary policy), while SARSA is an on-policy algorithm (i.e. it estimates the value of the policy used to collect the data), which of the two methods would you expect to perform better after this modification? Is this borne out by your experiments?
-\end{itemize}
+\vspace{1em}
+
+\textbf{Time and scoring} The numbers indicate expected time to complete the exercise. If you take more time than indicated, please note that. A ``!'' indicates that it may require some extra thought. A ``?'' indicates that this is an open question. The exercises count towards your grade.
+
+These particular exercises are mainly programming exercises. They are not trivial, but they should serve to give you some insight about the behaviour of the core MDP algorithms. These algorithms are fundamental in understanding the more advanced approximate algorithms used in practical problems.
+
+\section{A very simple Markov decision process}
+Consider the following simple Markov decision process:
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=4, >=triangle 45]
+    \node[place] at (0, 0) (s1) {$s_1$};
+    \node[place] at (1, 0) (s2)  {$s_2$};
+    \draw[->] (s1) to [bend left] node [above] {$0.5$} (s2);
+    \draw[->] (s1) to [loop above] node [above] {$0.5$} (s1);
+    \draw[->] (s2) to [loop above] node [above] {$1$} (s2);
+    \draw[->, dashed] (s1) edge [bend right] node [below] {$1$} (s2);
+    \draw[->, dashed] (s2) to [loop below] node [below] {$1$} (s2);
+  \end{tikzpicture}
+  \caption{A two-state MDP. There are two actions, and the numbers indicate the transition probabilities.}
+  \label{fig:two-state-mdp}
+\end{figure}
+There are two actions $a_1$, indicated by a solid line, and $a_2$, indicated by a dashed line. The diagram shows the transition probabilities. 
+
+The rewards for the two actions are:
+\begin{align}
+  \label{eq:1}
+  r(s_1, a_1) &= 5, & r(s_2, a_1) &= -1,
+  \\
+  r(s_1, a_2) &= 10, & r(s_2, a_2) &= -1.
+\end{align}
+So, in this problem $s_2$ is a bad state. However, the optimal policy depends critically on the horizon and the discount factor. If the horizon is short, or the discount factor is small, it should be better to take action $a_2$, which gives a reward of $10$.
+
+\section{The simple MDP as a test-bench}
+\label{sec:simple-mdp-as}
+\begin{exercise}[30-60!]
+  Calculate (can be done analytically) the values of different policies for different horizons, with no discounting, i.e. $\disc = 1$.
+  \begin{enumerate}
+  \item Calculate the value of the policy always taking action $a_1$ for a finite horizon $T$. 
+  \item Calculate the value of the policy always taking action $a_2$ for a finite horizon $T$. 
+  \item When does one policy become better than the other?
+  \end{enumerate}
+  \label{exercise:simple-mdp-finite-horizon}
+\end{exercise}
+
+
+\begin{exercise}[30-60!]
+  Repeat the above exercise for $T \to \infty$, but with a varying discount factor $\gamma \in [0,1)$.  (This can also be done analytially!)
+  \begin{enumerate}
+  \item Calculate the value of the policy always taking action $a_1$ for varying $\gamma$
+  \item Calculate the value of the policy always taking action $a_2$ for varying $\gamma$. 
+  \item When does one policy become better than the other?
+  \end{enumerate}
+  \label{exercise:simple-mdp-discounted}
+\end{exercise}
+
+
+\begin{exercise}[60-120]
+  Implement the above MDP in \verb|src/RL/simple_MDP.py|
+  
+  Now implement and verify a number of algorithms. I suggest the following sequence.
+  \begin{enumerate}
+  \item Use your implementation of backwards induction for finite $T$. Do your analytical results hold until the change point? If not, why not?
+  \item Modify backwards induction to obtain the value iteration algorithm for $T \to \infty$, and discounting $\disc \in [0, 1)$. You should obtain a clear change point.
+  \item Modify the value iteration algorithm to accept a fixed policy as an input, i.e. so that it does not perform maximisation. Then you end up with a policy evaluation algorithm using dynamic programming. Verify that the two heuristic policies of always taking action $a_1$ and $a_2$ respectively have the values that you have calculated.
+  \item Calculate the transition kernel of the MDP and verify that the matrix-inversion policy evaluation results in the same result as the dynamic programming policy evaluation.
+  \item Optionally, implement Monte-Carlo policy evaluation.
+  \item Implement policy iteration using one or more algorithms for policy evaluation. Which one converges faster?
+  \end{enumerate}
+  \label{exercise:simple-mdp-implementation}
+\end{exercise}
+
+\section{Further MDPs}
+
+As a further test, repeat the above exercises for other simple MDPs.
+
+\section{Feedback}
+
+
+\begin{exercise}
+  Finally, some questions about the units covering Markov decision processes,  approximate algorithms and reinforcement learning.
+  \begin{enumerate}
+  \item Did you find the material interesting?
+  \item Did you find it potentially useful?
+  \item How much did you already know?
+  \item How much had you already seen but did not remember in detail?
+  \item How much have you seen for the first time?
+  \item Which aspect did you like the most?
+  \item Which aspect did you like the least?
+  \item Did the exercises help you in understanding the material?
+  \item Were the exercises necessary to understand the material?
+  \item Feel free to add any further comments.
+  \end{enumerate}
+\end{exercise}
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

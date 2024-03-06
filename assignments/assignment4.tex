@@ -8,7 +8,7 @@
 \usepackage{listings}
  \usepackage{enumerate}
 \usepackage{xr}
-\externaldocument{book}
+
 
 % \setbeamertemplate{enumerate item}{(\alph{enumi})}
 % \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
@@ -48,103 +48,146 @@
 
 
 \pagestyle{myheadings}
-\markboth{Assignment 4}{Decision Making under Uncertainty}
+\markboth{Exercise set 5}{Reinforcement Learning and Decision Making under Uncertainty}
 
 %\newcommand\sinc{\mathop{\rm sinc}}
 
 \def\solution {1}
 
 \begin{document}
+\title{Exercise set 3}
+\author{Christos Dimitrakakis  \texttt{christos.dimitrakakis@unine.ch}}
+\date{Deadline: 21 March 2023}
+\maketitle
 
-\Large{\bf Assignment 4. Infinite vs Finite Horizon}
-\vspace{1em}
-\\
-%\Large{\it Due: 23 Nov 2014}
-\vspace{1em}
-\\
-\large{Christos Dimitrakakis:} \texttt{christos.dimitrakakis@unine.ch}
-
-\vspace{1em}
-
-\textbf{Time and scoring} The numbers indicate expected time to complete the exercise. If you take more time than indicated, please note that. A ``!'' indicates that it may require some extra thought. A ``?'' indicates that this is an open question. The exercises count towards your grade.
-
-These particular exercises are mainly programming exercises. They are not trivial, but they should serve to give you some insight about the behaviour of the core MDP algorithms. These algorithms are fundamental in understanding the more advanced approximate algorithms used in practical problems.
-
-\section{A very simple Markov decision process}
-Consider the following simple Markov decision process:
-\begin{figure}[h]
-  \centering
-  \begin{tikzpicture}[scale=4, >=triangle 45]
-    \node[place] at (0, 0) (s1) {$s_1$};
-    \node[place] at (1, 0) (s2)  {$s_2$};
-    \draw[->] (s1) to [bend left] node [above] {$0.5$} (s2);
-    \draw[->] (s1) to [loop above] node [above] {$0.5$} (s1);
-    \draw[->] (s2) to [loop above] node [above] {$1$} (s2);
-    \draw[->, dashed] (s1) edge [bend right] node [below] {$1$} (s2);
-    \draw[->, dashed] (s2) to [loop below] node [below] {$1$} (s2);
-  \end{tikzpicture}
-  \caption{A two-state MDP. There are two actions, and the numbers indicate the transition probabilities.}
-  \label{fig:two-state-mdp}
-\end{figure}
-There are two actions $a_1$, indicated by a solid line, and $a_2$, indicated by a dashed line. The diagram shows the transition probabilities. 
-
-The rewards for the two actions are:
-\begin{align}
-  \label{eq:1}
-  r(s_1, a_1) &= 5, & r(s_2, a_1) &= -1,
-  \\
-  r(s_1, a_2) &= 10, & r(s_2, a_2) &= -1.
-\end{align}
-So, in this problem $s_2$ is a bad state. However, the optimal policy depends critically on the horizon and the discount factor. If the horizon is short, or the discount factor is small, it should be better to take action $a_2$, which gives a reward of $10$.
-
-\section{The simple MDP as a test-bench}
-\label{sec:simple-mdp-as}
-\begin{exercise}[30-60!]
-  Calculate (can be done analytically) the values of different policies for different horizons, with no discounting, i.e. $\disc = 1$.
-  \begin{enumerate}
-  \item Calculate the value of the policy always taking action $a_1$ for a finite horizon $T$. 
-  \item Calculate the value of the policy always taking action $a_2$ for a finite horizon $T$. 
-  \item When does one policy become better than the other?
-  \end{enumerate}
-  \label{exercise:simple-mdp-finite-horizon}
+\section{Programming exercise}
+\begin{exercise}[In class] Implement the Backwards Induction algorithm in \verb!src/BackwardsInduction.py! that takes an input an MDP (defined in \verb|src/MDP.py|) and outputs the optimal policy, and its state and state-action value
 \end{exercise}
 
-
-\begin{exercise}[30-60!]
-  Repeat the above exercise for $T \to \infty$, but with a varying discount factor $\gamma \in [0,1)$.  (This can also be done analytially!)
-  \begin{enumerate}
-  \item Calculate the value of the policy always taking action $a_1$ for varying $\gamma$
-  \item Calculate the value of the policy always taking action $a_2$ for varying $\gamma$. 
-  \item When does one policy become better than the other?
+\begin{exercise}[Start in class, continue at home]
+  \begin{enumerate}  
+  \item Describe a problem that can be modelled as a Markov decision process with a finite horizon, including the state space, action space, reward function and transition distribution. Some ideas are given below.
+  \item Implement the MDP as an instance of the \verb|MDP| class.
+  \item Calculate the optimal policy and value function for your problem, and interpret the results. What does the value of the different states mean? Is the optimal policy what you expected it to be? 
   \end{enumerate}
-  \label{exercise:simple-mdp-discounted}
 \end{exercise}
 
-
-\begin{exercise}[60-120]
-  Implement the above MDP in \verb|src/RL/simple_MDP.py|
+\iftrue
+  \section{Example problems.}
+  These problems are described in detail in the Puterman book (see class materials). You do not need to implement them exactly as described, but it's useful to read.
   
-  Now implement and verify a number of algorithms. I suggest the following sequence.
+  \paragraph{Stochastic inventory.}  (Sec. 3.2) You stock a single product in a warehouse. You have to decide how much to order every month, given that (a) storage costs and (b) you must have enough inventory to sell. For this problem, you can assume planning over $N=12$ months. 
+  \paragraph{Routing problems.}  (Sec 3.3.2) Given a graph describing possible routes, find the shortest path from any node of the graph to the terminal node.
+  \paragraph{Sequential allocation.} (Sec 3.3.3) in this problem, we have a finite amount to use over $N$ periods, and the utility of consuming $x_t$ at time $t$ is $g_t(x_t)$, with overall utility $\sum_t g_t(x_t)$. 
+  \paragraph{The secretary problem.} (Sec. 3.4.3). This is a special case of general stopping problems. At each step, you interview one candidate. After an interview, you must decide whether or not to offer the job to the current candidate. If not, this candidate leaves and is not available anymore.  
+
+\fi
+\iffalse
+
+\section{Example MDP problem}
+
+Many patients arriving at an emergency room, suffer from chest pain. This may indicate acute coronary syndrome (ACS). Patients suffering from ACS that go untreated may die with probability 2\% in the next few days. Successful diagnosis results lowers the short-term mortality rate to 0.2\%. Consequently, a prompt diagnosis is essential.\footnote{The figures given are not really accurate, as they are liberally adapted from different studies.}
+
+\paragraph{Statistics of patients.}
+Approximately 50\% of patients presenting with chest pain turn out to suffer from ACS (either acute myocardial infraction or unstable angina pectoris). Approximately 10\% suffer from lung cancer. Of ACS sufferers in general, \sfrac{2}{3} are smokers and \sfrac{1}{3} non-smokers. Only \sfrac{1}{4} of non-ACS sufferers are smokers. In addition, 90\% of lung cancer patients are smokers.
+Only \sfrac{1}{4} of non-cancer patients are smokers.
+
+\begin{assumption}
+  A patient may suffer from none, either or both conditions!
+\end{assumption}
+
+\begin{assumption}
+  When the smoking history of the patient is known, the development of cancer or ACS are independent.
+\end{assumption}
+
+
+\subsubsection{Tests}
+One can perform an ECG to test for ACS. An ECG test has \emph{sensitivity} of 66.6\% (i.e. it correctly detects \sfrac{2}{3} of all patients that suffer from ACS), and a \emph{specificity} of 75\% (i.e. \sfrac{1}{4} of patients that do not have ACS, still test positive). 
+
+An X-ray can diagnose lung cancer with a sensitivity of 90\% and a specificity of 90\%. 
+
+\begin{assumption}
+  Repeated applications of a test produce the same result for the same
+  patient, i.e. that randomness is only due to patient variability.
+\end{assumption}
+
+\begin{assumption}
+  The existence of lung cancer \emph{does not} affect the probability that the ECG will be positive. Conversely, the existence of ACS \emph{does not} affect the probability that the X-ray will be positive.
+\end{assumption}
+
+The main problem we want to solve, is how to perform experiments or
+tests, so as to
+\begin{itemize}
+\item diagnose the patient
+\item use as few resources as possible.
+\item make sure the patient lives
+\end{itemize}
+This is a problem in \emph{experiment design}. We start from the simplest case, and look at a couple of example where we only observe the results of some tests.
+We then examine the case where we can select which tests to perform.
+
+\begin{exercise}
+  In this exercise, we only worry about making inferences from different tests results.
   \begin{enumerate}
-  \item Use your implementation of backwards induction for finite $T$. Do your analytical results hold until the change point? If not, why not?
-  \item Modify backwards induction to obtain the value iteration algorithm for $T \to \infty$, and discounting $\disc \in [0, 1)$. You should obtain a clear change point.
-  \item Modify the value iteration algorithm to accept a fixed policy as an input, i.e. so that it does not perform maximisation. Then you end up with a policy evaluation algorithm using dynamic programming. Verify that the two heuristic policies of always taking action $a_1$ and $a_2$ respectively have the values that you have calculated.
-  \item Calculate the transition kernel of the MDP and verify that the matrix-inversion policy evaluation results in the same result as the dynamic programming policy evaluation.
-  \item Optionally, implement Monte-Carlo policy evaluation.
-  \item Implement policy iteration using one or more algorithms for policy evaluation. Which one converges faster?
+  \item What does the above description imply about the dependencies between the patient condition, smoking and test results? Draw a belief network for the above problem, with the following events (i.e. variables that can be either true or false)
+    \begin{itemize}
+    \item $A$: ACS
+    \item $C$: Lung cancer.
+    \item $S$: Smoking
+    \item $E$: Positive ECG result.
+    \item $X$: Positive X-ray result.
+    \end{itemize}
+  \item What is the probability that the patient suffers from ACS if $S = \texttt{true}$?
+  \item What is the probability that the patient suffers from ACS if the ECG result is negative?
+  \item What is the probability that the patient suffers from ACS if the X-ray result is negative and the patient is a smoker?
   \end{enumerate}
-  \label{exercise:simple-mdp-implementation}
+  \label{ex:diagnosis}
 \end{exercise}
 
-\section{Further MDPs}
 
-As a further test, repeat the above exercises for other simple MDPs.
+
+\begin{exercise}[Continuation of exercise~\ref{ex:diagnosis}]
+  A patient comes into the emergency department (ED) with chest pains.  First, you observe $x_S$, whether or not the patient is a smoker. The patient may have an underlying Acute Coronary Syndrome [ACS] condition $(x_A = 1)$ or lung cancer $(x_P = 1)$. We know that there is an incidence of $25\%$ smoking in the population, while $50\%$ of lung cancer sufferers smoke and $30\%$ of ACS patients smoke. We also know that $25\%$ of patients entering ED with chest pains have ACS. 
+
+  As a doctor, you need to select a test to make:
+  $a_1 \in \{\texttt{X-ray}, \texttt{ECG}\}$.\footnote{For simplicity,
+    you only make one test in this exercise, but you can extend it so
+    that you can perform more tests, with the understanding that the patient may die if untreated if they are suffering from ACS.}  Finally, you decide whether or
+not to treat for ACS:
+$a_2 \in \{\texttt{heart treatment}, \texttt{no treatment}\}$. An
+untreated ACS patient may die with probability $2\%$, while a treated
+one with probability $0.2\%$. Treating a non-ACS patient results in
+death with probability $0.1\%$ (while no treatment results in no deaths) so we would like to avoid indiscriminate treatment.
+  \begin{enumerate}
+  \item Draw a decision diagram, where:
+    \begin{itemize}
+    \item $x_S$ is an observed random variable taking values in $\{0, 1\}$.
+    \item $x_A$ is an hidden variable taking values in $\{0, 1\}$.
+    \item $x_P$ is an hidden variable taking values in $\{0, 1\}$.
+    \item $a_1$ is a choice variable, taking values in $\{\texttt{X-ray}, \texttt{ECG}\}$. 
+    \item $y_1$ is a result variable, taking values in
+      $\{0, 1\}$, corresponding to negative and positive tests results.
+    \item $a_2$ is a choice variable, which depends on the test results, $d_1$ and on $S$.
+    \item $y_2$ is a result variable, taking values in $\{0,1\}$ corresponding to the patient dying (0), or living (1).
+    \item Assume that our utility function is $U = y_2$, i.e. we wish to maximise the probability of the patient living.
+    \end{itemize}
+  \item For all choices of $a_1$, and all possible results $y_1$, calculate the posterior probability of an underlying condition.
+    \[
+      \Pr(x_A, x_P \mid x_S, a_1, y_1)
+    \]
+  \item What is the optimal decision rule for this problem? \emph{Hint: Use the principle of backwards induction}
+  \end{enumerate}
+  \label{ex:diagnostic-test}
+\end{exercise}
+
+
+
+\fi
 
 \section{Feedback}
 
 
-\begin{exercise}
-  Finally, some questions about the units covering Markov decision processes,  approximate algorithms and reinforcement learning.
+\begin{exercise}[5]
+  Finally, some questions about today's unit
   \begin{enumerate}
   \item Did you find the material interesting?
   \item Did you find it potentially useful?
@@ -158,6 +201,8 @@ As a further test, repeat the above exercises for other simple MDPs.
   \item Feel free to add any further comments.
   \end{enumerate}
 \end{exercise}
+
+
 
 \end{document}
 

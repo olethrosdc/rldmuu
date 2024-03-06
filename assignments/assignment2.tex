@@ -125,6 +125,53 @@
   \emph{Hint: The only important events for the calculations are whether JR predicts correctly or not.}
 \end{exercise}
 
+\if\solution 1
+\begin{proof}[Solution]
+  1. 
+  \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+      \node[RV] at (-1,0) (H1) {$H_1$};
+      \node[RV] at (-1,2) (H2) {$H_2$};
+      \node[RV] at (1,0) (B1) {$B_1$};
+      \node[RV] at (1,2) (B2) {$B_2$};
+      \node[RV,hidden] at (2,1) (A) {$A$};
+      \draw[->] (A) -- (B1);
+      \draw[->] (A) -- (B2);
+    \end{tikzpicture}
+    \caption{The Bayesian network for the prediction problem for a fair coin. The probability of correct predictions depends only on $A$.}
+    \label{fig:dbn-uncertain-Randi}
+  \end{figure}
+
+  2.
+  \begin{align}
+    P(B_1) &=  P(B_1 \mid A) P(A) + P(B_1 \mid \neg A) P(\neg A)  \approx 2^{-16} + 1/2\\
+    P(B_2) &=  P(B_2 \mid A) P(A) + P(B_2 \mid \neg A) P(\neg A) \approx 2^{-16} + 1/2,
+  \end{align}
+  so $P(B_1) = P(B_2)$.
+  
+  3. We need to calculate the following function
+  \begin{align}
+    P(B_2 \mid B_1)
+    &=  P(B_2 \mid A, B_1) P(A \mid B_1) + P(B_2 \mid \neg A, B_1) P(\neg A \mid B_1)\\
+    &=  P(B_2 \mid A) P(A \mid B_1) + P(B_2 \mid \neg A) P(\neg A \mid B_1)
+    \\
+    &=  1 \times P(A \mid B_1) + \frac{1}{2} \times [1 - P( A \mid B_1)].
+  \end{align}
+  So we just need to evaluate:
+  \[
+  P(A \mid B_1) = \frac{P(B_1 \mid A) P(A)}{P(B_1)} = \frac{1 \times 2^{-16}}{ 2^{-16} + 1/2} = \frac{1}{1 + 2^{15}} \approx 2^{-15}
+  \]
+  We can now replace:
+  \[
+    P(B_2 \mid B_1)
+    = 2^{-15} + \frac{1}{2} \times [1 - 2^{-15}]
+    \approx \frac{1}{2} + 2^{-15},
+  \]
+  so a slight increase!
+\end{proof}
+
+
 
 \begin{exercise}
   We continue the previous exercise, but with the following extra assumption.
@@ -141,6 +188,27 @@
 \end{exercise}
 
 
+
+\begin{proof}
+  For this exercise, we simply need to calculate the expected utility. If JR can predict perfectly, then he has a chance of $1$ of predicting. If not, then he has a chance of $2^{-4}$. Marginalising over our prior:
+  \begin{align*}
+    P(B^4) &= P(B^4 | A) P(A) + P(B^4 | \neg A) P(\neg A)\\
+             &=  1 \times 2^{-16} + 2^{-4} \times (1 - 2^{-16}) < 2^{-16} + 2^{-4} \leq 2^{-4} < 1/2
+  \end{align*}
+  Since our utility is linear, we should take the bet if $P(B^4) < P(\neg B^{4})$, which the above satisfies. We repeat the calculation for $P(B^{5:8} | B^4)$. Note that
+  \[
+    P(A | B^4) = P(A) P(B^4 | A) / P(B^4) \approx 2^{-16} /[2^{-16} + 2^{-4}] = 1 / [1 + 2^{12}] \approx 2^{-12}.
+  \]
+  Plugging in:
+  \begin{align*}
+    P(B^{5:8} | B^4) = P(B^{5:8} | A) P(A | B^4) + P(B^{5:8} | \neg A) P(\neg A | B^4) =  1 \times 2^{-12} + 2^{-4} \times (1 - 2^{-12}) \leq 2^{-12} + 2^{-4} \leq 2^{-4} \leq 1/2.
+  \end{align*}
+  So, we still should be more than sure that JR is not psychic even after 4 straight tosses and hence take the bet.
+
+  \textbf{Note:} Of course, we are not being very careful here. We only considered the possibility that JR is a psychic or not. We haven't considered the possibility that JR may be performing a magic trick. This alternative hypothesis may have a much higher prior probability than JR being psychic.
+  
+\end{proof}
+
 \begin{exercise}[DO NOT HAND IN]
   Now assume that JR is a psychic, but that he can only predict some proportion $\theta \in [0,1]$ of tosses (he could also be a \emph{bad} psychic).
 We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior looks like this:
@@ -156,8 +224,21 @@ So now we know that JR is psychic, but not how good a psychic he is.
 
 \end{exercise}
 
+\begin{proof}
+  \begin{align*}
+    P(B_{n+1} \mid B^n)
+    &=  P(B_{n+1} \mid A, B^n) P(A \mid B^n) + P(B_{n+1} \mid \neg A, B^n) P(\neg A \mid B^n)\\
+    P(B_{n+1} \mid A, B^n) &= \frac{2 + n}{3 + n}\\
+    P(B_{n+1} \mid \neg A, B^n) &= \frac{1}{2}\\
+    P(A \mid B^n)
+    &=  \frac{P(B^n \mid A) P(A)}{P(B^n \mid A) P(A) + P(B^n \mid \neg A) P(\neg A)}\\
+    &=  \frac{1 \times 2^{-16}}{1 \times 2^{-16} + 2^{-n}(1 - 2^{16})} \approx 2^{n-16}, \quad \textrm{for  $n <16$}\\
+    P(B_{n+1} \mid B^n) &\approx \frac{2 + n}{3 + n} 2^{n - 16} + \frac{1}{2} (1 - 2^{n - 16}).
+  \end{align*}
+  So as we can see, the rate approaches that of the Beta model exponentially fast, even though the Beta model itself only has a polynomial rate approaching to one.
+\end{proof}
 
-\begin{exercise}[DO NOT HAND IN]
+\begin{exercise}
   The following is an example of a \emph{hierarchical model.}
   Instead of assuming that Randi is either a perfect psychic or a fraud, we can relax our assumption. Let $A$ denote the event that Randi is psychic, but that he can only predict some proportion $\theta \in [0,1]$ of tosses (he could also be a \emph{bad} psychic).
 We shall model our uncertainty about $\theta$ with a Beta distribution $\bel(\theta)$ with parameters $(2, 1)$, $\Beta(2,1)$, which places higher probability on all values of $\theta$ closer to $1$. So now our prior marginal distribution looks like this:
@@ -172,10 +253,25 @@ So now we think that JR is either a psychic or not, but if he is a psychic, we d
 \item Write an expression for the marginal probability $P(B_{n+1} \mid B^n)$.
 \item Randi now offers you the opportunity to bet 100CU at every time step $t$ that he would guess the next coin toss, with equal odds (i.e. you get 100CU if he doesn't guess correctly and lose 100CU if he does). If you accept the bet at time $t$, you throw the coin and Randi guesses, and you get/pay money depending on the outcome. Then he offers another bet at time $t+1$. If at any time you decline the bet, the game stops. Define a strategy for playing this game.
 \end{enumerate}
+\begin{proof}
+  Here I offer a high-level sketch. The main idea is to calculate a posterior distribution on $A$ given the observations $B$. This can be written as follows:
+  \[
+    P(A \mid B)
+    = \frac{P(B \mid A) P(A) }{P(B)}
+  \]
+  We can then replace the expressions for $P(B \mid A), P(B)$ and obtain the posterior distribution as usual. The rest of the exercise follows trivially.
+\end{proof}
 
 \end{exercise}
 
 
+
+
+
+
+
+
+\fi
 
 \end{document}
 
