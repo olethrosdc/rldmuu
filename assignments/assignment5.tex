@@ -57,16 +57,18 @@
 \begin{document}
 \title{Assignment 5}
 \author{Christos Dimitrakakis  \texttt{christos.dimitrakakis@unine.ch}}
-\date{Deadline: 7 April 2022}
+\date{Deadline: 3 April 2023}
 \maketitle
 
 The purpose of this exercise is to see how different algorithms converge with different amounts of data, and different hyperparameters.
 
 For this exercise, implement either QLearning or Sarsa. Using any OpenAI Gym environment,\footnote{As an example, use Chain, with a discount factor of $\gamma = 0.95$.} perform the following experiments:
 \begin{itemize}
-\item An important parameter is the step size  $\alpha_n$, which affects the convergence of the value function estimate. How easy is it to set this parameter? In particular, plot the average reward and/or utility of the policy as you obtain more data.
-\item Another important parameter is how to choose the policy of the agent. Simply choosing the action maximising the $Q$ function risks the agent getting stuck with a sub-optimal policy. The simplest idea is to use epsilon-greedy action selection  with parameter $\epsilon_t$ slowly tending to zero. Investigate the effect of this parameter on how quickly the optimal policy can be found.
-\item Q-Learning and Sarsa are typically implemented by online updating. For every observed $(s_t,a_t, r_t, s_{t+1})$---as well as $a_{t+1}$ for SARSA---the values are updated with
+\item \textbf{Step size.} An important parameter is the step size  $\alpha_n$, which affects the convergence of the value function estimate. How easy is it to set this parameter? In particular, plot the average reward and/or utility of the policy as you obtain more data.
+\item \textbf{Exploration.} Another important parameter is how to choose the policy of the agent. Simply choosing the action maximising the $Q$ function risks the agent getting stuck with a sub-optimal policy. The simplest idea is to use epsilon-greedy action selection  with parameter $\epsilon_t$ slowly tending to zero. Investigate the effect of this parameter on how quickly the optimal policy can be found.
+\item \textbf{Eligibility Traces.}  Now modify the algorithm so that it uses eligibility traces. Try a few different values of the parameter. I suggest $\lambda = \{0.5, 0.9, 0.99\}$. Does it converge any faster?
+  
+\item \textbf{Experience Replay.} Q-Learning and Sarsa are typically implemented by online updating. For every observed $(s_t,a_t, r_t, s_{t+1})$---as well as $a_{t+1}$ for SARSA---the values are updated with
   \begin{align}
     Q_t(s_t, a_t) &+=  \alpha_t [r_t + \gamma \max_a Q_t(s_{t+1}, a) -  Q_t(s_t, a_t)] \tag{Q-Learning}\\
     Q_t(s_t, a_t) &+=  \alpha_t [r_t + \gamma Q_t(s_{t+1}, a_{t+1}) -  Q_t(s_t, a_t)] \tag{SARSA}.
@@ -77,6 +79,8 @@ For this exercise, implement either QLearning or Sarsa. Using any OpenAI Gym env
     Q_n(s_k, a_k) &+=  \alpha_n [r_k + \gamma Q_n(s_{k+1}, a_{k+1}) -  Q_n(s_k, a_k)] \tag{SARSA}.
   \end{align}
   Keeping in mind that Q-Learning is an off-policy algorithm (i.e. it estimates the value of the optimal policy while using data from any arbitrary policy), while SARSA is an on-policy algorithm (i.e. it estimates the value of the policy used to collect the data), which of the two methods would you expect to perform better after this modification? Is this borne out by your experiments?
+
+\item \textbf{Comparison.} What works better? Eligibility traces or experience replay? How does performance improve over the amount of data collected for either method? Are the total computation times significantly different?
 \end{itemize}
 
 \end{document}
