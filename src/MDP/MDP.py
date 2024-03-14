@@ -5,6 +5,9 @@ class DiscreteMDP:
     ## initalise a random MDP with
     ## n_states: the number of states
     ## n_actions: the number of actions
+    ## Optional arguments:
+    ## P: the state-action-state transition matrix so that P[s,a,s_next] is the probability of s_next given the current state-action pair (s,a)
+    ## R: The state-action reward matrix so that R[s,a] is the reward for taking action a in state s.
     def __init__(self, n_states, n_actions, P = None, R = None):
         self.n_states = n_states # the number of states of the MDP
         self.n_actions = n_actions # the number of actions of the MDP
@@ -36,7 +39,6 @@ class DiscreteMDP:
     def get_reward(self, state, action):
         return self.R[state, action]
 
-    
 
         
         
