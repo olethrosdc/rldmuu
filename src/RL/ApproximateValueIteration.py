@@ -8,22 +8,13 @@ def approximate_value_iteration(mdp, n_iterations, gamma, representation_size = 
     V = np.zeros([mdp.n_states])
     Q = np.zeros([mdp.n_actions])
     u = np.zeros(representation_size);
+    ## Select a random set of sampled states.
+    ## This can be improved
     SampledStates = np.random.choice(mdp.n_states,100)
     for t in range(n_iterations):
-        for s in SampledStates
+        for s in SampledStates:
             for a in range(mdp.n_actions):
-                P_sa = mdp.get_transition_probabilities(s, a)
-                U_next = 0
-                ## MC approximation
-                for k in range(n_samples):
-                    # U_next = += V[next_state]
-                    next_state = np.random.choice(mdp.n_states, p = P_sa)
-                    U_next += u[next_state%representation_size]
-                U_next /= n_samples
-                Q[a] = mdp.get_reward(s, a) + gamma * U_next
-            V[s] = max(Q)
-            policy[s] = np.argmax(Q)
-            #print(V)
+                ## MC approximation of Q value
         cnt = np.zeros(representation_size);
         u = np.zeros(representation_size);
         # Minimise \sum_s |V(s) - u(s)|^2 with SGD

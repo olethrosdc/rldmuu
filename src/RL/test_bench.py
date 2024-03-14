@@ -1,8 +1,11 @@
+import Sarsa
 import QLearning
 import chain
 import numpy as np
 import matplotlib.pyplot as plt
 import MDPBelief
+import ModelBasedRL
+#import ../../projects/gym_skeletons/environments
 def moving_average(x, K):
   T = x.shape[0]
   n = x.shape[1]
@@ -14,31 +17,34 @@ def moving_average(x, K):
   return y
 
 
-n_experiments = 1
-T = 100000
+n_experiments = 100
+T = 10000
 environments = []
 
 environments.append(chain.Chain(5))
 
-
 algs = []
-algs.append(QLearning.QLearning)
-algs.append(MDPBelief.ExpectedMDPHeuristic)
-algs.append(MDPBelief.SampleBasedRL)
+algs.append(Sarsa.Sarsa)
+#algs.append(QLearning.QLearning)
+algs.append(ModelBasedRL.GreedyQIteration)
+#algs.append(MDPBelief.ExpectedMDPHeuristic)
+#algs.append(MDPBelief.SampleBasedRL)
 n_algs = len(algs)
 
 alpha = 0.4
 epsilon = 0.3
 decay = 0.1
+reward_i = np.zeros([T, n_algs])
+      
 for decay in [0.99]:
   reward_t = np.zeros([T, n_algs])
   total_reward = np.zeros([n_algs])
   for experiment in range(n_experiments):
-    env = environments[0];#experiment]
+    env = environments[0];
     env.reset()
     alg_index = 0
     for Alg in algs:
-      alg = Alg(n_states = env.observation_space.n, n_actions = env.action_space.n, alpha = alpha, epsilon = epsilon, decay = decay)
+      alg = Alg(n_states = env.observation_space.n, n_actions = env.action_space.n, discount = 0.9, alpha = alpha, epsilon = epsilon, decay = decay)
       run_reward = 0
       for i_episode in range(1):
         observation = env.reset()
@@ -51,6 +57,7 @@ for decay in [0.99]:
           alg.update(action, reward, observation)
           run_reward += reward
           reward_t[i_episode, alg_index] += reward
+          reward_i[t, alg_index] += reward
           if done:
             #            print("Episode finished after {} timesteps".format(t+1))
             break
@@ -59,8 +66,16 @@ for decay in [0.99]:
       env.close()
   total_reward /= n_experiments
   reward_t /= n_experiments
-  print(alpha, epsilon, decay, total_reward)
-
+  reward_i /= n_experiments
+  print("Total reward")
+  print(total_reward)
+  
+  plt.plot(reward_i)
+  plt.legend(algs)
+  plt.show()
+  
+  
+  
   
  
 

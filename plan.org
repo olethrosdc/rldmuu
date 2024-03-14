@@ -12,12 +12,12 @@
 #+LaTeX_HEADER: \newcommand \param {\theta}
 #+LaTeX_HEADER: \newcommand \pol {\pi}
 #+LaTeX_HEADER: \newcommand \mdp {\mu}
+#+LaTeX_HEADER: \newcommand \MDPs {\mathcal{M}}
 #+LaTeX_HEADER: \newcommand \bel {\xi}
 #+TAGS: activity advanced definition exercise homework project example theory code
 #+OPTIONS:   H:3
 
-Course name: 
-
+* General course information
 The course will give a thorough introduction to reinforcement
 learning. The first 8 weeks will be devoted to the core theory and
 algorithms of reinforcement learning. The final 6 weeks will be
@@ -28,6 +28,105 @@ The first 6 weeks will require the students to complete 5
 assignments. The remainder of the term, the students will have to
 prepare a project, for which they will need to submit a report.
 
+* Grading
+
+** Project
+There are two main types of projects, though a project can be hybrid.
+
+*** Application project.
+Application projects proposals need to contain the following:
+-  Domain description and goals: What is the problem, in general terms, and which aspect would you try and solve in an MDP/RL framework? Make sure to cite relevant literaure.
+-  Methodology: How would you formalise the problem mathematically? Which algorithms and/or models do you intend to apply at different stages of the project? Feel free to read widely about both the problem and algorithms and do cite relevant literature.
+-  Experiment design: How would you know that the method is working? How would you compare with existing solutions? In what context would you expect an improvement? How would you measure it? How will you test the robustness of your solution over variations in the problem instance?
+- Expected results: What results do you expect to obtain, and what do you think might go wrong? In what way do you expect an improvement?
+
+*** Algorithmic project.
+-  Algorithmic/theory problem and goals: What is the deficiency, in general terms, of current theory and algorithms that your method would try to improve? As an example, the goal could be reducing computational complexity, increasing data efficiency, improving robustness or applicability of a specific family of algorithms; or introducing a slightly different setting to existing ones. In other words, which is the open problem you will be addressing? Make sure to cite relevant literature to better identify the problem.
+-  Methodology: What kind of existing algorithms, theory or technical result would you rely on? Would you be combining various existing results? What would be the most significant novelty of your methodology? Do cite relevant literature.
+- Experiment design (if applicable): How would you know that the method is working? How would you compare with existing solutions? In what context would you expect an improvement? How would you measure it? 
+- Expected results: What results do you expect to obtain, and what do you think might go wrong? In what way do you expect an improvement?
+
+*** Grading for projets:
+
+Grades will be adjusted based on group size with on letter grade up/down for double/half the mean group size.
+
+- Environments: A. Complex, well described environment that captures all of the elements of the application or algorithmic cproblem. B. The environment is simple or lacks description. C. An adequate environment that captures the basic setting. D. Insufficient environment or description. E. Insuffcient environment and description.
+- Algorithms: A. Significantly novel algorithms that are well described. B. Some novelty in the algorithms, with good descriptions. C. Some novelty in the algorithms, but descriptions are lacking. D. Insufficient novelty or descriptions. E. Insufficient novelty and descriptions. 
+- Experiments: A. Thorough experiments with ablation tests and comparisons over algorithms and environments, that are well-described. B. Somewhat incomplete experiments or descriptions. C. Sufficient experiments and descriptions. D. Insufficient experiments or descriptions. E. Insufficient experiments and descriptions.
+
+** Prerequisites
+
+*** Essential
+- Mathematics (Calculus, Linear Algebra)
+- Python programming.
+
+*** Recommended
+- Elementary knowledge of probability and statistics.
+
+
+** Examination
+
+There is one project, taking up 60% of the credit.
+There is one written exam, for 40% of the credit.
+Criteria for full marks in each part of the exam are the following. 
+
+1. Documenting of the work in a way that enables reproduction.
+2. Technical correctness of their analysis.
+3. Demonstrating that they have understood the assumptions underlying their analysis.
+4. Addressing issues of reproducibility in research.
+5. Consulting additional resources beyond the source material with proper citations.
+
+The follow marking guidelines are what one would expect from students attaining each grade. 
+
+
+*** A 
+
+
+1. Submission of a detailed report from which one can definitely reconstruct their work without referring to their code. There should be no ambiguities in the described methodology. Well-documented code where design decisions are explained. 
+2. Extensive analysis and discussion. Technical correctness of their analysis. Nearly error-free implementation.
+3. The report should detail what models are used and what the assumptions are behind them. The conclusions of the should include appropriate caveats.  When the problem includes simple decision making, the optimality metric should be well-defined and justified. Simiarly, when well-defined optimality criteria should given for the experiment design, when necessary. The design should be (to some degree of approximation, depending on problem complexity) optimal according to this criteria.
+4. Appropriate methods to measure reproducibility.  Use of an unbiased methodology for algorithm, model or parameter selection. Appropriate reporting of a confidence level (e.g. using bootstrapping) in their analytical results. Relevant assumptions are mentioned when required.
+5. The report contains some independent thinking, or includes additional resources beyond the source material with proper citations. The students go beyond their way to research material and implement methods not discussed in the course.
+
+*** B
+
+1. Submission of a report from which one can plausibly reconstruct their work without referring to their code. There should be no major ambiguities in the described methodology. 
+2. Technical correctness of their analysis, with a good discussion. Possibly minor errors in the implementation.
+3. The report should detail what models are used, as well as the optimality criteria, including for the experiment design. The conclusions of the report must contain appropriate caveats. 
+4. Use of an unbiased methodology for algorithm, model or parameter selection. 
+5. The report contains some independent thinking, or the students mention other methods beyond the source material, with proper citations, but do not further investigate them.
+   
+*** C
+
+1. Submission of a report from which one can partially reconstruct most of their work without referring to their code. There might be some ambiguities in parts of the described methodology. 
+2. Technical correctness of their analysis, with an adequate discussion. Some errors in a part of the implementation.
+3. The report should detail what models are used, as well as the optimality criteria and the choice of experiment design. Analysis caveats are not included.
+4. Use of a possibly biased methodology for algorithm, model or parameter selection - but in a possibly inconsistent manner.
+5. There is little mention of methods beyond the source material or independent thinking.
+
+*** D
+
+1. Submission of a report from which one can partially reconstruct most of their work without referring to their code. There might be serious ambiguities in parts of the described methodology. 
+2. Technical correctness of their analysis with limited discussion. Possibly major errors in a part of the implementation.
+3. The report should detail what models are used, as well as the optimality criteria. Analysis caveats are not included.
+4. Some effort for methodological algorithm/parameter selection.
+5. There is little mention of methods beyond the source material or independent thinking.
+
+*** E
+1. Submission of a report from which one can obtain a high-level idea of their work without referring to their code. There might be serious ambiguities in all of the described methodology. 
+2. Technical correctness of their analysis with very little discussion. Possibly major errors in only a part of the implementation.
+3. The report might mention what models are used or the optimality criteria, but not in sufficient detail and caveats are not mentioned.
+4. Reproducibility is only partially addressed.
+5. There is no mention of methods beyond the source material or independent thinking.
+
+*** F 
+
+1. The report does not adequately explain their work.
+2. There is very little discussion and major parts of the analysis are technically incorrect, or there are errors in the implementation.
+3. The models used might be mentioned, but not any other details.
+4. There is no effort to ensure reproducibility or robustness in the project.
+5. There is no mention of methods beyond the source material or independent thinking.
+cd
 
 
 * Schedule
@@ -38,36 +137,76 @@ prepare a project, for which they will need to submit a report.
 |    1 | Beliefs and Decisions                      |
 |------+--------------------------------------------|
 |    2 | Bayesian Decision Rules                    |
+|      | Introduction to Bandit Problems            |
 |------+--------------------------------------------|
-|    3 | Introduction to Bandit problems.           |
+|    3 | Decision problem exercises.                |
+|      | Bandit problem exercises                   |
 |------+--------------------------------------------|
 |    4 | Finite Horizon MDPs                        |
 |      | Backwards Induction                        |
 |      | The Bandit MDP                             |
 |------+--------------------------------------------|
-|    5 | Infite Horizon MDPs                        |
+|    5 | Finite Horizon Lab                         |
+|------+--------------------------------------------|
+|    6 | Infite Horizon MDPs                        |
 |      | Value Iteration                            |
 |      | Policy Iteration                           |
 |------+--------------------------------------------|
-|    6 | Sarsa / Q-Learning                         |
+|    7 | Sarsa / Q-Learning                         |
 |------+--------------------------------------------|
-|    7 | Model-Based RL                             |
+|    8 | Model-Based RL                             |
 |------+--------------------------------------------|
-|    8 | Function Approximation, Gradient Methods   |
+|    9 | Function Approximation, Gradient Methods   |
 |------+--------------------------------------------|
-|    9 | Bayesian RL: Dynamic Programming, Sampling |
+|   10 | Bayesian RL: Dynamic Programming, Sampling |
 |------+--------------------------------------------|
 |   11 | UCB/UCRL/UCT.                              |
 |      | UCT/AlphaZero.                             |
 |------+--------------------------------------------|
-|   12 | Inverse Reinforcement Learning             |
+|   12 | Project Lab                                |
 |------+--------------------------------------------|
-|   13 | Multiagent extensions: Bayesian Games      |
-|------+--------------------------------------------|
-|   13 | Project presnetations                      |
+|   13 | Project presentations                      |
 |------+--------------------------------------------|
 |   14 | Q&A, Mock exam                             |
 |------+--------------------------------------------|
+* Modules
+** Introduction
+
+Reinforcement learning is the problem of learning to act through interaction with an unknown environment. It is not:
+- A solution.
+- Supervised learning
+- Unsupervised learning.
+
+However, algorithms for reinforcement learning can use (un)supervised learning algorithms as components.
+
+Uncertainty and sequential decision making are central in reinforcement learning. 
+
+** Prerequisites
+
+No previous machine learning knowledge is needed.
+
+*** Mathematics
+The following topics must be absolutely mastered, although a refresher will be given as needed.
+
+1. Set theory and logic.
+2. Probability and expectation.
+3. Elementary calculus (limits, integration, differentiation)
+4. Elementary linear algebra (vector and matrix manipulations)
+
+*** Programming
+- Mature programming ability, preferably in python.
+- Use of git or other version control system
+- Use of (La)TeX.
+
+** Course Books 
+- *Course book* /Decision Making Under Uncertainty and Reinforcement Learning/, Dimitrakakis and Ortner
+- *Statistical reference* Optimal Statistical Decisions, De Groot.
+- *MDP Reference* Markov Decision Processes, Putterman.
+- *Basic RL Reference* Reinforcement Learning: An Introduction, Sutton and Barto.
+- *Advanced RL Reference* Neurodynamic Programming, Bertsekas and Tsitsiklis.
+
+
+
 ** Beliefs and decisions
 *** Utility theory (90')
 1. Rewards and preferences (15') 
@@ -78,6 +217,31 @@ prepare a project, for which they will need to submit a report.
 6. Utility exercise: Gambling (10' pen and paper)
 7. The St. Petersburg Paradox (15')
    
+1. Preferences
+
+We assume that, given a choice between items in a set of possible rewards $R$, we have a complete preference order, meaning that,  for any $a, b \in R$, we either:
+
+(I) Prefer $a$ to $b$, and write $a \succ^* b$
+(II) Prefer $b$ to $a$, and write $a \prec^* b$
+(III) We are indifferent between $a$ and $b$, and write $a \eqsim^* b$
+
+2. Transitivity
+
+The above assumptions do not preclude cycles. 
+However, we can also assume that:
+
+If $a \succ^* b$ and $b \succ^* c$ then $a \succ^* c$.
+
+3. Random rewards.
+
+Now consider the case where, instead of directly choosing rewards, we make a choice, and then obtain a *random* reward. Here, the reward depends in some way in our decision, but we are not sure exactly how.
+
+Examples:
+- Choosing between taking the train and a car.
+- Gambling in a casino.
+- Deciding how much to study for the exam.
+
+
 *** Probability primer
 1. Objective vs Subjective Probability: Example (5')
 2. Relative likelihood: Completeness, Consistency, Transitivity, Complement, Subset (5')
@@ -87,16 +251,24 @@ prepare a project, for which they will need to submit a report.
 6. Expectations (5')
 7. [[file:src/beliefs_and_decisions/probability.py][Expectations exercise]] (10')
 
-1. 
-- Quantum Physics
-- Coin toss
+1. Objective vs Subjective probability
+
+- Quantum Physics: There is real underlying randomness. The probabilities of all possible outcomes can be computed exactly /a priori/
+
+- Coin toss: We model our uncertainty about the outcome through randomness. However, the coin is not really random, and we must /experiment/ to determine the proportion of each possible outcome. We simply lack the information to compute the probabilities /a priori/.
+
+Everything that can possibly happen is contained in the universe of events $\Omega$.
+
+Events $A, B \subset \Omega$ are subsets of the universe. This can be visualised in the coin tosses example.
 
 2. Relative Likelihood
 
-Completeness A>B, B>A or A=B for any A,B
-Transitivity A>B, B>C, A>C
-Complement: A>B => ~A<~B
-Subset: $A \subset B \Rightarrow A < B$
+$A, B$ are possible events, satisfying these properties:
+
+(I) Completeness: $A \succ B$, $A \prec B$ or $A \eqsim B$ for any $A,B$
+(II) Transitivity: If $A \succ B, B \succ C$ then  $A \succ C$
+(III) Complement: If $A \succ B$ then $\neg A \prec \neg B$.
+(IV) Implication: $A \subset B \Rightarrow A \prec B$
 
 3. Measure theory 
 
@@ -113,7 +285,7 @@ $P(\emptyset) = 0$
 $P(\Omega) = 1$
 If $A \cap B = \emptyset$, $P(A \cup B) = P(A) + P(B)$.
 
-5. Exercise: Prove that P satisfies the given properties
+5. Exercise: Prove that P satisfies the given properties of relative likelihood.
 
 6. Random variables
 
@@ -135,6 +307,10 @@ $E_P[f] = \sum_{\omega} f(\omega) P(\omega)$.
 *** Assignment.
 
 Exercise 7, 8, 9.
+
+*** Further Reading:
+
+Decision Making Under Uncertainty and Reinforcement Learning. Chapter 1, 2.
 
 *** Seminar:
 
@@ -175,6 +351,23 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 3. Conditional probability (5').
 4. Bayes theorem (10').
 
+*** The meteorologists problem
+-$n$ metereological stations $\MDPs = \{1, \ldots, n\}$.
+- $x_t$: Weather on day t (0 = dry, 1 = rain)$
+- $P_\mdp(x_t | x_{t-1}, x_{t-2}, \ldots)$ station $\mdp$ prediction for dry/rain.
+
+  
+|---------+-------+-------+-------+-------|
+| Station | Day 1 | Day 2 | Day 3 | Day 4 |
+|---------+-------+-------+-------+-------|
+|       1 |   60% |   50% |   40% |   30% |
+|       2 |   30% |   25% |   20% |   15% |
+|       3 |   40% |   50% |   50% |   40% |
+|---------+-------+-------+-------+-------|
+
+- How should we combine these predictions?
+
+
 *** Statistical decisions (45')
 1. ML Estimation (10')
 2. MAP Estimation (10')
@@ -182,6 +375,76 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 4. MSE Estimation (10') [not done]
 5. Linearity of Expectations (10') [not done]
 6. Convexity of Bayes Decisions (10') [not done]
+
+*** Statistical estimation
+- A family of models $\{P_\mu | \mu \in \MDPs\}$
+- Data $x$.
+**** Maximum Likelihood Estimation
+- Find $\mu$ maximising $P_\mu(x)$
+**** Maximum A Posteriori Estimation
+- Prior belief $\bel$
+- Find $\mu$ mximising $\bel(\mu) P_\mu(x)$
+**** Bayesian Estimation
+- Return function $\bel(\mu | x)  = P_\mu(x) \bel(\mu) / \sum_{\mu'} P_{\mu'}(x) \bel(\mu')
+**** (Bayesian) MSE Estimation
+-  Find $\hat{\mu}$ minimising $\E_\bel[(\hat{\mu} - \mu)^2 | x] = \sum_\mu (\hat{\mu} - \mu)^2 \bel(\mu | x)$
+*** Maximum Likelihood Estimation
+- Input: Data $x_1, \ldots, x_t$, A set of models $\{P_\mdp | \mdp \in \MDPs\}$
+- Inference: The model $\mdp^*_{ML}$ maximising
+  \[
+  P_\mdp(x_1, \ldots, x_t)
+  \]
+- Prediction: $P_{\mdp^*_{ML}}(x_{t+1} | x_1, \ldots, x_t)$.
+*** Maximum A Posteriori Estimation
+- Input: Data $x_1, \ldots, x_t$, set of models $\{P_\mdp | \mdp \in \MDPs\}$, prior $\bel(\mdp)$ on models
+- Inference: The model $\mdp^*_{MAP}$ maximising
+  \[
+  P_\mdp(x_1, \ldots, x_t) \bel(\mdp)
+  \]
+- Prediction: $P_{\mdp^*_{MAP}}(x_{t+1} | x_1, \ldots, x_t)$.
+    
+*** Bayesian Estimation
+- Input: Data $D$, set of models $\{P_\mdp | \mdp \in \MDPs\}$, prior $\bel(\mdp)$ on models
+- Inference: The posterior probability over models:
+  \[
+  \bel(\mdp | x_1, \ldots, x_t) = \frac{P_{\mdp}(x_1, \ldots, x_t) \bel(\mdp)}{\sum_{\mdp'} P_{\mdp'}(x_1, \ldots, x_t) \bel(\mdp)}
+  \]
+- Prediction: $P(x_{t+1} | x_1, \ldots, x_t) = \sum_\mdp P_\mdp(x_{t+1} | x_1, \ldots, x_t)$.
+
+
+*** MSE estimation
+
+Sometimes we care about finding a point estimate for some distribution.
+For example, let us say we have some distribution $\bel$ over some unknown variable $\mdp$ and we need to select one $\mdp$, and we want to report a value $\mdp^*$ minimising the squared error $(\mdp - \mdp^*)^2$ in expectation
+\[
+\E_\bel[(\mdp - \mdp^*)^2] = \int_\MDPs (\mdp - \mdp^*)^2 d \bel(\mdp)
+\]
+To find the minimising $\mdp^*$ we can take the derivative
+\[
+d/d\mdp^* \E_\bel[(\mdp - \mdp^*)^2] 
+= \int_\MDPs d/d\mdp^* (\mdp - \mdp^*)^2 d \bel(\mdp)
+= \int_\MDPs 2 (\mdp - \mdp^*) d \bel(\mdp)
+\]
+
+*** Example: Beta-Bernoulli
+Consider a coin with an unknown distribution of head or tails. We can model this as
+\begin{align*}
+x_t \mid \mdp \sim \Bern(\mdp)\\
+\mdp \sim \Beta(\alpha_0, \beta_0)
+\end{align*}
+[Drawing on board]
+Data: $x_1, \ldots, x_T$ with empirical mean $\hat{\mdp} = \frac{1}{t} \sum_{t=1}^T x_t$.
+**** Bayesian estimate:
+$\alpha_T = \alpha_0 + \sum_{t=1}^T x_t$,
+$\beta_T = \beta_0 + \sum_{t=1}^T (1 - x_t)$
+**** ML estimation:
+We can show that $\mdp^*_{ML} = \hat{\mdp}$.
+**** MAP estimation:
+We can show that $\mdp^*_{MAP} = {\alpha_T - 1}{T}$.
+**** MSE estimation:
+We can show that $\mdp^*_{MSE} = {\alpha_T}{\alpha_T + \beta_T}$.
+
+
 
 *** Lab: Decision problems and estimation (45')
 
@@ -194,12 +457,12 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 *** $n$ meteorologists as prediction with expert advice
 
-   - Predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models for outcomes $y_t$
-   - Make decision $a_t$.
-   - Observe true outcome $y_t$
-   - Obtain instant reward $r_t = \rho(a_t, y_t)$
-   - Utility $U = \sum_{t=1}^T r_t$.
-   - $T$ is the problem *horizon*
+- Predictions $p_t= p_{t,1}, \ldots, p_{t,n}$ of all models for outcomes $y_t$
+- Make decision $a_t$.
+ - Observe true outcome $y_t$
+- Obtain instant reward $r_t = \rho(a_t, y_t)$
+- Utility $U = \sum_{t=1}^T r_t$.
+- $T$ is the problem *horizon*
 
 **** At each step $t$:
 1. Observe $p_t$.
@@ -282,6 +545,8 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 - Update means: $\hat{\mu}_{t,i} = s_{t,i} / n_{t,i}$.
   
 
+*** Priors for Bernoulli distribution
+The standard prio
 *** Policies and exploration
 
 - $n_{t,i}, s_{t,i}$ are *sufficient statistics* for Bernoulli bandits.
@@ -409,8 +674,7 @@ Consequently
 V^* \geq V^*{\pi^*} = v \geq V^* \Rightarrow v = V^*.
 \]
 
-
-** Markov Decision Processes: Infinite horizon I
+** Markov Decision Processes: Infinite horizon
 
 *** Plan
 1. DP: Value Iteration (45')
@@ -559,31 +823,278 @@ Induction: $\|v_n - v^*\| \leq \gamma^{n} / (1 - \gamma)$
 **** Algorithm
 - Input: MDP $\mdp$, discount factor $\gamma$, initial policy $\pol_0$.
 - For $n = 0, 1,\ldots$
-- $v_n = (I - \discount P_{\pol_n})^{-1} r = V^{\pol_n}$.
+- $v_n = (I - \gamma P_{\pol_n})^{-1} r = V^{\pol_n}$.
 - $\pi_{n+1} = \argmax_\pol \{r + \gamma P_\pol v_n$.
 - Until $\pi_{n+1} = \pi_n$.
 
 **** Policy iteration terminates with the optimal policy in a finite number of steps.
 - $v_n \leq v_{n+1}$ (Theorem 6.5.10)
 - There is a finite number of policies.
-- $v_n = \max_\pol \{r + \gamma P_\pi v_n}$
+- $v_n = \max_\pol \{r + \gamma P_\pi v_n\}$
 
-** Markov Decision Processes: Infinite horizon II
-
-1. DP: Temporal Differences (45')
-2. DP: Modified Policy Iteration (45')
-   
-** Markov Decision Processes: Stochastic Approximation
+** RL: Stochastic Approximation
 
 1. Sarsa (45')
 2. Q-learning (45')
- 
+*** Two reinforcement learning setting 
+**** Online learning
+- *Observe* state $s_t$
+- Take action $a_t$
+- Get reward $r_{t+1}$
+- See next state $s_{t+1}$
+
+**** Simulator access
+- *Select* a state $s_t$
+- Take action $a_t$
+- Get reward $r_{t+1}$
+- See next state $s_{t+1}$
+
+*** Learning goals
+
+**** Value function estimation
+\[
+v^\pi_t \to V^\pi
+\qquad
+q^\pi_t \to Q^\pi
+\]
+\[
+v^*_t \to V^*
+\qquad
+q^*_t \to Q^*
+\]
+**** Optimal policy approximation
+\[
+\pi_t \to \pi^*
+\]
+**** Bayes-optimal policy approximation
+\[
+\pi_t \approx \argmax_\pi \int_{\mu} \bel_t(\mu)
+\]
+
+
+*** Monte Carlo Policy Evaluation
+**** Direct Monte Carlo
+- For all states $s$
+- For $k= 1, \ldots, K$
+- Run policy $\pi$, obtain $U^{(k)} = \sum_{t=1}^T r^{(k)}_t$ 
+\[
+v_K(s) = \frac{1}{K} U^{(k)}
+\]
+
+**** Online update
+- For each $k$
+\[
+v_k(s) = v_{k-1}(s) + \alpha_k[U^{(k)}- v_{k-1}(s)]
+\]
+- For $\alpha_k = 1/k$, the algorithm is the same as direct MC.
+
+*** Monte Carlo Updates
+**** Every-visit Monte Carlo
+- Observe trajectory $(s_t, r_t)_t$, set $U = 0$.
+- For $t = T, T-1, \ldots$
+- $U = U + r_t$
+- $n(s_t) = n(s_t) + 1$
+- $v(s_t) = v(s_t) + \frac{1}{n(s_t)}[U - v(s_t)]$.
+
+**** First-visit Monte Carlo
+- Observe trajectory $(s_t, r_t)_t$, set $U = 0$.
+- For $t = T, T-1, \ldots$
+- $U = U + r_t$
+- If $s_t$ not observed before
+- $n(s_t) = n(s_t) + 1$
+- $v(s_t) = v(s_t) + \frac{1}{n(s_t)}[U - v(s_t)]$.
+  
+*** Temporal Differences
+- Idea: Replace actual $U$ with an estimate: $r_t + \gamma v(s_{t+1})$.
+- Temporal difference error: $d_t = r_t + \gamma v(s_{t+1}) - v(s_t)$.
+**** Temporal difference learning
+\[
+v(s_t) = v(s_t) + \alpha_t d_t
+\]
+**** TD (\lambda)
+\[
+v(s_t) = v(s_t) + \alpha_t \sum_{\ell=t}^\infty (\gamma \lambda)^{\ell - t} d_t
+\]
+
+**** Online TD (\lambda)
+- $n(s_{t+1}) = n(s_{t+1}) + 1$
+- For all $s$
+\[
+v(s_t) = v(s_t) + \alpha_t n(s) d_t
+\]
+- $n = \lambda n$
+
+*** Stochastic state-action value approximation
+**** SARSA
+- Input policy $\pi$
+- Generate $s_t, a_t, r_t, s_{t+1}, a_{t+1}$
+- Update value
+\[
+q(s_t, a_t) = q(s_t, a_t) + \alpha[r_t + \gamma q(s_{t+1}, a_{t+1}) - q(s_t, a_t)]
+\]
+
+**** QLearning
+- Observe $s_t, a_t, r_t, s_{t+1}$
+- Update value
+\[
+q(s_t, a_t) = q(s_t, a_t) + \alpha[r_t + \gamma \max_a q(s_{t+1}, a) - q(s_t, a_t)]
+\]
+\[
+q(s_t, a_t) += \alpha[r_t + \gamma \max_a q(s_{t+1}, a) - q(s_t, a_t)]
+\]
+\[
+q(s_t, a_t) = (1 - \alpha) q(s_t, a_t) + \alpha[r_t + \gamma \max_a q(s_{t+1}, a) 
+\]
+
+
+**** QLearning($\lambda)$
+- Observe $s_t, a_t, r_t, s_{t+1}$
+- $e_{s_t, a_t} += 1$
+- Update value
+For every state-action $s,a$:
+\[
+q(s, a) += (e_{s,a} \alpha) [r_t + \gamma \max_a q(s_{t+1}, a) - q(s, a)]
+\]
+- $e = \lambda e$ , $\lambda < 1$.
+
+When $\lambda \to 1$, then you have Monte-Carlo.
+
+**** Experience Replay
+
+Run any of these algorithm repeatedly on a dataset you have collected
+so far.
+
+
+
 ** Model-based RL
-1. Actor-Critic Algorithms (45')
-2. Model-based RL (45')
+*** Model-Based RL
+**** Model $\hat{\mdp_t}$
+Built using data $h_t = \{(s_1, a_1, r_1), \ldots, (s_t, a_t, r_t)\}$.
+\[
+P_t(s'|s,a) \defn P_{\hat{\mdp_t}}(s'|s,a)
+\]
+
+**** Algorithm
+At time $t$
+- $\hat{\mdp}_t = f(h_t)$
+- $\pol_t = \argmax_\pol V_{\hat{\mdp}}^\pol$.
+
+*** Example 1: Model-Based Value Iteration
+
+**** Model
+\[
+P_t(s'|s,a) = \frac{\sum_t \ind{s_{t+1} = s' \wedge s_t = s \wedge a_t = a}}{\sum_t \ind{s_t = s \wedge a_t = a}}
+= 
+\frac{N_t(s,a,s')}{N_t(s,a)}
+\]
+\[
+\rho_t(s,a) = \frac{\sum_t r_t \ind{s_t = s, a_t = a}}{N_t(s,a)}
+\]
+
+*** Asynchronous Value Iteration
+For $n = 1, \ldots, n_{max}$, all $s$
+\[
+v(s) := \max_a \rho_t(s,a) + \gamma \sum_{s'} P_t(s'|s,a) v(s')
+\]
+
+*** Greedy actions
+\[
+a_t = \argmax_a \rho_t(s,a) \gamma \sum_{s'} P_t(s'|s,a) v_{n_max}(s' | s,a)
+\]
+
+*** Example 2: Dyna-Q Learning
+Why do value full iteration at *every* step?
+**** Model
+$P_t,  \rho_t$
+*** Q-iteration
+For some $s \in S$, e.g. $s = s_t$, update:
+\[
+q_t(s,a) = \rho_t(s,a) + \gamma \sum_{s'} P_t(s'|s,a) v_{t-1}(s'),
+\qquad
+v_t(s,a) = \max_a q_t(s,a)
+\]
+*** Greedy actions
+\[
+a_t = \argmax_a q_t(s,a)
+\]
+
+*** Questions
+- Is a point-estimate of the MDP enough?
+- How fully do we need to update the value function?
+- Which states should we update?
+- How fast should the policy change?
+
+
 ** Approximate Dynamic Programming
 1. Fitted Value Iteration (45')
 2. Approximate Policy Iteration (45')
+*** RL in continuous spaces
+- From Tables to Functions
+
+**** Value Function Representations
+- Linear feature representation
+\[
+v_\theta(s) = \sum_{i} \phi_i(s) \theta_i
+\]
+
+**** Policy Representations
+- Linear-softmax (Discrete Actions)
+\[
+\pol_\theta(a | s) =  \exp{\sum_{i} \phi_i(s) \theta_i}
+\]
+
+*** Approximating a function $f$
+
+**** Approximation error of a function $g$
+\[
+\|f - g\| \defn \int_x |f(x) - g(x)| dx
+\]
+**** The optimisation problem
+\[
+\min_g \|f - g\|
+\]
+
+
+*** Fitting a value function to data
+**** Monte-Carlo fitting
+- Input $\pol, K, N, \gamma, \epsilon$
+- Sample $N$ states $s_n$
+- Calculate $\hat{V}_n$ through $K$ rollouts of depth $T  >  \ln_{1/\gamma}[1/\epsilon (1 - \gamma)]$
+- Call $\theta = \textsc{Regression}(\Theta, (s_n, \hat{V}_n))$
+
+**** Regression (linear, with SGD)
+- 
+- Initialise $\theta \in \Theta$.
+- For $n = 1, \ldots, N$
+- $\theta 
+*** Approximate Value Iteration
+- For $s \in S$
+- Calculate $u(s) = \max_a r(s,a) + \gamma \int_{S} dP(s'|s,a) v_\theta(s')$ for all $s \in \hat{S}$.
+-  $\min_\param \| v_\param - u\|_{\hat{S}}$, e.g.
+\[
+\|v_\param(s) - u\|_{\hat{S}} = 
+\sum_{s \in \hat{S}} |v_\param(s) - u(s)|^2
+\]
+
+*** Q-learning with function approximation
+
+**** Standard Q-update:
+\[
+q_{t+1}(s_t, a_t) = (1 - \alpha_t) q_t(s_t, a_t) + \alpha_t [r_t + \gamma \max_a q_t(s_{t+1}, a)]
+\]
+
+**** Gradient Q-update
+Minimise the squared TD-error
+\[
+d_t = r_t + \gamma \max_a q_t(s_{t+1}, a) - q_t(s_t, a_t)
+\]
+\[
+\nabla_\param d_t^2 = 2 d_t \nabla_\param q_t(s_t, a_t)
+\]
+
+
+
+
 ** Policy Gradient
 1. Direct Policy Gradient, i.e. REINFORCE (45')
 2. Actor-Critic Methods, e.g. Soft Actor Critic (45')
