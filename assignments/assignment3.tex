@@ -24,23 +24,46 @@
   Consider the following variant of the meteorologists problem.  You
   have $n$ stations, each one making a prediction for $k$ different
   locations. You can only observe the weather at the location by
-  travelling there. Then you obtain a reward depending on the 
+  travelling there. Then you obtain a reward depending on the location
+  that you visit.
 
-  More formally, at time $t$, each model makes a prediction
-  $P(x_{t} | h_t)$ where $x_{t} = (x_{t,1}, \ldots, x_{t,k})$ are the
-  possible weather values in the $k$ locations and where $h_t$ is the
-  information history. We assume that the meteorologist have complete
-  access to $h_t$, and so past weather in these locations. You select
-  an action $a_t = i$, observe $x_{t.i}$ and obtain reward $\rho(x_{t,i})$ where $\rho$ is a scalar reward function. Your goal is to maximise $\sum_t \rho(x_{t,a_t})$.
+  More formally, at time $t$, each model $\mu$ makes a prediction
+  $p^t_{\mu} = P(x_{t} | h_t)$ where $x_{t} = (x_{t,1}, \ldots, x_{t,k})$ are the
+  possible weather values in the $k$ locations and where
+  $h_t = x_1, \ldots, x_{t-1}$ is the information history. We assume
+  that the meteorologist have complete access to $h_t$, and so past
+  weather in all these locations.
 
-  Is this a type of bandit problem, or something different? How does the amount of information differ from bandit problems and/or the original meteorologists problem? What might an algorithm for solving this problem look like?
+  However, you can only see the weather at one location at a time, and
+  no access to the complete history. At time $t$, you select an action
+  $a_t = i$, observe $x_{t,i}$ the weather at location $i$,and obtain
+  reward $\rho(x_{t,i})$ where $\rho$ is a scalar reward
+  function. Your goal is to maximise $\sum_t \rho(x_{t,a_t})$.
+
+  Is this a type of bandit problem, or something different? How does
+  the amount of information differ from bandit problems and/or the
+  original meteorologists problem? What might an algorithm for solving
+  this problem look like?
 \end{exercise}
+\begin{proof}
+  There are two types of stochastic bandit problems. The standard
+  bandit problem is where we take actions $a_t$ and obtain rewards
+  sampled from $P(r_t | a_t)$. We can make this problem more complex
+  by adding a context $c_t \in C$ at time $t$. This works as follows.
+  First, we observe $c_t$. Then, we take action $a_t$. Finally, we
+  obtain a reward sampled from $P(r_t | a_t, c_t)$.
 
+  We can cast our setting as contextual MAB in a number of different ways. The simplest one is to set $c_t = [p^t_{ij}]$, where $p^t_{ij}$ is the probability of rain for station $i$ and location $j$ at time $t$. Then, assuming there is an optimal station $\mu^*$, we can have the rewards drawn from $r_t = \rho(x_{t,a_t})$, with $x_t \sim P_{\mu^*}(x_t \mid h_t)$.
+
+  Having said that, we can think about algorithms. Thompson sampling analogues are easy to construct, just by sampling models according to their posterior probability. There is no obvious analogue to UCB-style algorithms. However, you could have another way of weighing the different models, based multiplicatively weighted experts algorithm.
+\end{proof}
 
 \begin{exercise}
   Consider the following variant of the bandit problem.  Instead of maximising total reward over time, you have $T$ rounds (where $T$ is known ahead of time) in which to find the highest-reward giving bandit. How would you formalise the problem's objective? Would the algorithms discussed in class be suitable for this problem? Why, or why not?
 \end{exercise}
-
+\begin{proof}
+  The problem can be formalised by saying that $r_t = 0$ for $t < T$ and $r_T = \mu_{a_{T}}$. Variants of the same algorithms are applicable to this problem, though you might want to adjust the UCB interval, for example. 
+\end{proof}
 
 \end{document}
 
