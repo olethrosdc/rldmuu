@@ -20,12 +20,6 @@ def policy_evaluation_dp(mdp, gamma, policy):
     V = np.zeros([mdp.n_states])
     Q = np.zeros([mdp.n_states, mdp.n_actions])
     ## to fill in
-    for n in range(1000):
-        V_old = V.copy()
-        for s in range(mdp.n_states):
-            V[s] = mdp.get_reward(s, policy[s])
-            for j in range(mdp.n_states):
-                V[s] += gamma * mdp.get_transition_probability(s, policy[s],j) * V_old[j]
 
     return V
 
@@ -39,14 +33,9 @@ def policy_iteration(mdp, n_iterations, gamma, policy = None):
     # Evaluation Step
     for iteration in range(n_iterations):
         # Evaluate policy
-        V = policy_evaluation(mdp, gamma, policy)
+
         # Improve policy
-        for s in range(mdp.n_states):
-            for a in range(mdp.n_actions):
-                Q[s, a] = mdp.get_reward(s, a)
-                for j in range(mdp.n_states):
-                    Q[s,a] += gamma * mdp.get_transition_probability(s,a,j) * V[j]
-            policy[s] = np.argmax(Q[s,:])
+
             
         if (sum(abs(policy - old_policy))<1):
             break

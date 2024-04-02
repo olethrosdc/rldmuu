@@ -36,7 +36,7 @@
   \]
   The Bernoulli distribution satisfies
   \[
-    P_\mu(x_1, \ldots, x_T) = \prod_{t=1}^T P_\mu(x_t) = \prod_{t=1}^T \mu^{s_T} (1 - \mu)^{T - s_T},
+    P_\mu(x_1, \ldots, x_T) = \prod_{t=1}^T P_\mu(x_t) =  \mu^{s_T} (1 - \mu)^{T - s_T},
   \]
   where $s_T = \sum_{t=1}^T x_T$, while the Beta distribution has the form
   \[
@@ -193,17 +193,23 @@
   For this exercise, we simply need to calculate the expected utility. If JR can predict perfectly, then he has a chance of $1$ of predicting. If not, then he has a chance of $2^{-4}$. Marginalising over our prior:
   \begin{align*}
     P(B^4) &= P(B^4 | A) P(A) + P(B^4 | \neg A) P(\neg A)\\
-             &=  1 \times 2^{-16} + 2^{-4} \times (1 - 2^{-16}) < 2^{-16} + 2^{-4} \leq 2^{-4} < 1/2
+             &=  1 \times 2^{-16} + 2^{-4} \times (1 - 2^{-16}) < 2^{-16} + 2^{-4} 
   \end{align*}
-  Since our utility is linear, we should take the bet if $P(B^4) < P(\neg B^{4})$, which the above satisfies. We repeat the calculation for $P(B^{5:8} | B^4)$. Note that
+  Since our utility is linear, we can now consider the two events and see what is the utility of taking the bet. If it is positive, then we agree. We can do this by calculating the point where the expected utility is greater than zero:
+  \begin{align*}
+    P(B^4) U(-x) + P(\neg B^{4}) U(100) &\geq 0\\
+    x \leq 100 \times \frac{1 - 2^{-16} - 2^{-4}}{2^{-16} + 2^{-4}} \approx 1500
+  \end{align*}
+  So you should bet up to 1500.
+   We repeat the calculation for $P(B^{5:8} | B^4)$. Note that
   \[
     P(A | B^4) = P(A) P(B^4 | A) / P(B^4) \approx 2^{-16} /[2^{-16} + 2^{-4}] = 1 / [1 + 2^{12}] \approx 2^{-12}.
   \]
   Plugging in:
   \begin{align*}
-    P(B^{5:8} | B^4) = P(B^{5:8} | A) P(A | B^4) + P(B^{5:8} | \neg A) P(\neg A | B^4) =  1 \times 2^{-12} + 2^{-4} \times (1 - 2^{-12}) \leq 2^{-12} + 2^{-4} \leq 2^{-4} \leq 1/2.
+    P(B^{5:8} | B^4) = P(B^{5:8} | A) P(A | B^4) + P(B^{5:8} | \neg A) P(\neg A | B^4) =  1 \times 2^{-12} + 2^{-4} \times (1 - 2^{-12}) \leq 2^{-12} + 2^{-4} 
   \end{align*}
-  So, we still should be more than sure that JR is not psychic even after 4 straight tosses and hence take the bet.
+  So, we still should be more than sure that JR is not psychic even after 4 straight tosses and bet up to approximately 1490. 
 
   \textbf{Note:} Of course, we are not being very careful here. We only considered the possibility that JR is a psychic or not. We haven't considered the possibility that JR may be performing a magic trick. This alternative hypothesis may have a much higher prior probability than JR being psychic.
   

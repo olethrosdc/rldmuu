@@ -8,22 +8,10 @@ def backwards_induction(mdp, policy, T):
     Q = np.zeros([mdp.n_states, mdp.n_actions, T])
     ## to fill in
     # First fill in the value at time T:
-    for state in range(mdp.n_states):
-        for action in range(mdp.n_actions): 
-            Q[state, action, T - 1] = mdp.get_reward(state, action)
-        V[state, T-1] = max(Q[state, :, T-1])
-        policy[state, T-1] = np.argmax(Q[state, :, T-1])
 
-    for k in range(T - 1):
-        t = T - 2 - k
-        for state in range(mdp.n_states):
-            for action in range(mdp.n_actions):
-                reward = mdp.get_reward(state, action)
-                Q[state, action, t] = reward
-                for next_state in range(mdp.n_states):
-                    Q[state, action, t] += mdp.get_transition_probability(state, action, next_state) * V[next_state, t+1]
-            V[state, t] = max(Q[state, :, t])
-            policy[state, t] = np.argmax(Q[state, :, t])
+    # Then go back and fill all other state values
+
+    #
     return policy, V, Q
 
 n_actions = 2
