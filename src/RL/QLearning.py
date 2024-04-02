@@ -21,7 +21,7 @@ class QLearning:
     def update(self, action, reward, state):
         self.prev_action = action
         if (self.prev_state >=0):
-            self.Q[self.prev_state, self.prev_action] += self.alpha * (reward + self.discount * max(self.Q[state, :]) - self.Q[self.prev_state, self.prev_action])
+            # fill in
         self.prev_state = state
 
     def reset(self, state):
