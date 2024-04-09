@@ -22,8 +22,7 @@ class Sarsa:
     
     def update(self, action, reward, next_state):
         if (self.prev2_state >=0):
-            self.Q[self.prev2_state, self.prev_action] += self.alpha * (reward + self.discount * self.Q[self.prev_state, action] - self.Q[self.prev2_state, self.prev_action])
-
+            # fill in
         self.prev2_state = self.prev_state
         self.prev_state = next_state
         self.prev_action = action
