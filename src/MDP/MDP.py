@@ -30,7 +30,7 @@ class DiscreteMDP:
         # check transitions
         for s in range(self.n_states):
             for a in range(self.n_actions):
-                
+                #print(s,a, ":", self.P[s,a,:])
                 assert(abs(np.sum(self.P[s,a,:])-1) <= 1e-3)
                 
     # get the probability of next state j given current state s, action a, i.e. P(j|s,a)

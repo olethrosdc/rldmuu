@@ -3,7 +3,7 @@ import gym
 import gym_bandits
 from gym import spaces
 from gym.utils import seeding
-
+import MDP
 import numpy as np
 
 ## This defines the Chain environment
@@ -53,25 +53,29 @@ class Chain(gym.Env):
     P = np.zeros([5, 2, 5])
     R = np.zeros([5,2])
 
-    delta = 0.4
+    delta = self.delta
+    
     ## Action 0 takes you to the starting state most of the time
     for s in range(5):
       P[s, 0, 0]= 1 - delta
     for s in range(4):
       P[s, 0, s+1]= delta
     P[4, 0, 4] = delta
+    
     ## Action 1 takes you to the right most of the time
     for s in range(5):
       P[s, 1, 0] = delta
     for s in range(4):
-      P[s, 1, s+1]= delta
+      P[s, 1, s + 1]= 1 - delta
+      
     P[4,1,4] = 1 - delta
 
-    R[0, 0] = 0.2
-    R[0, 1] = 0.2
+    R[0, 0] = self.epsilon
+    R[0, 1] = self.epsilon
     R[4, 0] = 1
     R[4, 1] = 1
-    mpd = DiscreteMDP(5, 2, P, R)
+    mdp = MDP.DiscreteMDP(5, 2, P, R)
+    return mdp
   
  
 
