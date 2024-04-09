@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, '../MDP')
 import Sarsa
 import QLearning
 import chain
@@ -26,7 +28,7 @@ environments.append(chain.Chain(5))
 algs = []
 algs.append(Sarsa.Sarsa)
 #algs.append(QLearning.QLearning)
-algs.append(ModelBasedRL.GreedyQIteration)
+#algs.append(ModelBasedRL.GreedyQIteration)
 #algs.append(MDPBelief.ExpectedMDPHeuristic)
 #algs.append(MDPBelief.SampleBasedRL)
 n_algs = len(algs)

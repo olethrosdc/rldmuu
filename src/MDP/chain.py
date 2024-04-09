@@ -49,8 +49,30 @@ class Chain(gym.Env):
   def render(self, mode='human', close=False):
     pass
 
+  def getMDP(self):
+    P = np.zeros([5, 2, 5])
+    R = np.zeros([5,2])
 
+    delta = 0.4
+    ## Action 0 takes you to the starting state most of the time
+    for s in range(5):
+      P[s, 0, 0]= 1 - delta
+    for s in range(4):
+      P[s, 0, s+1]= delta
+    P[4, 0, 4] = delta
+    ## Action 1 takes you to the right most of the time
+    for s in range(5):
+      P[s, 1, 0] = delta
+    for s in range(4):
+      P[s, 1, s+1]= delta
+    P[4,1,4] = 1 - delta
 
+    R[0, 0] = 0.2
+    R[0, 1] = 0.2
+    R[4, 0] = 1
+    R[4, 1] = 1
+    mpd = DiscreteMDP(5, 2, P, R)
+  
  
 
 

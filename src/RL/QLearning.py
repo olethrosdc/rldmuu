@@ -22,6 +22,7 @@ class QLearning:
         self.prev_action = action
         if (self.prev_state >=0):
             # fill in
+            pass
         self.prev_state = state
 
     def reset(self, state):
