@@ -32,6 +32,8 @@ class DiscreteMDP:
             for a in range(self.n_actions):
                 #print(s,a, ":", self.P[s,a,:])
                 assert(abs(np.sum(self.P[s,a,:])-1) <= 1e-3)
+                assert((P[s,a,:] <= 1).all())
+                assert((P[s,a,:] >= 0).all())
                 
     # get the probability of next state j given current state s, action a, i.e. P(j|s,a)
     def get_transition_probability(self, state, action, next_state):
