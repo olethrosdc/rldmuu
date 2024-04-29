@@ -1143,6 +1143,120 @@ This allows us to use the approximation
 \nabla \E[U] \approx \frac{1}{K} \sum_{k=1}^K  \sum_h U(h^{(k)}) \nabla \ln P(h^{(k)}), \qquad h^{(k)} \sim P(h)
 \]
 
+** Two-Player Games
+*** One-shot normal-form games
+Given a utility function $U(a, \omega)$, we need to find the value of the game
+\[
+U^* = \max_a \min_\omega U(a, \omega) = \max_a \min_\omega U(a, \omega).
+\]
+There is no guarantee that there is a solution. However, when we define
+\[
+U(\pi, \xi) = \sum_a \sum_\omega \pi(a) U(a, \omega) \xi(\omega)
+\]
+a solution is guaranteed by the /minimax theorem/
+
+*** Extensive-form alternating-move zero sum games
+- At time $t$:
+- The state is $s_t$, players receive rewards $\rho(s_t), -\rho(s_t)$
+- Player chooses action $a_t$, which is revealed.
+- The state changes to $s_{t+1}$, and is revealed.
+- Players receive reward $\rho(s_{t+1}), -\rho(s_{t+1})$
+- Player chooses action $\omega_{t+1}$.
+- The state changes to $s_{t+2}$.
+- Player $a$ receives $\rho(s_t)$ and $b$ receives $-\rho(s_t)$.
+The utility for player $a$ is 
+\[
+U^{1} = \sum_t \rho(s_t),
+\]
+while for $\omega$ it is
+\[
+U^{2} = -\sum_t \rho(s_t)
+\]
+*** Backwards induction for Alternating Zero Sum Games
+Let *$\pi_1$* and *$\pi_2$* be the policies of *each* player and *$\pi$* the *joint* policy.
+**** The value function of a policy $\pi = (\pi_1, \pi_2)$
+For the utility of player 1, we get:
+\begin{align}
+V^{1,\pol}_t(s) 
+&\defn \E_\pi [U^{1}_t \mid s_t = s]
+= \rho(s) + \E[U^{1}_{t+1} \mid s_t = s]\\
+&= \rho(s) + \sum_a \pol(a \mid s) \sum_{j} V^{1,\pi}_{t+1}(j) P(j\mid s, a)\\
+V^{1,\pol}_{t+1}(j) 
+&= \rho(j) + \sum_b \pol(b \mid j)  \sum_{j} V^{1,\pi}_{t+2}(j) P(k \mid j, b)
+\end{align}
+
+We can define the optimal value function analogously to MDPs:
+\begin{align}
+V^{1,*}_t(s) 
+&= \max_{\pi_1} \min_{\pi_2} \E_\pi [U^{+}_t \mid s_t = s]\\
+&= \rho(s) + \max_a \sum_{j} V^{1,*}_{t+1}(j) P(j\mid s, a)\\
+V^{1,*}_{t+1}(j) 
+&= \rho(j) + \min_\omega  \sum_{j} V^{1,*}_{t+1}(j) P(k \mid j, \omega)
+\end{align}
+The above recursion can be used to calculate the minimax value function.
+
+*** Example: Chicken
+| $\rho^1, \rho^2$ | turn  | dare |
+|------------------+-------+----------|
+| /                | <     | <        |
+| turn             | 0, 0  | -5, -1   |
+|------------------+-------+----------|
+| dare             | 1, -5 | -10, -10 |
+
+*** Example: Prisoner's dilemma
+| $\rho^1, \rho^2$ | cooperate | defect   |
+|------------------+-----------+----------|
+| /                | <         | <        |
+| cooperate        | 0, 0      | -5, -1   |
+|------------------+-----------+----------|
+| defect           | 1, -5     | -10, -10 |
+
+
+
+*** Example: penalty shot
+| $\rho^1, \rho^2$ | kick left | kick right |
+|------------------+-----------+------------|
+| /                | <         | <          |
+| dive left        | 1, -1     | -1, 1      |
+|------------------+-----------+------------|
+| dive right       | -1 1      | 1, -1      |
+
+
+
+*** Extensive-form general sum games
+- At time $t$:
+- The state is $s_t$, players receive rewards $\rho^i(s_t)$.
+- Player $i = I(s_t)$ chooses an action.
+- The state changes to $s_{t+1}$, and is revealed.
+The utility for each player is
+\[
+U^{i} = \sum_t \rho^i(s_t)
+\]
+
+*** Backwards induction for Alternating General Sum Games
+Let *$\pi_i$* be the policy of the \(i\)-th player and *$\pi$* the *joint* policy.
+**** The value function of a policy $\pi = (\pi_i)_{i=1}^n$
+For any player $i$, we can define their value at time $t$ as:
+\begin{align}
+V^{i,\pol}_t(s) 
+&\defn \E_\pi [U^{i}_t \mid s_t = s]\\
+&= \rho^i(s) + \sum_{a \in A} \pol_{I(s)}(a \mid s) \sum_{j} V^{1,\pi}_{t+1}(j) P(j\mid s, a)
+\end{align}
+
+**** Optimal policies
+For *perfect information* games, we can use this recursion:
+\begin{align}
+a^*_t(s) &= 
+ \argmax_{a \in A} 
+ \sum_{j} V^{I(s),*}_{t+1}(j)P(j\mid s, a)\\
+V^{i,*}_t &=  \rho^i(s) +  \sum_{j} V^{i,\pi}_{t+1}(j) P(j\mid s, a^*_t(s)) &&\forall i
+\end{align}
+This ensures that we update the values of *all players* at each step.
+
+
+
+
+
 
 ** Bayesian methods
 1. Thompson sampling (25')
@@ -1166,8 +1280,6 @@ This allows us to use the approximation
 1. Apprenticeship learning (45')
 2. Probabilistic IRL (45')
 
-** Multiplayer games
 
-Bayesian games (90')
 
    
