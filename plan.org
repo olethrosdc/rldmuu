@@ -1092,6 +1092,18 @@ d_t = r_t + \gamma \max_a q_t(s_{t+1}, a) - q_t(s_t, a_t)
 \nabla_\param d_t^2 = 2 d_t \nabla_\param q_t(s_t, a_t)
 \]
 
+*** Approximate policy iteration
+- $\pi_k = \argmin_{\pi \in \Pi} \|\hat{L} v_{k-1} - \hat{L} v_{k-1}\|$
+- $v_k = \argmin_{v \in V} \|v - \hat{V}^{\pi_k}\|$
+*** Bellman error methods
+
+\[
+\|v - Lv\| = \sum_s D(s)^2
+\]
+\[
+D(s) = v(s) - \max_a \int_S v(j) dP(j | s,a)
+\]
+
 
 
 
@@ -1142,7 +1154,8 @@ This allows us to use the approximation
 \[
 \nabla \E[U] \approx \frac{1}{K} \sum_{k=1}^K  \sum_h U(h^{(k)}) \nabla \ln P(h^{(k)}), \qquad h^{(k)} \sim P(h)
 \]
-
+*** Importnace sampling
+If we want to improve, then we get 
 
 ** Bayesian methods
 1. Thompson sampling (25')
