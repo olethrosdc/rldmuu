@@ -1268,7 +1268,35 @@ This ensures that we update the values of *all players* at each step.
 
 
 
+** Approximate methods in games
+*** General architecture
+- Board representation
+- Rollouts
+- Monte-Carlo Tree Search
+- Value approximation
+- Policy approximation
+- Model approximation
+**** Example: DeepMind engines
+1. Alpha Go (MCTS, value approximation)
+2. Alpha Go Zero (MCTS, value and policy approximation)
+3. Alpha Zero (almost the same)
+4. Mu Zero (MCTS, value, policy and model approximation)
 
+*** Monte-Carlo Tree Search
+For each state $s$, select moves according to:
+- Number of visits
+- Move probability
+- Expected value
+*** Rollouts
+
+**** Plain MCTS 
+- Start from $s_t$
+- Generate $a_t = \argmax_a Q_\theta(s, a) + U(s_t, a)$ where
+\[
+U(s,a) = P(s,a) / N(s,a)
+\]
+- Update $Q_\theta(s,a) \to 1/N(s,a) \sum_{s' \in S_T} V(s')
+- Loses
 
 
 ** Bayesian methods
