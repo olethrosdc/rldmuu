@@ -1311,10 +1311,31 @@ U(s,a) = P(s,a) / N(s,a)
 - Memoryless policies
 - Adaptive policies
 *** Counterexamples
+- Mixed MDP
+- Many bandit problems
+*** Bayesian update
+- Just Bayes's theorem
+- Example: Discrete MDPs
 *** Gradient ascent
+\[
+\nabla_\pol E^\pol_\bel[U] = 
+\int_\MDPs \nabla_\pol \E^\pol_\mdp[U] d \bel(\mdp)
+\approx 
+\frac{1}{K} \sum_{k=1}^K \nabla_\pol \E^\pol_\mdp^{k}[U], \sim \mdp^{k} \sim \bel
+\]
 *** Bayesian value function
+\[
+U^*(\bel) = \max_\pol U(\pol, \bel)
+\]
+\[
+U(\pol, \bel) \leq U^*(\bel) \leq \int_\MDPs \max_\pol U(\pol, \mdp) d \bel(\mdp)
+\]
+*** Hyperstates
+
 *** Branch and bound
 *** POMDPs
+- In POMDPs, the state is unknown, so we must infer both $\mdp, s$.
+
 
 
 ** Regret bounds
