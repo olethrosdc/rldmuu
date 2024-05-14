@@ -1305,6 +1305,18 @@ U(s,a) = P(s,a) / N(s,a)
 3. BAMDPs (25')
 4. POMDPs (20')
 
+*** Priors
+- Maximising expected utility
+*** Policy types
+- Memoryless policies
+- Adaptive policies
+*** Counterexamples
+*** Gradient ascent
+*** Bayesian value function
+*** Branch and bound
+*** POMDPs
+
+
 ** Regret bounds
 1. UCB (45')
 2. UCRL (45')
