@@ -14,6 +14,8 @@
 #+LaTeX_HEADER: \newcommand \mdp {\mu}
 #+LaTeX_HEADER: \newcommand \MDPs {\mathcal{M}}
 #+LaTeX_HEADER: \newcommand \bel {\xi}
+#+LaTeX_HEADER: \newcommand \Bern {\textrm{Bern}}
+#+LaTeX_HEADER: \newcommand \Beta {\textrm{Beta}}
 #+TAGS: activity advanced definition exercise homework project example theory code
 #+OPTIONS:   H:3
 
@@ -128,7 +130,6 @@ The follow marking guidelines are what one would expect from students attaining 
 5. There is no mention of methods beyond the source material or independent thinking.
 cd
 
-
 * Schedule
 
 |------+--------------------------------------------|
@@ -170,6 +171,7 @@ cd
 |   14 | Q&A, Mock exam                             |
 |------+--------------------------------------------|
 * Modules
+
 ** Introduction
 
 Reinforcement learning is the problem of learning to act through interaction with an unknown environment. It is not:
@@ -385,7 +387,7 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 - Prior belief $\bel$
 - Find $\mu$ mximising $\bel(\mu) P_\mu(x)$
 **** Bayesian Estimation
-- Return function $\bel(\mu | x)  = P_\mu(x) \bel(\mu) / \sum_{\mu'} P_{\mu'}(x) \bel(\mu')
+- Return function $\bel(\mu | x)  = P_\mu(x) \bel(\mu) / \sum_{\mu'} P_{\mu'}(x) \bel(\mu')$
 **** (Bayesian) MSE Estimation
 -  Find $\hat{\mu}$ minimising $\E_\bel[(\hat{\mu} - \mu)^2 | x] = \sum_\mu (\hat{\mu} - \mu)^2 \bel(\mu | x)$
 *** Maximum Likelihood Estimation
@@ -564,7 +566,7 @@ Let
 \[
 \hat{\mu}_n = \sum_{i=1}^t r_i / n,
 \]
-be the sample mean estimate of an iiid RV in [0,1] with $\E[r_i] = \mu$. Then we have
+be the sample mean estimate of an iid RV in [0,1] with $\E[r_i] = \mu$. Then we have
 \[
 \Pr(\hat{\mu}_n \geq \mu + \epsilon) \leq \exp(-2n\epsilon^2)
 \]
@@ -712,8 +714,6 @@ v_{n+1}(s) = \rho_\mu(s) + \gamma \sum_{j} P_\mu(j | s, a) v_n(j).
 - $\|x\|_p = \left(\sum_t |x_t|^p\right)^{1/p}$
 
 *** Matrix notation for finite MDPs
-
-
 
 - $r$: reward vector.
 - $P_\pi$: transition matrix.
@@ -1092,17 +1092,251 @@ d_t = r_t + \gamma \max_a q_t(s_{t+1}, a) - q_t(s_t, a_t)
 \nabla_\param d_t^2 = 2 d_t \nabla_\param q_t(s_t, a_t)
 \]
 
+*** Approximate policy iteration
+- $\pi_k = \argmin_{\pi \in \Pi} \|\hat{L} v_{k-1} - \hat{L} v_{k-1}\|$
+- $v_k = \argmin_{v \in V} \|v - \hat{V}^{\pi_k}\|$
+*** Bellman error methods
+
+\[
+\|v - Lv\| = \sum_s D(s)^2
+\]
+\[
+D(s) = v(s) - \max_a \int_S v(j) dP(j | s,a)
+\]
+
 
 
 
 ** Policy Gradient
 1. Direct Policy Gradient, i.e. REINFORCE (45')
 2. Actor-Critic Methods, e.g. Soft Actor Critic (45')
+
+*** Policy gradient
+We want to solve the problem
+\[
+\max_\theta \E_\theta[U],
+\qquad
+\E_\theta[U] = \int_S dy(s) \int_{H} p_\theta(h \mid s_1 = s) U(h),
+\]
+where
+- $\theta$ parametrises a policy
+- $y(s)$ is a starting-state distribution
+- $h = (s_t, a_T, r_t)_{t=1}^T$ is a trajectory and 
+- $U(h) = \sum_t r_t \gamma^{t-1}$ is its utility
+*** Policy Gradient Theorem I: Analytic Gradients
+\[
+V = (I - \gamma P)^{-1} r
+\]
+First of all, $\nabla A^{-1} = - A^{-1} \nabla A A^{-1}$ and so
+\[
+\nabla_\theta V 
+= \gamma (I - \gamma P)^{-1} \nabla P (I - \gamma P)^{-1}
+\]
+Finally,
+\[
+\nabla P_{ij} = \nabla \sum_a P(s' = j | s = i , a) \pol (a \mid s)
+\]
+*** Policy Gradient Theorem II: State-Visitations
+- $X = (I - \gamma P)^{-1}$ discounted state-visitation matrix
+- $x = y^\top X$ expected state visitations from starting state distribution
+Then 
+\[
+\nabla \E[U] = \sum_x x(s) \sum_a \nabla \pol(a | s) Q^\pol(s,a)
+\]
+- We can approximate $x$ and $Q$ for the gradient update.
+*** Policy Gradient Theorem III: Reinforce
+\[
+\nabla \E[U]
+ = \sum_h U(h) \nabla P(h)
+= \sum_h U(h) P(h) \nabla \ln P(h).
+\]
+This allows us to use the approximation
+\[
+\nabla \E[U] \approx \frac{1}{K} \sum_{k=1}^K  \sum_h U(h^{(k)}) \nabla \ln P(h^{(k)}), \qquad h^{(k)} \sim P(h)
+\]
+
+
+** Two-Player Games
+*** One-shot normal-form games
+Given a utility function $U(a, \omega)$, we need to find the value of the game
+\[
+U^* = \max_a \min_\omega U(a, \omega) = \max_a \min_\omega U(a, \omega).
+\]
+There is no guarantee that there is a solution. However, when we define
+\[
+U(\pi, \xi) = \sum_a \sum_\omega \pi(a) U(a, \omega) \xi(\omega)
+\]
+a solution is guaranteed by the /minimax theorem/
+
+*** Extensive-form alternating-move zero sum games
+- At time $t$:
+- The state is $s_t$, players receive rewards $\rho(s_t), -\rho(s_t)$
+- Player chooses action $a_t$, which is revealed.
+- The state changes to $s_{t+1}$, and is revealed.
+- Players receive reward $\rho(s_{t+1}), -\rho(s_{t+1})$
+- Player chooses action $\omega_{t+1}$.
+- The state changes to $s_{t+2}$.
+- Player $a$ receives $\rho(s_t)$ and $b$ receives $-\rho(s_t)$.
+The utility for player $a$ is 
+\[
+U^{1} = \sum_t \rho(s_t),
+\]
+while for $\omega$ it is
+\[
+U^{2} = -\sum_t \rho(s_t)
+\]
+*** Backwards induction for Alternating Zero Sum Games
+Let *$\pi_1$* and *$\pi_2$* be the policies of *each* player and *$\pi$* the *joint* policy.
+**** The value function of a policy $\pi = (\pi_1, \pi_2)$
+For the utility of player 1, we get:
+\begin{align}
+V^{1,\pol}_t(s) 
+&\defn \E_\pi [U^{1}_t \mid s_t = s]
+= \rho(s) + \E[U^{1}_{t+1} \mid s_t = s]\\
+&= \rho(s) + \sum_a \pol(a \mid s) \sum_{j} V^{1,\pi}_{t+1}(j) P(j\mid s, a)\\
+V^{1,\pol}_{t+1}(j) 
+&= \rho(j) + \sum_b \pol(b \mid j)  \sum_{j} V^{1,\pi}_{t+2}(j) P(k \mid j, b)
+\end{align}
+
+We can define the optimal value function analogously to MDPs:
+\begin{align}
+V^{1,*}_t(s) 
+&= \max_{\pi_1} \min_{\pi_2} \E_\pi [U^{+}_t \mid s_t = s]\\
+&= \rho(s) + \max_a \sum_{j} V^{1,*}_{t+1}(j) P(j\mid s, a)\\
+V^{1,*}_{t+1}(j) 
+&= \rho(j) + \min_\omega  \sum_{j} V^{1,*}_{t+1}(j) P(k \mid j, \omega)
+\end{align}
+The above recursion can be used to calculate the minimax value function.
+
+*** Example: Chicken
+| $\rho^1, \rho^2$ | turn  | dare |
+|------------------+-------+----------|
+| /                | <     | <        |
+| turn             | 0, 0  | -5, -1   |
+|------------------+-------+----------|
+| dare             | 1, -5 | -10, -10 |
+
+*** Example: Prisoner's dilemma
+| $\rho^1, \rho^2$ | cooperate | defect   |
+|------------------+-----------+----------|
+| /                | <         | <        |
+| cooperate        | 0, 0      | -5, -1   |
+|------------------+-----------+----------|
+| defect           | 1, -5     | -10, -10 |
+
+
+
+*** Example: penalty shot
+| $\rho^1, \rho^2$ | kick left | kick right |
+|------------------+-----------+------------|
+| /                | <         | <          |
+| dive left        | 1, -1     | -1, 1      |
+|------------------+-----------+------------|
+| dive right       | -1 1      | 1, -1      |
+
+
+
+*** Extensive-form general sum games
+- At time $t$:
+- The state is $s_t$, players receive rewards $\rho^i(s_t)$.
+- Player $i = I(s_t)$ chooses an action.
+- The state changes to $s_{t+1}$, and is revealed.
+The utility for each player is
+\[
+U^{i} = \sum_t \rho^i(s_t)
+\]
+
+*** Backwards induction for Alternating General Sum Games
+Let *$\pi_i$* be the policy of the \(i\)-th player and *$\pi$* the *joint* policy.
+**** The value function of a policy $\pi = (\pi_i)_{i=1}^n$
+For any player $i$, we can define their value at time $t$ as:
+\begin{align}
+V^{i,\pol}_t(s) 
+&\defn \E_\pi [U^{i}_t \mid s_t = s]\\
+&= \rho^i(s) + \sum_{a \in A} \pol_{I(s)}(a \mid s) \sum_{j} V^{1,\pi}_{t+1}(j) P(j\mid s, a)
+\end{align}
+
+**** Optimal policies
+For *perfect information* games, we can use this recursion:
+\begin{align}
+a^*_t(s) &= 
+ \argmax_{a \in A} 
+ \sum_{j} V^{I(s),*}_{t+1}(j)P(j\mid s, a)\\
+V^{i,*}_t &=  \rho^i(s) +  \sum_{j} V^{i,\pi}_{t+1}(j) P(j\mid s, a^*_t(s)) &&\forall i
+\end{align}
+This ensures that we update the values of *all players* at each step.
+
+
+
+** Approximate methods in games
+*** General architecture
+- Board representation
+- Rollouts
+- Monte-Carlo Tree Search
+- Value approximation
+- Policy approximation
+- Model approximation
+**** Example: DeepMind engines
+1. Alpha Go (MCTS, value approximation)
+2. Alpha Go Zero (MCTS, value and policy approximation)
+3. Alpha Zero (almost the same)
+4. Mu Zero (MCTS, value, policy and model approximation)
+
+*** Monte-Carlo Tree Search
+For each state $s$, select moves according to:
+- Number of visits
+- Move probability
+- Expected value
+*** Rollouts
+
+**** Plain MCTS 
+- Start from $s_t$
+- Generate $a_t = \argmax_a Q_\theta(s, a) + U(s_t, a)$ where
+\[
+U(s,a) = P(s,a) / N(s,a)
+\]
+- Update $Q_\theta(s,a) \to 1/N(s,a) \sum_{s' \in S_T} V(s')
+- Loses
+
+
 ** Bayesian methods
 1. Thompson sampling (25')
 2. Bayesian Policy Gradient (20')
 3. BAMDPs (25')
 4. POMDPs (20')
+
+*** Priors
+- Maximising expected utility
+*** Policy types
+- Memoryless policies
+- Adaptive policies
+*** Counterexamples
+- Mixed MDP
+- Many bandit problems
+*** Bayesian update
+- Just Bayes's theorem
+- Example: Discrete MDPs
+*** Gradient ascent
+\[
+\nabla_\pol E^\pol_\bel[U] = 
+\int_\MDPs \nabla_\pol \E^\pol_\mdp[U] d \bel(\mdp)
+\approx 
+\frac{1}{K} \sum_{k=1}^K \nabla_\pol \E^\pol_\mdp^{k}[U], \sim \mdp^{k} \sim \bel
+\]
+*** Bayesian value function
+\[
+U^*(\bel) = \max_\pol U(\pol, \bel)
+\]
+\[
+U(\pol, \bel) \leq U^*(\bel) \leq \int_\MDPs \max_\pol U(\pol, \mdp) d \bel(\mdp)
+\]
+*** Hyperstates
+
+*** Branch and bound
+*** POMDPs
+- In POMDPs, the state is unknown, so we must infer both $\mdp, s$.
+
+
 
 ** Regret bounds
 1. UCB (45')
@@ -1120,8 +1354,6 @@ d_t = r_t + \gamma \max_a q_t(s_{t+1}, a) - q_t(s_t, a_t)
 1. Apprenticeship learning (45')
 2. Probabilistic IRL (45')
 
-** Multiplayer games
 
-Bayesian games (90')
 
    
