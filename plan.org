@@ -1331,7 +1331,7 @@ U^*(\bel) = \max_\pol U(\pol, \bel)
 U(\pol, \bel) \leq U^*(\bel) \leq \int_\MDPs \max_\pol U(\pol, \mdp) d \bel(\mdp)
 \]
 *** Hyperstates
-
+- Exact solution: Bayes-Adaptive Markov Decision Processesx
 *** Branch and bound
 *** POMDPs
 - In POMDPs, the state is unknown, so we must infer both $\mdp, s$.
@@ -1344,6 +1344,36 @@ U(\pol, \bel) \leq U^*(\bel) \leq \int_\MDPs \max_\pol U(\pol, \mdp) d \bel(\mdp
 ** MCTS
 1. UCT (45')
 2. Alphazero (45')
+*** Generic Monte-Carlo Planning
+**** MCPlanner(state)
+- /repeat/ {
+- search(state, 0)
+- } /until/ TimeOut
+- /return/ BestAction(state, 0)
+**** search(state, depth)
+- /if/ Terminal(state) /return/ 0
+- /if/ Leaf(state) /return/ Evaluate(state)
+- a = SelectAction(state, depth)
+- (NextState, reward) = Simulate(state, action)
+- q = reward + \gamma search(NextState, depth + 1)
+- UpdateValue(state, action, q, depth)
+- return q
+
+ 
+*** Bandit-Based Monte-Carlo Planning
+**** SelectAction(s, d)
+- $N_{s,d}(t)$: Visits of state $s$
+- $N_{s,a,d}(t)$: Number of times $s,a$ is selected
+\[
+a^*(s,t) = \argmax_a Q_t(s, a, d) + C \sqrt{\ln(N_{s,d}(t))/N_{s,a,d}(t)}
+\]
+**** Search(s, d)
+- $a = SelectAction(s,d)$
+- $q = \rho(s, a) + Search(S+1)$
+- $Q_t(s, a, d) = Q_{t-1}(s,a, d) (1 - \alpha) + \alpha q$
+- Return $q$
+  
+
 ** Advanced Bayesian Models
 1. Linear Models (20')
 2. Gaussian Processes (25')
