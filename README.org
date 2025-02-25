@@ -20,6 +20,18 @@
 #+OPTIONS:   H:3
 
 * General course information
+
+** Reinforcement learning
+Reinforcement learning is the problem of learning to act through interaction with an unknown environment. It is not:
+- A solution.
+- Supervised learning
+- Unsupervised learning.
+
+However, algorithms for reinforcement learning can use (un)supervised learning algorithms as components.
+
+Uncertainty and sequential decision making are central in reinforcement learning. 
+
+** Course structure
 The course will give a thorough introduction to reinforcement
 learning. The first 8 weeks will be devoted to the core theory and
 algorithms of reinforcement learning. The final 6 weeks will be
@@ -29,6 +41,37 @@ inroduced.
 The first 6 weeks will require the students to complete 5
 assignments. The remainder of the term, the students will have to
 prepare a project, for which they will need to submit a report.
+
+
+** Prerequisites
+
+No previous machine learning knowledge is needed.
+
+*** Mathematics
+The following topics must be absolutely mastered, although a refresher will be given as needed.
+
+1. Set theory and logic.
+2. Probability and expectation.
+3. Elementary calculus (limits, integration, differentiation)
+4. Elementary linear algebra (vector and matrix manipulations)
+
+*** Programming
+- Mature programming ability, preferably in python.
+- Use of git or other version control system
+- Use of (La)TeX.
+
+** Course Books 
+- *Course book* /Decision Making Under Uncertainty and Reinforcement Learning/, Dimitrakakis and Ortner
+- *Basic RL Reference* Reinforcement Learning: An Introduction, Sutton and Barto.
+- *Statistical reference* Optimal Statistical Decisions, De Groot.
+- *MDP Reference* Markov Decision Processes, Putterman.
+- *Quick Reference* Algorithms for Reinforcement Learning, Czepesvari.
+- *Huge Reference* Dynamic Programming and Optimal Control, Bertsekas.
+- *Advanced* Neurodynamic Programming, Bertsekas and Tsitsiklis.
+- *Advanced* Bandit Algorithms, Czepesvari and Lattimore
+
+
+
 
 * Grading
 
@@ -171,40 +214,6 @@ cd
 |   14 | Q&A, Mock exam                             |                            |
 |------+--------------------------------------------+----------------------------|
 * Modules
-** Introduction
-
-Reinforcement learning is the problem of learning to act through interaction with an unknown environment. It is not:
-- A solution.
-- Supervised learning
-- Unsupervised learning.
-
-However, algorithms for reinforcement learning can use (un)supervised learning algorithms as components.
-
-Uncertainty and sequential decision making are central in reinforcement learning. 
-
-** Prerequisites
-
-No previous machine learning knowledge is needed.
-
-*** Mathematics
-The following topics must be absolutely mastered, although a refresher will be given as needed.
-
-1. Set theory and logic.
-2. Probability and expectation.
-3. Elementary calculus (limits, integration, differentiation)
-4. Elementary linear algebra (vector and matrix manipulations)
-
-*** Programming
-- Mature programming ability, preferably in python.
-- Use of git or other version control system
-- Use of (La)TeX.
-
-** Course Books 
-- *Course book* /Decision Making Under Uncertainty and Reinforcement Learning/, Dimitrakakis and Ortner
-- *Statistical reference* Optimal Statistical Decisions, De Groot.
-- *MDP Reference* Markov Decision Processes, Putterman.
-- *Basic RL Reference* Reinforcement Learning: An Introduction, Sutton and Barto.
-- *Advanced RL Reference* Neurodynamic Programming, Bertsekas and Tsitsiklis.
 
 
 
