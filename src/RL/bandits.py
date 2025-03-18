@@ -71,26 +71,51 @@ class RandomSampling(BanditAlgorithm):
 class Greedy(BanditAlgorithm):
     def __init__(self, n_actions):
         super().__init__(n_actions)
+        self.alpha = 1 + np.zeros(n_actions)
+        self.beta = 0.1 + np.zeros(n_actions)
+        self.means = self.alpha / (self.alpha + self.beta)
 
-        ...
-
+        #sums = 1 + np.zeros(n_actions)
+        #counts = 1 + np.zeros(n_actions)
+        #means = sums / (counts)
     def act(self):
-        pass
+        return np.argmax(self.means)
+
 
     def update(self, action, reward):
+        self.alpha[action] += reward
+        self.beta[action] += (1 - reward)
+        self.means[action] = self.alpha[action] / (self.alpha[action] + self.beta[action])
+        #sums[action] += reward
+        #counts[action] += 1
         pass
 
 
 class EpsilonGreedy(BanditAlgorithm):
     def __init__(self, n_actions):
         super().__init__(n_actions)
-
-        ...
-
+        self.alpha = 1 + np.zeros(n_actions)
+        self.beta = 1 + np.zeros(n_actions)
+        self.means = self.alpha / (self.alpha + self.beta)
+        self.epsilon = 0.01
+        self.n_steps = 1
+        #sums = 1 + np.zeros(n_actions)
+        #counts = 1 + np.zeros(n_actions)
+        #means = sums / (counts)
     def act(self):
-        pass
+        self.epsilon = 100/(100 +self.n_steps)
+        if (np.random.uniform() < self.epsilon):
+            return np.random.choice(self.n_actions)
+        return np.argmax(self.means)
+
 
     def update(self, action, reward):
+        self.n_steps += 1
+        self.alpha[action] += reward
+        self.beta[action] += (1 - reward)
+        self.means[action] = self.alpha[action] / (self.alpha[action] + self.beta[action])
+        #sums[action] += reward
+        #counts[action] += 1
         pass
 
 
@@ -138,7 +163,7 @@ if __name__ == '__main__':
     # --------------------------- Experiments ---------------------------
     # You can try changing these
     # More actions requires more learning steps
-    n_actions = 2
+    n_actions = 100
 
     n_experiments = 30
     T = 2000
@@ -149,15 +174,16 @@ if __name__ == '__main__':
         environments.append(BetaBandits(n_actions, 1, 1, seed=experiment_id))
 
     # The algorithms we want to benchmark
-    algs = [RandomSampling]
+    algs = [RandomSampling, Greedy, EpsilonGreedy]
 
     n_algs = len(algs)
     reward_t = np.zeros((T, n_algs), dtype=np.float32)
     regret_t = np.zeros((T, n_algs), dtype=np.float32)
-
+    mean_best = 0
     total_reward = np.zeros(n_algs)
     for experiment in range(n_experiments):
         env = environments[experiment]
+        mean_best += env.best_arm_param
         print("Running experiment N°", experiment)
         for alg_index, Alg in enumerate(algs):
             np.random.seed(experiment)
@@ -184,10 +210,12 @@ if __name__ == '__main__':
     total_reward /= n_experiments
     reward_t /= n_experiments
     regret_t /= n_experiments
+    mean_best /= n_experiments
     cumulative_regret = np.cumsum(regret_t, axis=0)
 
     smoothing = 20
     plt.plot(smooth_curve(reward_t, smoothing))
+    plt.plot(np.ones(T)*mean_best)
     plt.legend([c.__name__ for c in algs])
     plt.ylabel("Average reward")
     plt.xlabel("Timesteps")
