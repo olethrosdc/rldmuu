@@ -24,17 +24,19 @@
 \pagestyle{myheadings}
 
 
-\def \solution {1}
+\def \solution {0}
 \begin{document}
 \title{Exercise set 1}
 \author{Christos Dimitrakakis: \texttt{christos.dimitrakakis@unine.ch}}
 
 \maketitle
-\large{Deadline: 27 February 2023}
+\large{Deadline: 25 February 2025}
 
 \vspace{1em}
 
-\begin{exercise}
+\begin{exercise}[Allais paradox]
+  Consider two possible gambles, in two different cases. In each case, you win a different amount of money.
+  
   Case 1:
   \begin{enumerate}
   \item The reward is 500,000 with certainty.
@@ -48,7 +50,10 @@
   \end{enumerate}
 
   Show that under the expected utility hypothesis, if gamble 1 is preferred in Case 1, gamble 1 must also be preferred in the Case 2, for any increasing utility function.
+
   \emph{Hint: You do not need to know the function $U$ to prove this.}
+
+  Even though, mathematically, this statement is true, in practice, most people do not make the predicted choice. This suggests that expected utility is not sufficient to capture human behaviour.
 \end{exercise}
 
 \begin{exercise}[15]
@@ -60,7 +65,7 @@
     would you now be willing to pay to play the game? Hint: Calculate the expected utility of playing.
   \item Assume that the coin is not fair, but it comes heads with probability 0.6, and your
     utility is linear: $U(x) = x$. How much would you be willing to play now?
-  \item Perform an experiment to validate your claims using the code in \verb!src/beliefs_and_decisions/paradox.ipynb!
+  \item Perform an experiment to validate your claims using the skeleton code.
   \end{itemize}
   \emph{Hint: A closed-form solution for the linear utility through the geometric series. You can also implement this on a computer through sampling the geometric distribution. A naive implementation will give you strange results.}
 \end{exercise}
