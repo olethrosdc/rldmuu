@@ -59,11 +59,20 @@
 
 \section{Adversarial Bandits}
 \begin{frame}{Adversarial Bandits}
-    Instead of being drawn from a distribution, sequence of rewards $(x_t)_{t=1}^n$ in adversarial bandits is set beforehand by an adversary. Consequently, actions taken by an agent are not deterministic but drawn from a distribution $P_t \in \mathcal{P}_{k-1}$, where $\mathcal{P}_d$ is a probability simplex over $d+1$ actions (we can say that $\mathcal{P}_d = \{ x \in [0,1]^{d+1} : ||x||_1 = 1 \} = \{ x \in [0,1]^{d+1} : \sum x = 1 \}$. 
-    
-    Policy $\pi$ in this case is defined as mapping from history sequences (arm and its associated reward) onto the distribution over action. Using mathematical notation it would look like $\pi\; : \; ([k] \times [0,1])^{*} \rightarrow \mathcal{P}_{k-1}$.
-    
-    At each timestep, once agent chooses distribution $P_t$, the action is drawn from it $A_t \sim P_t$ and the reward $X_t = x_{t A_t}$ is observed. 
+  \begin{itemize}
+  \item Reward sequence $(x_t)_{t=1}^n$, with $x_{t,i}$ reward of arm $i$ at time $t$, \alert{fixed by an adversary}.
+  \item Agent's action is drawn from a distribution $P_t \in \mathcal{P}_{k-1}$, where $\mathcal{P}_d$ is a probability simplex over $d+1$ actions (i.e. $\mathcal{P}_d = \{ p \in [0,1]^{d+1} : ||p||_1 = 1 \} = \{ p \in [0,1]^{d+1} : \sum_i p_i = 1 \}$. 
+  \item The policy $\pi$ maps from  histories onto the distribution over action
+    \[
+      \pi\; : \; ([k] \times [0,1])^{*} \rightarrow \mathcal{P}_{k-1}.
+    \]
+  \item  At each timestep $t$:
+    \begin{enumerate}
+    \item Agent chooses distribution $P_t$
+    \item Action is drawn $A_t \sim P_t$
+    \item Reward $X_t = x_{t A_t}$ is observed.
+    \end{enumerate}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Adversarial Bandits regret}
