@@ -265,8 +265,10 @@
     where $d$ is the dimension of $\mathbf{\mathcal{A}}$, $k$ is the number of arms and $g(\pi)$ equals:
 
     \begin{equation}
-        g(\pi) = max_{a \in \mathbf{\mathcal{A}}} ||a||^2_{Q^{-1}(\pi)}
+        g(\pi) = \max_{a \in \mathbf{\mathcal{A}}} ||a||^2_{Q^{-1}(\pi)} = \max_{a \in \mathbf{\mathcal{A}}} a^{\intercal}Q^{-1}(\pi)a
     \end{equation}
+
+    with $Q(\pi) = \sum_a \pi(a)aa^{\intercal}$
 \end{frame}
 
 \begin{frame}{Exp3 for continuous exponential weights}
