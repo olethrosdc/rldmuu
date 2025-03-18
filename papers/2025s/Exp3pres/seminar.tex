@@ -161,15 +161,52 @@
 \begin{frame}
   Define
   \[ 
-    \hat{S}_n = \sum_{t, i} P_{ti} \hat{X}_{t,i},
+    \hat{S}_n = \sum_{t, i} P_{ti} \hat{X}_{ti},
     \qquad
-    W_t = \sum_{j=1}^k \exp\left(\eta \hat{S}_{t,j}\right)
+    W_t = \sum_{j=1}^k \exp\left(\eta \hat{S}_{tj}\right)
   \]
   \pause
   We now bound the exponential term
   \[
-    \exp(\eta \hat{S}_{ni} \leq \sum_{j=1}^k 
+    \exp(\eta \hat{S}_{ni}) \leq \sum_{j=1}^k \exp(\eta \hat{S}_{nj} )
+    = W_n = W_0 \frac{W_1}{W_0} \cdots \frac{W_n}{W_{n-1}}
+    = k \prod_{t=1}^n \frac{W_t}{W_{t-1}}
   \]
+  \pause
+  We now bound the ratio
+  \[
+    \frac{W_t}{W_{t-1}}
+    = \sum_{j=1}^k \frac{\exp(\eta \hat{S}_{t-1, j} )}{W_{t-1}} \exp(\eta \hat{X}_{t, j})
+    = \sum_{j=1}^k P_{tj} \exp(\eta \hat{X}_{t, j})
+  \]
+  \pause
+  Using the inequalities 
+  \[
+    \exp(x) \geq 1 + x \forall x, \qquad \exp(x) \leq 1 + x + x^2 \forall x \leq 1
+  \]
+  and some algebra...
+\end{frame}
+
+\begin{frame}
+  \[
+    \hat{S}_{ni} - \hat{S}_n
+    \leq
+    \frac{\log(k)}{\eta}
+    +
+    \eta
+    \sum_{t=1}^n \sum_{j=1}^k P_{t,j} \hat{X}^2_{tj}.
+  \]
+  \pause
+  Taking expectations gives $R_{ni}$ (the expected regret of playing $i$) on the lhs and:
+  \[
+    \sum_{j=1}^k P_{t,j} \hat{X}^2_{tj} \leq k.
+  \]
+  \pause
+  We can now sum over $t$ to obtain
+  \[
+    R_{ni} \leq \frac{\log(k)}{\eta} + \eta n k = 2 \sqrt{n k \log (k)}
+  \]
+  \qed
 \end{frame}
 
 \section{Adversarial linear bandits}
