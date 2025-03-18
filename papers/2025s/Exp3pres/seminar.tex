@@ -90,6 +90,7 @@
     \end{equation}
 \end{frame}
 
+
 \section{Importance weighted estimators}
 \begin{frame}{Importance weighted estimators}
     Before we go into the Exp3 algorithm, we have to introduce an unbiased estimator for reward $\hat{X_{ti}}$ at time $t$ for arm $i$. It is defined as:
@@ -154,6 +155,21 @@
     \begin{equation}
         R_n \leq 2 \sqrt{nk \log(k)}
     \end{equation}
+\end{frame}
+
+\subsection{Proof outline}
+\begin{frame}
+  Define
+  \[ 
+    \hat{S}_n = \sum_{t, i} P_{ti} \hat{X}_{t,i},
+    \qquad
+    W_t = \sum_{j=1}^k \exp\left(\eta \hat{S}_{t,j}\right)
+  \]
+  \pause
+  We now bound the exponential term
+  \[
+    \exp(\eta \hat{S}_{ni} \leq \sum_{j=1}^k 
+  \]
 \end{frame}
 
 \section{Adversarial linear bandits}
