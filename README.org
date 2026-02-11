@@ -42,6 +42,12 @@ The first 6 weeks will require the students to complete 5
 assignments. The remainder of the term, the students will have to
 prepare a project, for which they will need to submit a report.
 
+The course is run in parallel with a seminar course.
+
+** Course Schedule
+
+
+
 
 ** Prerequisites
 
@@ -173,7 +179,7 @@ The follow marking guidelines are what one would expect from students attaining 
 5. There is no mention of methods beyond the source material or independent thinking.
 cd
 
-* Schedule
+* Course Schedule
 |------+--------------------------------------------+----------------------------|
 | Week | Topic                                      | Seminar                    |
 |------+--------------------------------------------+----------------------------|
@@ -213,6 +219,33 @@ cd
 |------+--------------------------------------------+----------------------------|
 |   14 | Q&A, Mock exam                             |                            |
 |------+--------------------------------------------+----------------------------|
+* Seminar Schedule
+
+The first meeting will be jointly with the RL course. There will be
+scheduled progress meetings, and room B013 will be available for group
+work otherwise. The professor responsible and the students will
+normally also be available for questions during this time, but
+alternative times could be scheduled.
+
+|------------+------------+-----------------------------------|
+| 2026.02.17 | 8:45 A017  | - Joint RL Course                 |
+| 2026.02.24 | 14:15 B013 | Single-Agent Intro: Bandits, MDPs |
+| 2026.03.03 | 14:15 B013 | Multi-Agent Intro: Games, Types   |
+|------------+------------+-----------------------------------|
+| 2026.03.10 | 14:15 B013 | Supervisor/Topic Selection        |
+| 2026.03.17 | 14:15 B013 | Group work                        |
+| 2026.03.24 | 14:15 B013 | Group work                        |
+| 2026.03.31 | 14:15 B013 | Progress meeting                  |
+| 2026.04.07 | 14:15 B013 | Easter break                      |
+| 2026.04.14 | 14:15 B013 | Group work                        |
+| 2026.04.21 | 14:15 B013 | Group work                        |
+| 2026.04.28 | 14:15 B013 | Progress meeting                  |
+| 2026.05.05 | 14:15 B013 | Group work                        |
+| 2026.05.12 | 14:15 B013 | Group work                        |
+| 2026.05.19 | 14:15 B013 | Group work                        |
+| 2026.05.26 | 14:15 B013 | Project Presentation              |
+|------------+------------+-----------------------------------|
+
 * Modules
 
 
