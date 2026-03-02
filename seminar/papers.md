@@ -76,6 +76,26 @@ The paper extends the previous work by considering an alternative regret measure
     
   - **How to extend**: As extention, students will apply that setting to many-to-one matching and derive non linear rewards.
 
+## P4: Dyna-Q
+
+- **Supervisor:** Lorenzo Bonanni
+- **Email**: lorenzo.bonanni@unine.ch
+
+- **General description:**  
+  This topic covers Model-Based Reinforcement Learning through the lens of the Dyna architecture. Students will investigate how planning and learning can be unified within a single agent, and how a learned world model can dramatically improve sample efficiency compared to model-free methods. Through implementation and experiments, students will gain hands-on experience with tabular Dyna-Q and its variants, understanding how the number of planning steps, model accuracy, and environmental changes affect agent performance. The topic also includes a deep learning extension to scale the approach to continuous state spaces. Overall, the topic emphasizes both the theoretical foundations of integrated planning/learning architectures and the practical challenges of model-based RL.
+
+- 👨‍🏫: ⭐⭐
+- 🖥️: ⭐⭐⭐
+
+- **Paper:** [Dyna, an Integrated Architecture for Learning, Planning, and Reacting](https://dl.acm.org/doi/10.1145/122344.122377) — Richard S. Sutton (1991). See also: Reinforcement Learning: An Introduction (Sutton & Barto, 2nd ed.), Chapters 8.2 & 8.3.
+
+- **How to reproduce:**  
+  Students should begin by implementing three algorithms: standard Q-Learning (direct RL baseline), Dyna-Q (Q-learning augmented with n planning steps per real step), and Dyna-Q+ (Dyna-Q with an exploration bonus rewarding long-untried transitions). They should then implement two gridworld environments from the book: the Dyna Maze (a static maze used to compare the effect of varying planning steps n) and the Blocking/Shortcut Maze (a changing environment used to expose the limits of Dyna-Q and the benefits of Dyna-Q+). Finally, students should reproduce the key figures from Chapters 8.2 and 8.3: the learning curves comparing agents with different values of n on the Dyna Maze, and the cumulative reward curves comparing Dyna-Q vs. Dyna-Q+ on the Blocking and Shortcut Maze tasks.
+
+- **How to extend:**
+  1. Implement Deep Q-Learning (DQN), replacing the tabular Q-function with a neural network.
+  2. Implement a neural network-based world model that predicts next states from (state, action) pairs, substituting the tabular model used in standard Dyna-Q (the reward function may be assumed known and fixed).
+  3. Compare standard tabular Dyna-Q (using discretized states) against Deep Dyna-Q on the [Mountain Car environment](https://gymnasium.farama.org/environments/classic_control/mountain_car/), analyzing the trade-offs in sample efficiency, model accuracy, and scalability to continuous domains.
 
 ## P6: Model-Based Exploration in MDPs
 
