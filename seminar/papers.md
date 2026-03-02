@@ -1,5 +1,5 @@
 
-#  Course description Topics, papers, and supervisors
+#  Project descriptions: Topics, papers, and supervisors
 
 ## P1: Matching and Multi-Armed Bandits  
 
