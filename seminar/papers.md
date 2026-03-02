@@ -1,7 +1,7 @@
 
 #  Course description Topics, papers, and supervisors
 
-## P1: RL (Matching and Multi-Armed Bandits)  
+## P1: Matching and Multi-Armed Bandits  
 
 - **Supervisor:** Andreas Athanasopoulos
 - **mail**: andreas.athanasopoulos@unine.ch 
@@ -39,7 +39,7 @@ The paper extends the previous work by considering an alternative regret measure
 
 
 
-## P2: RL (Matching and Combinatorial Multi-Armed Bandits)
+## P2: Matching and Combinatorial Multi-Armed Bandits
 - **Supervisor** : Hortence Nana
 
 - **Email**: hortence.yiepnou@unine.ch
@@ -63,7 +63,7 @@ The paper extends the previous work by considering an alternative regret measure
 
 
 
-## P3 : RL (Trust-Aware and Differentially Private Multi-Armed Bandits)
+## P3 : Trust-Aware and Differentially Private Multi-Armed Bandits
 
 - **Supervisor:** Elif
 - **Email**: elif.yilmaz@unine.ch
