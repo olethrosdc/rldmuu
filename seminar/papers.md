@@ -37,27 +37,14 @@ The paper extends the previous work by considering an alternative regret measure
   - **How to extend:**  
     1. Empirically study alternative regret measures, such as player-optimal and player-pessimal regret, independent of the matching instability studied in the paper.
 
-## P2: RL
+
+
+## P2: RL (Matching and Combinatorial Multi-Armed Bandits)
 - **Supervisor** : Hortence Nana
 
 - **Email**: hortence.yiepnou@unine.ch
   
-- **PAPER 5.1** : Bandit Learning in Many-to-One Matching Market
-  
-  - 👨‍🏫: ⭐⭐
-  - 🖥️: ⭐⭐
-  
-  - **Brief description** : The paper considers a matching markets (like students to schools , doctors to hospitals or workers to     companies) where there are many agents and fewer arms (schools/companies), and each arm can take multiple agents (capacity). Agents learn over time which arms they like because rewards are uncertain or unknown. So it's multi-armed bandits, but with matching and stability rules.
-  
-  - **Link** : [https://openreview.net/pdf?id=rLuT4vG7NsO]
-  
-  - **How to reproduce** : Student should reproduce the centralized many-to-one bandit matching algorithms and results as provided in the paper. Authors implemented and test the centralized and decentralized Explore-Then-Commit and UCB alrorithms. Student will only focus on centralized part by implementing both or just focus on one of those algorithm if there isn't enough time.
-
-  - **How to extend** : Student should focus on extending the original setting by changing the assumption on preferences. Specifically, in the extension, arm preferences are no longer given but must be learned from observed rewards, while agent preferences are known and fixed. This changes the learning objective: the learner now needs to estimate each arm's utilities for the available agents based on observed rewards over time. It makes the problem more complicated as each arm can content one or more agents. Focus on one algorithm and no need to design a new algorithm; instead, adapt the paper's algorithm to handle the new preference assumption and proof your theoretical result (regret bound).
-
-
-    
-- **PAPER 5.2** : Tight Regret Bounds for Stochastic Combinatorial Semi-Bandits
+- **PAPER** : Tight Regret Bounds for Stochastic Combinatorial Semi-Bandits
 
   - 👨‍🏫: ⭐
   - 🖥️: ⭐⭐⭐
@@ -66,12 +53,15 @@ The paper extends the previous work by considering an alternative regret measure
  
   - **Link** : [https://proceedings.mlr.press/v38/kveton15.pdf]
   
-  - **How to reproduce**: Student should implement the CombUCB1 . concretely, carefully read and understand the problem definition (Section 2), the CombUCB1 algorithm and its initialization, and the theoretical results and proofs for regret bounds. Implement CombUCB1 as described in Algorithm 1 and make some experiments.
+  - **How to reproduce**: Student should implement the CombUCB1 . concretely, carefully read and understand the problem definition (Section 2), the CombUCB1 algorithm and its initialization, and the implementation part. Implement CombUCB1 as described in Algorithm 1 and make some experiments.
     
-  - **How to extend**: As extention, student will just find a simple use case application and apply it there.
+  - **How to extend**: As extention, students will apply that setting to many-to-one matching and derive non linear rewards.
    
   
-**NB**: For both papers, students will receive a pdf with a more formal description of each paper and tasks, as well as some link that will help to understand some concept.
+**NB**: students will receive a pdf with a more formal description of the paper and tasks, as well as some link that will help to understand some concept.
+
+
+
 
 ## P3 : RL (Trust-Aware and Differentially Private Multi-Armed Bandits)
 
