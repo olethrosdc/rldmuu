@@ -63,28 +63,20 @@ The paper extends the previous work by considering an alternative regret measure
 
 
 
-## P3 : Trust-Aware and Differentially Private Multi-Armed Bandits
+## P3 : RL (Zero-Sum Matrix Games with Bandit Feedback)
 
 - **Supervisor:** Elif
 - **Email**: elif.yilmaz@unine.ch
 
 - **General description:**  
-  This topic covers multi-armed bandit (MAB) algorithms with a focus on incorporating additional considerations such as trustworthiness and differential privacy. Students will investigate both standard and trust-aware/differentially private MAB algorithms, understanding how trust/differential privacy dynamics influence decision-making and regret performance. Through simulations and experiments, students will gain experience in evaluating algorithm performance under different environments and constraints. Overall, the topic emphasizes both the theoretical foundations and practical implementation challenges of MAB algorithms.
+  This topic covers multi-armed bandit (MAB) algorithms with a focus on incorporating additional considerations such as trustworthiness and differential privacy. Students will investigate standard MAB algorithms and their performances in a zero-sum game setting, understanding how the setting dynamics influence decision-making and regret performance. Through simulations and experiments, students will gain experience in evaluating algorithm performance under different environments and constraints. Overall, the topic emphasizes both the theoretical foundations and practical implementation challenges of MAB algorithms.
 
 - 👨‍🏫: ⭐⭐
 - 🖥️: ⭐
 
-- **Paper 2.1**
-  - **Link:** [Minimax-optimal trust-aware multi-armed bandits](https://arxiv.org/pdf/2410.03651)
+- **Paper**
+  - **Link:** [On the Limitations and Possibilities of Nash Regret Minimization in Zero-Sum Matrix Games Under Noisy Feedback](https://arxiv.org/pdf/2306.13233)
   - **How to reproduce:**
-    Students should begin by implementing the standard UCB algorithm and then the trust-aware UCB algorithm proposed in the paper (Section 3.2). They should reproduce the experimental setup by simulating environments (Section 5). Then, they should compare the performance of both algorithms by generating regret curves and analyzing whether the empirical results align with the theoretical regret bounds.
+    Students should begin by implementing the standard MAB algorithms and then apply them in a zero-sum game setting. They should reproduce the experimental setup by simulating environments (Section 3 and 4). Then, they should compare the performance of the algorithms by generating regret curves and analyzing whether the empirical results align with the theoretical regret bounds.
   - **How to extend:**
-    Students can extend the paper by experimenting with a larger number of arms or running the algorithms over longer time horizons to test scalability. Another interesting extension is to design alternative models of trust update mechanism or alternative action recommendation based on trust level and compare performance against the original setup. On the other hand, they can implement different MAB algorithms such as ETC and apply trust-aware mechanism. Thus, students might better understand under which conditions trust-aware MABs provide the most benefit. 
-
-- **Paper 2.2**
-  - **Link:** [Algorithms for Differentially Private Multi-Armed Bandits](https://arxiv.org/pdf/1511.08681) 
-  - **How to reproduce:**
-    This paper proposes a differentially private version of UCB in stochastic multi-armed bandit setting. To reproduce the results, students should implement the private UCB algorithm, then run simulations. Regret curves should be compared against the standard UCB and its private variants (section 4) and thus the regret bound should be verified.
-  - **How to extend:**
-    Students can implement other multi-armed bandit algorithms such as ETC, UCB and EXP3 to better understand baseline methods. They can apply similar differential privacy notions to different MAB algorithms to compare them with the private UCB. One direction is to evaluate its performance in larger action spaces and then compare the results. Another interesting extension is to apply the differential privacy notions to zero-sum games.
 
