@@ -69,7 +69,7 @@ The paper extends the previous work by considering an alternative regret measure
 - **Email**: elif.yilmaz@unine.ch
 
 - **General description:**  
-  This topic covers multi-armed bandit (MAB) algorithms with a focus on incorporating additional considerations such as trustworthiness and differential privacy. Students will investigate standard MAB algorithms and their performances in a zero-sum game setting, understanding how the setting dynamics influence decision-making and regret performance. Through simulations and experiments, students will gain experience in evaluating algorithm performance under different environments and constraints. Overall, the topic emphasizes both the theoretical foundations and practical implementation challenges of MAB algorithms.
+  This topic covers multi-armed bandit (MAB) algorithms and zero-sum games. Students will investigate standard MAB algorithms and their performances in a zero-sum game setting, understanding how the setting dynamics influence decision-making and regret performance. Through simulations and experiments, students will gain experience in evaluating algorithm performance under different environments and constraints. Overall, the topic emphasizes both the theoretical foundations and practical implementation challenges of MAB algorithms.
 
 - 👨‍🏫: ⭐⭐
 - 🖥️: ⭐
