@@ -86,8 +86,7 @@ The paper extends the previous work by considering an alternative regret measure
 - **General description:** 
 This project focuses on exploration in Reinforcement Learning (RL). When the MDP is not known to the learner, the latter faces an exploration–exploitation dilemma:
     - **Exploitation**: Use current knowledge to take actions maximizing reward.
-    - **Exploration**: Gather information about uncertain states and actions.
-    
+    - **Exploration**: Gather information about uncertain states and actions.  
 For example, the famous Q-learning algorithm typically employs $\epsilon$-greedy exploration. While simple, its exploration takes up to exponential time to converge to the optimal solution.
 This project studies model-based exploration algorithms that provide faster theoretical guarantees on the optimality of the learned policy. 
 In particular, we investigate model-based RL algorithms that use optimism in the face of uncertainty to ensure theoretically grounded, efficient exploration.
