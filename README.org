@@ -387,9 +387,15 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/256692
 The expected-utility hypothesis and the measurability of utility
 https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
-** Decisions with observations
-*** Problems with Observations (45')
-1. Discrete set of models example: the meteorologists problem (25')
+** Statistical decisions
+
+*** Simple statistical decisions (30')
+1.. MSE Estimation (5') [not done]
+2. Linearity of Expectations (5') [not done]
+3. Convexity of Bayes Decisions (5') [not done]
+
+*** Problems with Observations (35')
+1. Discrete set of models example: the meteorologists problem (15')
 2. Marginal probabilities (5').
 3. Conditional probability (5').
 4. Bayes theorem (10').
@@ -398,7 +404,6 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 -$n$ metereological stations $\MDPs = \{1, \ldots, n\}$.
 - $x_t$: Weather on day t (0 = dry, 1 = rain)$
 - $P_\mdp(x_t | x_{t-1}, x_{t-2}, \ldots)$ station $\mdp$ prediction for dry/rain.
-
   
 |---------+-------+-------+-------+-------|
 | Station | Day 1 | Day 2 | Day 3 | Day 4 |
@@ -410,16 +415,21 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 
 - How should we combine these predictions?
 
-
 *** Statistical decisions (45')
-1. ML Estimation (10')
-2. MAP Estimation (10')
-3. Bayes Estimation (10')
-4. MSE Estimation (10') [not done]
-5. Linearity of Expectations (10') [not done]
-6. Convexity of Bayes Decisions (10') [not done]
+Simplified notation
+****  ML Estimation (10')
+- $\omega_{ML} = \argmax_\omega P(x | \omega)$.
+- $a^* = \argmax_a U(\omega_{ML}, a)$.
+**** MAP Estimation (10')
+- $\omega_{MAP} = \argmax_\omega P(\omega | x)$
+- $a^* = \argmax_a U(\omega_{MAP}, a)$.
+**** Bayes Estimation (10')
+- $a^* = \argmax_a \sum_\omega P(\omega | x) U(\omega, a)$.
 
-*** Statistical estimation
+
+*** Statistical estimation (45')
+Model-index notation.
+
 - A family of models $\{P_\mu | \mu \in \MDPs\}$
 - Data $x$.
 **** Maximum Likelihood Estimation
@@ -428,11 +438,7 @@ https://www.journals.uchicago.edu/doi/abs/10.1086/257308
 - Prior belief $\bel$
 - Find $\mu$ mximising $\bel(\mu) P_\mu(x)$
 **** Bayesian Estimation
-<<<<<<< variant A
-- Return function $\bel(\mu | x)  = P_\mu(x) \bel(\mu) / \sum_{\mu'} P_{\mu'}(x) \bel(\mu')
->>>>>>> variant B
 - Return function $\bel(\mu | x)  = P_\mu(x) \bel(\mu) / \sum_{\mu'} P_{\mu'}(x) \bel(\mu')$
-======= end
 **** (Bayesian) MSE Estimation
 -  Find $\hat{\mu}$ minimising $\E_\bel[(\hat{\mu} - \mu)^2 | x] = \sum_\mu (\hat{\mu} - \mu)^2 \bel(\mu | x)$
 *** Maximum Likelihood Estimation
