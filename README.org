@@ -230,9 +230,9 @@ alternative times could be scheduled.
 |------------+------------+-----------------------------------|
 | 2026.02.17 | 8:45 A017  | - Joint RL Course                 |
 | 2026.02.24 | 14:15 B013 | Single-Agent Intro: Bandits, MDPs |
-| 2026.03.03 | 14:15 B013 | Multi-Agent Intro: Games, Types   |
+| 2026.03.03 | 14:15 B013 | Supervisor/Topic selection        |
 |------------+------------+-----------------------------------|
-| 2026.03.10 | 14:15 B013 | Supervisor/Topic Selection        |
+| 2026.03.10 | 14:15 B013 | First supervisor meeting          |
 | 2026.03.17 | 14:15 B013 | Group work                        |
 | 2026.03.24 | 14:15 B013 | Group work                        |
 | 2026.03.31 | 14:15 B013 | Progress meeting                  |
