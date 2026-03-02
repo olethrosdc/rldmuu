@@ -38,8 +38,28 @@ The paper extends the previous work by considering an alternative regret measure
     1. Empirically study alternative regret measures, such as player-optimal and player-pessimal regret, independent of the matching instability studied in the paper.
 
 
+## P2 : Zero-Sum Matrix Games with Bandit Feedback
 
-## P2: Matching and Combinatorial Multi-Armed Bandits
+- **Supervisor:** Elif
+- **Email**: elif.yilmaz@unine.ch
+
+- **General description:**  
+  This topic covers multi-armed bandit (MAB) algorithms and zero-sum games. Students will investigate standard MAB algorithms and their performances in a zero-sum game setting, understanding how the setting dynamics influence decision-making and regret performance. Through simulations and experiments, students will gain experience in evaluating algorithm performance under different environments and constraints. Overall, the topic emphasizes both the theoretical foundations and practical implementation challenges of MAB algorithms.
+
+- 👨‍🏫: ⭐⭐
+- 🖥️: ⭐
+
+- **Paper**
+  - **Link:** [On the Limitations and Possibilities of Nash Regret Minimization in Zero-Sum Matrix Games Under Noisy Feedback](https://arxiv.org/pdf/2306.13233)
+  - **How to reproduce:**
+    Students should begin by implementing the standard MAB algorithms and then apply them in a zero-sum game setting. They should reproduce the experimental setup by simulating environments (Section 3 and 4). Then, they should compare the performance of the algorithms by generating regret curves and analyzing whether the empirical results align with the theoretical regret bounds.
+  - **How to extend:**
+    1. Implement different MAB algorithms (includes elimination based approaches) and apply them to a zero-sum game setting.
+    2. In the paper, they are interested in only controlling the row player. Assume controlling over both players, apply the proposed algorithms and compare the results.
+    3. Assume there exists a unique pure strategy Nash equilibria in the game and compare the PSNE identification capability of different MAB algorithms.
+
+
+## P3: Matching and Combinatorial Multi-Armed Bandits
 - **Supervisor** : Hortence Nana
 
 - **Email**: hortence.yiepnou@unine.ch
@@ -63,20 +83,5 @@ The paper extends the previous work by considering an alternative regret measure
 
 
 
-## P3 : RL (Zero-Sum Matrix Games with Bandit Feedback)
 
-- **Supervisor:** Elif
-- **Email**: elif.yilmaz@unine.ch
-
-- **General description:**  
-  This topic covers multi-armed bandit (MAB) algorithms and zero-sum games. Students will investigate standard MAB algorithms and their performances in a zero-sum game setting, understanding how the setting dynamics influence decision-making and regret performance. Through simulations and experiments, students will gain experience in evaluating algorithm performance under different environments and constraints. Overall, the topic emphasizes both the theoretical foundations and practical implementation challenges of MAB algorithms.
-
-- 👨‍🏫: ⭐⭐
-- 🖥️: ⭐
-
-- **Paper**
-  - **Link:** [On the Limitations and Possibilities of Nash Regret Minimization in Zero-Sum Matrix Games Under Noisy Feedback](https://arxiv.org/pdf/2306.13233)
-  - **How to reproduce:**
-    Students should begin by implementing the standard MAB algorithms and then apply them in a zero-sum game setting. They should reproduce the experimental setup by simulating environments (Section 3 and 4). Then, they should compare the performance of the algorithms by generating regret curves and analyzing whether the empirical results align with the theoretical regret bounds.
-  - **How to extend:**
 
