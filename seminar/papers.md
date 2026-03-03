@@ -75,6 +75,10 @@ The paper extends the previous work by considering an alternative regret measure
   - **How to reproduce**: Student should implement the CombUCB1 . concretely, carefully read and understand the problem definition (Section 2), the CombUCB1 algorithm and its initialization, and the implementation part. Implement CombUCB1 as described in Algorithm 1 and make some experiments.
     
   - **How to extend**: As extention, students will apply that setting to many-to-one matching and derive non linear rewards.
+    
+  - **NB**: students will receive a pdf with a more formal description of the paper and tasks, as well as some link that will help to understand some concept.
+
+
 
 ## P4: Dyna-Q
 
@@ -131,7 +135,6 @@ Next, students will be able to extend their project in at least one out of many 
         - Model-free exploration.
         - etc.
   
-**NB**: students will receive a pdf with a more formal description of the paper and tasks, as well as some link that will help to understand some concept.
 
 
 ## P7: Contract Theory meets Reinforcement Learning
