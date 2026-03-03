@@ -124,27 +124,6 @@ This project aims to implement the reinforcement learning solution to the princi
   2. Run the benchmarks on another PettingZoo or Gymnasium environments - no need to implement the environments from scratch
   3. Modify the objective - instead of looking for a subgame perfect equilibrium you can assume that the principal is greedy, wants to maximize the total welfare (rewards collected) of the system, or wants to achieve some fairness goal. The agents will always remain greedy, trying to respond the best to the contract proposed by the principal.
 
-## P5: Contract Theory meets Reinforcement Learning
-
-- **Supervisor:**  Kuba Tłuczek
-- **mail**: jakub.tluczek@unine.ch
-
-- **General description:** 
-This project aims to implement the reinforcement learning solution to the principal-agent problem - an instance of incentive alignment, where one party (principal) has a task to delegate, and another party (agent) can achieve this task by taking costly actions. Their incentives are formalized and agreed in a contract, which promises a certain payment for achieving a desired outcome. Principal has then to carefully design contracts - they cannot pay too well, because then the principal might incurr a loss. They can't be too low either, since the agent will have no incentive to move, and the system will stagnate. Students will gain an important insight on how can the systems with parties that have divergent goals be aligned. Students making this project will also learn the basics of multi-agent reinforcement learning - how should one deal with non-stationarity of the environment, what possible solution concept one may want to achieve, and how crucial is the field of incentive design.
-
-- 👨‍🏫: ⭐⭐
-- 🖥️: ⭐⭐⭐
-
-- **Paper:** [Principal-Agent Reinforcement Learning: Orchestrating AI Agents with Contracts](https://arxiv.org/pdf/2407.18074)
-- **How to reproduce:**
-  1. Student will first implement an adequate MDP Principal-Agent game, compliant with [Gymnasium](https://gymnasium.farama.org/)/[PettingZoo](https://pettingzoo.farama.org/index.html) frameworks. 
-  2. Then, project participants will implement the PARL algorithm for principal and a single agent. 
-  3. Finally, students will extend this framework to a domain with multiple agents, testing it on a provided instance of the Coin Game.
-- **How to extend:**
-  1. Limit the contract family to the linear contracts. 
-  2. Run the benchmarks on another PettingZoo or Gymnasium environments - no need to implement the environments from scratch
-  3. Modify the objective - instead of looking for a subgame perfect equilibrium you can assume that the principal is greedy, wants to maximize the total welfare (rewards collected) of the system, or wants to achieve some fairness goal. The agents will always remain greedy, trying to respond the best to the contract proposed by the principal.
-
 ## P6: Model-Based Exploration in MDPs
 
 - **Supervisor:** Victor Villin
