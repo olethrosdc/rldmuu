@@ -179,9 +179,6 @@ Next, students will be able to extend their project in at least one out of many 
         - Model-free exploration.
         - etc.
   
-<<<<<<< HEAD
 **NB**: students will receive a pdf with a more formal description of the paper and tasks, as well as some link that will help to understand some concept.
-=======
->>>>>>> 024aedb446d1e890e8e495e7edbe8764d96d5226
 
 
