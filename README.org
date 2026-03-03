@@ -561,6 +561,7 @@ The update *does not depend* on $a_t$
 =
 \frac{\bel_t(\mu) \exp[\eta u(p_{t, \mu }, y_t)]}{\sum_{\mu'} \bel_t(\mu') \exp[\eta u(p_{t,\mu}, y_t)]}
 \]
+
 **** Choices for $u$
 - $u(p_{t,\mu}, y_t) = \ln p_{t,\mu}(y_t)$, $\eta = 1$, Bayes's theorem.
 - $u(p_{t,\mu}, y_t) = \rho(a^*(p_{t,\mu}), y_t)$: quality of expert prediction.
@@ -582,7 +583,7 @@ L \defn \sum_{t = 1}^T [\mu^* - r_t],
 \E^\pi [L] = \sum_{t = 1}^T \E^\pi[\mu^* - r_t],
 = \sum_{a=1}^n \E^\pi[n_{T,a}](\mu^* - \mu_a)
 \]
-- $n_{T,a}$ is the number of times $a$ has been pulled after $n$ steps.
+- $n_{T,a}$ is the number of times $a$ has been pulled after $T$ steps.
 
 *** Bernoulli bandits
 A classical example of this is when the rewards are Bernoulli, i.e.
@@ -598,8 +599,8 @@ r_t | a_t = i \sim \textrm{Bernoulli}(\mu_i)
 - Update means: $\hat{\mu}_{t,i} = s_{t,i} / n_{t,i}$.
   
 
-*** Priors for Bernoulli distribution
-The standard prio
+*** Priors for the Bernoulli distribution
+The standard prior
 *** Policies and exploration
 
 - $n_{t,i}, s_{t,i}$ are *sufficient statistics* for Bernoulli bandits.
@@ -629,15 +630,12 @@ or equivalently
 \]
 	
 *** Beta distributions as beliefs
+- [Go through Chapter 4, Beta distribution]
+- [Visualise Beta distribution]
+- [Do the James Random Exercise 3]
+- Note that the problem here is that this is only a point estimate: it ignores uncertainty. In fact, we can represent our uncertainty about the arms in a probabilistic way with the Beta distribution:
 
-
--   [Go through Chapter 4, Beta distribution]
--  [Visualise Beta distribution]
--   [Do the James Random Exercise 3]
-  
--   Note that the problem here is that this is only a point estimate: it ignores uncertainty. In fact, we can represent our uncertainty about the arms in a probabilistic way with the Beta distribution:
-
-  If our prior over an arm's mean is $\textrm{Beta}(\alpha, \beta)$ then the -posterior at time $t$ is $\textrm{Beta}(\alpha + s_{t,i}, \beta + n_{t,i} - s_{t,i})$.
+ If our prior over an arm's mean is $\textrm{Beta}(\alpha, \beta)$ then the -posterior at time $t$ is $\textrm{Beta}(\alpha + s_{t,i}, \beta + n_{t,i} - s_{t,i})$.
 
 -  [Visualise how the posterior changes for a biased coin as we obtain more data].
   

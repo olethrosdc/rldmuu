@@ -40,7 +40,7 @@ The paper extends the previous work by considering an alternative regret measure
 
 ## P2 : Zero-Sum Matrix Games with Bandit Feedback
 
-- **Supervisor:** Elif
+- **Supervisor:** Elif Yılmaz
 - **Email**: elif.yilmaz@unine.ch
 
 - **General description:**  
@@ -54,8 +54,9 @@ The paper extends the previous work by considering an alternative regret measure
   Students should begin by implementing the standard MAB algorithms and then apply them in a zero-sum game setting. They should reproduce the experimental setup by simulating environments (Section 3 and 4). Then, they should compare the performance of the algorithms by generating regret curves and analyzing whether the empirical results align with the theoretical regret bounds.
 - **How to extend:**
   1. Implement different MAB algorithms (includes elimination based approaches) and apply them to a zero-sum game setting.
-  2. In the paper, they are interested in only controlling the row player. Assume controlling over both players, apply the proposed algorithms and compare the results.
-  3. Assume there exists a unique pure strategy Nash equilibria in the game and compare the PSNE identification capability of different MAB algorithms.
+  2. Apply the proposed algorithms to a general-sum game setting.
+  3. In the paper, they are interested in only controlling the row player. Assume controlling over both players, improve the proposed algorithms and compare the results.
+  4. Assume there exists a unique pure strategy Nash equilibria in the game and compare the PSNE identification capability of the proposed algorithms and other MAB algorithms.
 
 
 ## P3: Matching and Combinatorial Multi-Armed Bandits
@@ -75,6 +76,10 @@ The paper extends the previous work by considering an alternative regret measure
   - **How to reproduce**: Student should implement the CombUCB1 . concretely, carefully read and understand the problem definition (Section 2), the CombUCB1 algorithm and its initialization, and the implementation part. Implement CombUCB1 as described in Algorithm 1 and make some experiments.
     
   - **How to extend**: As extention, students will apply that setting to many-to-one matching and derive non linear rewards.
+    
+  - **NB**: students will receive a pdf with a more formal description of the paper and tasks, as well as some link that will help to understand some concept.
+
+
 
 ## P4: Dyna-Q
 
@@ -96,8 +101,31 @@ The paper extends the previous work by considering an alternative regret measure
   1. Implement Deep Q-Learning (DQN), replacing the tabular Q-function with a neural network.
   2. Implement a neural network-based world model that predicts next states from (state, action) pairs, substituting the tabular model used in standard Dyna-Q (the reward function may be assumed known and fixed).
   3. Compare standard tabular Dyna-Q (using discretized states) against Deep Dyna-Q on the [Mountain Car environment](https://gymnasium.farama.org/environments/classic_control/mountain_car/), analyzing the trade-offs in sample efficiency, model accuracy, and scalability to continuous domains.
+ 
 
-## P6: Model-Based Exploration in MDPs
+
+## P5: Contract Theory meets Reinforcement Learning
+
+- **Supervisor:**  Kuba Tłuczek
+- **mail**: jakub.tluczek@unine.ch
+
+- **General description:** 
+This project aims to implement the reinforcement learning solution to the principal-agent problem - an instance of incentive alignment, where one party (principal) has a task to delegate, and another party (agent) can achieve this task by taking costly actions. Their incentives are formalized and agreed in a contract, which promises a certain payment for achieving a desired outcome. Principal has then to carefully design contracts - they cannot pay too well, because then the principal might incurr a loss. They can't be too low either, since the agent will have no incentive to move, and the system will stagnate. Students will gain an important insight on how can the systems with parties that have divergent goals be aligned. Students making this project will also learn the basics of multi-agent reinforcement learning - how should one deal with non-stationarity of the environment, what possible solution concept one may want to achieve, and how crucial is the field of incentive design.
+
+- 👨‍🏫: ⭐⭐
+- 🖥️: ⭐⭐⭐
+
+- **Paper:** [Principal-Agent Reinforcement Learning: Orchestrating AI Agents with Contracts](https://arxiv.org/pdf/2407.18074)
+- **How to reproduce:**
+  1. Student will first implement an adequate MDP Principal-Agent game, compliant with [Gymnasium](https://gymnasium.farama.org/)/[PettingZoo](https://pettingzoo.farama.org/index.html) frameworks. 
+  2. Then, project participants will implement the PARL algorithm for principal and a single agent. 
+  3. Finally, students will extend this framework to a domain with multiple agents, testing it on a provided instance of the Coin Game.
+- **How to extend:**
+  1. Limit the contract family to the linear contracts. 
+  2. Run the benchmarks on another PettingZoo or Gymnasium environments - no need to implement the environments from scratch
+  3. Modify the objective - instead of looking for a subgame perfect equilibrium you can assume that the principal is greedy, wants to maximize the total welfare (rewards collected) of the system, or wants to achieve some fairness goal. The agents will always remain greedy, trying to respond the best to the contract proposed by the principal.
+
+## P6: Exploration in MDPs
 
 - **Supervisor:** Victor Villin
 - **mail**: victor.villin@unine.ch
@@ -134,23 +162,3 @@ Next, students will be able to extend their project in at least one out of many 
 **NB**: students will receive a pdf with a more formal description of the paper and tasks, as well as some link that will help to understand some concept.
 
 
-## P7: Contract Theory meets Reinforcement Learning
-
-- **Supervisor:**  Kuba Tłuczek
-- **mail**: jakub.tluczek@unine.ch
-
-- **General description:** 
-This project aims to implement the reinforcement learning solution to the principal-agent problem - an instance of incentive alignment, where one party (principal) has a task to delegate, and another party (agent) can achieve this task by taking costly actions. Their incentives are formalized and agreed in a contract, which promises a certain payment for achieving a desired outcome. Principal has then to carefully design contracts - they cannot pay too well, because then the principal might incurr a loss. They can't be too low either, since the agent will have no incentive to move, and the system will stagnate. Students will gain an important insight on how can the systems with parties that have divergent goals be aligned. Students making this project will also learn the basics of multi-agent reinforcement learning - how should one deal with non-stationarity of the environment, what possible solution concept one may want to achieve, and how crucial is the field of incentive design.
-
-- 👨‍🏫: ⭐⭐
-- 🖥️: ⭐⭐⭐
-
-- **Paper:** [Principal-Agent Reinforcement Learning: Orchestrating AI Agents with Contracts](https://arxiv.org/pdf/2407.18074)
-- **How to reproduce:**
-  1. Student will first implement an adequate MDP Principal-Agent game, compliant with [Gymnasium](https://gymnasium.farama.org/)/[PettingZoo](https://pettingzoo.farama.org/index.html) frameworks. 
-  2. Then, project participants will implement the PARL algorithm for principal and a single agent. 
-  3. Finally, students will extend this framework to a domain with multiple agents, testing it on a provided instance of the Coin Game.
-- **How to extend:**
-  1. Limit the contract family to the linear contracts. 
-  2. Run the benchmarks on another PettingZoo or Gymnasium environments - no need to implement the environments from scratch
-  3. Modify the objective - instead of looking for a subgame perfect equilibrium you can assume that the principal is greedy, wants to maximize the total welfare (rewards collected) of the system, or wants to achieve some fairness goal. The agents will always remain greedy, trying to respond the best to the contract proposed by the principal.
