@@ -54,8 +54,9 @@ The paper extends the previous work by considering an alternative regret measure
   Students should begin by implementing the standard MAB algorithms and then apply them in a zero-sum game setting. They should reproduce the experimental setup by simulating environments (Section 3 and 4). Then, they should compare the performance of the algorithms by generating regret curves and analyzing whether the empirical results align with the theoretical regret bounds.
 - **How to extend:**
   1. Implement different MAB algorithms (includes elimination based approaches) and apply them to a zero-sum game setting.
-  2. In the paper, they are interested in only controlling the row player. Assume controlling over both players, apply the proposed algorithms and compare the results.
-  3. Assume there exists a unique pure strategy Nash equilibria in the game and compare the PSNE identification capability of different MAB algorithms.
+  2. Apply the proposed algorithms to a general-sum game setting.
+  3. In the paper, they are interested in only controlling the row player. Assume controlling over both players, improve the proposed algorithms and compare the results.
+  4. Assume there exists a unique pure strategy Nash equilibria in the game and compare the PSNE identification capability of the proposed algorithms and other MAB algorithms.
 
 
 ## P3: Matching and Combinatorial Multi-Armed Bandits
