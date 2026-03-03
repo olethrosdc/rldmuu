@@ -617,11 +617,7 @@ Let
 \[
 \hat{\mu}_n = \sum_{i=1}^t r_i / n,
 \]
-<<<<<<< variant A
-be the sample mean estimate of an iiid RV in [0,1] with $\E[r_i] = \mu$. Then we have
->>>>>>> variant B
 be the sample mean estimate of an iid RV in [0,1] with $\E[r_i] = \mu$. Then we have
-======= end
 \[
 \Pr(\hat{\mu}_n \geq \mu + \epsilon) \leq \exp(-2n\epsilon^2)
 \]
@@ -770,11 +766,6 @@ v_{n+1}(s) = \rho_\mu(s) + \gamma \sum_{j} P_\mu(j | s, a) v_n(j).
 
 *** Matrix notation for finite MDPs
 
-<<<<<<< variant A
-
-
->>>>>>> variant B
-======= end
 - $r$: reward vector.
 - $P_\pi$: transition matrix.
 - $v$: value function vector.
@@ -1152,8 +1143,6 @@ d_t = r_t + \gamma \max_a q_t(s_{t+1}, a) - q_t(s_t, a_t)
 \nabla_\param d_t^2 = 2 d_t \nabla_\param q_t(s_t, a_t)
 \]
 
-<<<<<<< variant A
->>>>>>> variant B
 *** Approximate policy iteration
 - $\pi_k = \argmin_{\pi \in \Pi} \|\hat{L} v_{k-1} - \hat{L} v_{k-1}\|$
 - $v_k = \argmin_{v \in V} \|v - \hat{V}^{\pi_k}\|$
@@ -1166,7 +1155,7 @@ d_t = r_t + \gamma \max_a q_t(s_{t+1}, a) - q_t(s_t, a_t)
 D(s) = v(s) - \max_a \int_S v(j) dP(j | s,a)
 \]
 
-======= end
+
 
 
 
@@ -1272,7 +1261,7 @@ V^{1,*}_{t+1}(j)
 The above recursion can be used to calculate the minimax value function.
 
 *** Example: Chicken
-| $\rho^1, \rho^2$ | turn  | dare |
+| $\rho^1, \rho^2$ | turn  | dare     |
 |------------------+-------+----------|
 | /                | <     | <        |
 | turn             | 0, 0  | -5, -1   |
@@ -1362,15 +1351,12 @@ U(s,a) = P(s,a) / N(s,a)
 - Loses
 
 
-======= end
 ** Bayesian methods
 1. Thompson sampling (25')
 2. Bayesian Policy Gradient (20')
 3. BAMDPs (25')
 4. POMDPs (20')
 
-<<<<<<< variant A
->>>>>>> variant B
 *** Priors
 - Maximising expected utility
 *** Policy types
@@ -1404,7 +1390,6 @@ U(\pol, \bel) \leq U^*(\bel) \leq \int_\MDPs \max_\pol U(\pol, \mdp) d \bel(\mdp
 
 
 
-======= end
 ** Regret bounds
 1. UCB (45')
 2. UCRL (45')
