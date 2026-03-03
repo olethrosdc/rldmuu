@@ -40,7 +40,7 @@ The paper extends the previous work by considering an alternative regret measure
 
 ## P2 : Zero-Sum Matrix Games with Bandit Feedback
 
-- **Supervisor:** Elif
+- **Supervisor:** Elif Yılmaz
 - **Email**: elif.yilmaz@unine.ch
 
 - **General description:**  
