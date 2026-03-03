@@ -4,6 +4,9 @@
 
 https://docs.google.com/spreadsheets/d/1BVI1vKAN2EfNf2Cf-Esb7erNjWwWpLQmN8wjqoU4_Wg/edit?usp=sharing
 
+## Projects list
+https://github.com/olethrosdc/rldmuu/blob/main/seminar/papers.md
+
 ## Schedule
 
 | Date       | Time  | Room | Topic                                      |
