@@ -124,7 +124,7 @@ This project aims to implement the reinforcement learning solution to the princi
   2. Run the benchmarks on another PettingZoo or Gymnasium environments - no need to implement the environments from scratch
   3. Modify the objective - instead of looking for a subgame perfect equilibrium you can assume that the principal is greedy, wants to maximize the total welfare (rewards collected) of the system, or wants to achieve some fairness goal. The agents will always remain greedy, trying to respond the best to the contract proposed by the principal.
 
-## P6: Model-Based Exploration in MDPs
+## P6: Exploration in MDPs
 
 - **Supervisor:** Victor Villin
 - **mail**: victor.villin@unine.ch
