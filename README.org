@@ -640,12 +640,53 @@ or equivalently
 -  [Visualise how the posterior changes for a biased coin as we obtain more data].
   
 
-*** Assignment and exercise
+*** Exercise
 
 1. Implement epsilon-greedy bandits (lab, 30')
 2. Implement Thompson sampling bandits (lab, 30')
 3, Implement UCB bandits (home)
 4. Compare them in a benchmark (home)
+
+*** Assignments
+
+**** EWA as generalised Bayes:
+
+Consider the following special case for prediction with expert advice:
+
+At time $t$:
+- Each expert $i \in A$ makes probabilistic predictions $p_{i,t}(x)$ for every possible $x \in X$.
+- You make a choice of some expert $a_t \in A$
+- You observe $x_t \in X$
+- You obtain reward $r_t = - \ln p_{a_t, t}(x)$
+- You calculate the rewards of all experts, $r_{i,t} = - \ln p_{i, t}(x)$.
+
+Show that the EWA algorithm, which updates the weights according to:
+\[
+w_{t+1}(i)
+=
+\frac{w_t(j) \exp[\eta r_{i,t})]}{\sum_{j} w_t(j) \exp[\eta r_{j,t})]}
+\]
+Corresponds to a modified posterior update of the form,
+\[
+\bel_{t+1}(i) = \frac{P_i(x_t)^eta \bel_t(i)}{\sum_j P_j(x_t)^eta \bel_t(j)}
+\]
+where $\eta > 0$ changes the importance of the likelihood function.
+
+**** Approximation to the Beta prior
+
+- Implement an approximation of the Beta distribution prior, where the
+you instead have a prior distribution on a finite set of $1 + 1/\epsilon$ values, that
+is $\{0, \epsilon, \ldots, 1 - \epsilon, 1\)$.
+- Starting with a uniform prior on these values, calculate the
+  posterior distribution after you observe 100 throws of a fair coin.
+- How does this posterior compare to the one resulting from the Beta(1,1) prior?
+
+
+**** Confidence bounds
+Where you toss a coin of unknown bias $\theta$ 100 times. Calculate the empirical mean $\hat{\theta}$ and compare it with the true expected value $\theta$.
+How often is $|\hat{\theta} - \theta| \leq \sqrt{\frac{\ln(2/\delta)}{2t}}$, where $t$ is the number of throws?
+Do the calculation by running the experiment 10,000 times and counting the fraction of the time where this fails, for values of $t \in 
+{1, \ldots, 100\}$, and for values of $\delta \in \{0.001, 0.01, 0.1\}$. How close are the estimates?
 
 ** Markov Decision Processes: Finite horizon
 
