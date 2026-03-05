@@ -25,7 +25,7 @@ studentPref = {
     "pengcheng":    [1, 5, 2], #4.5
     "sai":          [3, 1, 4], #5
     "daksh":        [1, 3], #3.5
-    "ebrima":       [2, 6]
+    "ebrima":       [2, 6] #4.5
 }
 
 import numpy as np
