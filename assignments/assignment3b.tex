@@ -1,0 +1,69 @@
+\documentclass[twoside,a4paper]{article}
+% \usepackage{enumerate}
+% \setbeamertemplate{enumerate item}{(\alph{enumi})}
+% \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
+\input{preamble}
+
+
+
+\pagestyle{myheadings}
+
+
+
+\begin{document}
+\title{Bandit questions}
+
+\author{Christos Dimitrakakis: \texttt{christos.dimitrakakis@unine.ch}}
+
+\maketitle
+\large{Deadline: 10 March 2026}
+
+\newcommand{\mrk}{\symbol{"200B}}
+
+\section{EWA as generalised Bayes:}
+\label{sec:org68149b0}
+
+Consider the following special case for prediction with expert advice:
+
+At time \(t\):
+\begin{itemize}
+\item Each expert \(i \in A\) makes probabilistic pred\mrk{}ictions \(p_{i,t}(x)\) for every possible \(x \in X\).
+\item You make a choice of some expert \(a_t \in A\)
+\item You observe \(x_t \in X\)
+\item You obtain reward \(r_t = - \ln p_{a_t, t}(x)\)
+\item You calculate the rew\mrk{}ards of all experts, \(r_{i,t} = - \ln p_{i, t}(x)\).
+\end{itemize}
+
+Show that the EWA algo\mrk{}rithm, which updates the weights according to:
+\[
+w_{t+1}(i)
+=
+\frac{w_t(j) \exp[\eta r_{i,t})]}{\sum_{j} w_t(j) \exp[\eta r_{j,t})]}
+\]
+Corresponds to a modified poster\mrk{}ior update of the form,
+\[
+\bel_{t+1}(i) = \frac{P_i(x_t)^eta \bel_t(i)}{\sum_j P_j(x_t)^eta \bel_t(j)}
+\]
+where \(\eta > 0\) changes the importance of the likelihood function.
+
+\section{Approximation to the Beta prior}
+\label{sec:org7d4fb8d}
+
+\begin{itemize}
+\item Implement an approxim\mrk{}ation of the Beta distribution prior, where the
+\end{itemize}
+you instead have a prior distribution on a finite set of \(1 + 1/\epsilon\) values, that
+is \(\{0, \epsilon, \ldots, 1 - \epsilon, 1\}\).
+\begin{itemize}
+\item Starting with a uniform prior on these values, calculate the
+poste\mrk{}rior distribution after you observe 100 throws of a fair coin.
+\item How does this posterior compa\mrk{}re to the one resulting from the Beta(1,1) prior?
+\end{itemize}
+
+
+\section{Confidence bounds}
+\label{sec:orge0a9612}
+Where you toss a coin of unkn\mrk{}own bias \(\theta\) 100 times. Calculate the empirical mean \(\hat{\theta}\) and compare it with the true expected value \(\theta\).
+How often is \(|\hat{\theta} - \theta| \leq \sqrt{\frac{\ln(2/\delta)}{2t}}\), where \(t\) is the number of throws?
+Do the calculation by running the exper\mrk{}iment 10,000 times and counting the fraction of the time where this fails, for values of $t \in  \{1, \ldots, 100\}$, and for values of $\delta \in \{0.001, 0.01, 0.1\}$. How close are the estimates?
+\end{document}
