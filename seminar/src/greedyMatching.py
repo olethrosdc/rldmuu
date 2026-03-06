@@ -26,10 +26,10 @@ studentPref = {
     "guodong":      [1, 5, 2], #3.5
     "lishang":      [1, 5, 2], #5
     "pengcheng":    [1, 5, 2]#, #4.5
-#    "sai":          [3, 1, 4], #5
-#    "daksh":        [0, 1, 3], #3.5,
-#    "sampson":      [4, 1], #g11
-#    "songzhi":      [1, 4, 6] # g12
+    "sai":          [3, 1, 4], #5
+    "daksh":        [1, 3], #3.5,
+    "sampson":      [4, 1], #g11
+    "songzhi":      [1, 4, 6] # g12
 #    "alec":
 #    "aurelie":
 
