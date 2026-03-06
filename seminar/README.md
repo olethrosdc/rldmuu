@@ -2,10 +2,23 @@
 
 ## Preference list
 
+Enter your references here. Make sure to enter at least 3 preferences. Groups should be ideally 3 people. 2 is fine, and 4 might be accepted if there are too many students. If you are on your own, enter your preferences as group of one person, we will try to match you.
+
+Note that for P0, you must send a description to the professor responsible.
+
 https://docs.google.com/spreadsheets/d/1BVI1vKAN2EfNf2Cf-Esb7erNjWwWpLQmN8wjqoU4_Wg/edit?usp=sharing
 
 ## Projects list
+
+Here is a list of the student-supervised projects. 
+
 https://github.com/olethrosdc/rldmuu/blob/main/seminar/papers.md
+
+You can ask for a special project from the list of papers given here:
+https://github.com/olethrosdc/rldmuu/blob/main/seminar/papers/2026s.md
+
+This requires you writing a description of what you will do, in the same way that student-supervised projects are formulated. The same goes for special projects: groups of 3 are ideal. You should discuss your idea as a group before you submit it.
+
 
 ## Schedule
 
