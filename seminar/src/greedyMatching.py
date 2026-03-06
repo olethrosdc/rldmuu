@@ -2,7 +2,7 @@
 # The idea is that we match students according to their preferencs
 # The ordering of the students is important: we pay their preferences more attention.
 # If a student is unmatched and their preferences are empty, we assign them to a project that already has students, but also has available places
-# Arrow's theorem applies here: if 3 students each have diffeernt preferences and are alone, so that they are treated as a group, and prefer 1>2>3, 2>3>1, 3>1>2, then somebody will always be assigned their 1st choice, somebody their 2nd and somebody their 3rd. This is because of the 'fill projects' rule.
+# Arrow's theorem applies here: if 3 students each have diffeernt preferences and are alone, so that they are treated as a group, and prefer 1>2>3, 2>3>1, 3>1>2, then somebody will always be assigned their 1st choice, somebody their 2nd and somebody their 3rd. This is because of the 'fill projects' rule. The special project is exempt from this rule
 
 
 import queue
@@ -14,6 +14,9 @@ studentPref = {
     "allizha":      [6, 5, 4], #5
     "boris":        [6, 5, 4], #5
     "rithika":      [6, 5, 4], #4.5
+    "jing":         [4, 2, 5] ,#5
+    "mengmeng":      [4, 2, 5], #5 
+    "ebrima":       [4, 2, 5], #4.5
     "bil":          [2, 1, 6], #4
     "mateo":        [2, 1, 6], #4.5
     "felix":        [2, 1, 6], #5
@@ -22,10 +25,14 @@ studentPref = {
     "bo le":        [2, 4, 1], #4
     "guodong":      [1, 5, 2], #3.5
     "lishang":      [1, 5, 2], #5
-    "pengcheng":    [1, 5, 2], #4.5
-    "sai":          [3, 1, 4], #5
-    "daksh":        [1, 3], #3.5
-    "ebrima":       [2, 6] #4.5
+    "pengcheng":    [1, 5, 2]#, #4.5
+#    "sai":          [3, 1, 4], #5
+#    "daksh":        [0, 1, 3], #3.5,
+#    "sampson":      [4, 1], #g11
+#    "songzhi":      [1, 4, 6] # g12
+#    "alec":
+#    "aurelie":
+
 }
 
 import numpy as np
@@ -51,7 +58,7 @@ def main():
                     project = -1
                     tmp_places = 4
                     for k in range(n_projects):
-                        if (places[k] > 0):
+                        if (places[k] > 0 and k >0):
                             if places[k] < tmp_places:
                                 project = k
                                 tmp_places = places[k]
