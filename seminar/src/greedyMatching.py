@@ -11,28 +11,36 @@ studentPref = {
     "viola":        [1, 5, 6], #5
     "isabelle":     [1, 5, 6], #4.5
     "marta":        [1, 5, 6], #5
+    "alec":         [1, 3, 4], # 5.5 #g7
+    "aurelie":      [1, 3, 4], # 5 #g7
     "allizha":      [6, 5, 4], #5
     "boris":        [6, 5, 4], #5
     "rithika":      [6, 5, 4], #4.5
     "jing":         [4, 2, 5] ,#5
-    "mengmeng":      [4, 2, 5], #5 
+    "mengmeng":     [4, 2, 5], #5 
     "ebrima":       [4, 2, 5], #4.5
     "bil":          [2, 1, 6], #4
     "mateo":        [2, 1, 6], #4.5
     "felix":        [2, 1, 6], #5
+<<<<<<< HEAD
     "shao tong":    [3, 2, 4, 1], # 4
     "yi qi":        [3, 2, 4, 1], #5
     "bo le":        [3, 2, 4, 1], #4
     "guodong":      [5, 1, 2], #3.5
     "lishang":      [5, 1, 2], #5
     "pengcheng":    [5, 1, 2], #4.5
+=======
+    "shao tong":    [2, 4, 1], # 4
+    "yi qi":        [2, 4, 1], #5
+    "bo le":        [2, 4, 1], #4
+    "guodong":      [1, 5, 2], #3.5
+    "lishang":      [1, 5, 2], #5
+    "pengcheng":    [1, 5, 2], #4.5
+>>>>>>> dcc3b2c83d0f0ddb17777b0486da51146fabab82
     "sai":          [3, 1, 4], #5
+    "sampson":      [4, 1], # 4.5 g11
     "daksh":        [1, 3], #3.5,
-    "sampson":      [4, 1], #g11
-    "songzhi":      [1, 4, 6] # g12
-#    "alec":
-#    "aurelie":
-
+    "songzhi":      [1, 4, 6] # 3 # g12
 }
 
 import numpy as np
