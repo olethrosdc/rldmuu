@@ -11,11 +11,13 @@ studentPref = {
     "viola":        [1, 5, 6], #5
     "isabelle":     [1, 5, 6], #4.5
     "marta":        [1, 5, 6], #5
+    "alec":         [1, 3, 4], # 5.5 #g7
+    "aurelie":      [1, 3, 4], # 5 #g7
     "allizha":      [6, 5, 4], #5
     "boris":        [6, 5, 4], #5
     "rithika":      [6, 5, 4], #4.5
     "jing":         [4, 2, 5] ,#5
-    "mengmeng":      [4, 2, 5], #5 
+    "mengmeng":     [4, 2, 5], #5 
     "ebrima":       [4, 2, 5], #4.5
     "bil":          [2, 1, 6], #4
     "mateo":        [2, 1, 6], #4.5
@@ -26,13 +28,10 @@ studentPref = {
     "guodong":      [1, 5, 2], #3.5
     "lishang":      [1, 5, 2], #5
     "pengcheng":    [1, 5, 2], #4.5
-#    "sai":          [3, 1, 4], #5
-#    "daksh":        [1, 3], #3.5,
-#    "sampson":      [4, 1], #g11
-#    "songzhi":      [1, 4, 6] # g12
-#    "alec":
-#    "aurelie":
-
+    "sai":          [3, 1, 4], #5
+    "sampson":      [4, 1], # 4.5 g11
+    "daksh":        [1, 3], #3.5,
+    "songzhi":      [1, 4, 6] # 3 # g12
 }
 
 import numpy as np
