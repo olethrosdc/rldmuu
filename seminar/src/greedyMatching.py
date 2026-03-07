@@ -20,12 +20,12 @@ studentPref = {
     "bil":          [2, 1, 6], #4
     "mateo":        [2, 1, 6], #4.5
     "felix":        [2, 1, 6], #5
-    "shao tong":    [2, 4, 1], # 4
-    "yi qi":        [2, 4, 1], #5
-    "bo le":        [2, 4, 1], #4
-    "guodong":      [1, 5, 2], #3.5
-    "lishang":      [1, 5, 2], #5
-    "pengcheng":    [1, 5, 2]#, #4.5
+    "shao tong":    [3, 2, 4, 1], # 4
+    "yi qi":        [3, 2, 4, 1], #5
+    "bo le":        [3, 2, 4, 1], #4
+    "guodong":      [5, 1, 2], #3.5
+    "lishang":      [5, 1, 2], #5
+    "pengcheng":    [5, 1, 2], #4.5
     "sai":          [3, 1, 4], #5
     "daksh":        [1, 3], #3.5,
     "sampson":      [4, 1], #g11
@@ -42,7 +42,7 @@ def main():
     n_projects = 7
     n_students = len(students)
     assignment = {x : -1 for x in students}
-    places = np.zeros(n_projects) + 3
+    places = 4 + np.zeros(n_projects) 
     ## assign student to their first choice initially, and then go down
     priority = 0
 
