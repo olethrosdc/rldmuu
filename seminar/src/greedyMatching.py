@@ -1,49 +1,53 @@
 # Greedy 1-to-m matching algorithm
 # The idea is that we match students according to their preferencs
 # The ordering of the students is important: we pay their preferences more attention.
-# If a student is unmatched and their preferences are empty, we assign them to a project that already has students, but also has available places
-# Arrow's theorem applies here: if 3 students each have diffeernt preferences and are alone, so that they are treated as a group, and prefer 1>2>3, 2>3>1, 3>1>2, then somebody will always be assigned their 1st choice, somebody their 2nd and somebody their 3rd. This is because of the 'fill projects' rule. The special project is exempt from this rule
+# If a student is unmatched and their preferences are empty, we assign them to a project that already has students, but also has available places.  The special project is exempt from this rule.
+# If 3 students each have diffeernt preferences and prefer 1>2>3, 2>3>1, 3>1>2, then somebody will always be assigned their 1st choice, somebody their 2nd and somebody their 3rd. 
 
 
 import queue
 
 studentPref = {
-    "viola":        [1, 5, 6], #5
-    "isabelle":     [1, 5, 6], #4.5
-    "marta":        [1, 5, 6], #5
-    "alec":         [1, 3, 4], # 5.5 #g7
-    "aurelie":      [1, 3, 4], # 5 #g7
+    "viola":        [5, 6], #5
+    "isabelle":     [5, 6], #4.5
+    "marta":        [5, 6], #5
     "allizha":      [6, 5, 4], #5
     "boris":        [6, 5, 4], #5
     "rithika":      [6, 5, 4], #4.5
     "jing":         [4, 2, 5] ,#5
     "mengmeng":     [4, 2, 5], #5 
     "ebrima":       [4, 2, 5], #4.5
-    "bil":          [2, 1, 6], #4
+    "bill":          [2, 1, 6], #4
     "mateo":        [2, 1, 6], #4.5
     "felix":        [2, 1, 6], #5
-<<<<<<< HEAD
     "shao tong":    [3, 2, 4, 1], # 4
     "yi qi":        [3, 2, 4, 1], #5
     "bo le":        [3, 2, 4, 1], #4
-    "guodong":      [5, 1, 2], #3.5
-    "lishang":      [5, 1, 2], #5
-    "pengcheng":    [5, 1, 2], #4.5
-=======
-    "shao tong":    [2, 4, 1], # 4
-    "yi qi":        [2, 4, 1], #5
-    "bo le":        [2, 4, 1], #4
-    "guodong":      [1, 5, 2], #3.5
-    "lishang":      [1, 5, 2], #5
-    "pengcheng":    [1, 5, 2], #4.5
->>>>>>> dcc3b2c83d0f0ddb17777b0486da51146fabab82
-    "sai":          [3, 1, 4], #5
-    "sampson":      [4, 1], # 4.5 g11
-    "daksh":        [1, 3], #3.5,
+    "guodong":      [1, 2, 6], #3.5
+    "lishang":      [1, 2, 6], #5
+    "pengcheng":    [1, 2, 6], #4.5
+    "alec":         [1, 3, 4], # 5.5 #g7
+    "aurelie":      [1, 3, 4], # 5 #g7
+    "sai":          [3, 1, 4,], #5
+    "sampson":      [4, 1,2,], # 4.5 g11
+    "daksh":        [1, 3,], #3.5,
     "songzhi":      [1, 4, 6] # 3 # g12
 }
 
+groups = [["viola", "isabelle", "marta"],
+          ["bill", "mateo", "felix"],
+          ["allizha", "boris", "rithika"],
+          ["guodong", "lishang", "pengcheng"],
+          ["jing", "mengmeng", "ebrima"],
+          ["alec", "aurelie"],
+          ["shao tong", "yi qi", "bo le"],
+          ["sai"],
+          ["sampson"],
+          ["daksh"],
+          ["songzhi"]]
+
 import numpy as np
+
 
 def main():
     students = list(studentPref.keys())
@@ -86,5 +90,10 @@ def main():
         
     print(assignment)
     print(places)
+    for i in range(len(groups)):
+        print ("G ", i)
+        for s in groups[i]:
+            print (s, assignment[s])
+            
 if __name__ == "__main__":
     main()
