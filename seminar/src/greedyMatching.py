@@ -8,30 +8,30 @@
 import queue
 
 studentPref = {
-    "viola":        [5, 6], #5
-    "isabelle":     [5, 6], #4.5
-    "marta":        [5, 6], #5
-    "allizha":      [6, 5, 4], #5
-    "boris":        [6, 5, 4], #5
-    "rithika":      [6, 5, 4], #4.5
-    "jing":         [4, 2, 5] ,#5
-    "mengmeng":     [4, 2, 5], #5 
-    "ebrima":       [4, 2, 5], #4.5
-    "bill":          [2, 1, 6], #4
-    "mateo":        [2, 1, 6], #4.5
-    "felix":        [2, 1, 6], #5
-    "shao tong":    [3, 2, 4, 1], # 4
-    "yi qi":        [3, 2, 4, 1], #5
-    "bo le":        [3, 2, 4, 1], #4
-    "guodong":      [1, 2, 6], #3.5
-    "lishang":      [1, 2, 6], #5
-    "pengcheng":    [1, 2, 6], #4.5
-    "alec":         [1, 3, 4], # 5.5 #g7
-    "aurelie":      [1, 3, 4], # 5 #g7
-    "sai":          [3, 1, 4,], #5
-    "sampson":      [4, 1,2,], # 4.5 g11
-    "daksh":        [1, 3,], #3.5,
-    "songzhi":      [1, 4, 6] # 3 # g12
+    "viola":        [5, 6], 
+    "isabelle":     [5, 6], 
+    "marta":        [5, 6], 
+    "allizha":      [6, 5, 4],
+    "boris":        [6, 5, 4],
+    "rithika":      [6, 5, 4],
+    "jing":         [4, 2, 5],
+    "mengmeng":     [4, 2, 5],  
+    "ebrima":       [4, 2, 5], 
+    "bill":          [2, 1, 6],
+    "mateo":        [2, 1, 6], 
+    "felix":        [2, 1, 6], 
+    "shao tong":    [3, 2, 4, 1],
+    "yi qi":        [3, 2, 4, 1],
+    "bo le":        [3, 2, 4, 1],
+    "guodong":      [1, 2, 6], 
+    "lishang":      [1, 2, 6], 
+    "pengcheng":    [1, 2, 6], 
+    "alec":         [1, 3, 4], 
+    "aurelie":      [1, 3, 4], 
+    "sai":          [3, 1, 4,],
+    "sampson":      [4, 1,2,], 
+    "daksh":        [1, 3,], 
+    "songzhi":      [1, 4, 6] 
 }
 
 groups = [["viola", "isabelle", "marta"],
@@ -70,7 +70,7 @@ def main():
                     project = -1
                     tmp_places = 4
                     for k in range(n_projects):
-                        if (places[k] > 0 and k >0):
+                        if (places[k] > 0):
                             if places[k] < tmp_places:
                                 project = k
                                 tmp_places = places[k]
