@@ -27,9 +27,9 @@ studentPref = {
     "lishang":      [1, 2, 6], 
     "pengcheng":    [1, 2, 6], 
     "alec":         [1, 3, 4], 
-    "aurelie":      [1, 3, 4], 
-    "sai":          [3, 1, 4,],
-    "sampson":      [4, 1,2,], 
+    "aurelie":      [6, 1, 3, 4], 
+    "sai":          [1, 3,],
+    "sampson":      [4, 1,], 
     "daksh":        [1, 3,], 
     "songzhi":      [1, 4, 6] 
 }
