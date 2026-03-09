@@ -8,29 +8,29 @@
 import queue
 
 studentPref = {
-    "viola":        [5, 6], 
+    "viola":        [5, 6], #g1
     "isabelle":     [5, 6], 
     "marta":        [5, 6], 
-    "allizha":      [6, 5, 4],
+    "allizha":      [6, 5, 4],  #g3
     "boris":        [6, 5, 4],
     "rithika":      [6, 5, 4],
-    "jing":         [4, 2, 5],
+    "jing":         [4, 2, 5], #g6
     "mengmeng":     [4, 2, 5],  
     "ebrima":       [4, 2, 5], 
-    "bill":          [2, 1, 6],
+    "bill":          [2, 1, 6], #g2
     "mateo":        [2, 1, 6], 
     "felix":        [2, 1, 6], 
-    "shao tong":    [3, 2, 4, 1],
+    "shao tong":    [3, 2, 4, 1], #g8
     "yi qi":        [3, 2, 4, 1],
     "bo le":        [3, 2, 4, 1],
-    "guodong":      [1, 2, 6], 
+    "guodong":      [1, 2, 6],  #g4
     "lishang":      [1, 2, 6], 
     "pengcheng":    [1, 2, 6], 
-    "alec":         [1, 3, 4], 
-    "aurelie":      [6, 1, 3, 4], 
-    "sai":          [1, 3,],
-    "sampson":      [4, 1,], 
-    "daksh":        [1, 3,], 
+    "alec":         [1, 3, 4], #g7
+    "aurelie":      [6, 1, 2], 
+    "sai":          [3, 1, 4],
+    "sampson":      [4, 1], 
+    "daksh":        [1, 3], 
     "songzhi":      [1, 4, 6] 
 }
 
