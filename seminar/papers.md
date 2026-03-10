@@ -162,3 +162,19 @@ Next, students will be able to extend their project in at least one out of many 
 **NB**: students will receive a pdf with a more formal description of the paper and tasks, as well as some link that will help to understand some concept.
 
 
+## P0: The U-Tree Algorithm
+
+- **Supervisor:** Christos Dimitrakakis
+- **mail**: christos.dimitrakakis@unine.ch 
+
+- **General description:**  
+  Can we use intelligent memory structures to obtain good POMDP policies? Students will study POMPDs and tree algorithms.
+  
+  The papers focus on learning how to build a tree intelligently so that it is a good representation of the state. This is done by only expanding tree leaves that seem to be more 'important'. Given a tree representation, of the state, it is possible to run an MDP algorithm like Q-learning on the leaf nodes.
+
+  The students should experiment with different method for expanding the trees, and for different methods for representing the value function on the tree. An experimental copmarison with recursive neural networks would also be interesting.
+
+- 👨‍🏫: ⭐⭐  
+  Students have to understand POMPDs and simple statistics. The given thesis has all the background material in one place.
+- 🖥️: ⭐  
+  The experiments are simulation-based and can be conducted on a standard laptop.
