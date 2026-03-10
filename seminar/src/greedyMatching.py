@@ -22,21 +22,12 @@ studentPref = {
     "bil":          [2, 1, 6], #4
     "mateo":        [2, 1, 6], #4.5
     "felix":        [2, 1, 6], #5
-<<<<<<< HEAD
     "shao tong":    [3, 2, 4, 1], # 4
     "yi qi":        [3, 2, 4, 1], #5
     "bo le":        [3, 2, 4, 1], #4
     "guodong":      [5, 1, 2], #3.5
     "lishang":      [5, 1, 2], #5
     "pengcheng":    [5, 1, 2], #4.5
-=======
-    "shao tong":    [2, 4, 1], # 4
-    "yi qi":        [2, 4, 1], #5
-    "bo le":        [2, 4, 1], #4
-    "guodong":      [1, 5, 2], #3.5
-    "lishang":      [1, 5, 2], #5
-    "pengcheng":    [1, 5, 2], #4.5
->>>>>>> dcc3b2c83d0f0ddb17777b0486da51146fabab82
     "sai":          [3, 1, 4], #5
     "sampson":      [4, 1], # 4.5 g11
     "daksh":        [1, 3], #3.5,

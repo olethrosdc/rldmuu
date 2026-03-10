@@ -736,6 +736,17 @@ V^\pi_t(s)
 & \approx \frac{1}{N} \sum_{n=1}^N U^{(n)}_t 
 \end{align*}
 
+*** Monte-Carlo bound
+
+- Markov inequality
+\[
+\Pr(x \geq t) \leq \E[x] / t
+\]
+- For general $x$, use $e^x$:
+\[
+\Pr(x \geq t) = \Pr(e^x \geq e^t) \leq \E[e^x] / e^t.
+\]
+
 *** Policy Evaluation
 
 \begin{align*}
