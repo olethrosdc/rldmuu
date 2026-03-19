@@ -8,32 +8,6 @@
 import queue
 
 studentPref = {
-<<<<<<< HEAD
-    "viola":        [1, 5, 6], #5
-    "isabelle":     [1, 5, 6], #4.5
-    "marta":        [1, 5, 6], #5
-    "alec":         [1, 3, 4], # 5.5 #g7
-    "aurelie":      [1, 3, 4], # 5 #g7
-    "allizha":      [6, 5, 4], #5
-    "boris":        [6, 5, 4], #5
-    "rithika":      [6, 5, 4], #4.5
-    "jing":         [4, 2, 5] ,#5
-    "mengmeng":     [4, 2, 5], #5 
-    "ebrima":       [4, 2, 5], #4.5
-    "bil":          [2, 1, 6], #4
-    "mateo":        [2, 1, 6], #4.5
-    "felix":        [2, 1, 6], #5
-    "shao tong":    [3, 2, 4, 1], # 4
-    "yi qi":        [3, 2, 4, 1], #5
-    "bo le":        [3, 2, 4, 1], #4
-    "guodong":      [5, 1, 2], #3.5
-    "lishang":      [5, 1, 2], #5
-    "pengcheng":    [5, 1, 2], #4.5
-    "sai":          [3, 1, 4], #5
-    "sampson":      [4, 1], # 4.5 g11
-    "daksh":        [1, 3], #3.5,
-    "songzhi":      [1, 4, 6] # 3 # g12
-=======
     "viola":        [5, 6], #g1
     "isabelle":     [5, 6], 
     "marta":        [5, 6], 
@@ -58,7 +32,6 @@ studentPref = {
     "sampson":      [4, 1], 
     "daksh":        [1, 3], 
     "songzhi":      [1, 4, 6] 
->>>>>>> 52803b76bbd5ba2228dba732addafdbd520e4df8
 }
 
 groups = [["viola", "isabelle", "marta"],
