@@ -2,6 +2,10 @@
 % \usepackage{enumerate}
 % \setbeamertemplate{enumerate item}{(\alph{enumi})}
 % \setbeamertemplate{enumerate subitem}{(\roman{enumii})}
+\usepackage{fontspec}
+\setmainfont[Mapping=tex-text]{Linux Libertine O}
+\setromanfont[Mapping=tex-text]{Linux Libertine O}
+
 \input{preamble}
 
 
@@ -18,7 +22,7 @@
 \maketitle
 \large{Deadline: 10 March 2026}
 
-\newcommand{\mrk}{\symbol{"200B}}
+\newcommand{\mrk}{\symbol{"200D}}
 
 \section{EWA as generalised Bayes:}
 \label{sec:org68149b0}
@@ -27,7 +31,7 @@ Consider the following special case for prediction with expert advice:
 
 At time \(t\):
 \begin{itemize}
-\item Each expert \(i \in A\) makes probabilistic pred\mrk{}ictions \(p_{i,t}(x)\) for every possible \(x \in X\).
+\item Each ex\mrk{}pert \(i \in A\) makes probabilistic pred\mrk{}ictions \(p_{i,t}(x)\) for every possible \(x \in X\).
 \item You make a choice of some expert \(a_t \in A\)
 \item You observe \(x_t \in X\)
 \item You obtain reward \(r_t = - \ln p_{a_t, t}(x)\)
@@ -67,3 +71,8 @@ Where you toss a coin of unkn\mrk{}own bias \(\theta\) 100 times. Calculate the 
 How often is \(|\hat{\theta} - \theta| \leq \sqrt{\frac{\ln(2/\delta)}{2t}}\), where \(t\) is the number of throws?
 Do the calculation by running the exper\mrk{}iment 10,000 times and counting the fraction of the time where this fails, for values of $t \in  \{1, \ldots, 100\}$, and for values of $\delta \in \{0.001, 0.01, 0.1\}$. How close are the estimates?
 \end{document}
+
+%%% Local Variables:
+%%% mode: XeTeX
+%%% TeX-master: t
+%%% End:

@@ -436,18 +436,23 @@ Model-index notation.
 - Find $\mu$ maximising $P_\mu(x)$
 **** Maximum A Posteriori Estimation
 - Prior belief $\bel$
-- Find $\mu$ mximising $\bel(\mu) P_\mu(x)$
+- Find $\mu$ maximising $\bel(\mu) P_\mu(x)$
+  
 **** Bayesian Estimation
 - Return function $\bel(\mu | x)  = P_\mu(x) \bel(\mu) / \sum_{\mu'} P_{\mu'}(x) \bel(\mu')$
+  
 **** (Bayesian) MSE Estimation
 -  Find $\hat{\mu}$ minimising $\E_\bel[(\hat{\mu} - \mu)^2 | x] = \sum_\mu (\hat{\mu} - \mu)^2 \bel(\mu | x)$
+  
 *** Maximum Likelihood Estimation
+
 - Input: Data $x_1, \ldots, x_t$, A set of models $\{P_\mdp | \mdp \in \MDPs\}$
 - Inference: The model $\mdp^*_{ML}$ maximising
   \[
   P_\mdp(x_1, \ldots, x_t)
   \]
 - Prediction: $P_{\mdp^*_{ML}}(x_{t+1} | x_1, \ldots, x_t)$.
+
 *** Maximum A Posteriori Estimation
 - Input: Data $x_1, \ldots, x_t$, set of models $\{P_\mdp | \mdp \in \MDPs\}$, prior $\bel(\mdp)$ on models
 - Inference: The model $\mdp^*_{MAP}$ maximising
@@ -664,11 +669,11 @@ Show that the EWA algorithm, which updates the weights according to:
 \[
 w_{t+1}(i)
 =
-\frac{w_t(j) \exp[\eta r_{i,t})]}{\sum_{j} w_t(j) \exp[\eta r_{j,t})]}
+\frac{w_t(j) \exp[\eta r_{i,t})]}{\sum_{j} w_t(j) \exp[\eta r_{j,t}]}
 \]
 Corresponds to a modified posterior update of the form,
 \[
-\bel_{t+1}(i) = \frac{P_i(x_t)^eta \bel_t(i)}{\sum_j P_j(x_t)^eta \bel_t(j)}
+\bel_{t+1}(i) = \frac{P_i(x_t)^\eta \bel_t(i)}{\sum_j P_j(x_t)^\eta \bel_t(j)}
 \]
 where $\eta > 0$ changes the importance of the likelihood function.
 
@@ -676,7 +681,7 @@ where $\eta > 0$ changes the importance of the likelihood function.
 
 - Implement an approximation of the Beta distribution prior, where the
 you instead have a prior distribution on a finite set of $1 + 1/\epsilon$ values, that
-is $\{0, \epsilon, \ldots, 1 - \epsilon, 1\)$.
+is $\{0, \epsilon, \ldots, 1 - \epsilon, 1\}$.
 - Starting with a uniform prior on these values, calculate the
   posterior distribution after you observe 100 throws of a fair coin.
 - How does this posterior compare to the one resulting from the Beta(1,1) prior?
@@ -685,8 +690,7 @@ is $\{0, \epsilon, \ldots, 1 - \epsilon, 1\)$.
 **** Confidence bounds
 Where you toss a coin of unknown bias $\theta$ 100 times. Calculate the empirical mean $\hat{\theta}$ and compare it with the true expected value $\theta$.
 How often is $|\hat{\theta} - \theta| \leq \sqrt{\frac{\ln(2/\delta)}{2t}}$, where $t$ is the number of throws?
-Do the calculation by running the experiment 10,000 times and counting the fraction of the time where this fails, for values of $t \in 
-{1, \ldots, 100\}$, and for values of $\delta \in \{0.001, 0.01, 0.1\}$. How close are the estimates?
+Do the calculation by running the experiment 10,000 times and counting the fraction of the time where this fails, for values of $t \in \{1, \ldots, 100\}$, and for values of $\delta \in \{0.001, 0.01, 0.1\}$. How close are the estimates?
 
 ** Markov Decision Processes: Finite horizon
 
@@ -735,6 +739,17 @@ V^\pi_t(s)
 & = \E^\pi[U_t | s_t = s] \\
 & \approx \frac{1}{N} \sum_{n=1}^N U^{(n)}_t 
 \end{align*}
+
+*** Monte-Carlo bound
+
+- Markov inequality
+\[
+\Pr(x \geq t) \leq \E[x] / t
+\]
+- For general $x$, use $e^x$:
+\[
+\Pr(x \geq t) = \Pr(e^x \geq e^t) \leq \E[e^x] / e^t.
+\]
 
 *** Policy Evaluation
 
@@ -834,7 +849,6 @@ Note that $(P_\pi r)(s) = \sum_j P_\pi(s, j) r(j)$.
 - When is the policy actually optimal?
 
 *** Policy evaluation
-
 **** Policy evaluation theorem
 For any stationary policy $\pol$, the unique solution of
 \[
@@ -843,6 +857,7 @@ v = r + \gamma P_\pi v
 \qquad
 v^\pol = (I - \gamma P_\pi)^{-1} r
 \]
+
 **** Proof
 If $\|A\| < 1$, then $(I - A)^{-1}$ exists and
 \[
@@ -871,20 +886,34 @@ L v = \max_\pi \{r + \gamma P_\pi v\}.
 v = Lv
 \]
 
-*** Value iteration convergence proof
 
-**** Contraction mappings
+*** Contraction mapping
+
+**** Contraction mapping
 $M$ is a contraction mapping if there is $\gamma < 1$ so that
 \[
 \|Mx - My\| \leq \gamma \|x - y\| \qquad \forall x, y.
 \]
+
 
 **** Banach fixed point theorem
 If $M$ is a contraction mapping
 1. There is a unique $x^*$ so that $Mx^* = x^*$.
 2. If $x_{n+1} = M x_n$ then $x_n \to x^*$.
 
-**** Value iteration
+**** Solving $\sqrt(x)$                                      :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+- The mapping has the property $f(x) = x$ for the solution.
+- So if $x = \sqrt{x_0}$, we can write $x^2 - x_0 = 0$.
+- Rewrite as $2 x^2 = x^2 + x_0$ $\Rightarrow$ $x = \frac{1}{2} \left(x + x_0/x \right)$.
+- Or.. $(c+1) x^2 = c x^2 + x_0$ $\Rightarrow$ $x = \frac{1}{c+1} \left(c x + x_0/x \right)$.
+*** Value iteration convergence proof
+
+**** Value iteration is a contraction mapping
+
+**** Value iteration convergence
 - Since $L$ is a contraction mapping, it converges to $v^* = L v^*$ (Theorem 6.5.7)
 - If $v = L v$ then $v = \max_\pi v^\pi$ (Theorem 6.5.3)
 - Hence, value iteration converges to $v^*$.
@@ -1412,7 +1441,7 @@ U(s,a) = P(s,a) / N(s,a)
 \nabla_\pol E^\pol_\bel[U] = 
 \int_\MDPs \nabla_\pol \E^\pol_\mdp[U] d \bel(\mdp)
 \approx 
-\frac{1}{K} \sum_{k=1}^K \nabla_\pol \E^\pol_\mdp^{k}[U], \sim \mdp^{k} \sim \bel
+\frac{1}{K} \sum_{k=1}^K \nabla_\pol \E^\pol_{\mdp^{k}}[U], \sim \mdp^{k} \sim \bel
 \]
 *** Bayesian value function
 \[
