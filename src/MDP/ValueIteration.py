@@ -15,16 +15,11 @@ def value_iteration(mdp, n_iterations, gamma, V = None):
     Q = np.zeros([mdp.n_states, mdp.n_actions])
     ## to fill in
     for n in range(n_iterations):
-        V_old = V.copy()
-        for s in range(mdp.n_states):
-            for a in range(mdp.n_actions):
-                # rewards
-                Q[s,a] = mdp.get_reward(s, a)
-                for j in range(mdp.n_states):
-                    # next-step rewards
-                    Q[s,a] += gamma * mdp.get_transition_probability(s, a, j) * V_old[j]
-            V[s] = max(Q[s,:])
-            # fill in policy
+        a = policy(s)
+        # rewards
+        s_next = mdp.generate_next_state(s, a)
+        Q[s,a] += 0.1 * (mdp.get_reward(s, a) + gamma * max(Q[s_next,:] - Q[s,a]))
+        s = s_next
     return policy, V, Q
 
 n_actions = 2
