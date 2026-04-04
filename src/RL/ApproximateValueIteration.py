@@ -3,6 +3,7 @@ sys.path.append('../MDP')
 import ContinuousMDP
 import numpy as np
 import copy
+import matplotlib.pyplot as plt
 
 ## A linear value function
 class LinearValueFunction:
@@ -26,14 +27,15 @@ class LinearValueFunction:
         self.params -= self.rate * gradient
 
 ## Define algorithm
-def approximate_value_iteration(mdp, gamma, v_hat, n_samples = 1000, n_iterations = 100, n_next_samples=10):
+def approximate_value_iteration(mdp, gamma, v_hat, n_samples = 1000, n_iterations = 100, n_next_samples=100):
     ## Select a random set of sampled states.
     ## n_samples : number of state seamples
     ## n_dim: state dimensionality
     n_dim = mdp.n_states
     SampledStates = np.random.normal(size = [n_samples, n_dim])
-    
+    print("Starting AVI")
     for t in range(n_iterations):
+        print("Iteration ", t)
         v_old = copy.copy(v_hat) # copy parameters so that we avoid instability
         for s in SampledStates:
             v_s = v_hat.get_value(s)
@@ -45,18 +47,21 @@ def approximate_value_iteration(mdp, gamma, v_hat, n_samples = 1000, n_iteration
                 q[a] = mdp.get_reward(s, a) + gamma * next_util / n_next_samples
             v_target = max(q)
             v_hat.update(s, v_target)
+    plt.plot([v_hat.get_value(s) for s in SampledStates])
+    plt.show()
     return v_hat
 
 
 ## Define algorithm
-def fitted_q_iteration(mdp, gamma, q_hat, n_dim, n_samples, n_iterations, n_next_samples):
+def fitted_q_iteration(mdp, gamma, q_hat, n_samples = 1000, n_iterations = 100, n_next_samples = 10, n_mc_samples=10):
     ## Select a random set of sampled states.
     ## n_samples : number of state seamples
     ## n_dim: state dimensionality
+    n_dim = mdp.n_states
     SampledStates = np.random.normal(size = [n_samples, n_dim])
     
     for t in range(n_iterations):
-        q_old = q_hat.deepcopy() # copy parameters so that we avoid instability
+        q_old = copy.copy(q_hat) # copy parameters so that we avoid instability
         for s in SampledStates:
             v_s = v_hat.get_value(s)
             q_target = np.zeros(mdp.n_actions)
@@ -64,32 +69,35 @@ def fitted_q_iteration(mdp, gamma, q_hat, n_dim, n_samples, n_iterations, n_next
                 next_util = 0
                 for k in range(n_next_samples):
                     next_s = mdp.generate_state(s,a)
-                    #next_util += max(q_old.get_values(next_s)) # max_a Q(s', a)
-                    next_util += max(monte_carlo_sampler(mdp, next_s, q_old)) # max_a Q(s', a)
+                    next_util += max(monte_carlo_sampler(mdp, next_s, q_old, n_mc_samples)) # max_a Q(s', a)
                 q_target[a] = mdp.get_reward(s, a) + gamma * next_util / n_next_samples
             q_hat.update(s, q_target)
     return q_hat
 
-def monte_carlo_sampler(mdp, gamma,  starting_state, q_hat, n_samples, T):
+def monte_carlo_sampler(mdp, starting_state, gamma, q_hat, n_samples, T):
+    q_sample = np.zeros(mdp.n_actions)
     for a in range(mdp.n_actions):
         for k in range(n_samples):
             state = starting_state
-            next_action = a
             discount = 1
+            action = a
             for t in range(T):
-                next_state = mdp.generate_state(state, next_action)
-                q_sample[a] += discount * mdp.get_reward(state, next_action)
-                next_action = argmax(q_hat.get_values(next_state))
-                discount *= gamma
-    return q_sample/n_samples
+                next_state = mdp.generate_state(state, action)
+                q_sample[a] += discount * mdp.get_reward(state, action)
+                state = next_state
+                action = argmax(q_hat.get_values(state))
+            discount *= gamma
+        q_sample[a] /= n_samples
+    return q_sample
 
 n_actions = 4
 n_states = 64
 n_iterations = 1000
 gamma = 0.9
 mdp = ContinuousMDP.LinearMDP(n_states, n_actions)
-approximator = LinearValueFunction (n_states, 0.001)
-a_policy, a_V= approximate_value_iteration(mdp, 0.9, approximator)
-policy, V, Q= ValueIteration.value_iteration(mdp, n_iterations, gamma)
+state_approximator = LinearValueFunction (n_states, 0.001)
+#V_hat= approximate_value_iteration(mdp, 0.9, state_approximator, n_samples =10 )
+Q_approximator = LinearValueFunction (n_states, 0.001)
+Q_hat= fitted_q_iteration(mdp, 0.9, Q_approximator, n_samples=10)
 print(V)
 print(a_V)

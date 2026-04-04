@@ -35,6 +35,7 @@ class LinearMDP:
         self.R = np.random.uniform(size=[n_actions, n_states])
         self.state = np.random.uniform(size=n_states)
         self.sigma = 0.1
+        print("Generating linear MDP")
     # generate a new state
     def generate_state(self, state, action):
         return self.P[action] @ self.state + self.sigma * np.random.normal(size=self.n_states)
