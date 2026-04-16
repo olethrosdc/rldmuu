@@ -64,16 +64,22 @@ def approximate_value_iteration(mdp, gamma, v_hat, n_samples = 1000, n_iteration
     for t in range(n_iterations):
         print("Iteration ", t)
         v_old = copy.copy(v_hat) # copy parameters so that we avoid instability
+        # only look at a small subset of states
         for s in SampledStates:
             v_s = v_hat.get_value(s)
             q = np.zeros(mdp.n_actions)
             for a in range(mdp.n_actions):
                 next_util = 0
+                # approximate E V_{t+1} by sampling
                 for k in range(n_next_samples):
                     next_util += v_old.get_value(mdp.generate_state(s,a))
+                # we have an approximate value for each action
                 q[a] = mdp.get_reward(s, a) + gamma * next_util / n_next_samples
+            # the 'target' V[s] is the 'best' action's value
             v_target = max(q)
+            # update the approximate value function towards the target value
             v_hat.update(s, v_target)
+            
     plt.plot([v_hat.get_value(s) for s in SampledStates])
     plt.show()
     return v_hat
@@ -87,7 +93,7 @@ def fitted_q_iteration(mdp, gamma, q_hat, n_samples = 1000, n_iterations = 100, 
     n_dim = mdp.n_states
     SampledStates = np.random.normal(size = [n_samples, n_dim])
     print("Starting Fitted Q Iteration")
-    for t in range(n_iterations):
+    for t in range(n_iteraxtions):
         print(t, "/", n_iterations)
         q_old = copy.copy(q_hat) # copy parameters so that we avoid instability
         for s in SampledStates:
@@ -96,6 +102,7 @@ def fitted_q_iteration(mdp, gamma, q_hat, n_samples = 1000, n_iterations = 100, 
                 next_util = 0
                 for k in range(n_next_samples):
                     next_s = mdp.generate_state(s,a)
+                    # here we are using MC sampling (rollout) to approximate Q values
                     next_util += max(monte_carlo_sampler(mdp, next_s, gamma, q_old, n_mc_samples, int(np.ceil(1/(1 - gamma))))) # max_a Q(s', a)
                 q_target[a] = mdp.get_reward(s, a) + gamma * next_util / n_next_samples
                 q_hat.update(s, a, q_target[a])
