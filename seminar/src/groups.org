@@ -11,27 +11,27 @@
 | boris     | 6 |
 | rithika   | 6 |
 |-----------+---|
-| quodong   | x |
-| lishang   | x |
-| pengcheng | x |
+| quodong   | 5 |
+| lishang   | 5 |
+| pengcheng | 5 |
 |-----------+---|
 | jing      | 4 |
 | mengmeng  | 4 |
 | ebrima    | 4 |
 |-----------+---|
-| alec      | x |
-| aurelie   | x |
+| alec      | 1 |
+| aurelie   | 3 |
 |-----------+---|
 | shaotong  | 3 |
 | yiqi      | 3 |
 | bole      | 3 |
 |-----------+---|
-| sai       |   |
+| sai       | 3 |
 |-----------+---|
-| daksh     |   |
+| daksh     | 2 |
 |-----------+---|
-| sampson   |   |
+| sampson   | 4 |
 |-----------+---|
-| songzhi   |   |
+| songzhi   | 6 |
 |-----------+---|
 

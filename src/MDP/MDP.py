@@ -38,10 +38,15 @@ class DiscreteMDP:
     # get the probability of next state j given current state s, action a, i.e. P(j|s,a)
     def get_transition_probability(self, state, action, next_state):
         return self.P[state, action, next_state]
+
+    # get the probability of next state j given current state s, action a, i.e. P(j|s,a)
+    def get_transition_probability(self, state, action, next_state):
+        return self.P[state, action, next_state]
+
     
-    # get the vector of probabilities over next states P( . | s,a)
-    def get_transition_probabilities(self, state, action):
-        return self.P[state, action]
+    # generate a new state
+    def generate_state(self, state, action):
+        return np.random.choice(self.n_states, p = self.P[state, action])
     
     # Get the reward for the current state action.
     # It can also be interpreted as the expected reward for the state and action.
