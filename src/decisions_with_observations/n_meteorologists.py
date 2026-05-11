@@ -2,7 +2,7 @@
 
 # Assume the number of models is equal to n=len(prior).  The argument
 # P is an n-by-m array, where m is the number of possible
-# predictions so that P[i][j] is the probability the i-th model assignsm to the j-th outcome. The outcome is a single number in 1, m.
+# predictions so that P[i][j] is the probability the i-th model assignsm to the j-th outcome. The outcome is a single number in {0, .., m-1}.
 import numpy as np
 import random
 

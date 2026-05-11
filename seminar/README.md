@@ -37,8 +37,8 @@ This requires you writing a description of what you will do, in the same way tha
 | 2026.04.28 | 14:15 | B013 | Progress meeting                           |
 | 2026.05.05 | 14:15 | B013 | Group work                                 |
 | 2026.05.12 | 14:15 | B013 | Group work                                 |
-| 2026.05.19 | 14:15 | B013 | Group work                                 |
-| 2026.05.26 | 14:15 | B013 | Project Presentation                       |
+| 2026.05.19 | 13:15 | B013 | Project Presentation  Part 1               |
+| 2026.05.21 | 14:15 | B106 | Project Presentation, Part 2               |
 | 2026.06.03 | N/A   |  N/A | Project Report                             |
 |-------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ This requires you writing a description of what you will do, in the same way tha
 
 Beyond the scheduled progress meetings, you can arrange additional meetings with the professor or the student supervisor. 
 
-Before the project presentation, make sure to have uploaded a draft version of your project report. The presentations should normally take place at 14:15, but if you have a scheduling conflict, let your student supervisor know so we can arrange another day.
+Before the project presentation, make sure to have uploaded a draft version of your project report. We have two days of presentations to make sure that you all can make it. Arrange it with your supervisor.
 
 The final project report should 6-8 pages, explaining the basic algorithm/model, your extension, the experimental methodology and the results.
 
