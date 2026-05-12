@@ -61,3 +61,5 @@ The final project report should 6-8 pages, explaining the basic algorithm/model,
 ### 21/5 14:15
 
 - Jing, Mengmeng, Ebrima, Sampson
+
+- Bustamante Isabelle, Meier Viola, Visetti Marta
