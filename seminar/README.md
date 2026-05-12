@@ -54,7 +54,7 @@ The final project report should 6-8 pages, explaining the basic algorithm/model,
 
 -  Aurelie, Boris, Theibenthiram, Rithika
 
--  Li Yiqi, Yi Bole, Sun Shaotong, Karanam Sai Sharan 
+-  Li Yiqi, Yi Bole, Shao Tong Sun, Sai Sharan 
 
 ### 21/5 14:15
 
