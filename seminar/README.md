@@ -50,3 +50,16 @@ Before the project presentation, make sure to have uploaded a draft version of y
 
 The final project report should 6-8 pages, explaining the basic algorithm/model, your extension, the experimental methodology and the results.
 
+### 19/5 13:15
+
+-  Aurelie, Boris, Theibenthiram, Rithika
+
+-  Li Yiqi, Yi Bole, Shao Tong Sun, Sai Sharan
+  
+-  Bill Chavez, Mateo Lopez, Felix Merz, Daksh Patel (Group 2) 
+
+### 21/5 14:15
+
+- Jing, Mengmeng, Ebrima, Sampson
+
+- Bustamante Isabelle, Meier Viola, Visetti Marta
