@@ -52,7 +52,9 @@ The final project report should 6-8 pages, explaining the basic algorithm/model,
 
 ### 19/5 13:15
 
-- Aurelie, Boris, Theibenthiram, Rithika
+-  Aurelie, Boris, Theibenthiram, Rithika
+
+- G8: Li Yiqi, Yi Bole, Sun Shaotong, Karanam Sai Sharan 
 
 ### 21/5 14:15
 
