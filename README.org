@@ -141,8 +141,10 @@ Grades will be adjusted based on group size with on letter grade up/down for dou
 
 ** Examination
 
-There is one project, taking up 60% of the credit.
+There is one project, taking up 40% of the credit.
 There is one written exam, for 40% of the credit.
+Assignments, for 20% of the credit.
+
 Criteria for full marks in each part of the project are the following. 
 
 1. Documenting of the work in a way that enables reproduction.
